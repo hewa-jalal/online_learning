@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:online_learning/domain/auth/auth_facade.dart';
 import 'package:online_learning/domain/auth/auth_failure.dart';
 import 'package:online_learning/domain/auth/value_objects.dart';
@@ -11,8 +12,10 @@ part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
 part 'sign_in_form_bloc.freezed.dart';
 
+@injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   final AuthFacade _authFacade;
+
   SignInFormBloc(this._authFacade) : super(SignInFormState.initial());
 
   @override
@@ -47,7 +50,6 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
           isSubmitting: true,
           authFailureOrSuccessOption: none(),
         );
-
         final failureOrSuccess = await _authFacade.signInWithGoogle();
         yield state.copyWith(
           isSubmitting: false,
@@ -66,8 +68,8 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
   ) async* {
     Either<AuthFailure, Unit> failureOrSuccess;
 
-    final isEmailValid = state.emailAddress.value.isRight();
-    final isPasswordValid = state.password.value.isRight();
+    final isEmailValid = state.emailAddress.isValid();
+    final isPasswordValid = state.password.isValid();
 
     if (isEmailValid && isPasswordValid) {
       yield state.copyWith(
@@ -80,8 +82,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         password: state.password,
       );
     }
-    // optionOf is equivalent to:
-    // failureOrSuccess == null ? none() : some(failureOrSuccess)
+
     yield state.copyWith(
       isSubmitting: false,
       showErrorMessages: true,

@@ -2,11 +2,16 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:online_learning/domain/auth/user.dart';
 import 'package:online_learning/domain/auth/value_objects.dart';
 
 import 'auth_failure.dart';
 
 abstract class AuthFacade {
+  Future<Option<User>> getSignedInUser();
+
+  Future<void> signOut();
+
   // This return type is perfect because we can easily use it even for methods which do return a value. If, for example, a method doesn't return void (a.k.a. Unit), we'd return Either<AuthFailure, SomeType>.
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     @required EmailAddress emailAddress,

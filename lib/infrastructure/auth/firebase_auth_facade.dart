@@ -1,14 +1,18 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:injectable/injectable.dart';
 import 'package:online_learning/domain/auth/auth_facade.dart';
+import 'package:online_learning/domain/auth/user.dart';
 import 'package:online_learning/domain/auth/value_objects.dart';
 import 'package:online_learning/domain/auth/auth_failure.dart';
+import 'firebase_user_mapper.dart';
 
+@LazySingleton(as: AuthFacade)
 class FireBaseAuthFacade implements AuthFacade {
-  final FirebaseAuth _firebaseAuth;
+  final firebase.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 
   FireBaseAuthFacade(this._firebaseAuth, this._googleSignIn);
@@ -27,7 +31,7 @@ class FireBaseAuthFacade implements AuthFacade {
         password: passwordStr,
       );
       return right(unit);
-    } on PlatformException catch (e) {
+    } on firebase.FirebaseAuthException catch (e) {
       // we only want to catch the email-already-in-use error
       // because we already checked the other errors in our ValueObjects
       if (e.code == 'email-already-in-use') {
@@ -52,7 +56,7 @@ class FireBaseAuthFacade implements AuthFacade {
         password: passwordStr,
       );
       return right(unit);
-    } on PlatformException catch (e) {
+    } on firebase.FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         // we want to give the same error for both when email or password is incorrect
         // so a malicious user won't know which one is incorrect
@@ -73,15 +77,25 @@ class FireBaseAuthFacade implements AuthFacade {
       final googleAuthentication = await googleUser.authentication;
 
       // firebase only understand credentials
-      final authCredentials = GoogleAuthProvider.credential(
+      final authCredentials = firebase.GoogleAuthProvider.credential(
         idToken: googleAuthentication.idToken,
         accessToken: googleAuthentication.accessToken,
       );
 
       await _firebaseAuth.signInWithCredential(authCredentials);
       return right(unit);
-    } on FirebaseAuthException {
+    } on firebase.FirebaseAuthException {
       return left(const AuthFailure.serverError());
     }
   }
+
+  @override
+  Future<Option<User>> getSignedInUser() async =>
+      optionOf(_firebaseAuth.currentUser.toDomain());
+
+  @override
+  Future<void> signOut() => Future.wait([
+        _googleSignIn.signOut(),
+        _firebaseAuth.signOut(),
+      ]);
 }

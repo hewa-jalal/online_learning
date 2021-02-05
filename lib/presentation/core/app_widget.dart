@@ -4,6 +4,10 @@ import 'package:flutter/material.dart' hide Router;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_learning/application/auth/auth_bloc.dart';
+import 'package:online_learning/application/auth/bloc/authentication_bloc.dart';
+import 'package:online_learning/application/simple_form/simple_form.dart';
+import 'package:online_learning/domain/users/firebase_user_repository.dart';
+import 'package:online_learning/domain/users/user_repository.dart';
 import 'package:online_learning/injection.dart';
 import 'package:online_learning/presentation/role/role_page.dart';
 import 'package:online_learning/presentation/sign_in/sign_in_page.dart';
@@ -20,7 +24,10 @@ class AppWidget extends StatelessWidget {
           BlocProvider(
             create: (_) =>
                 getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested()),
-          )
+          ),
+          BlocProvider(
+              create: (_) => AuthenticationBloc(FirebaseUserRepository())
+                ..add(AuthenticationEvent.authCheckRequested(id: '12')))
         ],
         child: MaterialApp(
           // builder: ExtendedNavigator.builder<app_router.Router>(
@@ -29,7 +36,7 @@ class AppWidget extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: ScreenUtilInit(child: SignInPage()),
+          home: ScreenUtilInit(child: SimpleForm()),
         ),
       ),
     );

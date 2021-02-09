@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:online_learning/domain/entites/user.dart';
-import 'package:online_learning/domain/usecase/get_user.dart';
+import 'package:online_learning/features/user/domain/entites/user.dart';
+import 'package:online_learning/features/user/domain/usecase/get_user.dart';
 
 part 'user_auth_event.dart';
 part 'user_auth_state.dart';

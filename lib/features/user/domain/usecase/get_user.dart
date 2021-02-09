@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:online_learning/core/errors/failures.dart';
-import 'package:online_learning/core/usecase/use_case.dart';
-import 'package:online_learning/domain/entites/user.dart';
-import 'package:online_learning/domain/repositories/user_repository.dart';
+import 'package:online_learning/features/user/core/errors/failures.dart';
+import 'package:online_learning/features/user/core/usecase/use_case.dart';
+import 'package:online_learning/features/user/domain/entites/user.dart';
+import 'package:online_learning/features/user/domain/repositories/user_repository.dart';
 
 class GetUser extends UseCase<UserEntity, UserParam> {
   final UserRepository userRepository;

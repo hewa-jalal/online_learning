@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_learning/data/datasources/user_remote_data_source.dart';
-import 'package:online_learning/data/repositories/user_repository_impl.dart';
-import 'package:online_learning/domain/entites/user.dart';
-import 'package:online_learning/domain/usecase/get_user.dart';
-import 'package:online_learning/presentation/bloc/user_auth_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
+import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
+import 'package:online_learning/features/user/domain/entites/user.dart';
+import 'package:online_learning/features/user/domain/usecase/get_user.dart';
+import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 void main() => runApp(MyApp());

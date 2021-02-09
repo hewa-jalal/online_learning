@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:online_learning/domain/entites/user.dart';
+import 'package:online_learning/features/user/domain/entites/user.dart';
 
 class UserModel extends UserEntity {
   final String fullName;

@@ -2,27 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
+import 'package:online_learning/features/lectures/data/repository/lectures_repository_impl.dart';
+import 'package:online_learning/features/lectures/domain/usecases/post_lecture.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form.dart';
+import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-
-void main() => runApp(MyApp());
+import 'package:online_learning/injection.dart' as di;
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => UserAuthBloc(
-          GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource()))),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => UserAuthBloc(
+              GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource()))),
+        ),
+        BlocProvider(
+          create: (_) => LectureBloc(PostLecture(
+              LecturesRepositoryImpl(FirebaseLecturesRemoteDataSource()))),
+        )
+      ],
       child: ScreenUtilInit(
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           home: Scaffold(
             body: Center(
-              child: GetUserForm(),
+              child: LectureForm(),
             ),
           ),
         ),

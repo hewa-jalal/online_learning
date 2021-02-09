@@ -30,18 +30,21 @@ dependencies:
   equatable: ^1.2.5
   firebase_auth: ^0.20.0+1
   firebase_core: ^0.7.0
+  firebase_storage: ^7.0.0
   flushbar: ^1.10.4
   flutter_bloc: ^6.1.1
-  sleek_circular_slider: ^1.2.0+web
   flutter_screenutil: ^4.0.2+8
   freezed_annotation: ^0.12.0
   get_it: ^5.0.6
   google_sign_in: ^4.5.9
+  image_picker: ^0.6.7+22
   injectable: ^1.0.7
   json_annotation: ^3.1.1
   kt_dart: ^0.8.0
   lottie: ^0.7.0+1
+  file_picker: ^2.1.6
   percent_indicator: ^2.1.9+1
+  sleek_circular_slider: ^1.2.0+web
   uuid: ^2.2.2
 
 dev_dependencies:
@@ -50,7 +53,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   auto_route_generator: ^0.6.10
-  build_runner: null
+  build_runner: 1.11.1
   freezed: ^0.12.7
   injectable_generator: ^1.0.7
   json_serializable: ^3.5.1

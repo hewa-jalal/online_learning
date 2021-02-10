@@ -5,4 +5,5 @@ abstract class ProgressEvent with _$ProgressEvent {
   const factory ProgressEvent.started() = _Started;
   const factory ProgressEvent.resume() = _Resume;
   const factory ProgressEvent.pause() = _Pause;
+  const factory ProgressEvent.updated(int tickCount) = _Updated;
 }

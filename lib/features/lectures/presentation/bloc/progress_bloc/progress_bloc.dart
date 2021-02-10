@@ -31,6 +31,9 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
     );
   }
 
+  final Ticker _ticker;
+  StreamSubscription _subscription;
+
   @override
   Stream<ProgressState> mapEventToState(
     ProgressEvent event,
@@ -41,6 +44,10 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
       started: (e) async* {
         double progress =
             task.snapshot.bytesTransferred / task.snapshot.totalBytes;
+        await _subscription?.cancel();
+        // _subscription =
+        //     _ticker.tick().listen((tick) => add(_TickerTicked(tick)));
+
         print('progress $progress');
         yield ProgressState.loading(percentage: progress);
       },

@@ -21,5 +21,5 @@ class LectureParams extends Equatable {
 
   LectureParams({@required this.fileUrl});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [fileUrl];
 }

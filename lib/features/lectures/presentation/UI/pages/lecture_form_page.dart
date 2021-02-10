@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
+import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 
 class LectureFormPage extends StatefulWidget {
@@ -19,12 +20,7 @@ class _LectureFormPageState extends State<LectureFormPage> {
         return SafeArea(
           child: Scaffold(
             body: state.map(
-              initial: (_) => ElevatedButton(
-                onPressed: () => context
-                    .read<LectureBloc>()
-                    .add(LectureEvent.uploadLecture()),
-                child: Text('Upload a lecture'),
-              ),
+              initial: (_) => InitialWidget(),
               lectureLoaded: (e) => Column(
                 children: [
                   ElevatedButton(
@@ -37,10 +33,67 @@ class _LectureFormPageState extends State<LectureFormPage> {
                   Text(e.lectureEntity.fileUrl),
                 ],
               ),
+              loading: (e) {
+                print('Loading widget');
+                return LoadingWidget();
+              },
             ),
           ),
         );
       },
     );
+  }
+}
+
+class LoadingWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProgressBloc, ProgressState>(
+      builder: (context, state) {
+        return state.map(
+          initial: (_) {
+            print('progress initial');
+            return Column(
+              children: [
+                Text('Initial progress'),
+              ],
+            );
+          },
+          loading: (progressState) {
+            print('progress loading ${progressState.percentage}');
+
+            return CircularProgressIndicator(value: progressState.percentage);
+          },
+          paused: (_) {
+            print('progress paused');
+
+            return Text('Paused progress');
+          },
+          resumed: (_) {
+            print('progress resumed');
+            return Text('Resumed progress');
+          },
+          loaded: (_) {
+            print('progress loaded');
+            return Text('Loaded progress');
+          },
+        );
+      },
+    );
+  }
+}
+
+class InitialWidget extends StatelessWidget {
+  const InitialWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          context.read<LectureBloc>().add(LectureEvent.uploadLecture());
+        },
+        child: Text('Upload Lecture'));
   }
 }

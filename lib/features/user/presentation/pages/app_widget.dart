@@ -6,10 +6,12 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 import 'package:online_learning/features/lectures/data/repository/lectures_repository_impl.dart';
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
+import 'package:online_learning/features/lectures/domain/usecases/get_lecture_progress.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
 import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form_page.dart';
 
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
+import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
@@ -33,6 +35,17 @@ class MyApp extends StatelessWidget {
               ),
               uploadLecture: UploadLecture(LecturesRepositoryImpl(
                   FirebaseLecturesRemoteDataSource(dio: Dio())))),
+        ),
+        BlocProvider(
+          create: (context) => ProgressBloc(
+            lectureBloc: context.read<LectureBloc>(),
+            lectureProgress: GetLectureProgress(
+              LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(dio: Dio()),
+              ),
+            ),
+          ),
+          child: Container(),
         )
       ],
       child: ScreenUtilInit(

@@ -11,19 +11,21 @@ import 'package:path_provider/path_provider.dart';
 abstract class LecturesRemoteDataSource {
   Future<LectureModel> downloadLecture(String fileUrl);
   Future<LectureModel> uploadLecture(String fileUrl);
+  Future<Task> lectureProgress();
 }
 
 class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
   final storageRef = FirebaseStorage.instance.ref();
   final lecturesCollection = FirebaseFirestore.instance.collection('lectures');
   final Dio dio;
+  UploadTask uploadTask;
 
   FirebaseLecturesRemoteDataSource({@required this.dio});
 
   @override
   Future<LectureModel> downloadLecture(String fileUrl) async {
     var dir = await getTemporaryDirectory();
-    final url = await storageRef.child('hello').getDownloadURL();
+    final url = await storageRef.child('test').getDownloadURL();
 
     // await dio.download(url, '${dir.path}lectures.pdf');
 
@@ -34,10 +36,13 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
 
   @override
   Future<LectureModel> uploadLecture(String fileUrl) async {
-    final uploadTask = storageRef.child('hello').putFile(File(fileUrl));
+    uploadTask = storageRef.child('test').putFile(File(fileUrl));
     lecturesCollection.add(LectureModel(fileUrl: fileUrl).toDocument());
-    uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes;
+    await lectureProgress();
 
     return LectureModel(fileUrl: fileUrl);
   }
+
+  @override
+  Future<Task> lectureProgress() async => Future.value(uploadTask);
 }

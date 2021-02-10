@@ -406,6 +406,11 @@ class _$LectureStateTearOff {
   }
 
 // ignore: unused_element
+  _Loading loading() {
+    return const _Loading();
+  }
+
+// ignore: unused_element
   _LectureLoaded lectureLoaded({@required LectureEntity lectureEntity}) {
     return _LectureLoaded(
       lectureEntity: lectureEntity,
@@ -422,22 +427,26 @@ mixin _$LectureState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult loading(),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult loading(),
     TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult lectureLoaded(_LectureLoaded value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult lectureLoaded(_LectureLoaded value),
     @required TResult orElse(),
   });
@@ -496,9 +505,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult loading(),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(lectureLoaded != null);
     return initial();
   }
@@ -507,6 +518,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult loading(),
     TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult orElse(),
   }) {
@@ -521,9 +533,11 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult lectureLoaded(_LectureLoaded value),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(lectureLoaded != null);
     return initial(this);
   }
@@ -532,6 +546,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult lectureLoaded(_LectureLoaded value),
     @required TResult orElse(),
   }) {
@@ -545,6 +560,100 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements LectureState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$LoadingCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
+      __$LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LoadingCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
+      : super(_value, (v) => _then(v as _Loading));
+
+  @override
+  _Loading get _value => super._value as _Loading;
+}
+
+/// @nodoc
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'LectureState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult lectureLoaded(LectureEntity lectureEntity),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(lectureLoaded != null);
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult lectureLoaded(_LectureLoaded value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(lectureLoaded != null);
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult lectureLoaded(_LectureLoaded value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements LectureState {
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -613,9 +722,11 @@ class _$_LectureLoaded implements _LectureLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult loading(),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(lectureLoaded != null);
     return lectureLoaded(lectureEntity);
   }
@@ -624,6 +735,7 @@ class _$_LectureLoaded implements _LectureLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult loading(),
     TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult orElse(),
   }) {
@@ -638,9 +750,11 @@ class _$_LectureLoaded implements _LectureLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
     @required TResult lectureLoaded(_LectureLoaded value),
   }) {
     assert(initial != null);
+    assert(loading != null);
     assert(lectureLoaded != null);
     return lectureLoaded(this);
   }
@@ -649,6 +763,7 @@ class _$_LectureLoaded implements _LectureLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
+    TResult loading(_Loading value),
     TResult lectureLoaded(_LectureLoaded value),
     @required TResult orElse(),
   }) {

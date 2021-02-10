@@ -13,8 +13,11 @@ part 'progress_bloc.freezed.dart';
 class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   final LectureBloc lectureBloc;
   final GetLectureProgress lectureProgress;
+  final Ticker ticker;
+
   StreamSubscription lectureSubscription;
   ProgressBloc({
+    @required this.ticker,
     @required this.lectureProgress,
     @required this.lectureBloc,
   }) : super(_Initial()) {
@@ -31,6 +34,8 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
     );
   }
 
+  StreamSubscription _subscription;
+
   @override
   Stream<ProgressState> mapEventToState(
     ProgressEvent event,
@@ -41,9 +46,15 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
       started: (e) async* {
         double progress =
             task.snapshot.bytesTransferred / task.snapshot.totalBytes;
+        await _subscription?.cancel();
+        _subscription = ticker.tick().listen((tick) => add(_Updated(tick)));
+
         print('progress $progress');
-        yield ProgressState.loading(percentage: progress);
+        if (event is _Updated) {
+          yield _Loading(percentage: event.tickCount);
+        }
       },
+      updated: (e) async* {},
       resume: (e) async* {},
       pause: (e) async* {},
     );

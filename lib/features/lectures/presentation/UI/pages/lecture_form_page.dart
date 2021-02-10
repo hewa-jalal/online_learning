@@ -62,7 +62,8 @@ class LoadingWidget extends StatelessWidget {
           loading: (progressState) {
             print('progress loading ${progressState.percentage}');
 
-            return CircularProgressIndicator(value: progressState.percentage);
+            return CircularProgressIndicator(
+                value: progressState.percentage.toDouble());
           },
           paused: (_) {
             print('progress paused');

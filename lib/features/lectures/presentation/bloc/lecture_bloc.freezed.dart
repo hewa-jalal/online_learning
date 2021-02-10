@@ -19,8 +19,15 @@ class _$LectureEventTearOff {
   }
 
 // ignore: unused_element
-  _PostLecture postLecture() {
-    return const _PostLecture();
+  _DownloadLecture downloadLecture({@required String fileUrl}) {
+    return _DownloadLecture(
+      fileUrl: fileUrl,
+    );
+  }
+
+// ignore: unused_element
+  _UploadLecture uploadLecture() {
+    return const _UploadLecture();
   }
 }
 
@@ -33,23 +40,27 @@ mixin _$LectureEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult postLecture(),
+    @required TResult downloadLecture(String fileUrl),
+    @required TResult uploadLecture(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult postLecture(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
-    @required TResult postLecture(_PostLecture value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
-    TResult postLecture(_PostLecture value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
     @required TResult orElse(),
   });
 }
@@ -107,10 +118,12 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult postLecture(),
+    @required TResult downloadLecture(String fileUrl),
+    @required TResult uploadLecture(),
   }) {
     assert(started != null);
-    assert(postLecture != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
     return started();
   }
 
@@ -118,7 +131,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult postLecture(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -132,10 +146,12 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
-    @required TResult postLecture(_PostLecture value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
   }) {
     assert(started != null);
-    assert(postLecture != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
     return started(this);
   }
 
@@ -143,7 +159,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
-    TResult postLecture(_PostLecture value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -159,35 +176,160 @@ abstract class _Started implements LectureEvent {
 }
 
 /// @nodoc
-abstract class _$PostLectureCopyWith<$Res> {
-  factory _$PostLectureCopyWith(
-          _PostLecture value, $Res Function(_PostLecture) then) =
-      __$PostLectureCopyWithImpl<$Res>;
+abstract class _$DownloadLectureCopyWith<$Res> {
+  factory _$DownloadLectureCopyWith(
+          _DownloadLecture value, $Res Function(_DownloadLecture) then) =
+      __$DownloadLectureCopyWithImpl<$Res>;
+  $Res call({String fileUrl});
 }
 
 /// @nodoc
-class __$PostLectureCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
-    implements _$PostLectureCopyWith<$Res> {
-  __$PostLectureCopyWithImpl(
-      _PostLecture _value, $Res Function(_PostLecture) _then)
-      : super(_value, (v) => _then(v as _PostLecture));
+class __$DownloadLectureCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res>
+    implements _$DownloadLectureCopyWith<$Res> {
+  __$DownloadLectureCopyWithImpl(
+      _DownloadLecture _value, $Res Function(_DownloadLecture) _then)
+      : super(_value, (v) => _then(v as _DownloadLecture));
 
   @override
-  _PostLecture get _value => super._value as _PostLecture;
+  _DownloadLecture get _value => super._value as _DownloadLecture;
+
+  @override
+  $Res call({
+    Object fileUrl = freezed,
+  }) {
+    return _then(_DownloadLecture(
+      fileUrl: fileUrl == freezed ? _value.fileUrl : fileUrl as String,
+    ));
+  }
 }
 
 /// @nodoc
-class _$_PostLecture implements _PostLecture {
-  const _$_PostLecture();
+class _$_DownloadLecture implements _DownloadLecture {
+  const _$_DownloadLecture({@required this.fileUrl}) : assert(fileUrl != null);
+
+  @override
+  final String fileUrl;
 
   @override
   String toString() {
-    return 'LectureEvent.postLecture()';
+    return 'LectureEvent.downloadLecture(fileUrl: $fileUrl)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _PostLecture);
+    return identical(this, other) ||
+        (other is _DownloadLecture &&
+            (identical(other.fileUrl, fileUrl) ||
+                const DeepCollectionEquality().equals(other.fileUrl, fileUrl)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(fileUrl);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DownloadLectureCopyWith<_DownloadLecture> get copyWith =>
+      __$DownloadLectureCopyWithImpl<_DownloadLecture>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult downloadLecture(String fileUrl),
+    @required TResult uploadLecture(),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    return downloadLecture(fileUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (downloadLecture != null) {
+      return downloadLecture(fileUrl);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    return downloadLecture(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (downloadLecture != null) {
+      return downloadLecture(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DownloadLecture implements LectureEvent {
+  const factory _DownloadLecture({@required String fileUrl}) =
+      _$_DownloadLecture;
+
+  String get fileUrl;
+  @JsonKey(ignore: true)
+  _$DownloadLectureCopyWith<_DownloadLecture> get copyWith;
+}
+
+/// @nodoc
+abstract class _$UploadLectureCopyWith<$Res> {
+  factory _$UploadLectureCopyWith(
+          _UploadLecture value, $Res Function(_UploadLecture) then) =
+      __$UploadLectureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$UploadLectureCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res>
+    implements _$UploadLectureCopyWith<$Res> {
+  __$UploadLectureCopyWithImpl(
+      _UploadLecture _value, $Res Function(_UploadLecture) _then)
+      : super(_value, (v) => _then(v as _UploadLecture));
+
+  @override
+  _UploadLecture get _value => super._value as _UploadLecture;
+}
+
+/// @nodoc
+class _$_UploadLecture implements _UploadLecture {
+  const _$_UploadLecture();
+
+  @override
+  String toString() {
+    return 'LectureEvent.uploadLecture()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _UploadLecture);
   }
 
   @override
@@ -197,23 +339,26 @@ class _$_PostLecture implements _PostLecture {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult postLecture(),
+    @required TResult downloadLecture(String fileUrl),
+    @required TResult uploadLecture(),
   }) {
     assert(started != null);
-    assert(postLecture != null);
-    return postLecture();
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    return uploadLecture();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult postLecture(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (postLecture != null) {
-      return postLecture();
+    if (uploadLecture != null) {
+      return uploadLecture();
     }
     return orElse();
   }
@@ -222,30 +367,33 @@ class _$_PostLecture implements _PostLecture {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
-    @required TResult postLecture(_PostLecture value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
   }) {
     assert(started != null);
-    assert(postLecture != null);
-    return postLecture(this);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    return uploadLecture(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
-    TResult postLecture(_PostLecture value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (postLecture != null) {
-      return postLecture(this);
+    if (uploadLecture != null) {
+      return uploadLecture(this);
     }
     return orElse();
   }
 }
 
-abstract class _PostLecture implements LectureEvent {
-  const factory _PostLecture() = _$_PostLecture;
+abstract class _UploadLecture implements LectureEvent {
+  const factory _UploadLecture() = _$_UploadLecture;
 }
 
 /// @nodoc

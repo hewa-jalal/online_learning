@@ -6,13 +6,13 @@ import 'package:online_learning/features/lectures/domain/repository/lectures_rep
 import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
 
-class GetLecture extends UseCase<LectureEntity, LectureParams> {
+class DownloadLecture extends UseCase<LectureEntity, LectureParams> {
   final LecturesRepository lecturesRepository;
 
-  GetLecture(this.lecturesRepository);
+  DownloadLecture(this.lecturesRepository);
   @override
   Future<Either<Failure, LectureEntity>> call(LectureParams params) {
-    return lecturesRepository.getLecture(params.fileUrl);
+    return lecturesRepository.downloadLecture(params.fileUrl);
   }
 }
 

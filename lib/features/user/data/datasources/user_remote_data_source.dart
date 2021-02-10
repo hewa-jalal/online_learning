@@ -12,7 +12,7 @@ class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
   @override
   Future<UserModel> getUser(int id) async {
     final userDoc = await users.doc(id.toString()).get();
-    if (userDoc != null) {
+    if (userDoc.exists) {
       return UserModel.fromSnapshot(userDoc);
     } else {
       throw UserNotFoundException();

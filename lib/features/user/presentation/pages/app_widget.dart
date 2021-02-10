@@ -1,19 +1,19 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 import 'package:online_learning/features/lectures/data/repository/lectures_repository_impl.dart';
-import 'package:online_learning/features/lectures/domain/usecases/post_lecture.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form.dart';
+import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
+import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form_page.dart';
+
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import 'package:online_learning/injection.dart' as di;
 
 class MyApp extends StatelessWidget {
   @override
@@ -25,153 +25,24 @@ class MyApp extends StatelessWidget {
               GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource()))),
         ),
         BlocProvider(
-          create: (_) => LectureBloc(PostLecture(
-              LecturesRepositoryImpl(FirebaseLecturesRemoteDataSource()))),
+          create: (_) => LectureBloc(
+              downloadLecture: DownloadLecture(
+                LecturesRepositoryImpl(
+                  FirebaseLecturesRemoteDataSource(dio: Dio()),
+                ),
+              ),
+              uploadLecture: UploadLecture(LecturesRepositoryImpl(
+                  FirebaseLecturesRemoteDataSource(dio: Dio())))),
         )
       ],
       child: ScreenUtilInit(
-        child: MaterialApp(
+        child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home: Scaffold(
-            body: Center(
-              child: LectureForm(),
-            ),
+            body: LectureFormPage(),
           ),
         ),
       ),
-    );
-  }
-}
-
-class GetUserForm extends StatefulWidget {
-  @override
-  _GetUserFormState createState() => _GetUserFormState();
-}
-
-class _GetUserFormState extends State<GetUserForm> {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<UserAuthBloc, UserAuthState>(
-      builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            body: state.map(
-              initial: (_) => UserForm(),
-              userLoaded: (userState) => UserLoadedWidget(user: userState.user),
-              userError: (_) => Text('User error'),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class UserLoadedWidget extends StatelessWidget {
-  final UserEntity user;
-  const UserLoadedWidget({
-    Key key,
-    @required this.user,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 18.w),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Hello,',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      Text(
-                        'Hewa Jalal',
-                        // textAlign: TextAlign.right,
-                      ),
-                    ],
-                  );
-                },
-              ),
-              CircleAvatar(child: Icon(Icons.person)),
-            ],
-          ),
-        ),
-        Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              // CircleAvatar(child: Icon(Icons.person)),
-              Text('Mobile Development'),
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: SleekCircularSlider(
-                      appearance: CircularSliderAppearance(
-                        size: 80.h,
-                        customColors: CustomSliderColors(
-                          progressBarColor: Colors.orange,
-                          dotColor: Colors.transparent,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-        // Text(
-        //   'User loaded with id: ${user.id} and role ${user.fullName.split(',')[0]}',
-        // ),
-      ],
-    );
-  }
-}
-
-class UserForm extends StatefulWidget {
-  const UserForm({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  _UserFormState createState() => _UserFormState();
-}
-
-class _UserFormState extends State<UserForm> {
-  final _controller = TextEditingController();
-  int userId = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: TextField(
-            controller: _controller,
-            onChanged: (val) => userId = int.parse(val),
-            keyboardType: TextInputType.number,
-          ),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            context
-                .read<UserAuthBloc>()
-                .add(UserAuthEvent.getUserById(id: userId));
-          },
-          child: Text('Get user'),
-        )
-      ],
     );
   }
 }

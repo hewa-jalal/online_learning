@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class LectureFormPage extends StatefulWidget {
   final UserEntity user;
@@ -15,10 +16,18 @@ class LectureFormPage extends StatefulWidget {
 class _LectureFormPageState extends State<LectureFormPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LectureBloc, LectureState>(
+    return BlocConsumer<LectureBloc, LectureState>(
+      listener: (context, state) {
+        state.maybeMap(
+          loading: (e) =>
+              context.read<ProgressBloc>().add(ProgressEvent.started()),
+          orElse: () => print('orElse in UI'),
+        );
+      },
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
+            // body: LoadingWidget(),
             body: state.map(
               initial: (_) => InitialWidget(),
               lectureLoaded: (e) => Column(
@@ -34,7 +43,6 @@ class _LectureFormPageState extends State<LectureFormPage> {
                 ],
               ),
               loading: (e) {
-                print('Loading widget');
                 return LoadingWidget();
               },
             ),
@@ -56,14 +64,23 @@ class LoadingWidget extends StatelessWidget {
             return Column(
               children: [
                 Text('Initial progress'),
+                ElevatedButton(
+                  onPressed: () {
+                    context.read<ProgressBloc>().add(ProgressEvent.started());
+                  },
+                  child: Text('Start the loading'),
+                ),
               ],
             );
           },
           loading: (progressState) {
-            print('progress loading ${progressState.percentage}');
-
-            return CircularProgressIndicator(
-                value: progressState.percentage.toDouble());
+            print('ProgressState ${progressState.percentage}');
+            return Center(
+              child: CircularPercentIndicator(
+                radius: 200,
+                percent: progressState.percentage.toDouble() / 100,
+              ),
+            );
           },
           paused: (_) {
             print('progress paused');
@@ -91,10 +108,21 @@ class InitialWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: () {
-          context.read<LectureBloc>().add(LectureEvent.uploadLecture());
-        },
-        child: Text('Upload Lecture'));
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            context.read<ProgressBloc>().add(ProgressEvent.started());
+          },
+          child: Text('Start the loading'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            context.read<LectureBloc>().add(LectureEvent.uploadLecture());
+          },
+          child: Text('Upload Lecture'),
+        ),
+      ],
+    );
   }
 }

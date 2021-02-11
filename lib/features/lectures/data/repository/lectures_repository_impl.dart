@@ -1,4 +1,3 @@
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 import 'package:online_learning/features/lectures/domain/entities/lecture_entity.dart';
 import 'package:dartz/dartz.dart';
@@ -30,11 +29,5 @@ class LecturesRepositoryImpl implements LecturesRepository {
       print('exceptions ${e.toString()}');
       return left(UserNotFoundFailure());
     }
-  }
-
-  @override
-  Future<firebase_storage.Task> getLectureProgress() async {
-    final task = remoteDataSource.lectureProgress();
-    return task;
   }
 }

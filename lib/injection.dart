@@ -13,12 +13,18 @@
 // import 'features/lectures/domain/usecases/post_lecture.dart';
 // import 'features/lectures/presentation/bloc/lecture_bloc.dart';
 
-// final sl = GetIt.I;
+import 'package:get_it/get_it.dart';
 
-// Future init() async {
-//   // BLOC
-//   sl.registerFactory(() => UserAuthBloc(sl()));
-//   sl.registerFactory(() => LectureBloc(sl()));
+import 'features/lectures/domain/usecases/get_lecture_progress.dart';
+
+final sl = GetIt.I;
+
+Future init() async {
+  sl.registerLazySingleton(() => LectureTask());
+  // BLOC
+  // sl.registerFactory(() => UserAuthBloc(sl()));
+  // sl.registerFactory(() => LectureBloc(sl()));
+}
 
 //   // USECASES
 //   sl.registerLazySingleton(() => GetUser(sl()));
@@ -37,11 +43,12 @@
 //       () => LecturesRepositoryImpl(sl()));
 // }
 
-import 'package:get_it/get_it.dart';
-import 'package:injectable/injectable.dart';
-import 'package:online_learning/injection.config.dart';
+// import 'package:get_it/get_it.dart';
+// import 'package:injectable/injectable.dart';
+// import 'package:online_learning/features/lectures/domain/usecases/get_lecture_progress.dart';
+// import 'package:online_learning/injection.config.dart';
 
-final getIt = GetIt.instance;
+// final getIt = GetIt.instance;
 
-@injectableInit
-void configureInjection(String environment) => $initGetIt(getIt);
+// @injectableInit
+// void configureInjection(String environment) => $initGetIt(getIt);

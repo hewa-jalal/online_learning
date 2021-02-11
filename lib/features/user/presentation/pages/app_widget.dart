@@ -16,6 +16,7 @@ import 'package:online_learning/features/user/data/datasources/user_remote_data_
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import 'package:online_learning/injection.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,20 +31,19 @@ class MyApp extends StatelessWidget {
           create: (_) => LectureBloc(
               downloadLecture: DownloadLecture(
                 LecturesRepositoryImpl(
-                  FirebaseLecturesRemoteDataSource(dio: Dio()),
+                  FirebaseLecturesRemoteDataSource(
+                      lectureTask: sl<LectureTask>(), dio: Dio()),
                 ),
               ),
               uploadLecture: UploadLecture(LecturesRepositoryImpl(
-                  FirebaseLecturesRemoteDataSource(dio: Dio())))),
+                  FirebaseLecturesRemoteDataSource(
+                      dio: Dio(), lectureTask: sl<LectureTask>())))),
         ),
         BlocProvider(
           create: (context) => ProgressBloc(
+            lectureTask: sl<LectureTask>(),
+            ticker: Ticker(),
             lectureBloc: context.read<LectureBloc>(),
-            lectureProgress: GetLectureProgress(
-              LecturesRepositoryImpl(
-                FirebaseLecturesRemoteDataSource(dio: Dio()),
-              ),
-            ),
           ),
           child: Container(),
         )

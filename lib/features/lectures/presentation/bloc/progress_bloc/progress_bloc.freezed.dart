@@ -29,7 +29,7 @@ class _$ProgressEventTearOff {
   }
 
 // ignore: unused_element
-  _Updated updated(int tickCount) {
+  _Updated updated(double tickCount) {
     return _Updated(
       tickCount,
     );
@@ -47,14 +47,14 @@ mixin _$ProgressEvent {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(int tickCount),
+    @required TResult updated(double tickCount),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(int tickCount),
+    TResult updated(double tickCount),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -130,7 +130,7 @@ class _$_Started implements _Started {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(int tickCount),
+    @required TResult updated(double tickCount),
   }) {
     assert(started != null);
     assert(resume != null);
@@ -145,7 +145,7 @@ class _$_Started implements _Started {
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(int tickCount),
+    TResult updated(double tickCount),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -230,7 +230,7 @@ class _$_Resume implements _Resume {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(int tickCount),
+    @required TResult updated(double tickCount),
   }) {
     assert(started != null);
     assert(resume != null);
@@ -245,7 +245,7 @@ class _$_Resume implements _Resume {
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(int tickCount),
+    TResult updated(double tickCount),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -330,7 +330,7 @@ class _$_Pause implements _Pause {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(int tickCount),
+    @required TResult updated(double tickCount),
   }) {
     assert(started != null);
     assert(resume != null);
@@ -345,7 +345,7 @@ class _$_Pause implements _Pause {
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(int tickCount),
+    TResult updated(double tickCount),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -395,7 +395,7 @@ abstract class _Pause implements ProgressEvent {
 abstract class _$UpdatedCopyWith<$Res> {
   factory _$UpdatedCopyWith(_Updated value, $Res Function(_Updated) then) =
       __$UpdatedCopyWithImpl<$Res>;
-  $Res call({int tickCount});
+  $Res call({double tickCount});
 }
 
 /// @nodoc
@@ -412,7 +412,7 @@ class __$UpdatedCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
     Object tickCount = freezed,
   }) {
     return _then(_Updated(
-      tickCount == freezed ? _value.tickCount : tickCount as int,
+      tickCount == freezed ? _value.tickCount : tickCount as double,
     ));
   }
 }
@@ -422,7 +422,7 @@ class _$_Updated implements _Updated {
   const _$_Updated(this.tickCount) : assert(tickCount != null);
 
   @override
-  final int tickCount;
+  final double tickCount;
 
   @override
   String toString() {
@@ -453,7 +453,7 @@ class _$_Updated implements _Updated {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(int tickCount),
+    @required TResult updated(double tickCount),
   }) {
     assert(started != null);
     assert(resume != null);
@@ -468,7 +468,7 @@ class _$_Updated implements _Updated {
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(int tickCount),
+    TResult updated(double tickCount),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -511,9 +511,9 @@ class _$_Updated implements _Updated {
 }
 
 abstract class _Updated implements ProgressEvent {
-  const factory _Updated(int tickCount) = _$_Updated;
+  const factory _Updated(double tickCount) = _$_Updated;
 
-  int get tickCount;
+  double get tickCount;
   @JsonKey(ignore: true)
   _$UpdatedCopyWith<_Updated> get copyWith;
 }
@@ -528,7 +528,7 @@ class _$ProgressStateTearOff {
   }
 
 // ignore: unused_element
-  _Loading loading({@required int percentage}) {
+  _Loading loading({@required double percentage}) {
     return _Loading(
       percentage: percentage,
     );
@@ -559,7 +559,7 @@ mixin _$ProgressState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult loading(int percentage),
+    @required TResult loading(double percentage),
     @required TResult paused(),
     @required TResult resumed(),
     @required TResult loaded(),
@@ -567,7 +567,7 @@ mixin _$ProgressState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult loading(int percentage),
+    TResult loading(double percentage),
     TResult paused(),
     TResult resumed(),
     TResult loaded(),
@@ -646,7 +646,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult loading(int percentage),
+    @required TResult loading(double percentage),
     @required TResult paused(),
     @required TResult resumed(),
     @required TResult loaded(),
@@ -663,7 +663,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult loading(int percentage),
+    TResult loading(double percentage),
     TResult paused(),
     TResult resumed(),
     TResult loaded(),
@@ -719,7 +719,7 @@ abstract class _Initial implements ProgressState {
 abstract class _$LoadingCopyWith<$Res> {
   factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
       __$LoadingCopyWithImpl<$Res>;
-  $Res call({int percentage});
+  $Res call({double percentage});
 }
 
 /// @nodoc
@@ -736,7 +736,8 @@ class __$LoadingCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
     Object percentage = freezed,
   }) {
     return _then(_Loading(
-      percentage: percentage == freezed ? _value.percentage : percentage as int,
+      percentage:
+          percentage == freezed ? _value.percentage : percentage as double,
     ));
   }
 }
@@ -746,7 +747,7 @@ class _$_Loading implements _Loading {
   const _$_Loading({@required this.percentage}) : assert(percentage != null);
 
   @override
-  final int percentage;
+  final double percentage;
 
   @override
   String toString() {
@@ -775,7 +776,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult loading(int percentage),
+    @required TResult loading(double percentage),
     @required TResult paused(),
     @required TResult resumed(),
     @required TResult loaded(),
@@ -792,7 +793,7 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult loading(int percentage),
+    TResult loading(double percentage),
     TResult paused(),
     TResult resumed(),
     TResult loaded(),
@@ -841,9 +842,9 @@ class _$_Loading implements _Loading {
 }
 
 abstract class _Loading implements ProgressState {
-  const factory _Loading({@required int percentage}) = _$_Loading;
+  const factory _Loading({@required double percentage}) = _$_Loading;
 
-  int get percentage;
+  double get percentage;
   @JsonKey(ignore: true)
   _$LoadingCopyWith<_Loading> get copyWith;
 }
@@ -885,7 +886,7 @@ class _$_Paused implements _Paused {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult loading(int percentage),
+    @required TResult loading(double percentage),
     @required TResult paused(),
     @required TResult resumed(),
     @required TResult loaded(),
@@ -902,7 +903,7 @@ class _$_Paused implements _Paused {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult loading(int percentage),
+    TResult loading(double percentage),
     TResult paused(),
     TResult resumed(),
     TResult loaded(),
@@ -991,7 +992,7 @@ class _$_Resumed implements _Resumed {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult loading(int percentage),
+    @required TResult loading(double percentage),
     @required TResult paused(),
     @required TResult resumed(),
     @required TResult loaded(),
@@ -1008,7 +1009,7 @@ class _$_Resumed implements _Resumed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult loading(int percentage),
+    TResult loading(double percentage),
     TResult paused(),
     TResult resumed(),
     TResult loaded(),
@@ -1097,7 +1098,7 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
-    @required TResult loading(int percentage),
+    @required TResult loading(double percentage),
     @required TResult paused(),
     @required TResult resumed(),
     @required TResult loaded(),
@@ -1114,7 +1115,7 @@ class _$_Loaded implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
-    TResult loading(int percentage),
+    TResult loading(double percentage),
     TResult paused(),
     TResult resumed(),
     TResult loaded(),

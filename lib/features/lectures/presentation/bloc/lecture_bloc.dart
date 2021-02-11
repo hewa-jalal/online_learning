@@ -26,9 +26,10 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
     yield* event.map(
       started: (e) async* {},
       uploadLecture: (e) async* {
-        yield LectureState.loading();
         final result = await FilePicker.platform.pickFiles();
         if (result != null) {
+          yield LectureState.loading();
+
           final either = await uploadLecture(
               LectureParams(fileUrl: result.files.single.path));
           yield either.fold(

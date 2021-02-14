@@ -74,12 +74,40 @@ class LoadingWidget extends StatelessWidget {
             );
           },
           loading: (progressState) {
+            var _progress = (progressState.percentage * 100);
             print('ProgressState ${progressState.percentage}');
-            return Center(
-              child: CircularPercentIndicator(
-                radius: 200,
-                percent: progressState.percentage.toDouble() / 100,
-              ),
+            return Column(
+              children: [
+                Row(
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.pause_outlined),
+                      onPressed: () => context
+                          .read<ProgressBloc>()
+                          .add(ProgressEvent.pause()),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.play_arrow_outlined),
+                      onPressed: () => context
+                          .read<ProgressBloc>()
+                          .add(ProgressEvent.resume()),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.cancel_outlined),
+                      onPressed: () => context
+                          .read<ProgressBloc>()
+                          .add(ProgressEvent.cancel()),
+                    ),
+                  ],
+                ),
+                Center(
+                  child: CircularPercentIndicator(
+                    radius: 200,
+                    percent: progressState.percentage,
+                    center: Text(_progress.toStringAsFixed(0)),
+                  ),
+                ),
+              ],
             );
           },
           paused: (_) {
@@ -101,20 +129,29 @@ class LoadingWidget extends StatelessWidget {
   }
 }
 
-class InitialWidget extends StatelessWidget {
+class InitialWidget extends StatefulWidget {
   const InitialWidget({
     Key key,
   }) : super(key: key);
 
   @override
+  _InitialWidgetState createState() => _InitialWidgetState();
+}
+
+class _InitialWidgetState extends State<InitialWidget> {
+  var title = '';
+  var description = '';
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ElevatedButton(
-          onPressed: () {
-            context.read<ProgressBloc>().add(ProgressEvent.started());
-          },
-          child: Text('Start the loading'),
+        TextField(
+          decoration: InputDecoration(hintText: 'Enter title'),
+          onChanged: (val) => title.trim(),
+        ),
+        TextField(
+          decoration: InputDecoration(hintText: 'Enter description'),
+          onChanged: (val) => description.trim(),
         ),
         ElevatedButton(
           onPressed: () {

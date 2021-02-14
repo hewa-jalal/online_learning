@@ -29,13 +29,14 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         final result = await FilePicker.platform.pickFiles();
         if (result != null) {
           yield LectureState.loading();
-
           final either = await uploadLecture(
               LectureParams(fileUrl: result.files.single.path));
-          yield either.fold(
-            (l) => LectureState.initial(),
-            (lecture) => LectureState.lectureLoaded(lectureEntity: lecture),
-          );
+          // yield either.fold(
+          //   (l) => LectureState.lectureLoaded(
+          //     lectureEntity: LectureEntity(fileUrl: 'dumbUrl'),
+          //   ),
+          //   (lecture) => LectureState.lectureLoaded(lectureEntity: lecture),
+          // );
         } else {
           print('result is null');
         }

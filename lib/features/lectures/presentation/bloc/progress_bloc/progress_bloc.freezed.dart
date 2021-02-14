@@ -29,9 +29,14 @@ class _$ProgressEventTearOff {
   }
 
 // ignore: unused_element
-  _Updated updated(double tickCount) {
+  _Cancel cancel() {
+    return const _Cancel();
+  }
+
+// ignore: unused_element
+  _Updated updated(TaskSnapshot task) {
     return _Updated(
-      tickCount,
+      task,
     );
   }
 }
@@ -47,14 +52,16 @@ mixin _$ProgressEvent {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(double tickCount),
+    @required TResult cancel(),
+    @required TResult updated(TaskSnapshot task),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(double tickCount),
+    TResult cancel(),
+    TResult updated(TaskSnapshot task),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -62,6 +69,7 @@ mixin _$ProgressEvent {
     @required TResult started(_Started value),
     @required TResult resume(_Resume value),
     @required TResult pause(_Pause value),
+    @required TResult cancel(_Cancel value),
     @required TResult updated(_Updated value),
   });
   @optionalTypeArgs
@@ -69,6 +77,7 @@ mixin _$ProgressEvent {
     TResult started(_Started value),
     TResult resume(_Resume value),
     TResult pause(_Pause value),
+    TResult cancel(_Cancel value),
     TResult updated(_Updated value),
     @required TResult orElse(),
   });
@@ -130,11 +139,13 @@ class _$_Started implements _Started {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(double tickCount),
+    @required TResult cancel(),
+    @required TResult updated(TaskSnapshot task),
   }) {
     assert(started != null);
     assert(resume != null);
     assert(pause != null);
+    assert(cancel != null);
     assert(updated != null);
     return started();
   }
@@ -145,7 +156,8 @@ class _$_Started implements _Started {
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(double tickCount),
+    TResult cancel(),
+    TResult updated(TaskSnapshot task),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -161,11 +173,13 @@ class _$_Started implements _Started {
     @required TResult started(_Started value),
     @required TResult resume(_Resume value),
     @required TResult pause(_Pause value),
+    @required TResult cancel(_Cancel value),
     @required TResult updated(_Updated value),
   }) {
     assert(started != null);
     assert(resume != null);
     assert(pause != null);
+    assert(cancel != null);
     assert(updated != null);
     return started(this);
   }
@@ -176,6 +190,7 @@ class _$_Started implements _Started {
     TResult started(_Started value),
     TResult resume(_Resume value),
     TResult pause(_Pause value),
+    TResult cancel(_Cancel value),
     TResult updated(_Updated value),
     @required TResult orElse(),
   }) {
@@ -230,11 +245,13 @@ class _$_Resume implements _Resume {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(double tickCount),
+    @required TResult cancel(),
+    @required TResult updated(TaskSnapshot task),
   }) {
     assert(started != null);
     assert(resume != null);
     assert(pause != null);
+    assert(cancel != null);
     assert(updated != null);
     return resume();
   }
@@ -245,7 +262,8 @@ class _$_Resume implements _Resume {
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(double tickCount),
+    TResult cancel(),
+    TResult updated(TaskSnapshot task),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -261,11 +279,13 @@ class _$_Resume implements _Resume {
     @required TResult started(_Started value),
     @required TResult resume(_Resume value),
     @required TResult pause(_Pause value),
+    @required TResult cancel(_Cancel value),
     @required TResult updated(_Updated value),
   }) {
     assert(started != null);
     assert(resume != null);
     assert(pause != null);
+    assert(cancel != null);
     assert(updated != null);
     return resume(this);
   }
@@ -276,6 +296,7 @@ class _$_Resume implements _Resume {
     TResult started(_Started value),
     TResult resume(_Resume value),
     TResult pause(_Pause value),
+    TResult cancel(_Cancel value),
     TResult updated(_Updated value),
     @required TResult orElse(),
   }) {
@@ -330,11 +351,13 @@ class _$_Pause implements _Pause {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(double tickCount),
+    @required TResult cancel(),
+    @required TResult updated(TaskSnapshot task),
   }) {
     assert(started != null);
     assert(resume != null);
     assert(pause != null);
+    assert(cancel != null);
     assert(updated != null);
     return pause();
   }
@@ -345,7 +368,8 @@ class _$_Pause implements _Pause {
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(double tickCount),
+    TResult cancel(),
+    TResult updated(TaskSnapshot task),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -361,11 +385,13 @@ class _$_Pause implements _Pause {
     @required TResult started(_Started value),
     @required TResult resume(_Resume value),
     @required TResult pause(_Pause value),
+    @required TResult cancel(_Cancel value),
     @required TResult updated(_Updated value),
   }) {
     assert(started != null);
     assert(resume != null);
     assert(pause != null);
+    assert(cancel != null);
     assert(updated != null);
     return pause(this);
   }
@@ -376,6 +402,7 @@ class _$_Pause implements _Pause {
     TResult started(_Started value),
     TResult resume(_Resume value),
     TResult pause(_Pause value),
+    TResult cancel(_Cancel value),
     TResult updated(_Updated value),
     @required TResult orElse(),
   }) {
@@ -392,10 +419,116 @@ abstract class _Pause implements ProgressEvent {
 }
 
 /// @nodoc
+abstract class _$CancelCopyWith<$Res> {
+  factory _$CancelCopyWith(_Cancel value, $Res Function(_Cancel) then) =
+      __$CancelCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$CancelCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
+    implements _$CancelCopyWith<$Res> {
+  __$CancelCopyWithImpl(_Cancel _value, $Res Function(_Cancel) _then)
+      : super(_value, (v) => _then(v as _Cancel));
+
+  @override
+  _Cancel get _value => super._value as _Cancel;
+}
+
+/// @nodoc
+class _$_Cancel implements _Cancel {
+  const _$_Cancel();
+
+  @override
+  String toString() {
+    return 'ProgressEvent.cancel()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Cancel);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult resume(),
+    @required TResult pause(),
+    @required TResult cancel(),
+    @required TResult updated(TaskSnapshot task),
+  }) {
+    assert(started != null);
+    assert(resume != null);
+    assert(pause != null);
+    assert(cancel != null);
+    assert(updated != null);
+    return cancel();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult resume(),
+    TResult pause(),
+    TResult cancel(),
+    TResult updated(TaskSnapshot task),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (cancel != null) {
+      return cancel();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult resume(_Resume value),
+    @required TResult pause(_Pause value),
+    @required TResult cancel(_Cancel value),
+    @required TResult updated(_Updated value),
+  }) {
+    assert(started != null);
+    assert(resume != null);
+    assert(pause != null);
+    assert(cancel != null);
+    assert(updated != null);
+    return cancel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult resume(_Resume value),
+    TResult pause(_Pause value),
+    TResult cancel(_Cancel value),
+    TResult updated(_Updated value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (cancel != null) {
+      return cancel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Cancel implements ProgressEvent {
+  const factory _Cancel() = _$_Cancel;
+}
+
+/// @nodoc
 abstract class _$UpdatedCopyWith<$Res> {
   factory _$UpdatedCopyWith(_Updated value, $Res Function(_Updated) then) =
       __$UpdatedCopyWithImpl<$Res>;
-  $Res call({double tickCount});
+  $Res call({TaskSnapshot task});
 }
 
 /// @nodoc
@@ -409,38 +542,37 @@ class __$UpdatedCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object tickCount = freezed,
+    Object task = freezed,
   }) {
     return _then(_Updated(
-      tickCount == freezed ? _value.tickCount : tickCount as double,
+      task == freezed ? _value.task : task as TaskSnapshot,
     ));
   }
 }
 
 /// @nodoc
 class _$_Updated implements _Updated {
-  const _$_Updated(this.tickCount) : assert(tickCount != null);
+  const _$_Updated(this.task) : assert(task != null);
 
   @override
-  final double tickCount;
+  final TaskSnapshot task;
 
   @override
   String toString() {
-    return 'ProgressEvent.updated(tickCount: $tickCount)';
+    return 'ProgressEvent.updated(task: $task)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Updated &&
-            (identical(other.tickCount, tickCount) ||
-                const DeepCollectionEquality()
-                    .equals(other.tickCount, tickCount)));
+            (identical(other.task, task) ||
+                const DeepCollectionEquality().equals(other.task, task)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(tickCount);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(task);
 
   @JsonKey(ignore: true)
   @override
@@ -453,13 +585,15 @@ class _$_Updated implements _Updated {
     @required TResult started(),
     @required TResult resume(),
     @required TResult pause(),
-    @required TResult updated(double tickCount),
+    @required TResult cancel(),
+    @required TResult updated(TaskSnapshot task),
   }) {
     assert(started != null);
     assert(resume != null);
     assert(pause != null);
+    assert(cancel != null);
     assert(updated != null);
-    return updated(tickCount);
+    return updated(task);
   }
 
   @override
@@ -468,12 +602,13 @@ class _$_Updated implements _Updated {
     TResult started(),
     TResult resume(),
     TResult pause(),
-    TResult updated(double tickCount),
+    TResult cancel(),
+    TResult updated(TaskSnapshot task),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updated != null) {
-      return updated(tickCount);
+      return updated(task);
     }
     return orElse();
   }
@@ -484,11 +619,13 @@ class _$_Updated implements _Updated {
     @required TResult started(_Started value),
     @required TResult resume(_Resume value),
     @required TResult pause(_Pause value),
+    @required TResult cancel(_Cancel value),
     @required TResult updated(_Updated value),
   }) {
     assert(started != null);
     assert(resume != null);
     assert(pause != null);
+    assert(cancel != null);
     assert(updated != null);
     return updated(this);
   }
@@ -499,6 +636,7 @@ class _$_Updated implements _Updated {
     TResult started(_Started value),
     TResult resume(_Resume value),
     TResult pause(_Pause value),
+    TResult cancel(_Cancel value),
     TResult updated(_Updated value),
     @required TResult orElse(),
   }) {
@@ -511,9 +649,9 @@ class _$_Updated implements _Updated {
 }
 
 abstract class _Updated implements ProgressEvent {
-  const factory _Updated(double tickCount) = _$_Updated;
+  const factory _Updated(TaskSnapshot task) = _$_Updated;
 
-  double get tickCount;
+  TaskSnapshot get task;
   @JsonKey(ignore: true)
   _$UpdatedCopyWith<_Updated> get copyWith;
 }

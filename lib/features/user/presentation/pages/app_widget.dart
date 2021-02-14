@@ -16,6 +16,7 @@ import 'package:online_learning/features/user/data/datasources/user_remote_data_
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import 'package:online_learning/features/user/presentation/pages/user_form_page.dart';
 import 'package:online_learning/injection.dart';
 
 class MyApp extends StatelessWidget {
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
         child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home: Scaffold(
-            body: LectureFormPage(),
+            body: UserFormPage(),
           ),
         ),
       ),

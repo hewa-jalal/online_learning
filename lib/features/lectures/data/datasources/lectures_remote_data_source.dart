@@ -29,7 +29,7 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
   @override
   Future<LectureModel> downloadLecture(String fileUrl) async {
     var dir = await getTemporaryDirectory();
-    final url = await storageRef.child('test44445').getDownloadURL();
+    final url = await storageRef.child('test444457').getDownloadURL();
 
     // await dio.download(url, '${dir.path}lectures.pdf');
 
@@ -40,7 +40,7 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
 
   @override
   Future<LectureModel> uploadLecture(String fileUrl) async {
-    lectureTask.task = storageRef.child('test44445').putFile(File(fileUrl));
+    lectureTask.task = storageRef.child('test444457').putFile(File(fileUrl));
     await lecturesCollection.add(LectureModel(fileUrl: fileUrl).toDocument());
 
     return LectureModel(fileUrl: fileUrl);

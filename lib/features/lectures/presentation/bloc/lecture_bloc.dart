@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:online_learning/features/lectures/domain/entities/lecture_entity.dart';
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
+import 'package:online_learning/features/user/data/models/user_mode.dart';
 
 part 'lecture_event.dart';
 part 'lecture_state.dart';
@@ -29,8 +30,11 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         final result = await FilePicker.platform.pickFiles();
         if (result != null) {
           yield LectureState.loading();
-          final either = await uploadLecture(
-              LectureParams(fileUrl: result.files.single.path));
+          final either = await uploadLecture(LectureParams(
+            fileUrl: result.files.single.path,
+            title: e.title,
+            description: e.description,
+          ));
           // yield either.fold(
           //   (l) => LectureState.lectureLoaded(
           //     lectureEntity: LectureEntity(fileUrl: 'dumbUrl'),

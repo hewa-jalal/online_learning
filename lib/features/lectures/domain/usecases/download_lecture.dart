@@ -18,8 +18,14 @@ class DownloadLecture extends UseCase<LectureEntity, LectureParams> {
 
 class LectureParams extends Equatable {
   final String fileUrl;
+  final String title;
+  final String description;
 
-  LectureParams({@required this.fileUrl});
+  LectureParams({
+    @required this.fileUrl,
+    @required this.title,
+    this.description,
+  });
   @override
   List<Object> get props => [fileUrl];
 }

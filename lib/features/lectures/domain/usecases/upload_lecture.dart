@@ -12,6 +12,10 @@ class UploadLecture extends UseCase<LectureEntity, LectureParams> {
   UploadLecture(this.lecturesRepository);
   @override
   Future<Either<Failure, LectureEntity>> call(LectureParams params) {
-    return lecturesRepository.uploadLecture(params.fileUrl);
+    return lecturesRepository.uploadLecture(
+      fileUrl: params.fileUrl,
+      title: params.title,
+      description: params.description,
+    );
   }
 }

@@ -11,7 +11,11 @@ import 'package:path_provider/path_provider.dart';
 
 abstract class LecturesRemoteDataSource {
   Future<LectureModel> downloadLecture(String fileUrl);
-  Future<LectureModel> uploadLecture(String fileUrl);
+  Future<LectureModel> uploadLecture({
+    String fileUrl,
+    String title,
+    String description,
+  });
 }
 
 class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
@@ -39,10 +43,19 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
   }
 
   @override
-  Future<LectureModel> uploadLecture(String fileUrl) async {
-    lectureTask.task = storageRef.child('test444457').putFile(File(fileUrl));
-    await lecturesCollection.add(LectureModel(fileUrl: fileUrl).toDocument());
+  Future<LectureModel> uploadLecture({
+    @required String fileUrl,
+    String title,
+    String description,
+  }) async {
+    final lecture = LectureModel(
+      fileUrl: fileUrl,
+      title: title,
+      description: description,
+    );
+    lectureTask.task = storageRef.child(title).putFile(File(fileUrl));
+    await lecturesCollection.add(lecture.toDocument());
 
-    return LectureModel(fileUrl: fileUrl);
+    return lecture;
   }
 }

@@ -29,7 +29,7 @@ class _LectureFormPageState extends State<LectureFormPage> {
           child: Scaffold(
             // body: LoadingWidget(),
             body: state.map(
-              initial: (_) => InitialWidget(),
+              initial: (_) => InitialWidget(user: widget.user),
               lectureLoaded: (e) => Column(
                 children: [
                   ElevatedButton(
@@ -130,8 +130,10 @@ class LoadingWidget extends StatelessWidget {
 }
 
 class InitialWidget extends StatefulWidget {
+  final UserEntity user;
   const InitialWidget({
     Key key,
+    @required this.user,
   }) : super(key: key);
 
   @override
@@ -139,23 +141,31 @@ class InitialWidget extends StatefulWidget {
 }
 
 class _InitialWidgetState extends State<InitialWidget> {
+  UserEntity get user => widget.user;
   var title = '';
   var description = '';
   @override
   Widget build(BuildContext context) {
+    final lectureBloc = context.read<LectureBloc>();
     return Column(
       children: [
         TextField(
           decoration: InputDecoration(hintText: 'Enter title'),
-          onChanged: (val) => title.trim(),
+          onChanged: (val) => title = val.trim(),
         ),
         TextField(
           decoration: InputDecoration(hintText: 'Enter description'),
-          onChanged: (val) => description.trim(),
+          onChanged: (val) => description = val.trim(),
         ),
         ElevatedButton(
           onPressed: () {
-            context.read<LectureBloc>().add(LectureEvent.uploadLecture());
+            lectureBloc.add(
+              LectureEvent.uploadLecture(
+                user: user,
+                title: title,
+                description: description,
+              ),
+            );
           },
           child: Text('Upload Lecture'),
         ),

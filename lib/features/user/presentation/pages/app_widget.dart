@@ -8,7 +8,6 @@ import 'package:online_learning/features/lectures/data/repository/lectures_repos
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_lecture_progress.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form_page.dart';
 
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';

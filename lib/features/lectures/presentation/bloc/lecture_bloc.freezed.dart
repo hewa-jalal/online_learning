@@ -26,8 +26,15 @@ class _$LectureEventTearOff {
   }
 
 // ignore: unused_element
-  _UploadLecture uploadLecture() {
-    return const _UploadLecture();
+  _UploadLecture uploadLecture(
+      {@required UserModel user,
+      @required String title,
+      @required String description}) {
+    return _UploadLecture(
+      user: user,
+      title: title,
+      description: description,
+    );
   }
 }
 
@@ -41,13 +48,14 @@ mixin _$LectureEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult downloadLecture(String fileUrl),
-    @required TResult uploadLecture(),
+    @required
+        TResult uploadLecture(UserModel user, String title, String description),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(),
+    TResult uploadLecture(UserModel user, String title, String description),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -119,7 +127,8 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult downloadLecture(String fileUrl),
-    @required TResult uploadLecture(),
+    @required
+        TResult uploadLecture(UserModel user, String title, String description),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
@@ -132,7 +141,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(),
+    TResult uploadLecture(UserModel user, String title, String description),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -238,7 +247,8 @@ class _$_DownloadLecture implements _DownloadLecture {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult downloadLecture(String fileUrl),
-    @required TResult uploadLecture(),
+    @required
+        TResult uploadLecture(UserModel user, String title, String description),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
@@ -251,7 +261,7 @@ class _$_DownloadLecture implements _DownloadLecture {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(),
+    TResult uploadLecture(UserModel user, String title, String description),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -304,6 +314,7 @@ abstract class _$UploadLectureCopyWith<$Res> {
   factory _$UploadLectureCopyWith(
           _UploadLecture value, $Res Function(_UploadLecture) then) =
       __$UploadLectureCopyWithImpl<$Res>;
+  $Res call({UserModel user, String title, String description});
 }
 
 /// @nodoc
@@ -316,36 +327,79 @@ class __$UploadLectureCopyWithImpl<$Res>
 
   @override
   _UploadLecture get _value => super._value as _UploadLecture;
+
+  @override
+  $Res call({
+    Object user = freezed,
+    Object title = freezed,
+    Object description = freezed,
+  }) {
+    return _then(_UploadLecture(
+      user: user == freezed ? _value.user : user as UserModel,
+      title: title == freezed ? _value.title : title as String,
+      description:
+          description == freezed ? _value.description : description as String,
+    ));
+  }
 }
 
 /// @nodoc
 class _$_UploadLecture implements _UploadLecture {
-  const _$_UploadLecture();
+  const _$_UploadLecture(
+      {@required this.user, @required this.title, @required this.description})
+      : assert(user != null),
+        assert(title != null),
+        assert(description != null);
+
+  @override
+  final UserModel user;
+  @override
+  final String title;
+  @override
+  final String description;
 
   @override
   String toString() {
-    return 'LectureEvent.uploadLecture()';
+    return 'LectureEvent.uploadLecture(user: $user, title: $title, description: $description)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UploadLecture);
+    return identical(this, other) ||
+        (other is _UploadLecture &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.description, description) ||
+                const DeepCollectionEquality()
+                    .equals(other.description, description)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(user) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(description);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UploadLectureCopyWith<_UploadLecture> get copyWith =>
+      __$UploadLectureCopyWithImpl<_UploadLecture>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult downloadLecture(String fileUrl),
-    @required TResult uploadLecture(),
+    @required
+        TResult uploadLecture(UserModel user, String title, String description),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
-    return uploadLecture();
+    return uploadLecture(user, title, description);
   }
 
   @override
@@ -353,12 +407,12 @@ class _$_UploadLecture implements _UploadLecture {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(),
+    TResult uploadLecture(UserModel user, String title, String description),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (uploadLecture != null) {
-      return uploadLecture();
+      return uploadLecture(user, title, description);
     }
     return orElse();
   }
@@ -393,7 +447,16 @@ class _$_UploadLecture implements _UploadLecture {
 }
 
 abstract class _UploadLecture implements LectureEvent {
-  const factory _UploadLecture() = _$_UploadLecture;
+  const factory _UploadLecture(
+      {@required UserModel user,
+      @required String title,
+      @required String description}) = _$_UploadLecture;
+
+  UserModel get user;
+  String get title;
+  String get description;
+  @JsonKey(ignore: true)
+  _$UploadLectureCopyWith<_UploadLecture> get copyWith;
 }
 
 /// @nodoc

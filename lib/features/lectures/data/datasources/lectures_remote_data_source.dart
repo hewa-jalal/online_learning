@@ -7,12 +7,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:online_learning/features/lectures/data/models/lecture_model.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_lecture_progress.dart';
+import 'package:online_learning/features/user/data/models/user_mode.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class LecturesRemoteDataSource {
   Future<LectureModel> downloadLecture(String fileUrl);
   Future<LectureModel> uploadLecture({
-    String fileUrl,
+    @required String fileUrl,
+    @required UserModel user,
     String title,
     String description,
   });
@@ -23,7 +25,6 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
   final lecturesCollection = FirebaseFirestore.instance.collection('lectures');
   final Dio dio;
   final LectureTask lectureTask;
-  UploadTask uploadTask;
 
   FirebaseLecturesRemoteDataSource({
     @required this.lectureTask,
@@ -45,6 +46,7 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
   @override
   Future<LectureModel> uploadLecture({
     @required String fileUrl,
+    @required UserModel user,
     String title,
     String description,
   }) async {
@@ -54,7 +56,10 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
       description: description,
     );
     lectureTask.task = storageRef.child(title).putFile(File(fileUrl));
-    await lecturesCollection.add(lecture.toDocument());
+    await lecturesCollection.add(lecture.toDocument()).then(
+          (value) =>
+              value.collection('users').doc(user.id).set(user.toDocument()),
+        );
 
     return lecture;
   }

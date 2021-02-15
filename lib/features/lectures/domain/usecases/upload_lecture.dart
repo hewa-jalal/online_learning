@@ -14,6 +14,7 @@ class UploadLecture extends UseCase<LectureEntity, LectureParams> {
   Future<Either<Failure, LectureEntity>> call(LectureParams params) {
     return lecturesRepository.uploadLecture(
       fileUrl: params.fileUrl,
+      user: params.user,
       title: params.title,
       description: params.description,
     );

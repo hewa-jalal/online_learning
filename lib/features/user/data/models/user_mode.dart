@@ -28,6 +28,7 @@ class UserModel extends UserEntity {
       'role': role,
       'dept': dept,
       'stage': stage,
+      'fullName': fullName,
     };
   }
 

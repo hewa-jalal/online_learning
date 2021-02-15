@@ -5,6 +5,7 @@ import 'package:online_learning/features/lectures/domain/entities/lecture_entity
 import 'package:online_learning/features/lectures/domain/repository/lectures_repository.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
+import 'package:online_learning/features/user/data/models/user_mode.dart';
 
 class DownloadLecture extends UseCase<LectureEntity, LectureParams> {
   final LecturesRepository lecturesRepository;
@@ -20,10 +21,12 @@ class LectureParams extends Equatable {
   final String fileUrl;
   final String title;
   final String description;
+  final UserModel user;
 
   LectureParams({
     @required this.fileUrl,
     @required this.title,
+    @required this.user,
     this.description,
   });
   @override

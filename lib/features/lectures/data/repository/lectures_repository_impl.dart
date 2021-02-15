@@ -4,6 +4,7 @@ import 'package:online_learning/features/lectures/domain/entities/lecture_entity
 import 'package:dartz/dartz.dart';
 import 'package:online_learning/features/lectures/domain/repository/lectures_repository.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
+import 'package:online_learning/features/user/data/models/user_mode.dart';
 
 class LecturesRepositoryImpl implements LecturesRepository {
   final FirebaseLecturesRemoteDataSource remoteDataSource;
@@ -23,12 +24,14 @@ class LecturesRepositoryImpl implements LecturesRepository {
   @override
   Future<Either<Failure, LectureEntity>> uploadLecture({
     @required String fileUrl,
+    @required UserModel user,
     String title,
     String description,
   }) async {
     try {
       final lecture = await remoteDataSource.uploadLecture(
         fileUrl: fileUrl,
+        user: user,
         title: title,
         description: description,
       );

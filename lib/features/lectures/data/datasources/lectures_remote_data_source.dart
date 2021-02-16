@@ -5,8 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/lectures/data/models/lecture_model.dart';
-import 'package:online_learning/features/lectures/domain/usecases/get_lecture_progress.dart';
+
 import 'package:online_learning/features/user/data/models/user_mode.dart';
 import 'package:path_provider/path_provider.dart';
 

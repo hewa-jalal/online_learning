@@ -15,7 +15,7 @@
 
 import 'package:get_it/get_it.dart';
 
-import 'features/lectures/domain/usecases/get_lecture_progress.dart';
+import 'core/lecture_task.dart';
 
 final sl = GetIt.I;
 

@@ -4,6 +4,7 @@ import 'package:online_learning/features/user/data/models/user_mode.dart';
 
 abstract class UserRemoteDataSource {
   Future<UserModel> getUser(int id);
+  Stream<List<UserModel>> getUsers();
 }
 
 class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
@@ -17,5 +18,24 @@ class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
     } else {
       throw UserNotFoundException();
     }
+  }
+
+  @override
+  Stream<List<UserModel>> getUsers() {
+    return users.snapshots().map(_usersFromSnapshot);
+  }
+
+  List<UserModel> _usersFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs
+        .map(
+          (doc) => UserModel(
+            id: doc['id'],
+            role: doc['role'],
+            stage: doc['stage'],
+            dept: doc['dept'],
+            fullName: doc['fullName'],
+          ),
+        )
+        .toList();
   }
 }

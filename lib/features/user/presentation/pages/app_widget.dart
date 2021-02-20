@@ -16,8 +16,8 @@ import 'package:online_learning/features/lectures/presentation/bloc/progress_blo
 import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
+import 'package:online_learning/features/user/domain/usecase/get_users.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
-import 'package:online_learning/features/user/presentation/pages/user_form_page.dart';
 import 'package:online_learning/injection.dart';
 
 class MyApp extends StatelessWidget {
@@ -27,7 +27,11 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => UserAuthBloc(
-              GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource()))),
+            getUser:
+                GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
+            getUsers:
+                GetUsers(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
+          ),
         ),
         BlocProvider(
           create: (_) => LectureBloc(

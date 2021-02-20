@@ -1,10 +1,13 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:online_learning/features/user/core/params/user_params.dart';
+import 'package:online_learning/features/user/core/usecase/use_case.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
+import 'package:online_learning/features/user/domain/usecase/get_users.dart';
 
 part 'user_auth_event.dart';
 part 'user_auth_state.dart';
@@ -12,7 +15,11 @@ part 'user_auth_bloc.freezed.dart';
 
 class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
   final GetUser getUser;
-  UserAuthBloc(this.getUser) : super(const _Initial());
+  final GetUsers getUsers;
+  UserAuthBloc({
+    @required this.getUser,
+    @required this.getUsers,
+  }) : super(const _Initial());
 
   @override
   Stream<UserAuthState> mapEventToState(
@@ -25,6 +32,14 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
         yield either.fold(
           (failure) => const UserAuthState.userError(),
           (user) => UserAuthState.userLoaded(user: user),
+        );
+      },
+      getUsers: (e) async* {
+        print('event called');
+        final either = await getUsers(NoParams());
+        yield either.fold(
+          (failure) => const UserAuthState.userError(),
+          (users) => UserAuthState.usersLoaded(users: users),
         );
       },
     );

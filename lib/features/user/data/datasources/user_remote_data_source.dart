@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:online_learning/features/user/core/errors/exceptions.dart';
 import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/domain/entites/user.dart';
 
 abstract class UserRemoteDataSource {
   Future<UserModel> getUser(int id);
-  Stream<List<UserModel>> getUsers();
+  Future<List<UserEntity>> getUsers();
 }
 
 class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
@@ -21,21 +22,10 @@ class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
   }
 
   @override
-  Stream<List<UserModel>> getUsers() {
-    return users.snapshots().map(_usersFromSnapshot);
-  }
-
-  List<UserModel> _usersFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs
-        .map(
-          (doc) => UserModel(
-            id: doc['id'],
-            role: doc['role'],
-            stage: doc['stage'],
-            dept: doc['dept'],
-            fullName: doc['fullName'],
-          ),
-        )
+  Future<List<UserEntity>> getUsers() async {
+    final querySnapshot = await users.get();
+    return querySnapshot.docs
+        .map((doc) => UserModel.fromSnapshot(doc))
         .toList();
   }
 }

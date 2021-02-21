@@ -12,7 +12,7 @@ void main() async {
   await FlutterDownloader.initialize();
   Bloc.observer = TickerBlocObserver();
   await di.init();
-  // di.configureInjection('prod');
+  di.configureInjection();
   await Firebase.initializeApp();
   runApp(MyApp());
 }

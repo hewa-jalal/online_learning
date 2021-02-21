@@ -42,17 +42,4 @@ class UserModel extends UserEntity {
       fullName: snapData['fullName'],
     );
   }
-
-  static List<UserModel> fromQuerySnapshot(QuerySnapshot snap) {
-    return snap.docs.map((doc) {
-      final snapData = doc.data();
-      return UserModel(
-        id: doc.id,
-        role: snapData['role'],
-        dept: snapData['dept'],
-        stage: snapData['stage'],
-        fullName: snapData['fullName'],
-      );
-    }).toList();
-  }
 }

@@ -14,8 +14,10 @@
 // import 'features/lectures/presentation/bloc/lecture_bloc.dart';
 
 import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 
 import 'core/lecture_task.dart';
+import 'injection.config.dart';
 
 final sl = GetIt.I;
 
@@ -50,5 +52,5 @@ Future init() async {
 
 // final getIt = GetIt.instance;
 
-// @injectableInit
-// void configureInjection(String environment) => $initGetIt(getIt);
+@injectableInit
+void configureInjection() => $initGetIt(sl);

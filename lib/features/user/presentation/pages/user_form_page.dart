@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
 import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form_page.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
@@ -20,10 +21,11 @@ class _UserFormPageState extends State<UserFormPage> {
         return SafeArea(
           child: Scaffold(
             body: state.map(
-              initial: (_) => UserForm(),
-              userLoaded: (userState) => UserLoadedWidget(user: userState.user),
-              userError: (_) => Text('User error'),
-            ),
+                initial: (_) => UserForm(),
+                userLoaded: (userState) =>
+                    UserLoadedWidget(user: userState.user),
+                userError: (_) => Text('User error'),
+                usersLoaded: (_) => Text('usersLoaded')),
           ),
         );
       },
@@ -60,6 +62,10 @@ class UserLoadedWidget extends StatelessWidget {
                         user.fullName,
                         // textAlign: TextAlign.right,
                       ),
+                      ElevatedButton(
+                        onPressed: () => Get.to(ChatPage(userEntity: user)),
+                        child: Text('Go to chat page'),
+                      )
                     ],
                   );
                 },

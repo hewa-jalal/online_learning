@@ -13,6 +13,7 @@ import 'features/chat/data/datasources/chat_remote_data_source.dart';
 import 'features/chat/domain/repositories/chat_repository.dart';
 import 'features/chat/data/repositories/chat_repository_impl.dart';
 import 'core/firebase_injectable_module.dart';
+import 'features/chat/domain/usecases/get_all_messages.dart';
 import 'features/chat/domain/usecases/send_message.dart';
 
 /// adds generated dependencies
@@ -30,9 +31,12 @@ GetIt $initGetIt(
       () => ChatRepositoryImpl(remoteDataSource: get<ChatRemoteDataSource>()));
   gh.lazySingleton<FirebaseFirestore>(
       () => firebaseInjectableModule.firebaseFirestore);
+  gh.lazySingleton<GetAllMessages>(
+      () => GetAllMessages(chatRepository: get<ChatRepository>()));
   gh.lazySingleton<SendMessage>(
       () => SendMessage(chatRepository: get<ChatRepository>()));
-  gh.factory<ChatBloc>(() => ChatBloc(sendMessage: get<SendMessage>()));
+  gh.factory<ChatBloc>(() => ChatBloc(
+      sendMessage: get<SendMessage>(), getAllMessages: get<GetAllMessages>()));
   return get;
 }
 

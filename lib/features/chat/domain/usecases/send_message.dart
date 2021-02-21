@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
 import 'package:online_learning/features/chat/domain/repositories/chat_repository.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
@@ -14,14 +13,21 @@ class SendMessage extends UseCase<Unit, MessageParams> {
   SendMessage({@required this.chatRepository});
   @override
   Future<Either<Failure, Unit>> call(MessageParams params) {
-    return chatRepository.sendMessage(message: params.message);
+    return chatRepository.sendMessage(
+      message: params.message,
+      fromUserId: params.fromUserId,
+    );
   }
 }
 
 class MessageParams extends Equatable {
   final String message;
+  final String fromUserId;
 
-  MessageParams({@required this.message});
+  MessageParams({
+    @required this.message,
+    @required this.fromUserId,
+  });
   @override
-  List<Object> get props => throw UnimplementedError();
+  List<Object> get props => [message, fromUserId];
 }

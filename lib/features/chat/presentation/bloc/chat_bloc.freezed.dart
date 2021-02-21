@@ -19,10 +19,17 @@ class _$ChatEventTearOff {
   }
 
 // ignore: unused_element
-  _SendMessage sendMessage({@required String message}) {
+  _SendMessage sendMessage(
+      {@required String message, @required String fromUserId}) {
     return _SendMessage(
       message: message,
+      fromUserId: fromUserId,
     );
+  }
+
+// ignore: unused_element
+  _GetAllMessages getAllMessages() {
+    return const _GetAllMessages();
   }
 }
 
@@ -35,23 +42,27 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult sendMessage(String message),
+    @required TResult sendMessage(String message, String fromUserId),
+    @required TResult getAllMessages(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult sendMessage(String message),
+    TResult sendMessage(String message, String fromUserId),
+    TResult getAllMessages(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult sendMessage(_SendMessage value),
+    @required TResult getAllMessages(_GetAllMessages value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult sendMessage(_SendMessage value),
+    TResult getAllMessages(_GetAllMessages value),
     @required TResult orElse(),
   });
 }
@@ -108,10 +119,12 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult sendMessage(String message),
+    @required TResult sendMessage(String message, String fromUserId),
+    @required TResult getAllMessages(),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(getAllMessages != null);
     return started();
   }
 
@@ -119,7 +132,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult sendMessage(String message),
+    TResult sendMessage(String message, String fromUserId),
+    TResult getAllMessages(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -134,9 +148,11 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult sendMessage(_SendMessage value),
+    @required TResult getAllMessages(_GetAllMessages value),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(getAllMessages != null);
     return started(this);
   }
 
@@ -145,6 +161,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult sendMessage(_SendMessage value),
+    TResult getAllMessages(_GetAllMessages value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -164,7 +181,7 @@ abstract class _$SendMessageCopyWith<$Res> {
   factory _$SendMessageCopyWith(
           _SendMessage value, $Res Function(_SendMessage) then) =
       __$SendMessageCopyWithImpl<$Res>;
-  $Res call({String message});
+  $Res call({String message, String fromUserId});
 }
 
 /// @nodoc
@@ -180,23 +197,30 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object message = freezed,
+    Object fromUserId = freezed,
   }) {
     return _then(_SendMessage(
       message: message == freezed ? _value.message : message as String,
+      fromUserId:
+          fromUserId == freezed ? _value.fromUserId : fromUserId as String,
     ));
   }
 }
 
 /// @nodoc
 class _$_SendMessage implements _SendMessage {
-  const _$_SendMessage({@required this.message}) : assert(message != null);
+  const _$_SendMessage({@required this.message, @required this.fromUserId})
+      : assert(message != null),
+        assert(fromUserId != null);
 
   @override
   final String message;
+  @override
+  final String fromUserId;
 
   @override
   String toString() {
-    return 'ChatEvent.sendMessage(message: $message)';
+    return 'ChatEvent.sendMessage(message: $message, fromUserId: $fromUserId)';
   }
 
   @override
@@ -204,12 +228,18 @@ class _$_SendMessage implements _SendMessage {
     return identical(this, other) ||
         (other is _SendMessage &&
             (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+                const DeepCollectionEquality()
+                    .equals(other.message, message)) &&
+            (identical(other.fromUserId, fromUserId) ||
+                const DeepCollectionEquality()
+                    .equals(other.fromUserId, fromUserId)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(fromUserId);
 
   @JsonKey(ignore: true)
   @override
@@ -220,23 +250,26 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
-    @required TResult sendMessage(String message),
+    @required TResult sendMessage(String message, String fromUserId),
+    @required TResult getAllMessages(),
   }) {
     assert(started != null);
     assert(sendMessage != null);
-    return sendMessage(message);
+    assert(getAllMessages != null);
+    return sendMessage(message, fromUserId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
-    TResult sendMessage(String message),
+    TResult sendMessage(String message, String fromUserId),
+    TResult getAllMessages(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sendMessage != null) {
-      return sendMessage(message);
+      return sendMessage(message, fromUserId);
     }
     return orElse();
   }
@@ -246,9 +279,11 @@ class _$_SendMessage implements _SendMessage {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult sendMessage(_SendMessage value),
+    @required TResult getAllMessages(_GetAllMessages value),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(getAllMessages != null);
     return sendMessage(this);
   }
 
@@ -257,6 +292,7 @@ class _$_SendMessage implements _SendMessage {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult sendMessage(_SendMessage value),
+    TResult getAllMessages(_GetAllMessages value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -268,11 +304,109 @@ class _$_SendMessage implements _SendMessage {
 }
 
 abstract class _SendMessage implements ChatEvent {
-  const factory _SendMessage({@required String message}) = _$_SendMessage;
+  const factory _SendMessage(
+      {@required String message, @required String fromUserId}) = _$_SendMessage;
 
   String get message;
+  String get fromUserId;
   @JsonKey(ignore: true)
   _$SendMessageCopyWith<_SendMessage> get copyWith;
+}
+
+/// @nodoc
+abstract class _$GetAllMessagesCopyWith<$Res> {
+  factory _$GetAllMessagesCopyWith(
+          _GetAllMessages value, $Res Function(_GetAllMessages) then) =
+      __$GetAllMessagesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetAllMessagesCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
+    implements _$GetAllMessagesCopyWith<$Res> {
+  __$GetAllMessagesCopyWithImpl(
+      _GetAllMessages _value, $Res Function(_GetAllMessages) _then)
+      : super(_value, (v) => _then(v as _GetAllMessages));
+
+  @override
+  _GetAllMessages get _value => super._value as _GetAllMessages;
+}
+
+/// @nodoc
+class _$_GetAllMessages implements _GetAllMessages {
+  const _$_GetAllMessages();
+
+  @override
+  String toString() {
+    return 'ChatEvent.getAllMessages()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetAllMessages);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult sendMessage(String message, String fromUserId),
+    @required TResult getAllMessages(),
+  }) {
+    assert(started != null);
+    assert(sendMessage != null);
+    assert(getAllMessages != null);
+    return getAllMessages();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult sendMessage(String message, String fromUserId),
+    TResult getAllMessages(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllMessages != null) {
+      return getAllMessages();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult sendMessage(_SendMessage value),
+    @required TResult getAllMessages(_GetAllMessages value),
+  }) {
+    assert(started != null);
+    assert(sendMessage != null);
+    assert(getAllMessages != null);
+    return getAllMessages(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult sendMessage(_SendMessage value),
+    TResult getAllMessages(_GetAllMessages value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllMessages != null) {
+      return getAllMessages(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllMessages implements ChatEvent {
+  const factory _GetAllMessages() = _$_GetAllMessages;
 }
 
 /// @nodoc
@@ -282,6 +416,19 @@ class _$ChatStateTearOff {
 // ignore: unused_element
   _Initial initial() {
     return const _Initial();
+  }
+
+// ignore: unused_element
+  _AllMessagesLoaded allMessagesLoaded(
+      {@required List<MessageEntity> allMessages}) {
+    return _AllMessagesLoaded(
+      allMessages: allMessages,
+    );
+  }
+
+// ignore: unused_element
+  _MessageFailure messageFailure() {
+    return const _MessageFailure();
   }
 }
 
@@ -294,19 +441,27 @@ mixin _$ChatState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult allMessagesLoaded(List<MessageEntity> allMessages),
+    @required TResult messageFailure(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult allMessagesLoaded(List<MessageEntity> allMessages),
+    TResult messageFailure(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
+    @required TResult allMessagesLoaded(_AllMessagesLoaded value),
+    @required TResult messageFailure(_MessageFailure value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
+    TResult allMessagesLoaded(_AllMessagesLoaded value),
+    TResult messageFailure(_MessageFailure value),
     @required TResult orElse(),
   });
 }
@@ -363,8 +518,12 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initial(),
+    @required TResult allMessagesLoaded(List<MessageEntity> allMessages),
+    @required TResult messageFailure(),
   }) {
     assert(initial != null);
+    assert(allMessagesLoaded != null);
+    assert(messageFailure != null);
     return initial();
   }
 
@@ -372,6 +531,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
+    TResult allMessagesLoaded(List<MessageEntity> allMessages),
+    TResult messageFailure(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -385,8 +546,12 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
+    @required TResult allMessagesLoaded(_AllMessagesLoaded value),
+    @required TResult messageFailure(_MessageFailure value),
   }) {
     assert(initial != null);
+    assert(allMessagesLoaded != null);
+    assert(messageFailure != null);
     return initial(this);
   }
 
@@ -394,6 +559,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
+    TResult allMessagesLoaded(_AllMessagesLoaded value),
+    TResult messageFailure(_MessageFailure value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -406,4 +573,228 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements ChatState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$AllMessagesLoadedCopyWith<$Res> {
+  factory _$AllMessagesLoadedCopyWith(
+          _AllMessagesLoaded value, $Res Function(_AllMessagesLoaded) then) =
+      __$AllMessagesLoadedCopyWithImpl<$Res>;
+  $Res call({List<MessageEntity> allMessages});
+}
+
+/// @nodoc
+class __$AllMessagesLoadedCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res>
+    implements _$AllMessagesLoadedCopyWith<$Res> {
+  __$AllMessagesLoadedCopyWithImpl(
+      _AllMessagesLoaded _value, $Res Function(_AllMessagesLoaded) _then)
+      : super(_value, (v) => _then(v as _AllMessagesLoaded));
+
+  @override
+  _AllMessagesLoaded get _value => super._value as _AllMessagesLoaded;
+
+  @override
+  $Res call({
+    Object allMessages = freezed,
+  }) {
+    return _then(_AllMessagesLoaded(
+      allMessages: allMessages == freezed
+          ? _value.allMessages
+          : allMessages as List<MessageEntity>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_AllMessagesLoaded implements _AllMessagesLoaded {
+  const _$_AllMessagesLoaded({@required this.allMessages})
+      : assert(allMessages != null);
+
+  @override
+  final List<MessageEntity> allMessages;
+
+  @override
+  String toString() {
+    return 'ChatState.allMessagesLoaded(allMessages: $allMessages)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _AllMessagesLoaded &&
+            (identical(other.allMessages, allMessages) ||
+                const DeepCollectionEquality()
+                    .equals(other.allMessages, allMessages)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(allMessages);
+
+  @JsonKey(ignore: true)
+  @override
+  _$AllMessagesLoadedCopyWith<_AllMessagesLoaded> get copyWith =>
+      __$AllMessagesLoadedCopyWithImpl<_AllMessagesLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult allMessagesLoaded(List<MessageEntity> allMessages),
+    @required TResult messageFailure(),
+  }) {
+    assert(initial != null);
+    assert(allMessagesLoaded != null);
+    assert(messageFailure != null);
+    return allMessagesLoaded(allMessages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult allMessagesLoaded(List<MessageEntity> allMessages),
+    TResult messageFailure(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (allMessagesLoaded != null) {
+      return allMessagesLoaded(allMessages);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult allMessagesLoaded(_AllMessagesLoaded value),
+    @required TResult messageFailure(_MessageFailure value),
+  }) {
+    assert(initial != null);
+    assert(allMessagesLoaded != null);
+    assert(messageFailure != null);
+    return allMessagesLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult allMessagesLoaded(_AllMessagesLoaded value),
+    TResult messageFailure(_MessageFailure value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (allMessagesLoaded != null) {
+      return allMessagesLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AllMessagesLoaded implements ChatState {
+  const factory _AllMessagesLoaded(
+      {@required List<MessageEntity> allMessages}) = _$_AllMessagesLoaded;
+
+  List<MessageEntity> get allMessages;
+  @JsonKey(ignore: true)
+  _$AllMessagesLoadedCopyWith<_AllMessagesLoaded> get copyWith;
+}
+
+/// @nodoc
+abstract class _$MessageFailureCopyWith<$Res> {
+  factory _$MessageFailureCopyWith(
+          _MessageFailure value, $Res Function(_MessageFailure) then) =
+      __$MessageFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$MessageFailureCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
+    implements _$MessageFailureCopyWith<$Res> {
+  __$MessageFailureCopyWithImpl(
+      _MessageFailure _value, $Res Function(_MessageFailure) _then)
+      : super(_value, (v) => _then(v as _MessageFailure));
+
+  @override
+  _MessageFailure get _value => super._value as _MessageFailure;
+}
+
+/// @nodoc
+class _$_MessageFailure implements _MessageFailure {
+  const _$_MessageFailure();
+
+  @override
+  String toString() {
+    return 'ChatState.messageFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _MessageFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult allMessagesLoaded(List<MessageEntity> allMessages),
+    @required TResult messageFailure(),
+  }) {
+    assert(initial != null);
+    assert(allMessagesLoaded != null);
+    assert(messageFailure != null);
+    return messageFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult allMessagesLoaded(List<MessageEntity> allMessages),
+    TResult messageFailure(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (messageFailure != null) {
+      return messageFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult allMessagesLoaded(_AllMessagesLoaded value),
+    @required TResult messageFailure(_MessageFailure value),
+  }) {
+    assert(initial != null);
+    assert(allMessagesLoaded != null);
+    assert(messageFailure != null);
+    return messageFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult allMessagesLoaded(_AllMessagesLoaded value),
+    TResult messageFailure(_MessageFailure value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (messageFailure != null) {
+      return messageFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _MessageFailure implements ChatState {
+  const factory _MessageFailure() = _$_MessageFailure;
 }

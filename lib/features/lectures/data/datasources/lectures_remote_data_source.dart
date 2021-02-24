@@ -57,10 +57,8 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
       description: description,
     );
     lectureTask.task = storageRef.child(title).putFile(File(fileUrl));
-    await lecturesCollection.add(lecture.toDocument()).then(
-          (value) =>
-              value.collection('users').doc(user.id).set(user.toDocument()),
-        );
+    await lecturesCollection.add(lecture.toDocument()).then((lectureDoc) =>
+        lectureDoc.collection('users').doc(user.id).set(user.toDocument()));
 
     return lecture;
   }

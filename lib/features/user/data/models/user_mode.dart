@@ -33,12 +33,13 @@ class UserModel extends UserEntity {
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot snap) {
+    final snapData = snap.data();
     return UserModel(
       id: snap.id,
-      role: snap['role'] as String,
-      dept: snap['dept'] as String,
-      stage: snap['stage'] as int,
-      fullName: snap['fullName'] as String,
+      role: snapData['role'],
+      dept: snapData['dept'],
+      stage: snapData['stage'],
+      fullName: snapData['fullName'],
     );
   }
 }

@@ -24,6 +24,11 @@ class _$UserAuthEventTearOff {
       id: id,
     );
   }
+
+// ignore: unused_element
+  _GetUsers getUsers() {
+    return const _GetUsers();
+  }
 }
 
 /// @nodoc
@@ -36,22 +41,26 @@ mixin _$UserAuthEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getUserById(int id),
+    @required TResult getUsers(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getUserById(int id),
+    TResult getUsers(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getUserById(_GetUserById value),
+    @required TResult getUsers(_GetUsers value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getUserById(_GetUserById value),
+    TResult getUsers(_GetUsers value),
     @required TResult orElse(),
   });
 }
@@ -111,9 +120,11 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getUserById(int id),
+    @required TResult getUsers(),
   }) {
     assert(started != null);
     assert(getUserById != null);
+    assert(getUsers != null);
     return started();
   }
 
@@ -122,6 +133,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getUserById(int id),
+    TResult getUsers(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -136,9 +148,11 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getUserById(_GetUserById value),
+    @required TResult getUsers(_GetUsers value),
   }) {
     assert(started != null);
     assert(getUserById != null);
+    assert(getUsers != null);
     return started(this);
   }
 
@@ -147,6 +161,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getUserById(_GetUserById value),
+    TResult getUsers(_GetUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -223,9 +238,11 @@ class _$_GetUserById implements _GetUserById {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getUserById(int id),
+    @required TResult getUsers(),
   }) {
     assert(started != null);
     assert(getUserById != null);
+    assert(getUsers != null);
     return getUserById(id);
   }
 
@@ -234,6 +251,7 @@ class _$_GetUserById implements _GetUserById {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getUserById(int id),
+    TResult getUsers(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -248,9 +266,11 @@ class _$_GetUserById implements _GetUserById {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getUserById(_GetUserById value),
+    @required TResult getUsers(_GetUsers value),
   }) {
     assert(started != null);
     assert(getUserById != null);
+    assert(getUsers != null);
     return getUserById(this);
   }
 
@@ -259,6 +279,7 @@ class _$_GetUserById implements _GetUserById {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getUserById(_GetUserById value),
+    TResult getUsers(_GetUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -278,6 +299,100 @@ abstract class _GetUserById implements UserAuthEvent {
 }
 
 /// @nodoc
+abstract class _$GetUsersCopyWith<$Res> {
+  factory _$GetUsersCopyWith(_GetUsers value, $Res Function(_GetUsers) then) =
+      __$GetUsersCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetUsersCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
+    implements _$GetUsersCopyWith<$Res> {
+  __$GetUsersCopyWithImpl(_GetUsers _value, $Res Function(_GetUsers) _then)
+      : super(_value, (v) => _then(v as _GetUsers));
+
+  @override
+  _GetUsers get _value => super._value as _GetUsers;
+}
+
+/// @nodoc
+class _$_GetUsers implements _GetUsers {
+  const _$_GetUsers();
+
+  @override
+  String toString() {
+    return 'UserAuthEvent.getUsers()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetUsers);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult getUserById(int id),
+    @required TResult getUsers(),
+  }) {
+    assert(started != null);
+    assert(getUserById != null);
+    assert(getUsers != null);
+    return getUsers();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult getUserById(int id),
+    TResult getUsers(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getUsers != null) {
+      return getUsers();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult getUserById(_GetUserById value),
+    @required TResult getUsers(_GetUsers value),
+  }) {
+    assert(started != null);
+    assert(getUserById != null);
+    assert(getUsers != null);
+    return getUsers(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult getUserById(_GetUserById value),
+    TResult getUsers(_GetUsers value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getUsers != null) {
+      return getUsers(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUsers implements UserAuthEvent {
+  const factory _GetUsers() = _$_GetUsers;
+}
+
+/// @nodoc
 class _$UserAuthStateTearOff {
   const _$UserAuthStateTearOff();
 
@@ -290,6 +405,13 @@ class _$UserAuthStateTearOff {
   _UserLoaded userLoaded({@required UserEntity user}) {
     return _UserLoaded(
       user: user,
+    );
+  }
+
+// ignore: unused_element
+  _UsersLoaded usersLoaded({@required List<UserEntity> users}) {
+    return _UsersLoaded(
+      users: users,
     );
   }
 
@@ -309,12 +431,14 @@ mixin _$UserAuthState {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult userLoaded(UserEntity user),
+    @required TResult usersLoaded(List<UserEntity> users),
     @required TResult userError(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult userLoaded(UserEntity user),
+    TResult usersLoaded(List<UserEntity> users),
     TResult userError(),
     @required TResult orElse(),
   });
@@ -322,12 +446,14 @@ mixin _$UserAuthState {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult userLoaded(_UserLoaded value),
+    @required TResult usersLoaded(_UsersLoaded value),
     @required TResult userError(_UserError value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult userLoaded(_UserLoaded value),
+    TResult usersLoaded(_UsersLoaded value),
     TResult userError(_UserError value),
     @required TResult orElse(),
   });
@@ -388,10 +514,12 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult userLoaded(UserEntity user),
+    @required TResult usersLoaded(List<UserEntity> users),
     @required TResult userError(),
   }) {
     assert(initial != null);
     assert(userLoaded != null);
+    assert(usersLoaded != null);
     assert(userError != null);
     return initial();
   }
@@ -401,6 +529,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult userLoaded(UserEntity user),
+    TResult usersLoaded(List<UserEntity> users),
     TResult userError(),
     @required TResult orElse(),
   }) {
@@ -416,10 +545,12 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult userLoaded(_UserLoaded value),
+    @required TResult usersLoaded(_UsersLoaded value),
     @required TResult userError(_UserError value),
   }) {
     assert(initial != null);
     assert(userLoaded != null);
+    assert(usersLoaded != null);
     assert(userError != null);
     return initial(this);
   }
@@ -429,6 +560,7 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult userLoaded(_UserLoaded value),
+    TResult usersLoaded(_UsersLoaded value),
     TResult userError(_UserError value),
     @required TResult orElse(),
   }) {
@@ -506,10 +638,12 @@ class _$_UserLoaded implements _UserLoaded {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult userLoaded(UserEntity user),
+    @required TResult usersLoaded(List<UserEntity> users),
     @required TResult userError(),
   }) {
     assert(initial != null);
     assert(userLoaded != null);
+    assert(usersLoaded != null);
     assert(userError != null);
     return userLoaded(user);
   }
@@ -519,6 +653,7 @@ class _$_UserLoaded implements _UserLoaded {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult userLoaded(UserEntity user),
+    TResult usersLoaded(List<UserEntity> users),
     TResult userError(),
     @required TResult orElse(),
   }) {
@@ -534,10 +669,12 @@ class _$_UserLoaded implements _UserLoaded {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult userLoaded(_UserLoaded value),
+    @required TResult usersLoaded(_UsersLoaded value),
     @required TResult userError(_UserError value),
   }) {
     assert(initial != null);
     assert(userLoaded != null);
+    assert(usersLoaded != null);
     assert(userError != null);
     return userLoaded(this);
   }
@@ -547,6 +684,7 @@ class _$_UserLoaded implements _UserLoaded {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult userLoaded(_UserLoaded value),
+    TResult usersLoaded(_UsersLoaded value),
     TResult userError(_UserError value),
     @required TResult orElse(),
   }) {
@@ -564,6 +702,135 @@ abstract class _UserLoaded implements UserAuthState {
   UserEntity get user;
   @JsonKey(ignore: true)
   _$UserLoadedCopyWith<_UserLoaded> get copyWith;
+}
+
+/// @nodoc
+abstract class _$UsersLoadedCopyWith<$Res> {
+  factory _$UsersLoadedCopyWith(
+          _UsersLoaded value, $Res Function(_UsersLoaded) then) =
+      __$UsersLoadedCopyWithImpl<$Res>;
+  $Res call({List<UserEntity> users});
+}
+
+/// @nodoc
+class __$UsersLoadedCopyWithImpl<$Res> extends _$UserAuthStateCopyWithImpl<$Res>
+    implements _$UsersLoadedCopyWith<$Res> {
+  __$UsersLoadedCopyWithImpl(
+      _UsersLoaded _value, $Res Function(_UsersLoaded) _then)
+      : super(_value, (v) => _then(v as _UsersLoaded));
+
+  @override
+  _UsersLoaded get _value => super._value as _UsersLoaded;
+
+  @override
+  $Res call({
+    Object users = freezed,
+  }) {
+    return _then(_UsersLoaded(
+      users: users == freezed ? _value.users : users as List<UserEntity>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_UsersLoaded implements _UsersLoaded {
+  const _$_UsersLoaded({@required this.users}) : assert(users != null);
+
+  @override
+  final List<UserEntity> users;
+
+  @override
+  String toString() {
+    return 'UserAuthState.usersLoaded(users: $users)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UsersLoaded &&
+            (identical(other.users, users) ||
+                const DeepCollectionEquality().equals(other.users, users)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(users);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UsersLoadedCopyWith<_UsersLoaded> get copyWith =>
+      __$UsersLoadedCopyWithImpl<_UsersLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult userLoaded(UserEntity user),
+    @required TResult usersLoaded(List<UserEntity> users),
+    @required TResult userError(),
+  }) {
+    assert(initial != null);
+    assert(userLoaded != null);
+    assert(usersLoaded != null);
+    assert(userError != null);
+    return usersLoaded(users);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult userLoaded(UserEntity user),
+    TResult usersLoaded(List<UserEntity> users),
+    TResult userError(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (usersLoaded != null) {
+      return usersLoaded(users);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult userLoaded(_UserLoaded value),
+    @required TResult usersLoaded(_UsersLoaded value),
+    @required TResult userError(_UserError value),
+  }) {
+    assert(initial != null);
+    assert(userLoaded != null);
+    assert(usersLoaded != null);
+    assert(userError != null);
+    return usersLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult userLoaded(_UserLoaded value),
+    TResult usersLoaded(_UsersLoaded value),
+    TResult userError(_UserError value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (usersLoaded != null) {
+      return usersLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UsersLoaded implements UserAuthState {
+  const factory _UsersLoaded({@required List<UserEntity> users}) =
+      _$_UsersLoaded;
+
+  List<UserEntity> get users;
+  @JsonKey(ignore: true)
+  _$UsersLoadedCopyWith<_UsersLoaded> get copyWith;
 }
 
 /// @nodoc
@@ -605,10 +872,12 @@ class _$_UserError implements _UserError {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult userLoaded(UserEntity user),
+    @required TResult usersLoaded(List<UserEntity> users),
     @required TResult userError(),
   }) {
     assert(initial != null);
     assert(userLoaded != null);
+    assert(usersLoaded != null);
     assert(userError != null);
     return userError();
   }
@@ -618,6 +887,7 @@ class _$_UserError implements _UserError {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult userLoaded(UserEntity user),
+    TResult usersLoaded(List<UserEntity> users),
     TResult userError(),
     @required TResult orElse(),
   }) {
@@ -633,10 +903,12 @@ class _$_UserError implements _UserError {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult userLoaded(_UserLoaded value),
+    @required TResult usersLoaded(_UsersLoaded value),
     @required TResult userError(_UserError value),
   }) {
     assert(initial != null);
     assert(userLoaded != null);
+    assert(usersLoaded != null);
     assert(userError != null);
     return userError(this);
   }
@@ -646,6 +918,7 @@ class _$_UserError implements _UserError {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult userLoaded(_UserLoaded value),
+    TResult usersLoaded(_UsersLoaded value),
     TResult userError(_UserError value),
     @required TResult orElse(),
   }) {

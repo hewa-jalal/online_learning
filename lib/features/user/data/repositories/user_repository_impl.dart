@@ -18,4 +18,14 @@ class UserRepositoryImpl implements UserRepository {
       return left(UserNotFoundFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<UserEntity>>> getUsers() async {
+    try {
+      final userList = await userRemoteDataSource.getUsers();
+      return right(userList);
+    } on UserNotFoundException {
+      return left(UserNotFoundFailure());
+    }
+  }
 }

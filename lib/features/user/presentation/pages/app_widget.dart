@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:online_learning/core/lecture_task.dart';
+import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
+import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 import 'package:online_learning/features/lectures/data/repository/lectures_repository_impl.dart';
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
@@ -15,6 +17,7 @@ import 'package:online_learning/features/lectures/presentation/bloc/progress_blo
 import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
+import 'package:online_learning/features/user/domain/usecase/get_users.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:online_learning/features/user/presentation/pages/user_form_page.dart';
 import 'package:online_learning/injection.dart';
@@ -25,8 +28,15 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (_) => sl<ChatBloc>(),
+        ),
+        BlocProvider(
           create: (_) => UserAuthBloc(
-              GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource()))),
+            getUser:
+                GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
+            getUsers:
+                GetUsers(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
+          ),
         ),
         BlocProvider(
           create: (_) => LectureBloc(

@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:online_learning/features/user/core/errors/exceptions.dart';
 import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/domain/entites/user.dart';
 
 abstract class UserRemoteDataSource {
   Future<UserModel> getUser(int id);
+  Future<List<UserEntity>> getUsers();
 }
 
 class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
@@ -17,5 +19,13 @@ class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
     } else {
       throw UserNotFoundException();
     }
+  }
+
+  @override
+  Future<List<UserEntity>> getUsers() async {
+    final querySnapshot = await users.get();
+    return querySnapshot.docs
+        .map((doc) => UserModel.fromSnapshot(doc))
+        .toList();
   }
 }

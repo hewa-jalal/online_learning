@@ -7,14 +7,17 @@ class MessageModel extends MessageEntity {
   final String message;
   final String fromUserId;
   final String timestamp;
+  final String imageUrl;
   MessageModel({
     @required this.message,
     @required this.fromUserId,
     this.timestamp,
+    this.imageUrl,
   }) : super(
           message: message,
           fromUserId: fromUserId,
           timestamp: timestamp,
+          imageUrl: imageUrl,
         );
 
   Map<String, dynamic> toDocument() {
@@ -22,6 +25,7 @@ class MessageModel extends MessageEntity {
       'message': message,
       'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
       'fromUserId': fromUserId,
+      'imageUrl': imageUrl,
     };
   }
 
@@ -31,6 +35,7 @@ class MessageModel extends MessageEntity {
       message: snapData['message'],
       fromUserId: snapData['fromUserId'],
       timestamp: snapData['timestamp'].toString(),
+      imageUrl: snapData['imageUrl'],
     );
   }
 }

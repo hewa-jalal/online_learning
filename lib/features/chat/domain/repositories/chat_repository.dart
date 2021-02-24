@@ -7,6 +7,7 @@ abstract class ChatRepository {
   Future<Either<Failure, Unit>> sendMessage({
     @required String message,
     @required String fromUserId,
+    String imageUrl,
   });
 
   Future<Either<Failure, List<MessageEntity>>> getAllMessages();

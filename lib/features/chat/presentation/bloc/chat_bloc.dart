@@ -32,6 +32,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           MessageParams(
             message: e.message,
             fromUserId: e.fromUserId,
+            imageUrl: e.imageUrl,
           ),
         );
       },

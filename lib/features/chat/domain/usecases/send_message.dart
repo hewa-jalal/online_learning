@@ -16,6 +16,7 @@ class SendMessage extends UseCase<Unit, MessageParams> {
     return chatRepository.sendMessage(
       message: params.message,
       fromUserId: params.fromUserId,
+      imageUrl: params.imageUrl,
     );
   }
 }
@@ -23,10 +24,12 @@ class SendMessage extends UseCase<Unit, MessageParams> {
 class MessageParams extends Equatable {
   final String message;
   final String fromUserId;
+  final String imageUrl;
 
   MessageParams({
     @required this.message,
     @required this.fromUserId,
+    this.imageUrl,
   });
   @override
   List<Object> get props => [message, fromUserId];

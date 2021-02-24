@@ -5,6 +5,7 @@
 // **************************************************************************
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -31,6 +32,8 @@ GetIt $initGetIt(
       () => ChatRepositoryImpl(remoteDataSource: get<ChatRemoteDataSource>()));
   gh.lazySingleton<FirebaseFirestore>(
       () => firebaseInjectableModule.firebaseFirestore);
+  gh.lazySingleton<FirebaseStorage>(
+      () => firebaseInjectableModule.firebaseStorage);
   gh.lazySingleton<GetAllMessages>(
       () => GetAllMessages(chatRepository: get<ChatRepository>()));
   gh.lazySingleton<SendMessage>(

@@ -19,9 +19,10 @@ class ChatRepositoryImpl extends ChatRepository {
   Future<Either<Failure, Unit>> sendMessage({
     @required String message,
     @required String fromUserId,
+    String imageUrl,
   }) async {
     try {
-      remoteDataSource.sendMessage(message, fromUserId);
+      remoteDataSource.sendMessage(message, fromUserId, imageUrl);
       return right(unit);
     } on MessageException {
       return left(MessageFailure());

@@ -1,29 +1,69 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat/dash_chat.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:jiffy/jiffy.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   final UserEntity userEntity;
 
-  const ChatPage({Key key, @required this.userEntity}) : super(key: key);
+  const ChatPage({
+    Key key,
+    @required this.userEntity,
+  }) : super(key: key);
+
+  @override
+  _ChatPageState createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  File _image;
+  final picker = ImagePicker();
+
+  UserEntity get user => widget.userEntity;
+  final _controller = TextEditingController();
+
+  Future getNewImage() async {
+    final result = await FilePicker.platform.pickFiles(type: FileType.image);
+    if (result != null) {
+      _image = File(result.files.single.path);
+    }
+  }
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final chatBloc = context.read<ChatBloc>();
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
       return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            context.read<ChatBloc>().add(
-                  ChatEvent.sendMessage(
-                    message: '3',
-                    fromUserId: userEntity.id,
-                  ),
-                );
-          },
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     context.read<ChatBloc>().add(
+        //           ChatEvent.sendMessage(
+        //             message: '3',
+        //             fromUserId: widget.userEntity.id,
+        //           ),
+        //         );
+        //   },
+        // ),
         body: BlocBuilder<ChatBloc, ChatState>(
           builder: (context, state) {
             return state.map(
@@ -34,31 +74,55 @@ class ChatPage extends StatelessWidget {
                   child: Text('get all messages'),
                 ),
               ),
-              allMessagesLoaded: (state) => ListView.builder(
-                itemCount: state.allMessages.length,
-                itemBuilder: (context, index) {
-                  final date = DateTime.fromMillisecondsSinceEpoch(
-                    int.parse(state.allMessages[index].timestamp),
-                  );
-                  return Column(
-                    children: [
-                      Text(
-                        state.allMessages[index].message,
+              allMessagesLoaded: (state) {
+                var messages = state.allMessages
+                    .map(
+                      (msg) => ChatMessage(
+                        text: msg.message,
+                        user: ChatUser(
+                          uid: msg.fromUserId,
+                        ),
+                        image: msg.imageUrl,
                       ),
-                      // Text(
-                      //   '${Jiffy(date).yMMMd} ${Jiffy(date).Hm}',
-                      // ),
-                      // Text(
-                      //   state.allMessages[index].fromUserId,
-                      // ),
-                    ],
-                  );
-                },
-              ),
+                    )
+                    .toList();
+                return DashChat(
+                  messageImageBuilder: (str, [_]) {
+                    print('str $str');
+                    return Image.network(str);
+                  },
+                  chatFooterBuilder: () => IconButton(
+                    icon: Icon(Icons.image),
+                    onPressed: getNewImage,
+                  ),
+                  inverted: true,
+                  user: ChatUser(
+                    uid: user.id,
+                    firstName: 'hewa',
+                    color: Colors.yellow,
+                  ),
+                  onSend: (msg) {
+                    print('uri: ${_image.uri.toString()}');
+                    chatBloc.add(
+                      ChatEvent.sendMessage(
+                        message: msg.text,
+                        fromUserId: msg.user.uid,
+                        imageUrl: _image.uri.toFilePath() ?? 'empty image uri',
+                      ),
+                    );
+                    chatBloc.add(ChatEvent.getAllMessages());
+                  },
+                  messages: messages,
+                );
+              },
               messageFailure: (state) => Text('Failed to load messages'),
             );
           },
         ),
+
+        // final date = DateTime.fromMillisecondsSinceEpoch(
+        //             int.parse(state.allMessages[index].timestamp),
+        //           );
         // body: BlocBuilder<UserAuthBloc, UserAuthState>(
         //   builder: (context, state) {
         //     return state.maybeMap(
@@ -88,18 +152,3 @@ class ChatPage extends StatelessWidget {
     });
   }
 }
-
-
-
-// DashChat(
-//               user: ChatUser(
-//                 firstName: 'hewa',
-//               ),
-//               onSend: (_) {},
-//               messages: [
-//                 ChatMessage(
-//                   text: 'message',
-//                   user: ChatUser(firstName: 'gg'),
-//                 )
-//               ],
-//             ),

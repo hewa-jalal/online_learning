@@ -27,13 +27,13 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
     String fromUserId, [
     String imageUrl,
   ]) async {
-    storageRef.child('images').child('path').putFile(File(imageUrl));
-    final downloadUrl =
-        await storageRef.child('images').child('path').getDownloadURL();
+    // storageRef.child('images').child('path').putFile(File(imageUrl));
+    // final downloadUrl =
+    //     await storageRef.child('images').child('path').getDownloadURL();
     final messageModel = MessageModel(
       message: message,
       fromUserId: fromUserId,
-      imageUrl: downloadUrl,
+      // imageUrl: downloadUrl,
     );
     messagesCollection.add(messageModel.toDocument());
     return unit;

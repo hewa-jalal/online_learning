@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat/dash_chat.dart';
@@ -9,7 +10,6 @@ import 'package:online_learning/features/chat/domain/entities/message_entity.dar
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
-import 'package:jiffy/jiffy.dart';
 
 class ChatPage extends StatefulWidget {
   final UserEntity userEntity;
@@ -87,9 +87,13 @@ class _ChatPageState extends State<ChatPage> {
                     )
                     .toList();
                 return DashChat(
-                  messageImageBuilder: (str, [_]) {
-                    print('str $str');
-                    return Image.network(str);
+                  messageImageBuilder: (url, [_]) {
+                    return CachedNetworkImage(
+                      imageUrl: url,
+                      placeholder: (context, str) =>
+                          CircularProgressIndicator(),
+                      fit: BoxFit.fill,
+                    );
                   },
                   chatFooterBuilder: () => IconButton(
                     icon: Icon(Icons.image),
@@ -98,16 +102,14 @@ class _ChatPageState extends State<ChatPage> {
                   inverted: true,
                   user: ChatUser(
                     uid: user.id,
-                    firstName: 'hewa',
+                    firstName: user.fullName,
                     color: Colors.yellow,
                   ),
                   onSend: (msg) {
-                    print('uri: ${_image.uri.toString()}');
                     chatBloc.add(
                       ChatEvent.sendMessage(
                         message: msg.text,
                         fromUserId: msg.user.uid,
-                        imageUrl: _image.uri.toFilePath() ?? 'empty image uri',
                       ),
                     );
                     chatBloc.add(ChatEvent.getAllMessages());

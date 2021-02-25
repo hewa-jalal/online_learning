@@ -41,4 +41,14 @@ class LecturesRepositoryImpl implements LecturesRepository {
       return left(UserNotFoundFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<LectureEntity>>> getAllLectures() async {
+    try {
+      final lectures = await remoteDataSource.getAllLectures();
+      return right(lectures);
+    } catch (e) {
+      return left(LectureFailure());
+    }
+  }
 }

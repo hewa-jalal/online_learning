@@ -12,4 +12,5 @@ abstract class LecturesRepository {
     String title,
     String description,
   });
+  Future<Either<Failure, List<LectureEntity>>> getAllLectures();
 }

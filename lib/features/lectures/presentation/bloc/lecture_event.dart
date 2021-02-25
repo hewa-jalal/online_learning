@@ -10,4 +10,5 @@ abstract class LectureEvent with _$LectureEvent {
     @required String title,
     @required String description,
   }) = _UploadLecture;
+  const factory LectureEvent.getAllLectures() = _GetAllLectures;
 }

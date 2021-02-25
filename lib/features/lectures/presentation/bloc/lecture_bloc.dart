@@ -5,7 +5,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:online_learning/features/lectures/domain/entities/lecture_entity.dart';
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
+import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
+import 'package:online_learning/features/user/core/usecase/use_case.dart';
 import 'package:online_learning/features/user/data/models/user_mode.dart';
 
 part 'lecture_event.dart';
@@ -15,9 +17,11 @@ part 'lecture_bloc.freezed.dart';
 class LectureBloc extends Bloc<LectureEvent, LectureState> {
   final DownloadLecture downloadLecture;
   final UploadLecture uploadLecture;
+  final GetAllLectures getAllLectures;
   LectureBloc({
     @required this.downloadLecture,
     @required this.uploadLecture,
+    @required this.getAllLectures,
   }) : super(_Initial());
 
   @override
@@ -50,8 +54,16 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       downloadLecture: (e) async* {
         final either = await downloadLecture(LectureParams(fileUrl: e.fileUrl));
         yield either.fold(
-          (l) => LectureState.initial(),
+          (failure) => LectureState.initial(),
           (lecture) => LectureState.lectureLoaded(lectureEntity: lecture),
+        );
+      },
+      getAllLectures: (e) async* {
+        final either = await getAllLectures(NoParams());
+        yield either.fold(
+          (failure) => LectureState.initial(),
+          (lectures) =>
+              LectureState.allLecturesLoaded(lecturesEntities: lectures),
         );
       },
     );

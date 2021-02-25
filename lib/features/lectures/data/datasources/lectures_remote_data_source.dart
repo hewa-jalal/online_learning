@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:online_learning/core/lecture_task.dart';
@@ -19,11 +20,13 @@ abstract class LecturesRemoteDataSource {
     String title,
     String description,
   });
+
+  Future<List<LectureModel>> getAllLectures();
 }
 
 class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
   final storageRef = FirebaseStorage.instance.ref();
-  final lecturesCollection = FirebaseFirestore.instance.collection('lectures');
+  final coursesCollection = FirebaseFirestore.instance.collection('courses');
   final Dio dio;
   final LectureTask lectureTask;
 
@@ -56,10 +59,29 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
       title: title,
       description: description,
     );
-    lectureTask.task = storageRef.child(title).putFile(File(fileUrl));
-    await lecturesCollection.add(lecture.toDocument()).then((lectureDoc) =>
-        lectureDoc.collection('users').doc(user.id).set(user.toDocument()));
+    lectureTask.task = storageRef.lecturesStorage(title).putFile(File(fileUrl));
+    // final downloadUrl =
+    //     await storageRef.lecturesStorage(title).getDownloadURL();
+    // print('--------> fileUrl: $fileUrl || downloadUrl: $downloadUrl');
+    final docRef = coursesCollection.doc(DateTime.now().toString());
+    docRef.set(lecture.toDocument());
+    docRef.set({'user': user.toDocument()}, SetOptions(merge: true));
 
     return lecture;
   }
+
+  @override
+  Future<List<LectureModel>> getAllLectures() async {
+    final querySnapshot = await coursesCollection.get();
+    querySnapshot.docs.forEach((element) {
+      print(element.data()['user']);
+    });
+    return querySnapshot.docs
+        .map((doc) => LectureModel.fromSnapshot(doc))
+        .toList();
+  }
+}
+
+extension StorageReferenceX on Reference {
+  Reference lecturesStorage(String title) => child('courses').child(title);
 }

@@ -9,6 +9,7 @@ import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.da
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 import 'package:online_learning/features/lectures/data/repository/lectures_repository_impl.dart';
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
+import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures.dart';
 
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
 
@@ -40,15 +41,22 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => LectureBloc(
-              downloadLecture: DownloadLecture(
-                LecturesRepositoryImpl(
-                  FirebaseLecturesRemoteDataSource(
-                      lectureTask: sl<LectureTask>(), dio: Dio()),
-                ),
+            downloadLecture: DownloadLecture(
+              LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    lectureTask: sl<LectureTask>(), dio: Dio()),
               ),
-              uploadLecture: UploadLecture(LecturesRepositoryImpl(
-                  FirebaseLecturesRemoteDataSource(
-                      dio: Dio(), lectureTask: sl<LectureTask>())))),
+            ),
+            uploadLecture: UploadLecture(LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    dio: Dio(), lectureTask: sl<LectureTask>()))),
+            getAllLectures: GetAllLectures(
+              lecturesRepository: LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    lectureTask: sl<LectureTask>(), dio: Dio()),
+              ),
+            ),
+          ),
         ),
         BlocProvider(
           create: (context) => ProgressBloc(

@@ -45,6 +45,13 @@ class _LectureFormPageState extends State<LectureFormPage> {
               loading: (e) {
                 return LoadingWidget();
               },
+              allLecturesLoaded: (e) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return Text(e.lecturesEntities[index].title);
+                  },
+                );
+              },
             ),
           ),
         );

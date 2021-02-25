@@ -27,6 +27,12 @@ class _LectureFormPageState extends State<LectureFormPage> {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
+            floatingActionButton: FloatingActionButton(
+              onPressed: () => context
+                  .read<LectureBloc>()
+                  .add(LectureEvent.getAllLectures()),
+              child: Icon(Icons.all_inbox),
+            ),
             // body: LoadingWidget(),
             body: state.map(
               initial: (_) => InitialWidget(user: widget.user),
@@ -47,8 +53,9 @@ class _LectureFormPageState extends State<LectureFormPage> {
               },
               allLecturesLoaded: (e) {
                 return ListView.builder(
+                  itemCount: e.lecturesEntities.length,
                   itemBuilder: (context, index) {
-                    return Text(e.lecturesEntities[index].title);
+                    return Text(e.lecturesEntities[index].user.fullName);
                   },
                 );
               },

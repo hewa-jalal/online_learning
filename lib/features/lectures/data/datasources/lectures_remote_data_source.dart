@@ -58,6 +58,7 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
       fileUrl: fileUrl,
       title: title,
       description: description,
+      user: user,
     );
     lectureTask.task = storageRef.lecturesStorage(title).putFile(File(fileUrl));
     // final downloadUrl =
@@ -73,9 +74,7 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
   @override
   Future<List<LectureModel>> getAllLectures() async {
     final querySnapshot = await coursesCollection.get();
-    querySnapshot.docs.forEach((element) {
-      print(element.data()['user']);
-    });
+
     return querySnapshot.docs
         .map((doc) => LectureModel.fromSnapshot(doc))
         .toList();

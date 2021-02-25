@@ -48,6 +48,7 @@ class LecturesRepositoryImpl implements LecturesRepository {
       final lectures = await remoteDataSource.getAllLectures();
       return right(lectures);
     } catch (e) {
+      print(e.toString());
       return left(LectureFailure());
     }
   }

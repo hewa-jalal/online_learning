@@ -27,12 +27,6 @@ class _UserFormPageState extends State<UserFormPage> {
               userError: (_) => Text('User error'),
               usersLoaded: (_) => Text('usersLoaded'),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () => context
-                  .read<LectureBloc>()
-                  .add(LectureEvent.getAllLectures()),
-              child: Icon(Icons.all_inbox),
-            ),
           ),
         );
       },

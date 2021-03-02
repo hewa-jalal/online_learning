@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/lectures/domain/entities/lecture_entity.dart';
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures.dart';
+import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
 import 'package:online_learning/features/user/data/models/user_mode.dart';
@@ -14,14 +16,17 @@ part 'lecture_event.dart';
 part 'lecture_state.dart';
 part 'lecture_bloc.freezed.dart';
 
+@injectable
 class LectureBloc extends Bloc<LectureEvent, LectureState> {
   final DownloadLecture downloadLecture;
   final UploadLecture uploadLecture;
   final GetAllLectures getAllLectures;
+  final GetAllLecturesByUserId getAllLecturesByUserId;
   LectureBloc({
     @required this.downloadLecture,
     @required this.uploadLecture,
     @required this.getAllLectures,
+    @required this.getAllLecturesByUserId,
   }) : super(_Initial());
 
   @override
@@ -29,7 +34,9 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
     LectureEvent event,
   ) async* {
     yield* event.map(
-      started: (e) async* {},
+      started: (e) async* {
+        yield LectureState.initial();
+      },
       uploadLecture: (e) async* {
         final result = await FilePicker.platform.pickFiles();
         if (result != null) {
@@ -60,6 +67,14 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       },
       getAllLectures: (e) async* {
         final either = await getAllLectures(NoParams());
+        yield either.fold(
+          (failure) => LectureState.initial(),
+          (lectures) =>
+              LectureState.allLecturesLoaded(lecturesEntities: lectures),
+        );
+      },
+      getAllLecturesByUserId: (e) async* {
+        final either = await getAllLecturesByUserId(e.userId);
         yield either.fold(
           (failure) => LectureState.initial(),
           (lectures) =>

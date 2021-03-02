@@ -15,10 +15,18 @@ class LectureFormPage extends StatefulWidget {
 
 class _LectureFormPageState extends State<LectureFormPage> {
   @override
+  void initState() {
+    super.initState();
+    context.read<LectureBloc>().add(LectureEvent.started());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<LectureBloc, LectureState>(
       listener: (context, state) {
         state.maybeMap(
+          allLecturesLoaded: (e) =>
+              context.read<LectureBloc>().add(LectureEvent.started()),
           loading: (e) =>
               context.read<ProgressBloc>().add(ProgressEvent.started()),
           orElse: () => print('orElse in UI'),
@@ -33,7 +41,6 @@ class _LectureFormPageState extends State<LectureFormPage> {
                   .add(LectureEvent.getAllLectures()),
               child: Icon(Icons.all_inbox),
             ),
-            // body: LoadingWidget(),
             body: state.map(
               initial: (_) => InitialWidget(user: widget.user),
               lectureLoaded: (e) => Column(
@@ -55,7 +62,7 @@ class _LectureFormPageState extends State<LectureFormPage> {
                 return ListView.builder(
                   itemCount: e.lecturesEntities.length,
                   itemBuilder: (context, index) {
-                    return Text(e.lecturesEntities[index].user.fullName);
+                    return Text(e.lecturesEntities[index].fileUrl);
                   },
                 );
               },
@@ -74,14 +81,12 @@ class LoadingWidget extends StatelessWidget {
       builder: (context, state) {
         return state.map(
           initial: (_) {
-            print('progress initial');
             return Column(
               children: [
                 Text('Initial progress'),
                 ElevatedButton(
-                  onPressed: () {
-                    context.read<ProgressBloc>().add(ProgressEvent.started());
-                  },
+                  onPressed: () =>
+                      context.read<ProgressBloc>().add(ProgressEvent.started()),
                   child: Text('Start the loading'),
                 ),
               ],
@@ -89,6 +94,7 @@ class LoadingWidget extends StatelessWidget {
           },
           loading: (progressState) {
             var _progress = (progressState.percentage * 100);
+            var progressBloc = context.read<ProgressBloc>();
             print('ProgressState ${progressState.percentage}');
             return Column(
               children: [
@@ -96,21 +102,15 @@ class LoadingWidget extends StatelessWidget {
                   children: <Widget>[
                     IconButton(
                       icon: Icon(Icons.pause_outlined),
-                      onPressed: () => context
-                          .read<ProgressBloc>()
-                          .add(ProgressEvent.pause()),
+                      onPressed: () => progressBloc.add(ProgressEvent.pause()),
                     ),
                     IconButton(
                       icon: Icon(Icons.play_arrow_outlined),
-                      onPressed: () => context
-                          .read<ProgressBloc>()
-                          .add(ProgressEvent.resume()),
+                      onPressed: () => progressBloc.add(ProgressEvent.resume()),
                     ),
                     IconButton(
                       icon: Icon(Icons.cancel_outlined),
-                      onPressed: () => context
-                          .read<ProgressBloc>()
-                          .add(ProgressEvent.cancel()),
+                      onPressed: () => progressBloc.add(ProgressEvent.cancel()),
                     ),
                   ],
                 ),

@@ -41,6 +41,13 @@ class _$LectureEventTearOff {
   _GetAllLectures getAllLectures() {
     return const _GetAllLectures();
   }
+
+// ignore: unused_element
+  _GetAllLecturesByUserId getAllLecturesByUserId({@required String userId}) {
+    return _GetAllLecturesByUserId(
+      userId: userId,
+    );
+  }
 }
 
 /// @nodoc
@@ -56,6 +63,7 @@ mixin _$LectureEvent {
     @required
         TResult uploadLecture(UserModel user, String title, String description),
     @required TResult getAllLectures(),
+    @required TResult getAllLecturesByUserId(String userId),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -63,6 +71,7 @@ mixin _$LectureEvent {
     TResult downloadLecture(String fileUrl),
     TResult uploadLecture(UserModel user, String title, String description),
     TResult getAllLectures(),
+    TResult getAllLecturesByUserId(String userId),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -71,6 +80,7 @@ mixin _$LectureEvent {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -78,6 +88,7 @@ mixin _$LectureEvent {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
     @required TResult orElse(),
   });
 }
@@ -139,11 +150,13 @@ class _$_Started implements _Started {
     @required
         TResult uploadLecture(UserModel user, String title, String description),
     @required TResult getAllLectures(),
+    @required TResult getAllLecturesByUserId(String userId),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
     return started();
   }
 
@@ -154,6 +167,7 @@ class _$_Started implements _Started {
     TResult downloadLecture(String fileUrl),
     TResult uploadLecture(UserModel user, String title, String description),
     TResult getAllLectures(),
+    TResult getAllLecturesByUserId(String userId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -170,11 +184,13 @@ class _$_Started implements _Started {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
     return started(this);
   }
 
@@ -185,6 +201,7 @@ class _$_Started implements _Started {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -265,11 +282,13 @@ class _$_DownloadLecture implements _DownloadLecture {
     @required
         TResult uploadLecture(UserModel user, String title, String description),
     @required TResult getAllLectures(),
+    @required TResult getAllLecturesByUserId(String userId),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
     return downloadLecture(fileUrl);
   }
 
@@ -280,6 +299,7 @@ class _$_DownloadLecture implements _DownloadLecture {
     TResult downloadLecture(String fileUrl),
     TResult uploadLecture(UserModel user, String title, String description),
     TResult getAllLectures(),
+    TResult getAllLecturesByUserId(String userId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -296,11 +316,13 @@ class _$_DownloadLecture implements _DownloadLecture {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
     return downloadLecture(this);
   }
 
@@ -311,6 +333,7 @@ class _$_DownloadLecture implements _DownloadLecture {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -417,11 +440,13 @@ class _$_UploadLecture implements _UploadLecture {
     @required
         TResult uploadLecture(UserModel user, String title, String description),
     @required TResult getAllLectures(),
+    @required TResult getAllLecturesByUserId(String userId),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
     return uploadLecture(user, title, description);
   }
 
@@ -432,6 +457,7 @@ class _$_UploadLecture implements _UploadLecture {
     TResult downloadLecture(String fileUrl),
     TResult uploadLecture(UserModel user, String title, String description),
     TResult getAllLectures(),
+    TResult getAllLecturesByUserId(String userId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -448,11 +474,13 @@ class _$_UploadLecture implements _UploadLecture {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
     return uploadLecture(this);
   }
 
@@ -463,6 +491,7 @@ class _$_UploadLecture implements _UploadLecture {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -530,11 +559,13 @@ class _$_GetAllLectures implements _GetAllLectures {
     @required
         TResult uploadLecture(UserModel user, String title, String description),
     @required TResult getAllLectures(),
+    @required TResult getAllLecturesByUserId(String userId),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
     return getAllLectures();
   }
 
@@ -545,6 +576,7 @@ class _$_GetAllLectures implements _GetAllLectures {
     TResult downloadLecture(String fileUrl),
     TResult uploadLecture(UserModel user, String title, String description),
     TResult getAllLectures(),
+    TResult getAllLecturesByUserId(String userId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -561,11 +593,13 @@ class _$_GetAllLectures implements _GetAllLectures {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
     return getAllLectures(this);
   }
 
@@ -576,6 +610,7 @@ class _$_GetAllLectures implements _GetAllLectures {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -588,6 +623,145 @@ class _$_GetAllLectures implements _GetAllLectures {
 
 abstract class _GetAllLectures implements LectureEvent {
   const factory _GetAllLectures() = _$_GetAllLectures;
+}
+
+/// @nodoc
+abstract class _$GetAllLecturesByUserIdCopyWith<$Res> {
+  factory _$GetAllLecturesByUserIdCopyWith(_GetAllLecturesByUserId value,
+          $Res Function(_GetAllLecturesByUserId) then) =
+      __$GetAllLecturesByUserIdCopyWithImpl<$Res>;
+  $Res call({String userId});
+}
+
+/// @nodoc
+class __$GetAllLecturesByUserIdCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res>
+    implements _$GetAllLecturesByUserIdCopyWith<$Res> {
+  __$GetAllLecturesByUserIdCopyWithImpl(_GetAllLecturesByUserId _value,
+      $Res Function(_GetAllLecturesByUserId) _then)
+      : super(_value, (v) => _then(v as _GetAllLecturesByUserId));
+
+  @override
+  _GetAllLecturesByUserId get _value => super._value as _GetAllLecturesByUserId;
+
+  @override
+  $Res call({
+    Object userId = freezed,
+  }) {
+    return _then(_GetAllLecturesByUserId(
+      userId: userId == freezed ? _value.userId : userId as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
+  const _$_GetAllLecturesByUserId({@required this.userId})
+      : assert(userId != null);
+
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'LectureEvent.getAllLecturesByUserId(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetAllLecturesByUserId &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetAllLecturesByUserIdCopyWith<_GetAllLecturesByUserId> get copyWith =>
+      __$GetAllLecturesByUserIdCopyWithImpl<_GetAllLecturesByUserId>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult uploadLecture(UserModel user, String title, String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByUserId(String userId),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
+    return getAllLecturesByUserId(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(UserModel user, String title, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByUserId(String userId),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllLecturesByUserId != null) {
+      return getAllLecturesByUserId(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByUserId != null);
+    return getAllLecturesByUserId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByUserId(_GetAllLecturesByUserId value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllLecturesByUserId != null) {
+      return getAllLecturesByUserId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllLecturesByUserId implements LectureEvent {
+  const factory _GetAllLecturesByUserId({@required String userId}) =
+      _$_GetAllLecturesByUserId;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$GetAllLecturesByUserIdCopyWith<_GetAllLecturesByUserId> get copyWith;
 }
 
 /// @nodoc

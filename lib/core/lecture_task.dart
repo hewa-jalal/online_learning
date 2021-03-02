@@ -1,4 +1,5 @@
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:injectable/injectable.dart';
 
 /// Class which exposes a `tick` method to emit values periodically.
 class Ticker {
@@ -8,6 +9,7 @@ class Ticker {
   }
 }
 
+@lazySingleton
 class LectureTask {
   Task task;
 

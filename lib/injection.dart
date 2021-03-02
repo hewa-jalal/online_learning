@@ -15,17 +15,16 @@
 
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 
-import 'core/lecture_task.dart';
 import 'injection.config.dart';
 
 final sl = GetIt.I;
 
-Future init() async {
-  sl.registerLazySingleton(() => LectureTask());
-  // BLOC
-  // sl.registerFactory(() => UserAuthBloc(sl()));
-  // sl.registerFactory(() => LectureBloc(sl()));
+Future<void> init() async {
+  sl.registerLazySingleton<LecturesRemoteDataSource>(
+    () => FirebaseLecturesRemoteDataSource(),
+  );
 }
 
 //   // USECASES

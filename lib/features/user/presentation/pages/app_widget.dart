@@ -5,22 +5,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
-import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 import 'package:online_learning/features/lectures/data/repository/lectures_repository_impl.dart';
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures.dart';
-
+import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
-
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
+import 'package:online_learning/features/user/data/models/user_mode.dart';
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
 import 'package:online_learning/features/user/domain/usecase/get_users.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
-import 'package:online_learning/features/user/presentation/pages/user_form_page.dart';
+import 'package:online_learning/features/user/presentation/pages/user_home_page.dart';
 import 'package:online_learning/injection.dart';
 
 class MyApp extends StatelessWidget {
@@ -41,36 +40,34 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => LectureBloc(
-            downloadLecture: DownloadLecture(
-              LecturesRepositoryImpl(
-                FirebaseLecturesRemoteDataSource(
-                    lectureTask: sl<LectureTask>(), dio: Dio()),
+              downloadLecture: DownloadLecture(
+                LecturesRepositoryImpl(
+                  FirebaseLecturesRemoteDataSource(
+                      lectureTask: sl<LectureTask>(), dio: Dio()),
+                ),
               ),
-            ),
-            uploadLecture: UploadLecture(LecturesRepositoryImpl(
-                FirebaseLecturesRemoteDataSource(
-                    dio: Dio(), lectureTask: sl<LectureTask>()))),
-            getAllLectures: GetAllLectures(
-              lecturesRepository: LecturesRepositoryImpl(
-                FirebaseLecturesRemoteDataSource(
-                    lectureTask: sl<LectureTask>(), dio: Dio()),
-              ),
-            ),
-          ),
+              uploadLecture: UploadLecture(LecturesRepositoryImpl(
+                  FirebaseLecturesRemoteDataSource(
+                      dio: Dio(), lectureTask: sl<LectureTask>()))),
+              getAllLecturesByUserId: GetAllLecturesByUserId(
+                lecturesRepository: LecturesRepositoryImpl(
+                  FirebaseLecturesRemoteDataSource(
+                      lectureTask: sl<LectureTask>(), dio: Dio()),
+                ),
+              )),
         ),
         BlocProvider(
           create: (context) => ProgressBloc(
             lectureTask: sl<LectureTask>(),
             lectureBloc: context.read<LectureBloc>(),
           ),
-          child: Container(),
         )
       ],
       child: ScreenUtilInit(
-        child: GetMaterialApp(
+        builder: () => GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home: Scaffold(
-            body: UserFormPage(),
+            body: UserHomePage(user: UserModel(id: '12')),
           ),
         ),
       ),

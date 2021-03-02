@@ -11,4 +11,6 @@ abstract class LectureEvent with _$LectureEvent {
     @required String description,
   }) = _UploadLecture;
   const factory LectureEvent.getAllLectures() = _GetAllLectures;
+  const factory LectureEvent.getAllLecturesByUserId({@required String userId}) =
+      _GetAllLecturesByUserId;
 }

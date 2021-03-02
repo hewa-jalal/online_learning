@@ -13,4 +13,7 @@ abstract class LecturesRepository {
     String description,
   });
   Future<Either<Failure, List<LectureEntity>>> getAllLectures();
+  Future<Either<Failure, List<LectureEntity>>> getAllLecturesByUserId({
+    @required String userId,
+  });
 }

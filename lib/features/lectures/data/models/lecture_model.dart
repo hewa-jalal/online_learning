@@ -7,18 +7,15 @@ class LectureModel extends LectureEntity {
   final String fileUrl;
   final String title;
   final String description;
-  final UserModel user;
 
   LectureModel({
     @required this.fileUrl,
     @required this.title,
     @required this.description,
-    @required this.user,
   }) : super(
           fileUrl: fileUrl,
           title: title,
           description: description,
-          user: user,
         );
 
   Map<String, dynamic> toDocument() {
@@ -26,7 +23,6 @@ class LectureModel extends LectureEntity {
       'fileUrl': fileUrl,
       'title': title,
       'description': description,
-      'user': user.toDocument(),
     };
   }
 
@@ -35,7 +31,6 @@ class LectureModel extends LectureEntity {
       fileUrl: snap['fileUrl'] as String,
       title: snap['title'] as String,
       description: snap['description'] as String,
-      user: UserModel.fromJson(snap.get('user')),
     );
   }
 }

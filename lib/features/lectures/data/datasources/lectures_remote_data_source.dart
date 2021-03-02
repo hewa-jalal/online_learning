@@ -22,11 +22,15 @@ abstract class LecturesRemoteDataSource {
   });
 
   Future<List<LectureModel>> getAllLectures();
+  Future<List<LectureModel>> getAllLecturesByUserId({@required String userId});
 }
 
-class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
+// @LazySingleton(as: LecturesRemoteDataSource)
+class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   final storageRef = FirebaseStorage.instance.ref();
   final coursesCollection = FirebaseFirestore.instance.collection('courses');
+  final userCoursesCollection =
+      FirebaseFirestore.instance.collection('userCourses');
   final Dio dio;
   final LectureTask lectureTask;
 
@@ -58,23 +62,35 @@ class FirebaseLecturesRemoteDataSource implements LecturesRemoteDataSource {
       fileUrl: fileUrl,
       title: title,
       description: description,
-      user: user,
     );
     lectureTask.task = storageRef.lecturesStorage(title).putFile(File(fileUrl));
-    // final downloadUrl =
-    //     await storageRef.lecturesStorage(title).getDownloadURL();
-    // print('--------> fileUrl: $fileUrl || downloadUrl: $downloadUrl');
-    final docRef = coursesCollection.doc(DateTime.now().toString());
-    docRef.set(lecture.toDocument());
-    docRef.set({'user': user.toDocument()}, SetOptions(merge: true));
+    userCoursesCollection.add(lecture.toDocument()).then(
+          (courseDoc) => courseDoc.set(
+            {
+              'user_id': user.id,
+            },
+            SetOptions(merge: true),
+          ),
+        );
 
     return lecture;
   }
 
   @override
   Future<List<LectureModel>> getAllLectures() async {
-    final querySnapshot = await coursesCollection.get();
+    final querySnapshot = await userCoursesCollection.get();
 
+    return querySnapshot.docs
+        .map((doc) => LectureModel.fromSnapshot(doc))
+        .toList();
+  }
+
+  @override
+  Future<List<LectureModel>> getAllLecturesByUserId({
+    @required String userId,
+  }) async {
+    final querySnapshot =
+        await userCoursesCollection.where('user_id', isEqualTo: userId).get();
     return querySnapshot.docs
         .map((doc) => LectureModel.fromSnapshot(doc))
         .toList();

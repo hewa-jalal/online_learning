@@ -5,21 +5,13 @@ import 'package:online_learning/features/lectures/domain/repository/lectures_rep
 import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
 
-import 'download_lecture.dart';
-
 @lazySingleton
-class UploadLecture extends UseCase<LectureEntity, LectureParams> {
+class CreateCourse extends UseCase<Unit, String> {
   final LecturesRepository lecturesRepository;
 
-  UploadLecture(this.lecturesRepository);
+  CreateCourse(this.lecturesRepository);
   @override
-  Future<Either<Failure, LectureEntity>> call(LectureParams params) {
-    return lecturesRepository.uploadLecture(
-      fileUrl: params.fileUrl,
-      user: params.user,
-      title: params.title,
-      description: params.description,
-      courseTitle: params.courseTitle,
-    );
+  Future<Either<Failure, Unit>> call(String courseTitle) {
+    return lecturesRepository.createCourse(courseTitle: courseTitle);
   }
 }

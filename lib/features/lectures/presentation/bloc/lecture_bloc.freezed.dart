@@ -29,11 +29,40 @@ class _$LectureEventTearOff {
   _UploadLecture uploadLecture(
       {@required UserModel user,
       @required String title,
-      @required String description}) {
+      @required String courseTitle,
+      String description}) {
     return _UploadLecture(
       user: user,
       title: title,
+      courseTitle: courseTitle,
       description: description,
+    );
+  }
+
+// ignore: unused_element
+  _GetAllLectures getAllLectures() {
+    return const _GetAllLectures();
+  }
+
+// ignore: unused_element
+  _GetAllLecturesByUserId getAllLecturesByCourse(
+      {@required String courseTitle}) {
+    return _GetAllLecturesByUserId(
+      courseTitle: courseTitle,
+    );
+  }
+
+// ignore: unused_element
+  _GetAllCoursesByUserId getAllCoursesByUserId({@required String userId}) {
+    return _GetAllCoursesByUserId(
+      userId: userId,
+    );
+  }
+
+// ignore: unused_element
+  _CreateCourse createCourse({@required String courseTitle}) {
+    return _CreateCourse(
+      courseTitle: courseTitle,
     );
   }
 }
@@ -49,13 +78,23 @@ mixin _$LectureEvent {
     @required TResult started(),
     @required TResult downloadLecture(String fileUrl),
     @required
-        TResult uploadLecture(UserModel user, String title, String description),
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(UserModel user, String title, String description),
+    TResult uploadLecture(
+        UserModel user, String title, String courseTitle, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -63,12 +102,20 @@ mixin _$LectureEvent {
     @required TResult started(_Started value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
     @required TResult orElse(),
   });
 }
@@ -128,11 +175,20 @@ class _$_Started implements _Started {
     @required TResult started(),
     @required TResult downloadLecture(String fileUrl),
     @required
-        TResult uploadLecture(UserModel user, String title, String description),
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
     return started();
   }
 
@@ -141,7 +197,12 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(UserModel user, String title, String description),
+    TResult uploadLecture(
+        UserModel user, String title, String courseTitle, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -157,10 +218,18 @@ class _$_Started implements _Started {
     @required TResult started(_Started value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
     return started(this);
   }
 
@@ -170,6 +239,10 @@ class _$_Started implements _Started {
     TResult started(_Started value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -248,11 +321,20 @@ class _$_DownloadLecture implements _DownloadLecture {
     @required TResult started(),
     @required TResult downloadLecture(String fileUrl),
     @required
-        TResult uploadLecture(UserModel user, String title, String description),
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
     return downloadLecture(fileUrl);
   }
 
@@ -261,7 +343,12 @@ class _$_DownloadLecture implements _DownloadLecture {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(UserModel user, String title, String description),
+    TResult uploadLecture(
+        UserModel user, String title, String courseTitle, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -277,10 +364,18 @@ class _$_DownloadLecture implements _DownloadLecture {
     @required TResult started(_Started value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
     return downloadLecture(this);
   }
 
@@ -290,6 +385,10 @@ class _$_DownloadLecture implements _DownloadLecture {
     TResult started(_Started value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -314,7 +413,8 @@ abstract class _$UploadLectureCopyWith<$Res> {
   factory _$UploadLectureCopyWith(
           _UploadLecture value, $Res Function(_UploadLecture) then) =
       __$UploadLectureCopyWithImpl<$Res>;
-  $Res call({UserModel user, String title, String description});
+  $Res call(
+      {UserModel user, String title, String courseTitle, String description});
 }
 
 /// @nodoc
@@ -332,11 +432,14 @@ class __$UploadLectureCopyWithImpl<$Res>
   $Res call({
     Object user = freezed,
     Object title = freezed,
+    Object courseTitle = freezed,
     Object description = freezed,
   }) {
     return _then(_UploadLecture(
       user: user == freezed ? _value.user : user as UserModel,
       title: title == freezed ? _value.title : title as String,
+      courseTitle:
+          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
       description:
           description == freezed ? _value.description : description as String,
     ));
@@ -346,21 +449,26 @@ class __$UploadLectureCopyWithImpl<$Res>
 /// @nodoc
 class _$_UploadLecture implements _UploadLecture {
   const _$_UploadLecture(
-      {@required this.user, @required this.title, @required this.description})
+      {@required this.user,
+      @required this.title,
+      @required this.courseTitle,
+      this.description})
       : assert(user != null),
         assert(title != null),
-        assert(description != null);
+        assert(courseTitle != null);
 
   @override
   final UserModel user;
   @override
   final String title;
   @override
+  final String courseTitle;
+  @override
   final String description;
 
   @override
   String toString() {
-    return 'LectureEvent.uploadLecture(user: $user, title: $title, description: $description)';
+    return 'LectureEvent.uploadLecture(user: $user, title: $title, courseTitle: $courseTitle, description: $description)';
   }
 
   @override
@@ -371,6 +479,9 @@ class _$_UploadLecture implements _UploadLecture {
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)));
@@ -381,6 +492,7 @@ class _$_UploadLecture implements _UploadLecture {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(courseTitle) ^
       const DeepCollectionEquality().hash(description);
 
   @JsonKey(ignore: true)
@@ -394,12 +506,21 @@ class _$_UploadLecture implements _UploadLecture {
     @required TResult started(),
     @required TResult downloadLecture(String fileUrl),
     @required
-        TResult uploadLecture(UserModel user, String title, String description),
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
-    return uploadLecture(user, title, description);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return uploadLecture(user, title, courseTitle, description);
   }
 
   @override
@@ -407,12 +528,17 @@ class _$_UploadLecture implements _UploadLecture {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(UserModel user, String title, String description),
+    TResult uploadLecture(
+        UserModel user, String title, String courseTitle, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (uploadLecture != null) {
-      return uploadLecture(user, title, description);
+      return uploadLecture(user, title, courseTitle, description);
     }
     return orElse();
   }
@@ -423,10 +549,18 @@ class _$_UploadLecture implements _UploadLecture {
     @required TResult started(_Started value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
     return uploadLecture(this);
   }
 
@@ -436,6 +570,10 @@ class _$_UploadLecture implements _UploadLecture {
     TResult started(_Started value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -450,13 +588,599 @@ abstract class _UploadLecture implements LectureEvent {
   const factory _UploadLecture(
       {@required UserModel user,
       @required String title,
-      @required String description}) = _$_UploadLecture;
+      @required String courseTitle,
+      String description}) = _$_UploadLecture;
 
   UserModel get user;
   String get title;
+  String get courseTitle;
   String get description;
   @JsonKey(ignore: true)
   _$UploadLectureCopyWith<_UploadLecture> get copyWith;
+}
+
+/// @nodoc
+abstract class _$GetAllLecturesCopyWith<$Res> {
+  factory _$GetAllLecturesCopyWith(
+          _GetAllLectures value, $Res Function(_GetAllLectures) then) =
+      __$GetAllLecturesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetAllLecturesCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res>
+    implements _$GetAllLecturesCopyWith<$Res> {
+  __$GetAllLecturesCopyWithImpl(
+      _GetAllLectures _value, $Res Function(_GetAllLectures) _then)
+      : super(_value, (v) => _then(v as _GetAllLectures));
+
+  @override
+  _GetAllLectures get _value => super._value as _GetAllLectures;
+}
+
+/// @nodoc
+class _$_GetAllLectures implements _GetAllLectures {
+  const _$_GetAllLectures();
+
+  @override
+  String toString() {
+    return 'LectureEvent.getAllLectures()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _GetAllLectures);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return getAllLectures();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(
+        UserModel user, String title, String courseTitle, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllLectures != null) {
+      return getAllLectures();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return getAllLectures(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllLectures != null) {
+      return getAllLectures(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllLectures implements LectureEvent {
+  const factory _GetAllLectures() = _$_GetAllLectures;
+}
+
+/// @nodoc
+abstract class _$GetAllLecturesByUserIdCopyWith<$Res> {
+  factory _$GetAllLecturesByUserIdCopyWith(_GetAllLecturesByUserId value,
+          $Res Function(_GetAllLecturesByUserId) then) =
+      __$GetAllLecturesByUserIdCopyWithImpl<$Res>;
+  $Res call({String courseTitle});
+}
+
+/// @nodoc
+class __$GetAllLecturesByUserIdCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res>
+    implements _$GetAllLecturesByUserIdCopyWith<$Res> {
+  __$GetAllLecturesByUserIdCopyWithImpl(_GetAllLecturesByUserId _value,
+      $Res Function(_GetAllLecturesByUserId) _then)
+      : super(_value, (v) => _then(v as _GetAllLecturesByUserId));
+
+  @override
+  _GetAllLecturesByUserId get _value => super._value as _GetAllLecturesByUserId;
+
+  @override
+  $Res call({
+    Object courseTitle = freezed,
+  }) {
+    return _then(_GetAllLecturesByUserId(
+      courseTitle:
+          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
+  const _$_GetAllLecturesByUserId({@required this.courseTitle})
+      : assert(courseTitle != null);
+
+  @override
+  final String courseTitle;
+
+  @override
+  String toString() {
+    return 'LectureEvent.getAllLecturesByCourse(courseTitle: $courseTitle)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetAllLecturesByUserId &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetAllLecturesByUserIdCopyWith<_GetAllLecturesByUserId> get copyWith =>
+      __$GetAllLecturesByUserIdCopyWithImpl<_GetAllLecturesByUserId>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return getAllLecturesByCourse(courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(
+        UserModel user, String title, String courseTitle, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllLecturesByCourse != null) {
+      return getAllLecturesByCourse(courseTitle);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return getAllLecturesByCourse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllLecturesByCourse != null) {
+      return getAllLecturesByCourse(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllLecturesByUserId implements LectureEvent {
+  const factory _GetAllLecturesByUserId({@required String courseTitle}) =
+      _$_GetAllLecturesByUserId;
+
+  String get courseTitle;
+  @JsonKey(ignore: true)
+  _$GetAllLecturesByUserIdCopyWith<_GetAllLecturesByUserId> get copyWith;
+}
+
+/// @nodoc
+abstract class _$GetAllCoursesByUserIdCopyWith<$Res> {
+  factory _$GetAllCoursesByUserIdCopyWith(_GetAllCoursesByUserId value,
+          $Res Function(_GetAllCoursesByUserId) then) =
+      __$GetAllCoursesByUserIdCopyWithImpl<$Res>;
+  $Res call({String userId});
+}
+
+/// @nodoc
+class __$GetAllCoursesByUserIdCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res>
+    implements _$GetAllCoursesByUserIdCopyWith<$Res> {
+  __$GetAllCoursesByUserIdCopyWithImpl(_GetAllCoursesByUserId _value,
+      $Res Function(_GetAllCoursesByUserId) _then)
+      : super(_value, (v) => _then(v as _GetAllCoursesByUserId));
+
+  @override
+  _GetAllCoursesByUserId get _value => super._value as _GetAllCoursesByUserId;
+
+  @override
+  $Res call({
+    Object userId = freezed,
+  }) {
+    return _then(_GetAllCoursesByUserId(
+      userId: userId == freezed ? _value.userId : userId as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
+  const _$_GetAllCoursesByUserId({@required this.userId})
+      : assert(userId != null);
+
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'LectureEvent.getAllCoursesByUserId(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetAllCoursesByUserId &&
+            (identical(other.userId, userId) ||
+                const DeepCollectionEquality().equals(other.userId, userId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetAllCoursesByUserIdCopyWith<_GetAllCoursesByUserId> get copyWith =>
+      __$GetAllCoursesByUserIdCopyWithImpl<_GetAllCoursesByUserId>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return getAllCoursesByUserId(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(
+        UserModel user, String title, String courseTitle, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllCoursesByUserId != null) {
+      return getAllCoursesByUserId(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return getAllCoursesByUserId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllCoursesByUserId != null) {
+      return getAllCoursesByUserId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllCoursesByUserId implements LectureEvent {
+  const factory _GetAllCoursesByUserId({@required String userId}) =
+      _$_GetAllCoursesByUserId;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$GetAllCoursesByUserIdCopyWith<_GetAllCoursesByUserId> get copyWith;
+}
+
+/// @nodoc
+abstract class _$CreateCourseCopyWith<$Res> {
+  factory _$CreateCourseCopyWith(
+          _CreateCourse value, $Res Function(_CreateCourse) then) =
+      __$CreateCourseCopyWithImpl<$Res>;
+  $Res call({String courseTitle});
+}
+
+/// @nodoc
+class __$CreateCourseCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
+    implements _$CreateCourseCopyWith<$Res> {
+  __$CreateCourseCopyWithImpl(
+      _CreateCourse _value, $Res Function(_CreateCourse) _then)
+      : super(_value, (v) => _then(v as _CreateCourse));
+
+  @override
+  _CreateCourse get _value => super._value as _CreateCourse;
+
+  @override
+  $Res call({
+    Object courseTitle = freezed,
+  }) {
+    return _then(_CreateCourse(
+      courseTitle:
+          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_CreateCourse implements _CreateCourse {
+  const _$_CreateCourse({@required this.courseTitle})
+      : assert(courseTitle != null);
+
+  @override
+  final String courseTitle;
+
+  @override
+  String toString() {
+    return 'LectureEvent.createCourse(courseTitle: $courseTitle)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _CreateCourse &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+
+  @JsonKey(ignore: true)
+  @override
+  _$CreateCourseCopyWith<_CreateCourse> get copyWith =>
+      __$CreateCourseCopyWithImpl<_CreateCourse>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return createCourse(courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(
+        UserModel user, String title, String courseTitle, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (createCourse != null) {
+      return createCourse(courseTitle);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
+  }) {
+    assert(started != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return createCourse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (createCourse != null) {
+      return createCourse(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateCourse implements LectureEvent {
+  const factory _CreateCourse({@required String courseTitle}) = _$_CreateCourse;
+
+  String get courseTitle;
+  @JsonKey(ignore: true)
+  _$CreateCourseCopyWith<_CreateCourse> get copyWith;
 }
 
 /// @nodoc
@@ -474,9 +1198,29 @@ class _$LectureStateTearOff {
   }
 
 // ignore: unused_element
+  _Failure failure() {
+    return const _Failure();
+  }
+
+// ignore: unused_element
   _LectureLoaded lectureLoaded({@required LectureEntity lectureEntity}) {
     return _LectureLoaded(
       lectureEntity: lectureEntity,
+    );
+  }
+
+// ignore: unused_element
+  _AllLecturesLoaded allLecturesLoaded(
+      {@required List<LectureEntity> lecturesEntities}) {
+    return _AllLecturesLoaded(
+      lecturesEntities: lecturesEntities,
+    );
+  }
+
+// ignore: unused_element
+  _AllCoursesLoaded allCoursesLoaded({@required List<String> courseIds}) {
+    return _AllCoursesLoaded(
+      courseIds: courseIds,
     );
   }
 }
@@ -491,26 +1235,38 @@ mixin _$LectureState {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
+    @required TResult failure(),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    @required TResult allCoursesLoaded(List<String> courseIds),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
+    TResult failure(),
     TResult lectureLoaded(LectureEntity lectureEntity),
+    TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    TResult allCoursesLoaded(List<String> courseIds),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
+    @required TResult failure(_Failure value),
     @required TResult lectureLoaded(_LectureLoaded value),
+    @required TResult allLecturesLoaded(_AllLecturesLoaded value),
+    @required TResult allCoursesLoaded(_AllCoursesLoaded value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult loading(_Loading value),
+    TResult failure(_Failure value),
     TResult lectureLoaded(_LectureLoaded value),
+    TResult allLecturesLoaded(_AllLecturesLoaded value),
+    TResult allCoursesLoaded(_AllCoursesLoaded value),
     @required TResult orElse(),
   });
 }
@@ -569,11 +1325,17 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
+    @required TResult failure(),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    @required TResult allCoursesLoaded(List<String> courseIds),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(failure != null);
     assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
     return initial();
   }
 
@@ -582,7 +1344,10 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
+    TResult failure(),
     TResult lectureLoaded(LectureEntity lectureEntity),
+    TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    TResult allCoursesLoaded(List<String> courseIds),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -597,11 +1362,17 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
+    @required TResult failure(_Failure value),
     @required TResult lectureLoaded(_LectureLoaded value),
+    @required TResult allLecturesLoaded(_AllLecturesLoaded value),
+    @required TResult allCoursesLoaded(_AllCoursesLoaded value),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(failure != null);
     assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
     return initial(this);
   }
 
@@ -610,7 +1381,10 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult loading(_Loading value),
+    TResult failure(_Failure value),
     TResult lectureLoaded(_LectureLoaded value),
+    TResult allLecturesLoaded(_AllLecturesLoaded value),
+    TResult allCoursesLoaded(_AllCoursesLoaded value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -663,11 +1437,17 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
+    @required TResult failure(),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    @required TResult allCoursesLoaded(List<String> courseIds),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(failure != null);
     assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
     return loading();
   }
 
@@ -676,7 +1456,10 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
+    TResult failure(),
     TResult lectureLoaded(LectureEntity lectureEntity),
+    TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    TResult allCoursesLoaded(List<String> courseIds),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -691,11 +1474,17 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
+    @required TResult failure(_Failure value),
     @required TResult lectureLoaded(_LectureLoaded value),
+    @required TResult allLecturesLoaded(_AllLecturesLoaded value),
+    @required TResult allCoursesLoaded(_AllCoursesLoaded value),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(failure != null);
     assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
     return loading(this);
   }
 
@@ -704,7 +1493,10 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult loading(_Loading value),
+    TResult failure(_Failure value),
     TResult lectureLoaded(_LectureLoaded value),
+    TResult allLecturesLoaded(_AllLecturesLoaded value),
+    TResult allCoursesLoaded(_AllCoursesLoaded value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -717,6 +1509,118 @@ class _$_Loading implements _Loading {
 
 abstract class _Loading implements LectureState {
   const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$FailureCopyWith<$Res> {
+  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
+      __$FailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$FailureCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
+    implements _$FailureCopyWith<$Res> {
+  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
+      : super(_value, (v) => _then(v as _Failure));
+
+  @override
+  _Failure get _value => super._value as _Failure;
+}
+
+/// @nodoc
+class _$_Failure implements _Failure {
+  const _$_Failure();
+
+  @override
+  String toString() {
+    return 'LectureState.failure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Failure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult failure(),
+    @required TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    @required TResult allCoursesLoaded(List<String> courseIds),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(failure != null);
+    assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
+    return failure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult failure(),
+    TResult lectureLoaded(LectureEntity lectureEntity),
+    TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    TResult allCoursesLoaded(List<String> courseIds),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (failure != null) {
+      return failure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult failure(_Failure value),
+    @required TResult lectureLoaded(_LectureLoaded value),
+    @required TResult allLecturesLoaded(_AllLecturesLoaded value),
+    @required TResult allCoursesLoaded(_AllCoursesLoaded value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(failure != null);
+    assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
+    return failure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult failure(_Failure value),
+    TResult lectureLoaded(_LectureLoaded value),
+    TResult allLecturesLoaded(_AllLecturesLoaded value),
+    TResult allCoursesLoaded(_AllCoursesLoaded value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (failure != null) {
+      return failure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Failure implements LectureState {
+  const factory _Failure() = _$_Failure;
 }
 
 /// @nodoc
@@ -786,11 +1690,17 @@ class _$_LectureLoaded implements _LectureLoaded {
   TResult when<TResult extends Object>({
     @required TResult initial(),
     @required TResult loading(),
+    @required TResult failure(),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    @required TResult allCoursesLoaded(List<String> courseIds),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(failure != null);
     assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
     return lectureLoaded(lectureEntity);
   }
 
@@ -799,7 +1709,10 @@ class _$_LectureLoaded implements _LectureLoaded {
   TResult maybeWhen<TResult extends Object>({
     TResult initial(),
     TResult loading(),
+    TResult failure(),
     TResult lectureLoaded(LectureEntity lectureEntity),
+    TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    TResult allCoursesLoaded(List<String> courseIds),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -814,11 +1727,17 @@ class _$_LectureLoaded implements _LectureLoaded {
   TResult map<TResult extends Object>({
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
+    @required TResult failure(_Failure value),
     @required TResult lectureLoaded(_LectureLoaded value),
+    @required TResult allLecturesLoaded(_AllLecturesLoaded value),
+    @required TResult allCoursesLoaded(_AllCoursesLoaded value),
   }) {
     assert(initial != null);
     assert(loading != null);
+    assert(failure != null);
     assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
     return lectureLoaded(this);
   }
 
@@ -827,7 +1746,10 @@ class _$_LectureLoaded implements _LectureLoaded {
   TResult maybeMap<TResult extends Object>({
     TResult initial(_Initial value),
     TResult loading(_Loading value),
+    TResult failure(_Failure value),
     TResult lectureLoaded(_LectureLoaded value),
+    TResult allLecturesLoaded(_AllLecturesLoaded value),
+    TResult allCoursesLoaded(_AllCoursesLoaded value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -845,4 +1767,296 @@ abstract class _LectureLoaded implements LectureState {
   LectureEntity get lectureEntity;
   @JsonKey(ignore: true)
   _$LectureLoadedCopyWith<_LectureLoaded> get copyWith;
+}
+
+/// @nodoc
+abstract class _$AllLecturesLoadedCopyWith<$Res> {
+  factory _$AllLecturesLoadedCopyWith(
+          _AllLecturesLoaded value, $Res Function(_AllLecturesLoaded) then) =
+      __$AllLecturesLoadedCopyWithImpl<$Res>;
+  $Res call({List<LectureEntity> lecturesEntities});
+}
+
+/// @nodoc
+class __$AllLecturesLoadedCopyWithImpl<$Res>
+    extends _$LectureStateCopyWithImpl<$Res>
+    implements _$AllLecturesLoadedCopyWith<$Res> {
+  __$AllLecturesLoadedCopyWithImpl(
+      _AllLecturesLoaded _value, $Res Function(_AllLecturesLoaded) _then)
+      : super(_value, (v) => _then(v as _AllLecturesLoaded));
+
+  @override
+  _AllLecturesLoaded get _value => super._value as _AllLecturesLoaded;
+
+  @override
+  $Res call({
+    Object lecturesEntities = freezed,
+  }) {
+    return _then(_AllLecturesLoaded(
+      lecturesEntities: lecturesEntities == freezed
+          ? _value.lecturesEntities
+          : lecturesEntities as List<LectureEntity>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_AllLecturesLoaded implements _AllLecturesLoaded {
+  const _$_AllLecturesLoaded({@required this.lecturesEntities})
+      : assert(lecturesEntities != null);
+
+  @override
+  final List<LectureEntity> lecturesEntities;
+
+  @override
+  String toString() {
+    return 'LectureState.allLecturesLoaded(lecturesEntities: $lecturesEntities)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _AllLecturesLoaded &&
+            (identical(other.lecturesEntities, lecturesEntities) ||
+                const DeepCollectionEquality()
+                    .equals(other.lecturesEntities, lecturesEntities)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(lecturesEntities);
+
+  @JsonKey(ignore: true)
+  @override
+  _$AllLecturesLoadedCopyWith<_AllLecturesLoaded> get copyWith =>
+      __$AllLecturesLoadedCopyWithImpl<_AllLecturesLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult failure(),
+    @required TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    @required TResult allCoursesLoaded(List<String> courseIds),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(failure != null);
+    assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
+    return allLecturesLoaded(lecturesEntities);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult failure(),
+    TResult lectureLoaded(LectureEntity lectureEntity),
+    TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    TResult allCoursesLoaded(List<String> courseIds),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (allLecturesLoaded != null) {
+      return allLecturesLoaded(lecturesEntities);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult failure(_Failure value),
+    @required TResult lectureLoaded(_LectureLoaded value),
+    @required TResult allLecturesLoaded(_AllLecturesLoaded value),
+    @required TResult allCoursesLoaded(_AllCoursesLoaded value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(failure != null);
+    assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
+    return allLecturesLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult failure(_Failure value),
+    TResult lectureLoaded(_LectureLoaded value),
+    TResult allLecturesLoaded(_AllLecturesLoaded value),
+    TResult allCoursesLoaded(_AllCoursesLoaded value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (allLecturesLoaded != null) {
+      return allLecturesLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AllLecturesLoaded implements LectureState {
+  const factory _AllLecturesLoaded(
+      {@required List<LectureEntity> lecturesEntities}) = _$_AllLecturesLoaded;
+
+  List<LectureEntity> get lecturesEntities;
+  @JsonKey(ignore: true)
+  _$AllLecturesLoadedCopyWith<_AllLecturesLoaded> get copyWith;
+}
+
+/// @nodoc
+abstract class _$AllCoursesLoadedCopyWith<$Res> {
+  factory _$AllCoursesLoadedCopyWith(
+          _AllCoursesLoaded value, $Res Function(_AllCoursesLoaded) then) =
+      __$AllCoursesLoadedCopyWithImpl<$Res>;
+  $Res call({List<String> courseIds});
+}
+
+/// @nodoc
+class __$AllCoursesLoadedCopyWithImpl<$Res>
+    extends _$LectureStateCopyWithImpl<$Res>
+    implements _$AllCoursesLoadedCopyWith<$Res> {
+  __$AllCoursesLoadedCopyWithImpl(
+      _AllCoursesLoaded _value, $Res Function(_AllCoursesLoaded) _then)
+      : super(_value, (v) => _then(v as _AllCoursesLoaded));
+
+  @override
+  _AllCoursesLoaded get _value => super._value as _AllCoursesLoaded;
+
+  @override
+  $Res call({
+    Object courseIds = freezed,
+  }) {
+    return _then(_AllCoursesLoaded(
+      courseIds:
+          courseIds == freezed ? _value.courseIds : courseIds as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_AllCoursesLoaded implements _AllCoursesLoaded {
+  const _$_AllCoursesLoaded({@required this.courseIds})
+      : assert(courseIds != null);
+
+  @override
+  final List<String> courseIds;
+
+  @override
+  String toString() {
+    return 'LectureState.allCoursesLoaded(courseIds: $courseIds)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _AllCoursesLoaded &&
+            (identical(other.courseIds, courseIds) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseIds, courseIds)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseIds);
+
+  @JsonKey(ignore: true)
+  @override
+  _$AllCoursesLoadedCopyWith<_AllCoursesLoaded> get copyWith =>
+      __$AllCoursesLoadedCopyWithImpl<_AllCoursesLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult failure(),
+    @required TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    @required TResult allCoursesLoaded(List<String> courseIds),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(failure != null);
+    assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
+    return allCoursesLoaded(courseIds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult failure(),
+    TResult lectureLoaded(LectureEntity lectureEntity),
+    TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    TResult allCoursesLoaded(List<String> courseIds),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (allCoursesLoaded != null) {
+      return allCoursesLoaded(courseIds);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult failure(_Failure value),
+    @required TResult lectureLoaded(_LectureLoaded value),
+    @required TResult allLecturesLoaded(_AllLecturesLoaded value),
+    @required TResult allCoursesLoaded(_AllCoursesLoaded value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(failure != null);
+    assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
+    return allCoursesLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult failure(_Failure value),
+    TResult lectureLoaded(_LectureLoaded value),
+    TResult allLecturesLoaded(_AllLecturesLoaded value),
+    TResult allCoursesLoaded(_AllCoursesLoaded value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (allCoursesLoaded != null) {
+      return allCoursesLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AllCoursesLoaded implements LectureState {
+  const factory _AllCoursesLoaded({@required List<String> courseIds}) =
+      _$_AllCoursesLoaded;
+
+  List<String> get courseIds;
+  @JsonKey(ignore: true)
+  _$AllCoursesLoadedCopyWith<_AllCoursesLoaded> get copyWith;
 }

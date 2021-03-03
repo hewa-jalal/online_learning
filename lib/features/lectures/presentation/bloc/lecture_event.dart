@@ -8,6 +8,18 @@ abstract class LectureEvent with _$LectureEvent {
   const factory LectureEvent.uploadLecture({
     @required UserModel user,
     @required String title,
-    @required String description,
+    @required String courseTitle,
+    String description,
   }) = _UploadLecture;
+  const factory LectureEvent.getAllLectures() = _GetAllLectures;
+  const factory LectureEvent.getAllLecturesByCourse({
+    @required String courseTitle,
+  }) = _GetAllLecturesByUserId;
+  const factory LectureEvent.getAllCoursesByUserId({
+    @required String userId,
+  }) = _GetAllCoursesByUserId;
+
+  const factory LectureEvent.createCourse({
+    @required String courseTitle,
+  }) = _CreateCourse;
 }

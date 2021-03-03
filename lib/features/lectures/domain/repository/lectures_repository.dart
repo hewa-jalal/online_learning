@@ -9,7 +9,18 @@ abstract class LecturesRepository {
   Future<Either<Failure, LectureEntity>> uploadLecture({
     @required String fileUrl,
     @required UserModel user,
+    @required String courseTitle,
     String title,
     String description,
+  });
+  Future<Either<Failure, List<LectureEntity>>> getAllLectures();
+  Future<Either<Failure, List<LectureEntity>>> getAllLecturesByCourse({
+    @required String courseTitle,
+  });
+  Future<Either<Failure, List<String>>> getAllCoursesByUserId({
+    @required String userId,
+  });
+  Future<Either<Failure, Unit>> createCourse({
+    @required String courseTitle,
   });
 }

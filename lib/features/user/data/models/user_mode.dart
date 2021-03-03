@@ -36,10 +36,20 @@ class UserModel extends UserEntity {
     final snapData = snap.data();
     return UserModel(
       id: snap.id,
+      fullName: snapData['fullName'],
       role: snapData['role'],
       dept: snapData['dept'],
       stage: snapData['stage'],
-      fullName: snapData['fullName'],
+    );
+  }
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'],
+      fullName: json['fullName'],
+      role: json['role'],
+      dept: json['dept'],
+      stage: json['stage'],
     );
   }
 }

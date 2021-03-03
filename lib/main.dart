@@ -11,7 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize();
   Bloc.observer = TickerBlocObserver();
-  await di.init();
+  // await di.init();
   di.configureInjection();
   await Firebase.initializeApp();
   runApp(MyApp());

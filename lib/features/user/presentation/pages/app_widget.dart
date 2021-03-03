@@ -7,7 +7,9 @@ import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 import 'package:online_learning/features/lectures/data/repository/lectures_repository_impl.dart';
+import 'package:online_learning/features/lectures/domain/usecases/create_course.dart';
 import 'package:online_learning/features/lectures/domain/usecases/download_lecture.dart';
+import 'package:online_learning/features/lectures/domain/usecases/get_all_courses_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
@@ -40,21 +42,37 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => LectureBloc(
-              downloadLecture: DownloadLecture(
-                LecturesRepositoryImpl(
-                  FirebaseLecturesRemoteDataSource(
-                      lectureTask: sl<LectureTask>(), dio: Dio()),
-                ),
+            downloadLecture: DownloadLecture(
+              LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    lectureTask: sl<LectureTask>(), dio: Dio()),
               ),
-              uploadLecture: UploadLecture(LecturesRepositoryImpl(
-                  FirebaseLecturesRemoteDataSource(
-                      dio: Dio(), lectureTask: sl<LectureTask>()))),
-              getAllLecturesByUserId: GetAllLecturesByUserId(
-                lecturesRepository: LecturesRepositoryImpl(
-                  FirebaseLecturesRemoteDataSource(
-                      lectureTask: sl<LectureTask>(), dio: Dio()),
-                ),
-              )),
+            ),
+            uploadLecture: UploadLecture(LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    dio: Dio(), lectureTask: sl<LectureTask>()))),
+            getAllLecturesByUserId: GetAllLecturesByUserId(
+              lecturesRepository: LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    lectureTask: sl<LectureTask>(), dio: Dio()),
+              ),
+            ),
+            getAllLectures: GetAllLectures(
+              lecturesRepository: LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    lectureTask: sl<LectureTask>(), dio: Dio()),
+              ),
+            ),
+            createCourse: CreateCourse(LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    dio: Dio(), lectureTask: sl<LectureTask>()))),
+            getAllCoursesByUserId: GetAllCoursesByUserId(
+              lecturesRepository: LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    lectureTask: sl<LectureTask>(), dio: Dio()),
+              ),
+            ),
+          ),
         ),
         BlocProvider(
           create: (context) => ProgressBloc(

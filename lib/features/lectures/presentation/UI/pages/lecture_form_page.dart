@@ -7,8 +7,13 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class LectureFormPage extends StatefulWidget {
   final UserEntity user;
+  final String courseTitle;
 
-  const LectureFormPage({Key key, @required this.user}) : super(key: key);
+  const LectureFormPage({
+    Key key,
+    @required this.user,
+    @required this.courseTitle,
+  }) : super(key: key);
   @override
   _LectureFormPageState createState() => _LectureFormPageState();
 }
@@ -22,10 +27,11 @@ class _LectureFormPageState extends State<LectureFormPage> {
 
   @override
   Widget build(BuildContext context) {
+    print('courseTitle ' + widget.courseTitle);
     return BlocConsumer<LectureBloc, LectureState>(
       listener: (context, state) {
         state.maybeMap(
-          allLecturesLoaded: (e) =>
+          allCoursesLoaded: (e) =>
               context.read<LectureBloc>().add(LectureEvent.started()),
           loading: (e) =>
               context.read<ProgressBloc>().add(ProgressEvent.started()),
@@ -41,14 +47,19 @@ class _LectureFormPageState extends State<LectureFormPage> {
                   .add(LectureEvent.getAllLectures()),
               child: Icon(Icons.all_inbox),
             ),
-            body: state.map(
-              initial: (_) => InitialWidget(user: widget.user),
+            body: state.maybeMap(
+              initial: (_) => InitialWidget(
+                user: widget.user,
+                courseTitle: widget.courseTitle,
+              ),
               lectureLoaded: (e) => Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () => context.read<LectureBloc>().add(
-                        LectureEvent.downloadLecture(
-                            fileUrl: e.lectureEntity.fileUrl)),
+                    onPressed: () => context
+                        .read<LectureBloc>()
+                        .add(LectureEvent.downloadLecture(
+                          fileUrl: e.lectureEntity.fileUrl,
+                        )),
                     child: Text('Download a lecture'),
                   ),
                   // Text(widget.user.fullName),
@@ -66,6 +77,7 @@ class _LectureFormPageState extends State<LectureFormPage> {
                   },
                 );
               },
+              orElse: () => FlutterLogo(),
             ),
           ),
         );
@@ -145,9 +157,11 @@ class LoadingWidget extends StatelessWidget {
 
 class InitialWidget extends StatefulWidget {
   final UserEntity user;
+  final String courseTitle;
   const InitialWidget({
     Key key,
     @required this.user,
+    @required this.courseTitle,
   }) : super(key: key);
 
   @override
@@ -178,6 +192,7 @@ class _InitialWidgetState extends State<InitialWidget> {
                 user: user,
                 title: title,
                 description: description,
+                courseTitle: widget.courseTitle,
               ),
             );
           },

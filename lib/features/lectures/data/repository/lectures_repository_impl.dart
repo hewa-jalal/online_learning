@@ -27,6 +27,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
   Future<Either<Failure, LectureEntity>> uploadLecture({
     @required String fileUrl,
     @required UserModel user,
+    @required String courseTitle,
     String title,
     String description,
   }) async {
@@ -36,6 +37,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
         user: user,
         title: title,
         description: description,
+        courseTitle: courseTitle,
       );
       return right(lecture);
     } on Exception catch (e) {
@@ -56,13 +58,38 @@ class LecturesRepositoryImpl extends LecturesRepository {
   }
 
   @override
-  Future<Either<Failure, List<LectureEntity>>> getAllLecturesByUserId({
+  Future<Either<Failure, List<LectureEntity>>> getAllLecturesByCourse({
+    @required String courseTitle,
+  }) async {
+    try {
+      final lectures = await remoteDataSource.getAllLecturesByCourse(
+          courseTitle: courseTitle);
+      return right(lectures);
+    } catch (e) {
+      print(e.toString());
+      return left(LectureFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> createCourse({String courseTitle}) async {
+    try {
+      remoteDataSource.createCourse(courseTitle: courseTitle);
+      return right(unit);
+    } catch (e) {
+      print(e.toString());
+      return left(LectureFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<String>>> getAllCoursesByUserId({
     @required String userId,
   }) async {
     try {
-      final lectures =
-          await remoteDataSource.getAllLecturesByUserId(userId: userId);
-      return right(lectures);
+      final courseIds =
+          await remoteDataSource.getAllCoursesByUserId(userId: userId);
+      return right(courseIds);
     } catch (e) {
       print(e.toString());
       return left(LectureFailure());

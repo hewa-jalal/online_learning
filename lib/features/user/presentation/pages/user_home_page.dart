@@ -6,6 +6,7 @@ import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/user/data/models/user_mode.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
+import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,11 +22,12 @@ class UserHomePage extends StatefulWidget {
 }
 
 class _UserLoadedWidgetState extends State<UserHomePage> {
+  var courseTitle = '';
   @override
   void initState() {
     super.initState();
     context.read<LectureBloc>().add(
-          LectureEvent.getAllLecturesByUserId(userId: widget.user.id),
+          LectureEvent.getAllCoursesByUserId(userId: widget.user.id),
         );
   }
 
@@ -75,22 +77,25 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
               listener: (context, state) {
                 state.maybeMap(
                   initial: (e) => context.read<LectureBloc>().add(
-                        LectureEvent.getAllLecturesByUserId(
-                            userId: widget.user.id),
+                        LectureEvent.getAllCoursesByUserId(
+                          userId: widget.user.id,
+                        ),
                       ),
                   orElse: () => print('listener orElse'),
                 );
               },
               builder: (context, state) {
                 return state.maybeMap(
-                  allLecturesLoaded: (lecturesState) {
-                    final lectures = lecturesState.lecturesEntities;
-                    return lectures.length > 0
+                  allCoursesLoaded: (coursesState) {
+                    final courseIds = coursesState.courseIds;
+                    return courseIds.length > 0
                         ? Expanded(
                             child: ListView.builder(
-                              itemCount: lectures.length,
-                              itemBuilder: (context, index) =>
-                                  CourseCard(user: widget.user),
+                              itemCount: courseIds.length,
+                              itemBuilder: (context, index) => CourseCard(
+                                user: widget.user,
+                                courseTitle: courseIds[index],
+                              ),
                             ),
                           )
                         : Text('you have no courses');
@@ -102,51 +107,48 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.upload_file),
-          onPressed: () => Get.to(LectureFormPage(user: widget.user)),
-        ),
-      ),
-    );
-  }
-}
-
-class CourseCard extends StatelessWidget {
-  const CourseCard({
-    Key key,
-    @required this.user,
-  }) : super(key: key);
-
-  final UserEntity user;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Get.to(LectureFormPage(user: user)),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text('Mobile Development'),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: SleekCircularSlider(
-                    appearance: CircularSliderAppearance(
-                      size: 80.h,
-                      customColors: CustomSliderColors(
-                        progressBarColor: Colors.orange,
-                        dotColor: Colors.transparent,
+          child: Icon(Icons.drive_folder_upload),
+          onPressed: () => Get.dialog(
+            Dialog(
+              child: SizedBox(
+                height: 0.15.sh,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    // mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        flex: 2,
+                        child: Center(
+                          child: TextField(
+                            onChanged: (val) => courseTitle = val,
+                            decoration: InputDecoration(
+                              hintText: 'Enter course name',
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Flexible(
+                        flex: 2,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Get.back();
+                            context.read<LectureBloc>().add(
+                                  LectureEvent.createCourse(
+                                    courseTitle: courseTitle,
+                                  ),
+                                );
+                          },
+                          child: Text('Done'),
+                        ),
+                      ),
+                    ],
                   ),
-                );
-              },
+                ),
+              ),
             ),
-          ],
+            barrierDismissible: true,
+          ),
         ),
       ),
     );

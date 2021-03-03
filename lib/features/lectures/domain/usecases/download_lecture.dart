@@ -23,13 +23,15 @@ class LectureParams extends Equatable {
   final String fileUrl;
   final String title;
   final String description;
+  final String courseTitle;
   final UserModel user;
 
   LectureParams({
     @required this.fileUrl,
     @required this.title,
-    @required this.user,
+    @required this.courseTitle,
     this.description,
+    @required this.user,
   });
   @override
   List<Object> get props => [fileUrl];

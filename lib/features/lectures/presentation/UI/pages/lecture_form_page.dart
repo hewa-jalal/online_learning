@@ -27,17 +27,20 @@ class _LectureFormPageState extends State<LectureFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('courseTitle ' + widget.courseTitle);
     return BlocConsumer<LectureBloc, LectureState>(
       listener: (context, state) {
-        state.maybeMap(
-          allCoursesLoaded: (e) =>
-              context.read<LectureBloc>().add(LectureEvent.started()),
-          loading: (e) =>
-              context.read<ProgressBloc>().add(ProgressEvent.started()),
-          orElse: () => print('orElse in UI'),
-        );
+        // state.maybeMap(
+        //   allCoursesLoaded: (e) =>
+        //       context.read<LectureBloc>().add(LectureEvent.started()),
+        //   loading: (e) =>
+        //       context.read<ProgressBloc>().add(ProgressEvent.started()),
+        //   orElse: () => print('orElse in UI'),
+        // );
       },
+      // buildWhen: (oldState, newState) {
+      //   print('oldState $oldState');
+      //   print('newState $newState');
+      // },
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
@@ -48,6 +51,10 @@ class _LectureFormPageState extends State<LectureFormPage> {
               child: Icon(Icons.all_inbox),
             ),
             body: state.maybeMap(
+              allCoursesLoaded: (_) => InitialWidget(
+                user: widget.user,
+                courseTitle: widget.courseTitle,
+              ),
               initial: (_) => InitialWidget(
                 user: widget.user,
                 courseTitle: widget.courseTitle,
@@ -55,20 +62,18 @@ class _LectureFormPageState extends State<LectureFormPage> {
               lectureLoaded: (e) => Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () => context
-                        .read<LectureBloc>()
-                        .add(LectureEvent.downloadLecture(
-                          fileUrl: e.lectureEntity.fileUrl,
-                        )),
+                    onPressed: () => context.read<LectureBloc>().add(
+                          LectureEvent.downloadLecture(
+                            fileUrl: e.lectureEntity.fileUrl,
+                          ),
+                        ),
                     child: Text('Download a lecture'),
                   ),
                   // Text(widget.user.fullName),
                   Text(e.lectureEntity.fileUrl),
                 ],
               ),
-              loading: (e) {
-                return LoadingWidget();
-              },
+              loading: (e) => LoadingWidget(),
               allLecturesLoaded: (e) {
                 return ListView.builder(
                   itemCount: e.lecturesEntities.length,
@@ -187,6 +192,7 @@ class _InitialWidgetState extends State<InitialWidget> {
         ),
         ElevatedButton(
           onPressed: () {
+            // lectureBloc.add(LectureEvent.started());
             lectureBloc.add(
               LectureEvent.uploadLecture(
                 user: user,

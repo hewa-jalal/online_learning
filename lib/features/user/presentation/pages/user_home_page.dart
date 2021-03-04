@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form_page.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserHomePage extends StatefulWidget {
@@ -37,12 +34,6 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
       child: Scaffold(
         body: Column(
           children: [
-            // ElevatedButton(
-            //   onPressed: () => context.read<LectureBloc>().add(
-            //         LectureEvent.getAllLecturesByUserId(userId: widget.user.id),
-            //       ),
-            //   child: Text('GetAllLectures'),
-            // ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 18.w),
               child: Row(
@@ -61,8 +52,9 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                             'fullName',
                           ),
                           ElevatedButton(
-                            onPressed: () =>
-                                Get.to(ChatPage(userEntity: widget.user)),
+                            onPressed: () => Get.to(
+                              () => ChatPage(userEntity: widget.user),
+                            ),
                             child: Text('Go to chat page'),
                           )
                         ],

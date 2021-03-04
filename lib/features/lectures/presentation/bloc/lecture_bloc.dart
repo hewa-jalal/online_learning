@@ -41,6 +41,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
   ) async* {
     yield* event.map(
       started: (e) async* {
+        // yield LectureState.loading();
         yield LectureState.initial();
       },
       uploadLecture: (e) async* {
@@ -57,12 +58,10 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
               courseTitle: e.courseTitle,
             ),
           );
-          // yield either.fold(
-          //   (l) => LectureState.lectureLoaded(
-          //     lectureEntity: LectureEntity(fileUrl: 'dumbUrl'),
-          //   ),
-          //   (lecture) => LectureState.lectureLoaded(lectureEntity: lecture),
-          // );
+          yield either.fold(
+            (l) => LectureState.failure(),
+            (r) => LectureState.allCoursesLoaded(courseIds: ['null', 'null2']),
+          );
         } else {
           print('result is null');
         }

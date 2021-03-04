@@ -19,13 +19,7 @@ class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: () => Get.to(
-      //   LectureFormPage(
-      //     user: user,
-      //     courseTitle: courseTitle,
-      //   ),
-      // ),
-      onTap: () => Get.to(LecturesPage(courseTitle: courseTitle)),
+      onTap: () => Get.to(() => LecturesPage(courseTitle: courseTitle)),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),

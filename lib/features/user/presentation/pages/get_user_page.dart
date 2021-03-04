@@ -21,7 +21,7 @@ class _UserFormState extends State<UserForm> {
     return BlocListener<UserAuthBloc, UserAuthState>(
       listener: (context, state) {
         state.maybeMap(
-          userLoaded: (state) => Get.to(UserHomePage(user: state.user)),
+          userLoaded: (state) => Get.to(() => UserHomePage(user: state.user)),
           orElse: () => Text('error'),
         );
       },

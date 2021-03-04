@@ -43,7 +43,7 @@ class _LecturesPageState extends State<LecturesPage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => Get.to(
-            LectureFormPage(
+            () => LectureFormPage(
               user: UserModel(id: '12'),
               courseTitle: widget.courseTitle,
             ),

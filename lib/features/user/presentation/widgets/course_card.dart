@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form_page.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/lectures_page.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({
     Key key,
-    @required this.user,
     @required this.courseTitle,
+    @required this.onTap,
   }) : super(key: key);
 
   final String courseTitle;
-  final UserEntity user;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => LecturesPage(courseTitle: courseTitle)),
+      onTap: onTap,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),

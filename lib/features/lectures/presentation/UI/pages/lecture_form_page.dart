@@ -32,55 +32,23 @@ class _LectureFormPageState extends State<LectureFormPage> {
         // state.maybeMap(
         //   allCoursesLoaded: (e) =>
         //       context.read<LectureBloc>().add(LectureEvent.started()),
-        //   loading: (e) =>
-        //       context.read<ProgressBloc>().add(ProgressEvent.started()),
+        //    loading: (e) =>
+        //        context.read<ProgressBloc>().add(ProgressEvent.started()),
         //   orElse: () => print('orElse in UI'),
         // );
       },
-      // buildWhen: (oldState, newState) {
-      //   print('oldState $oldState');
-      //   print('newState $newState');
-      // },
       builder: (context, state) {
+        print('state $state');
         return SafeArea(
           child: Scaffold(
-            floatingActionButton: FloatingActionButton(
-              onPressed: () => context
-                  .read<LectureBloc>()
-                  .add(LectureEvent.getAllLectures()),
-              child: Icon(Icons.all_inbox),
-            ),
             body: state.maybeMap(
-              allCoursesLoaded: (_) => InitialWidget(
-                user: widget.user,
-                courseTitle: widget.courseTitle,
-              ),
               initial: (_) => InitialWidget(
                 user: widget.user,
                 courseTitle: widget.courseTitle,
               ),
-              lectureLoaded: (e) => Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () => context.read<LectureBloc>().add(
-                          LectureEvent.downloadLecture(
-                            fileUrl: e.lectureEntity.fileUrl,
-                          ),
-                        ),
-                    child: Text('Download a lecture'),
-                  ),
-                  // Text(widget.user.fullName),
-                  Text(e.lectureEntity.fileUrl),
-                ],
-              ),
-              loading: (e) => LoadingWidget(),
-              allLecturesLoaded: (e) {
-                return ListView.builder(
-                  itemCount: e.lecturesEntities.length,
-                  itemBuilder: (context, index) {
-                    return Text(e.lecturesEntities[index].fileUrl);
-                  },
-                );
+              loading: (e) {
+                print('loading............');
+                return LoadingWidget();
               },
               orElse: () => FlutterLogo(),
             ),
@@ -111,7 +79,7 @@ class LoadingWidget extends StatelessWidget {
           },
           loading: (progressState) {
             var _progress = (progressState.percentage * 100);
-            var progressBloc = context.read<ProgressBloc>();
+            final progressBloc = context.read<ProgressBloc>();
             print('ProgressState ${progressState.percentage}');
             return Column(
               children: [
@@ -192,7 +160,6 @@ class _InitialWidgetState extends State<InitialWidget> {
         ),
         ElevatedButton(
           onPressed: () {
-            // lectureBloc.add(LectureEvent.started());
             lectureBloc.add(
               LectureEvent.uploadLecture(
                 user: user,

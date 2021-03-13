@@ -41,7 +41,6 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
   ) async* {
     yield* event.map(
       started: (e) async* {
-        // yield LectureState.loading();
         yield LectureState.initial();
       },
       uploadLecture: (e) async* {
@@ -58,12 +57,12 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
               courseTitle: e.courseTitle,
             ),
           );
-          yield either.fold(
-            (l) => LectureState.failure(),
-            (r) => LectureState.allCoursesLoaded(courseIds: ['null', 'null2']),
-          );
+          // yield either.fold(
+          //   (l) => LectureState.failure(),
+          //   (r) => LectureState.lectureLoaded(lectureEntity: r),
+          // );
         } else {
-          print('result is null');
+          print('filePicker result is null');
         }
       },
       downloadLecture: (e) async* {
@@ -76,7 +75,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       getAllLectures: (e) async* {
         final either = await getAllLectures(NoParams());
         yield either.fold(
-          (failure) => LectureState.initial(),
+          (failure) => LectureState.failure(),
           (lectures) =>
               LectureState.allLecturesLoaded(lecturesEntities: lectures),
         );
@@ -84,13 +83,17 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       getAllLecturesByCourse: (e) async* {
         final either = await getAllLecturesByUserId(e.courseTitle);
         yield either.fold(
-          (failure) => LectureState.initial(),
+          (failure) => LectureState.failure(),
           (lectures) =>
               LectureState.allLecturesLoaded(lecturesEntities: lectures),
         );
       },
       createCourse: (e) async* {
-        createCourse(e.courseTitle);
+        final either = await createCourse(e.courseTitle);
+        yield either.fold(
+          (failure) => LectureState.failure(),
+          (unit) => LectureState.initial(),
+        );
       },
       getAllCoursesByUserId: (e) async* {
         final either = await getAllCoursesByUserId(e.userId);

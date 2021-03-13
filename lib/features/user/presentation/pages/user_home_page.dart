@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/lectures_page.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
@@ -20,16 +21,21 @@ class UserHomePage extends StatefulWidget {
 
 class _UserLoadedWidgetState extends State<UserHomePage> {
   var courseTitle = '';
-  @override
-  void initState() {
-    super.initState();
-    context.read<LectureBloc>().add(
-          LectureEvent.getAllCoursesByUserId(userId: widget.user.id),
-        );
-  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   context.read<LectureBloc>().add(
+  //         LectureEvent.getAllCoursesByUserId(userId: widget.user.id),
+  //       );
+  // }
 
   @override
   Widget build(BuildContext context) {
+    print('test ${ModalRoute.of(context).isCurrent}');
+    context.read<LectureBloc>().add(LectureEvent.getAllCoursesByUserId(
+          userId: widget.user.id,
+        ));
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -67,14 +73,15 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
             ),
             BlocConsumer<LectureBloc, LectureState>(
               listener: (context, state) {
-                state.maybeMap(
-                  initial: (e) => context.read<LectureBloc>().add(
-                        LectureEvent.getAllCoursesByUserId(
-                          userId: widget.user.id,
+                if (ModalRoute.of(context).isCurrent) {
+                  state.maybeMap(
+                    orElse: () => context.read<LectureBloc>().add(
+                          LectureEvent.getAllCoursesByUserId(
+                            userId: widget.user.id,
+                          ),
                         ),
-                      ),
-                  orElse: () => print('listener orElse'),
-                );
+                  );
+                }
               },
               builder: (context, state) {
                 return state.maybeMap(
@@ -85,7 +92,9 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                             child: ListView.builder(
                               itemCount: courseIds.length,
                               itemBuilder: (context, index) => CourseCard(
-                                user: widget.user,
+                                onTap: () => Get.to(() => LecturesPage(
+                                        courseTitle: courseIds[index]))
+                                    .then((value) => setState(() {})),
                                 courseTitle: courseIds[index],
                               ),
                             ),
@@ -107,7 +116,6 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Column(
-                    // mainAxisSize: MainAxisSize.min,
                     children: [
                       Flexible(
                         flex: 2,

@@ -22,22 +22,27 @@ class UserHomePage extends StatefulWidget {
 class _UserLoadedWidgetState extends State<UserHomePage> {
   var courseTitle = '';
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   context.read<LectureBloc>().add(
-  //         LectureEvent.getAllCoursesByUserId(userId: widget.user.id),
-  //       );
-  // }
-
   @override
   Widget build(BuildContext context) {
-    print('test ${ModalRoute.of(context).isCurrent}');
-    context.read<LectureBloc>().add(LectureEvent.getAllCoursesByUserId(
-          userId: widget.user.id,
-        ));
+    final lectureBloc = context.read<LectureBloc>();
+    lectureBloc.add(LectureEvent.getAllCoursesByUserId(
+      userId: widget.user.id,
+    ));
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: IconButton(
+                icon: Icon(Icons.chat),
+                onPressed: () => Get.to(
+                  () => ChatPage(userEntity: widget.user),
+                ),
+              ),
+            ),
+          ],
+        ),
         body: Column(
           children: [
             Padding(
@@ -57,12 +62,6 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                           Text(
                             'fullName',
                           ),
-                          ElevatedButton(
-                            onPressed: () => Get.to(
-                              () => ChatPage(userEntity: widget.user),
-                            ),
-                            child: Text('Go to chat page'),
-                          )
                         ],
                       );
                     },

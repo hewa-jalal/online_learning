@@ -25,28 +25,33 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   Stream<ProgressState> mapEventToState(
     ProgressEvent event,
   ) async* {
-    yield* event.map(started: (e) async* {
-      await _subscription?.cancel();
-      _subscription = lectureTask
-          .progress()
-          .listen((task) => add(ProgressEvent.updated(task)));
+    yield* event.map(
+      started: (e) async* {
+        await _subscription?.cancel();
+        _subscription = lectureTask
+            .progress()
+            .listen((task) => add(ProgressEvent.updated(task)));
 
-      // if (event is _Updated) {
-      //   print('event is updated');
-      //   yield _Loading(percentage: event.tickCount);
-      // }
-    }, updated: (e) async* {
-      // print(
-      //     'bloc updated event ${(e.task.bytesTransferred / e.task.totalBytes)}');
-      yield ProgressState.loading(
+        // if (event is _Updated) {
+        //   print('event is updated');
+        //   yield _Loading(percentage: event.tickCount);
+        // }
+      },
+      updated: (e) async* {
+        yield ProgressState.loading(
           percentage: (e.task.bytesTransferred.toDouble() /
-              e.task.totalBytes.toDouble()));
-    }, pause: (e) async* {
-      lectureTask.pause();
-    }, resume: (e) async* {
-      lectureTask.resume();
-    }, cancel: (e) async* {
-      lectureTask.cancel();
-    });
+              e.task.totalBytes.toDouble()),
+        );
+      },
+      pause: (e) async* {
+        lectureTask.pause();
+      },
+      resume: (e) async* {
+        lectureTask.resume();
+      },
+      cancel: (e) async* {
+        lectureTask.cancel();
+      },
+    );
   }
 }

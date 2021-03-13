@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/core/params/user_params.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';

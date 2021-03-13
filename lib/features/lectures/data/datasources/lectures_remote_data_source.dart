@@ -72,8 +72,6 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     );
     lectureTask.task = storageRef.lecturesStorage(title).putFile(File(fileUrl));
     final doc = userCoursesCollection.doc(courseTitle);
-    print('doc:' + doc.id);
-    print('lecture:' + lecture.toString());
     doc.collection('lectures').add(lecture.toDocument());
     doc.set({'user_id': user.id}, SetOptions(merge: true));
 

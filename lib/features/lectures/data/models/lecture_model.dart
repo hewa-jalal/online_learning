@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:online_learning/features/lectures/domain/entities/lecture_entity.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
 
 class LectureModel extends LectureEntity {
   final String fileUrl;

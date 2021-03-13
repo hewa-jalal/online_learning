@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LectureFormPage extends StatefulWidget {
   final UserEntity user;
@@ -29,30 +31,64 @@ class _LectureFormPageState extends State<LectureFormPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<LectureBloc, LectureState>(
       listener: (context, state) {
-        // state.maybeMap(
-        //   allCoursesLoaded: (e) =>
-        //       context.read<LectureBloc>().add(LectureEvent.started()),
-        //    loading: (e) =>
-        //        context.read<ProgressBloc>().add(ProgressEvent.started()),
-        //   orElse: () => print('orElse in UI'),
-        // );
+        state.maybeMap(
+          loading: (e) {
+            context.read<ProgressBloc>().add(ProgressEvent.started());
+            Get.dialog(ProgressDialog());
+          },
+          orElse: () => print('lecture_form_page => orElse'),
+        );
       },
       builder: (context, state) {
-        print('state $state');
         return SafeArea(
           child: Scaffold(
             body: state.maybeMap(
-              initial: (_) => InitialWidget(
+              orElse: () => InitialWidget(
                 user: widget.user,
                 courseTitle: widget.courseTitle,
               ),
-              loading: (e) {
-                print('loading............');
-                return LoadingWidget();
-              },
-              orElse: () => FlutterLogo(),
+              // loading: (e) => LoadingWidget(),
+              // orElse: () => FlutterLogo(),
             ),
           ),
+        );
+      },
+    );
+  }
+}
+
+class ProgressDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<ProgressBloc, ProgressState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return state.maybeMap(
+          loading: (progressState) {
+            var _progress = (progressState.percentage * 100);
+            return _progress == 100
+                ? Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.done),
+                      ElevatedButton(
+                        onPressed: () => Get.back(),
+                        child: Text('Done'),
+                      )
+                    ],
+                  )
+                : SizedBox(
+                    height: 0.15.sh,
+                    child: Center(
+                      child: CircularPercentIndicator(
+                        radius: 200,
+                        percent: progressState.percentage,
+                        center: Text(_progress.toStringAsFixed(0)),
+                      ),
+                    ),
+                  );
+          },
+          orElse: () => FlutterLogo(),
         );
       },
     );
@@ -79,10 +115,11 @@ class LoadingWidget extends StatelessWidget {
           },
           loading: (progressState) {
             var _progress = (progressState.percentage * 100);
+            // to control the progress events
             final progressBloc = context.read<ProgressBloc>();
             print('ProgressState ${progressState.percentage}');
             return Column(
-              children: [
+              children: <Widget>[
                 Row(
                   children: <Widget>[
                     IconButton(

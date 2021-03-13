@@ -24,7 +24,6 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   File _image;
-  final picker = ImagePicker();
 
   UserEntity get user => widget.userEntity;
   final _controller = TextEditingController();
@@ -36,21 +35,10 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final chatBloc = context.read<ChatBloc>();
+    chatBloc.add(ChatEvent.getAllMessages());
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
       return Scaffold(
         // floatingActionButton: FloatingActionButton(
@@ -66,15 +54,9 @@ class _ChatPageState extends State<ChatPage> {
         body: BlocBuilder<ChatBloc, ChatState>(
           builder: (context, state) {
             return state.map(
-              initial: (state) => Center(
-                child: ElevatedButton(
-                  onPressed: () =>
-                      context.read<ChatBloc>().add(ChatEvent.getAllMessages()),
-                  child: Text('get all messages'),
-                ),
-              ),
+              initial: (state) => CircularProgressIndicator(),
               allMessagesLoaded: (state) {
-                var messages = state.allMessages
+                final messages = state.allMessages
                     .map(
                       (msg) => ChatMessage(
                         text: msg.message,
@@ -87,6 +69,7 @@ class _ChatPageState extends State<ChatPage> {
                     .toList();
                 return DashChat(
                   messageImageBuilder: (url, [_]) {
+                    print('imageUrl => $url');
                     return CachedNetworkImage(
                       imageUrl: url,
                       placeholder: (context, str) =>
@@ -111,6 +94,7 @@ class _ChatPageState extends State<ChatPage> {
                         fromUserId: msg.user.uid,
                       ),
                     );
+                    // to referesh the messages
                     chatBloc.add(ChatEvent.getAllMessages());
                   },
                   messages: messages,

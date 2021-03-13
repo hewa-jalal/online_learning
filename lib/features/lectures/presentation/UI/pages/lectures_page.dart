@@ -42,6 +42,7 @@ class _LecturesPageState extends State<LecturesPage> {
           },
         ),
         floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.picture_as_pdf),
           onPressed: () => Get.to(
             () => LectureFormPage(
               user: UserModel(id: '12'),

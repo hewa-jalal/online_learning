@@ -26,8 +26,8 @@ class _$UserAuthEventTearOff {
   }
 
 // ignore: unused_element
-  _GetUsers getUsers() {
-    return const _GetUsers();
+  _GetAllUsers getAllUsers() {
+    return const _GetAllUsers();
   }
 }
 
@@ -41,26 +41,26 @@ mixin _$UserAuthEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getUserById(int id),
-    @required TResult getUsers(),
+    @required TResult getAllUsers(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getUserById(int id),
-    TResult getUsers(),
+    TResult getAllUsers(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getUserById(_GetUserById value),
-    @required TResult getUsers(_GetUsers value),
+    @required TResult getAllUsers(_GetAllUsers value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getUserById(_GetUserById value),
-    TResult getUsers(_GetUsers value),
+    TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
   });
 }
@@ -120,11 +120,11 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getUserById(int id),
-    @required TResult getUsers(),
+    @required TResult getAllUsers(),
   }) {
     assert(started != null);
     assert(getUserById != null);
-    assert(getUsers != null);
+    assert(getAllUsers != null);
     return started();
   }
 
@@ -133,7 +133,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getUserById(int id),
-    TResult getUsers(),
+    TResult getAllUsers(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -148,11 +148,11 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getUserById(_GetUserById value),
-    @required TResult getUsers(_GetUsers value),
+    @required TResult getAllUsers(_GetAllUsers value),
   }) {
     assert(started != null);
     assert(getUserById != null);
-    assert(getUsers != null);
+    assert(getAllUsers != null);
     return started(this);
   }
 
@@ -161,7 +161,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getUserById(_GetUserById value),
-    TResult getUsers(_GetUsers value),
+    TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -238,11 +238,11 @@ class _$_GetUserById implements _GetUserById {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getUserById(int id),
-    @required TResult getUsers(),
+    @required TResult getAllUsers(),
   }) {
     assert(started != null);
     assert(getUserById != null);
-    assert(getUsers != null);
+    assert(getAllUsers != null);
     return getUserById(id);
   }
 
@@ -251,7 +251,7 @@ class _$_GetUserById implements _GetUserById {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getUserById(int id),
-    TResult getUsers(),
+    TResult getAllUsers(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -266,11 +266,11 @@ class _$_GetUserById implements _GetUserById {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getUserById(_GetUserById value),
-    @required TResult getUsers(_GetUsers value),
+    @required TResult getAllUsers(_GetAllUsers value),
   }) {
     assert(started != null);
     assert(getUserById != null);
-    assert(getUsers != null);
+    assert(getAllUsers != null);
     return getUserById(this);
   }
 
@@ -279,7 +279,7 @@ class _$_GetUserById implements _GetUserById {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getUserById(_GetUserById value),
-    TResult getUsers(_GetUsers value),
+    TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -299,33 +299,35 @@ abstract class _GetUserById implements UserAuthEvent {
 }
 
 /// @nodoc
-abstract class _$GetUsersCopyWith<$Res> {
-  factory _$GetUsersCopyWith(_GetUsers value, $Res Function(_GetUsers) then) =
-      __$GetUsersCopyWithImpl<$Res>;
+abstract class _$GetAllUsersCopyWith<$Res> {
+  factory _$GetAllUsersCopyWith(
+          _GetAllUsers value, $Res Function(_GetAllUsers) then) =
+      __$GetAllUsersCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$GetUsersCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
-    implements _$GetUsersCopyWith<$Res> {
-  __$GetUsersCopyWithImpl(_GetUsers _value, $Res Function(_GetUsers) _then)
-      : super(_value, (v) => _then(v as _GetUsers));
+class __$GetAllUsersCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
+    implements _$GetAllUsersCopyWith<$Res> {
+  __$GetAllUsersCopyWithImpl(
+      _GetAllUsers _value, $Res Function(_GetAllUsers) _then)
+      : super(_value, (v) => _then(v as _GetAllUsers));
 
   @override
-  _GetUsers get _value => super._value as _GetUsers;
+  _GetAllUsers get _value => super._value as _GetAllUsers;
 }
 
 /// @nodoc
-class _$_GetUsers implements _GetUsers {
-  const _$_GetUsers();
+class _$_GetAllUsers implements _GetAllUsers {
+  const _$_GetAllUsers();
 
   @override
   String toString() {
-    return 'UserAuthEvent.getUsers()';
+    return 'UserAuthEvent.getAllUsers()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _GetUsers);
+    return identical(this, other) || (other is _GetAllUsers);
   }
 
   @override
@@ -336,12 +338,12 @@ class _$_GetUsers implements _GetUsers {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult getUserById(int id),
-    @required TResult getUsers(),
+    @required TResult getAllUsers(),
   }) {
     assert(started != null);
     assert(getUserById != null);
-    assert(getUsers != null);
-    return getUsers();
+    assert(getAllUsers != null);
+    return getAllUsers();
   }
 
   @override
@@ -349,12 +351,12 @@ class _$_GetUsers implements _GetUsers {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult getUserById(int id),
-    TResult getUsers(),
+    TResult getAllUsers(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (getUsers != null) {
-      return getUsers();
+    if (getAllUsers != null) {
+      return getAllUsers();
     }
     return orElse();
   }
@@ -364,12 +366,12 @@ class _$_GetUsers implements _GetUsers {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult getUserById(_GetUserById value),
-    @required TResult getUsers(_GetUsers value),
+    @required TResult getAllUsers(_GetAllUsers value),
   }) {
     assert(started != null);
     assert(getUserById != null);
-    assert(getUsers != null);
-    return getUsers(this);
+    assert(getAllUsers != null);
+    return getAllUsers(this);
   }
 
   @override
@@ -377,19 +379,19 @@ class _$_GetUsers implements _GetUsers {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult getUserById(_GetUserById value),
-    TResult getUsers(_GetUsers value),
+    TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (getUsers != null) {
-      return getUsers(this);
+    if (getAllUsers != null) {
+      return getAllUsers(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetUsers implements UserAuthEvent {
-  const factory _GetUsers() = _$_GetUsers;
+abstract class _GetAllUsers implements UserAuthEvent {
+  const factory _GetAllUsers() = _$_GetAllUsers;
 }
 
 /// @nodoc

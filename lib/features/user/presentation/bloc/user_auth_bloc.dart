@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:online_learning/features/user/core/params/user_params.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
@@ -15,10 +14,10 @@ part 'user_auth_bloc.freezed.dart';
 
 class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
   final GetUser getUser;
-  final GetUsers getUsers;
+  final GetAllUsers getAllUsers;
   UserAuthBloc({
     @required this.getUser,
-    @required this.getUsers,
+    @required this.getAllUsers,
   }) : super(const _Initial());
 
   @override
@@ -34,9 +33,8 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
           (user) => UserAuthState.userLoaded(user: user),
         );
       },
-      getUsers: (e) async* {
-        print('event called');
-        final either = await getUsers(NoParams());
+      getAllUsers: (e) async* {
+        final either = await getAllUsers(NoParams());
         yield either.fold(
           (failure) => const UserAuthState.userError(),
           (users) => UserAuthState.usersLoaded(users: users),

@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
           create: (_) => UserAuthBloc(
             getUser:
                 GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
-            getUsers:
-                GetUsers(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
+            getAllUsers:
+                GetAllUsers(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
           ),
         ),
         BlocProvider(

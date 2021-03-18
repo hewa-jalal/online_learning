@@ -23,12 +23,6 @@ class LectureFormPage extends StatefulWidget {
 }
 
 class _LectureFormPageState extends State<LectureFormPage> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   context.read<LectureBloc>().add(LectureEvent.started());
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LectureBloc, LectureState>(
@@ -43,11 +37,22 @@ class _LectureFormPageState extends State<LectureFormPage> {
       },
       builder: (context, state) {
         return SafeArea(
-          child: Scaffold(
-            body: state.maybeMap(
-              orElse: () => InitialWidget(
-                user: widget.user,
-                courseTitle: widget.courseTitle,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/images/undraw_Add_files.png',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: state.maybeMap(
+                orElse: () => InitialWidget(
+                  user: widget.user,
+                  courseTitle: widget.courseTitle,
+                ),
               ),
             ),
           ),

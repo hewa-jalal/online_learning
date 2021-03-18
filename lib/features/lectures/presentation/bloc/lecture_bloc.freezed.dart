@@ -19,6 +19,11 @@ class _$LectureEventTearOff {
   }
 
 // ignore: unused_element
+  _SelectFile selectFile() {
+    return const _SelectFile();
+  }
+
+// ignore: unused_element
   _DownloadLecture downloadLecture({@required String fileUrl}) {
     return _DownloadLecture(
       fileUrl: fileUrl,
@@ -30,11 +35,13 @@ class _$LectureEventTearOff {
       {@required UserModel user,
       @required String title,
       @required String courseTitle,
+      @required String filePath,
       String description}) {
     return _UploadLecture(
       user: user,
       title: title,
       courseTitle: courseTitle,
+      filePath: filePath,
       description: description,
     );
   }
@@ -76,10 +83,11 @@ mixin _$LectureEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
+    @required TResult selectFile(),
     @required TResult downloadLecture(String fileUrl),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String description),
+            String filePath, String description),
     @required TResult getAllLectures(),
     @required TResult getAllLecturesByCourse(String courseTitle),
     @required TResult getAllCoursesByUserId(String userId),
@@ -88,9 +96,10 @@ mixin _$LectureEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
+    TResult selectFile(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(
-        UserModel user, String title, String courseTitle, String description),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
     TResult getAllLectures(),
     TResult getAllLecturesByCourse(String courseTitle),
     TResult getAllCoursesByUserId(String userId),
@@ -100,6 +109,7 @@ mixin _$LectureEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
@@ -110,6 +120,7 @@ mixin _$LectureEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
@@ -173,16 +184,18 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
+    @required TResult selectFile(),
     @required TResult downloadLecture(String fileUrl),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String description),
+            String filePath, String description),
     @required TResult getAllLectures(),
     @required TResult getAllLecturesByCourse(String courseTitle),
     @required TResult getAllCoursesByUserId(String userId),
     @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -196,9 +209,10 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
+    TResult selectFile(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(
-        UserModel user, String title, String courseTitle, String description),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
     TResult getAllLectures(),
     TResult getAllLecturesByCourse(String courseTitle),
     TResult getAllCoursesByUserId(String userId),
@@ -216,6 +230,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
@@ -224,6 +239,7 @@ class _$_Started implements _Started {
     @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -237,6 +253,7 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
@@ -255,6 +272,135 @@ class _$_Started implements _Started {
 
 abstract class _Started implements LectureEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$SelectFileCopyWith<$Res> {
+  factory _$SelectFileCopyWith(
+          _SelectFile value, $Res Function(_SelectFile) then) =
+      __$SelectFileCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SelectFileCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
+    implements _$SelectFileCopyWith<$Res> {
+  __$SelectFileCopyWithImpl(
+      _SelectFile _value, $Res Function(_SelectFile) _then)
+      : super(_value, (v) => _then(v as _SelectFile));
+
+  @override
+  _SelectFile get _value => super._value as _SelectFile;
+}
+
+/// @nodoc
+class _$_SelectFile implements _SelectFile {
+  const _$_SelectFile();
+
+  @override
+  String toString() {
+    return 'LectureEvent.selectFile()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _SelectFile);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult selectFile(),
+    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult uploadLecture(UserModel user, String title, String courseTitle,
+            String filePath, String description),
+    @required TResult getAllLectures(),
+    @required TResult getAllLecturesByCourse(String courseTitle),
+    @required TResult getAllCoursesByUserId(String userId),
+    @required TResult createCourse(String courseTitle),
+  }) {
+    assert(started != null);
+    assert(selectFile != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return selectFile();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult selectFile(),
+    TResult downloadLecture(String fileUrl),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
+    TResult getAllLectures(),
+    TResult getAllLecturesByCourse(String courseTitle),
+    TResult getAllCoursesByUserId(String userId),
+    TResult createCourse(String courseTitle),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (selectFile != null) {
+      return selectFile();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
+    @required TResult downloadLecture(_DownloadLecture value),
+    @required TResult uploadLecture(_UploadLecture value),
+    @required TResult getAllLectures(_GetAllLectures value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    @required TResult createCourse(_CreateCourse value),
+  }) {
+    assert(started != null);
+    assert(selectFile != null);
+    assert(downloadLecture != null);
+    assert(uploadLecture != null);
+    assert(getAllLectures != null);
+    assert(getAllLecturesByCourse != null);
+    assert(getAllCoursesByUserId != null);
+    assert(createCourse != null);
+    return selectFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
+    TResult downloadLecture(_DownloadLecture value),
+    TResult uploadLecture(_UploadLecture value),
+    TResult getAllLectures(_GetAllLectures value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
+    TResult createCourse(_CreateCourse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (selectFile != null) {
+      return selectFile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectFile implements LectureEvent {
+  const factory _SelectFile() = _$_SelectFile;
 }
 
 /// @nodoc
@@ -319,16 +465,18 @@ class _$_DownloadLecture implements _DownloadLecture {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
+    @required TResult selectFile(),
     @required TResult downloadLecture(String fileUrl),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String description),
+            String filePath, String description),
     @required TResult getAllLectures(),
     @required TResult getAllLecturesByCourse(String courseTitle),
     @required TResult getAllCoursesByUserId(String userId),
     @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -342,9 +490,10 @@ class _$_DownloadLecture implements _DownloadLecture {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
+    TResult selectFile(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(
-        UserModel user, String title, String courseTitle, String description),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
     TResult getAllLectures(),
     TResult getAllLecturesByCourse(String courseTitle),
     TResult getAllCoursesByUserId(String userId),
@@ -362,6 +511,7 @@ class _$_DownloadLecture implements _DownloadLecture {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
@@ -370,6 +520,7 @@ class _$_DownloadLecture implements _DownloadLecture {
     @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -383,6 +534,7 @@ class _$_DownloadLecture implements _DownloadLecture {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
@@ -414,7 +566,11 @@ abstract class _$UploadLectureCopyWith<$Res> {
           _UploadLecture value, $Res Function(_UploadLecture) then) =
       __$UploadLectureCopyWithImpl<$Res>;
   $Res call(
-      {UserModel user, String title, String courseTitle, String description});
+      {UserModel user,
+      String title,
+      String courseTitle,
+      String filePath,
+      String description});
 }
 
 /// @nodoc
@@ -433,6 +589,7 @@ class __$UploadLectureCopyWithImpl<$Res>
     Object user = freezed,
     Object title = freezed,
     Object courseTitle = freezed,
+    Object filePath = freezed,
     Object description = freezed,
   }) {
     return _then(_UploadLecture(
@@ -440,6 +597,7 @@ class __$UploadLectureCopyWithImpl<$Res>
       title: title == freezed ? _value.title : title as String,
       courseTitle:
           courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      filePath: filePath == freezed ? _value.filePath : filePath as String,
       description:
           description == freezed ? _value.description : description as String,
     ));
@@ -452,10 +610,12 @@ class _$_UploadLecture implements _UploadLecture {
       {@required this.user,
       @required this.title,
       @required this.courseTitle,
+      @required this.filePath,
       this.description})
       : assert(user != null),
         assert(title != null),
-        assert(courseTitle != null);
+        assert(courseTitle != null),
+        assert(filePath != null);
 
   @override
   final UserModel user;
@@ -464,11 +624,13 @@ class _$_UploadLecture implements _UploadLecture {
   @override
   final String courseTitle;
   @override
+  final String filePath;
+  @override
   final String description;
 
   @override
   String toString() {
-    return 'LectureEvent.uploadLecture(user: $user, title: $title, courseTitle: $courseTitle, description: $description)';
+    return 'LectureEvent.uploadLecture(user: $user, title: $title, courseTitle: $courseTitle, filePath: $filePath, description: $description)';
   }
 
   @override
@@ -482,6 +644,9 @@ class _$_UploadLecture implements _UploadLecture {
             (identical(other.courseTitle, courseTitle) ||
                 const DeepCollectionEquality()
                     .equals(other.courseTitle, courseTitle)) &&
+            (identical(other.filePath, filePath) ||
+                const DeepCollectionEquality()
+                    .equals(other.filePath, filePath)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)));
@@ -493,6 +658,7 @@ class _$_UploadLecture implements _UploadLecture {
       const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(courseTitle) ^
+      const DeepCollectionEquality().hash(filePath) ^
       const DeepCollectionEquality().hash(description);
 
   @JsonKey(ignore: true)
@@ -504,32 +670,35 @@ class _$_UploadLecture implements _UploadLecture {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
+    @required TResult selectFile(),
     @required TResult downloadLecture(String fileUrl),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String description),
+            String filePath, String description),
     @required TResult getAllLectures(),
     @required TResult getAllLecturesByCourse(String courseTitle),
     @required TResult getAllCoursesByUserId(String userId),
     @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
     assert(getAllLecturesByCourse != null);
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
-    return uploadLecture(user, title, courseTitle, description);
+    return uploadLecture(user, title, courseTitle, filePath, description);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
+    TResult selectFile(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(
-        UserModel user, String title, String courseTitle, String description),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
     TResult getAllLectures(),
     TResult getAllLecturesByCourse(String courseTitle),
     TResult getAllCoursesByUserId(String userId),
@@ -538,7 +707,7 @@ class _$_UploadLecture implements _UploadLecture {
   }) {
     assert(orElse != null);
     if (uploadLecture != null) {
-      return uploadLecture(user, title, courseTitle, description);
+      return uploadLecture(user, title, courseTitle, filePath, description);
     }
     return orElse();
   }
@@ -547,6 +716,7 @@ class _$_UploadLecture implements _UploadLecture {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
@@ -555,6 +725,7 @@ class _$_UploadLecture implements _UploadLecture {
     @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -568,6 +739,7 @@ class _$_UploadLecture implements _UploadLecture {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
@@ -589,11 +761,13 @@ abstract class _UploadLecture implements LectureEvent {
       {@required UserModel user,
       @required String title,
       @required String courseTitle,
+      @required String filePath,
       String description}) = _$_UploadLecture;
 
   UserModel get user;
   String get title;
   String get courseTitle;
+  String get filePath;
   String get description;
   @JsonKey(ignore: true)
   _$UploadLectureCopyWith<_UploadLecture> get copyWith;
@@ -639,16 +813,18 @@ class _$_GetAllLectures implements _GetAllLectures {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
+    @required TResult selectFile(),
     @required TResult downloadLecture(String fileUrl),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String description),
+            String filePath, String description),
     @required TResult getAllLectures(),
     @required TResult getAllLecturesByCourse(String courseTitle),
     @required TResult getAllCoursesByUserId(String userId),
     @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -662,9 +838,10 @@ class _$_GetAllLectures implements _GetAllLectures {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
+    TResult selectFile(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(
-        UserModel user, String title, String courseTitle, String description),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
     TResult getAllLectures(),
     TResult getAllLecturesByCourse(String courseTitle),
     TResult getAllCoursesByUserId(String userId),
@@ -682,6 +859,7 @@ class _$_GetAllLectures implements _GetAllLectures {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
@@ -690,6 +868,7 @@ class _$_GetAllLectures implements _GetAllLectures {
     @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -703,6 +882,7 @@ class _$_GetAllLectures implements _GetAllLectures {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
@@ -789,16 +969,18 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
+    @required TResult selectFile(),
     @required TResult downloadLecture(String fileUrl),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String description),
+            String filePath, String description),
     @required TResult getAllLectures(),
     @required TResult getAllLecturesByCourse(String courseTitle),
     @required TResult getAllCoursesByUserId(String userId),
     @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -812,9 +994,10 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
+    TResult selectFile(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(
-        UserModel user, String title, String courseTitle, String description),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
     TResult getAllLectures(),
     TResult getAllLecturesByCourse(String courseTitle),
     TResult getAllCoursesByUserId(String userId),
@@ -832,6 +1015,7 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
@@ -840,6 +1024,7 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
     @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -853,6 +1038,7 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
@@ -942,16 +1128,18 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
+    @required TResult selectFile(),
     @required TResult downloadLecture(String fileUrl),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String description),
+            String filePath, String description),
     @required TResult getAllLectures(),
     @required TResult getAllLecturesByCourse(String courseTitle),
     @required TResult getAllCoursesByUserId(String userId),
     @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -965,9 +1153,10 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
+    TResult selectFile(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(
-        UserModel user, String title, String courseTitle, String description),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
     TResult getAllLectures(),
     TResult getAllLecturesByCourse(String courseTitle),
     TResult getAllCoursesByUserId(String userId),
@@ -985,6 +1174,7 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
@@ -993,6 +1183,7 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -1006,6 +1197,7 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
@@ -1095,16 +1287,18 @@ class _$_CreateCourse implements _CreateCourse {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult started(),
+    @required TResult selectFile(),
     @required TResult downloadLecture(String fileUrl),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String description),
+            String filePath, String description),
     @required TResult getAllLectures(),
     @required TResult getAllLecturesByCourse(String courseTitle),
     @required TResult getAllCoursesByUserId(String userId),
     @required TResult createCourse(String courseTitle),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -1118,9 +1312,10 @@ class _$_CreateCourse implements _CreateCourse {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
+    TResult selectFile(),
     TResult downloadLecture(String fileUrl),
-    TResult uploadLecture(
-        UserModel user, String title, String courseTitle, String description),
+    TResult uploadLecture(UserModel user, String title, String courseTitle,
+        String filePath, String description),
     TResult getAllLectures(),
     TResult getAllLecturesByCourse(String courseTitle),
     TResult getAllCoursesByUserId(String userId),
@@ -1138,6 +1333,7 @@ class _$_CreateCourse implements _CreateCourse {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
+    @required TResult selectFile(_SelectFile value),
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
@@ -1146,6 +1342,7 @@ class _$_CreateCourse implements _CreateCourse {
     @required TResult createCourse(_CreateCourse value),
   }) {
     assert(started != null);
+    assert(selectFile != null);
     assert(downloadLecture != null);
     assert(uploadLecture != null);
     assert(getAllLectures != null);
@@ -1159,6 +1356,7 @@ class _$_CreateCourse implements _CreateCourse {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
+    TResult selectFile(_SelectFile value),
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
@@ -1203,6 +1401,13 @@ class _$LectureStateTearOff {
   }
 
 // ignore: unused_element
+  _FileSelected fileSelected({@required String filePath}) {
+    return _FileSelected(
+      filePath: filePath,
+    );
+  }
+
+// ignore: unused_element
   _LectureLoaded lectureLoaded({@required LectureEntity lectureEntity}) {
     return _LectureLoaded(
       lectureEntity: lectureEntity,
@@ -1236,6 +1441,7 @@ mixin _$LectureState {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult failure(),
+    @required TResult fileSelected(String filePath),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     @required TResult allCoursesLoaded(List<String> courseIds),
@@ -1245,6 +1451,7 @@ mixin _$LectureState {
     TResult initial(),
     TResult loading(),
     TResult failure(),
+    TResult fileSelected(String filePath),
     TResult lectureLoaded(LectureEntity lectureEntity),
     TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     TResult allCoursesLoaded(List<String> courseIds),
@@ -1255,6 +1462,7 @@ mixin _$LectureState {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult failure(_Failure value),
+    @required TResult fileSelected(_FileSelected value),
     @required TResult lectureLoaded(_LectureLoaded value),
     @required TResult allLecturesLoaded(_AllLecturesLoaded value),
     @required TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1264,6 +1472,7 @@ mixin _$LectureState {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult failure(_Failure value),
+    TResult fileSelected(_FileSelected value),
     TResult lectureLoaded(_LectureLoaded value),
     TResult allLecturesLoaded(_AllLecturesLoaded value),
     TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1326,6 +1535,7 @@ class _$_Initial implements _Initial {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult failure(),
+    @required TResult fileSelected(String filePath),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     @required TResult allCoursesLoaded(List<String> courseIds),
@@ -1333,6 +1543,7 @@ class _$_Initial implements _Initial {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1345,6 +1556,7 @@ class _$_Initial implements _Initial {
     TResult initial(),
     TResult loading(),
     TResult failure(),
+    TResult fileSelected(String filePath),
     TResult lectureLoaded(LectureEntity lectureEntity),
     TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     TResult allCoursesLoaded(List<String> courseIds),
@@ -1363,6 +1575,7 @@ class _$_Initial implements _Initial {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult failure(_Failure value),
+    @required TResult fileSelected(_FileSelected value),
     @required TResult lectureLoaded(_LectureLoaded value),
     @required TResult allLecturesLoaded(_AllLecturesLoaded value),
     @required TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1370,6 +1583,7 @@ class _$_Initial implements _Initial {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1382,6 +1596,7 @@ class _$_Initial implements _Initial {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult failure(_Failure value),
+    TResult fileSelected(_FileSelected value),
     TResult lectureLoaded(_LectureLoaded value),
     TResult allLecturesLoaded(_AllLecturesLoaded value),
     TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1438,6 +1653,7 @@ class _$_Loading implements _Loading {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult failure(),
+    @required TResult fileSelected(String filePath),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     @required TResult allCoursesLoaded(List<String> courseIds),
@@ -1445,6 +1661,7 @@ class _$_Loading implements _Loading {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1457,6 +1674,7 @@ class _$_Loading implements _Loading {
     TResult initial(),
     TResult loading(),
     TResult failure(),
+    TResult fileSelected(String filePath),
     TResult lectureLoaded(LectureEntity lectureEntity),
     TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     TResult allCoursesLoaded(List<String> courseIds),
@@ -1475,6 +1693,7 @@ class _$_Loading implements _Loading {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult failure(_Failure value),
+    @required TResult fileSelected(_FileSelected value),
     @required TResult lectureLoaded(_LectureLoaded value),
     @required TResult allLecturesLoaded(_AllLecturesLoaded value),
     @required TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1482,6 +1701,7 @@ class _$_Loading implements _Loading {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1494,6 +1714,7 @@ class _$_Loading implements _Loading {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult failure(_Failure value),
+    TResult fileSelected(_FileSelected value),
     TResult lectureLoaded(_LectureLoaded value),
     TResult allLecturesLoaded(_AllLecturesLoaded value),
     TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1550,6 +1771,7 @@ class _$_Failure implements _Failure {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult failure(),
+    @required TResult fileSelected(String filePath),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     @required TResult allCoursesLoaded(List<String> courseIds),
@@ -1557,6 +1779,7 @@ class _$_Failure implements _Failure {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1569,6 +1792,7 @@ class _$_Failure implements _Failure {
     TResult initial(),
     TResult loading(),
     TResult failure(),
+    TResult fileSelected(String filePath),
     TResult lectureLoaded(LectureEntity lectureEntity),
     TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     TResult allCoursesLoaded(List<String> courseIds),
@@ -1587,6 +1811,7 @@ class _$_Failure implements _Failure {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult failure(_Failure value),
+    @required TResult fileSelected(_FileSelected value),
     @required TResult lectureLoaded(_LectureLoaded value),
     @required TResult allLecturesLoaded(_AllLecturesLoaded value),
     @required TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1594,6 +1819,7 @@ class _$_Failure implements _Failure {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1606,6 +1832,7 @@ class _$_Failure implements _Failure {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult failure(_Failure value),
+    TResult fileSelected(_FileSelected value),
     TResult lectureLoaded(_LectureLoaded value),
     TResult allLecturesLoaded(_AllLecturesLoaded value),
     TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1621,6 +1848,153 @@ class _$_Failure implements _Failure {
 
 abstract class _Failure implements LectureState {
   const factory _Failure() = _$_Failure;
+}
+
+/// @nodoc
+abstract class _$FileSelectedCopyWith<$Res> {
+  factory _$FileSelectedCopyWith(
+          _FileSelected value, $Res Function(_FileSelected) then) =
+      __$FileSelectedCopyWithImpl<$Res>;
+  $Res call({String filePath});
+}
+
+/// @nodoc
+class __$FileSelectedCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
+    implements _$FileSelectedCopyWith<$Res> {
+  __$FileSelectedCopyWithImpl(
+      _FileSelected _value, $Res Function(_FileSelected) _then)
+      : super(_value, (v) => _then(v as _FileSelected));
+
+  @override
+  _FileSelected get _value => super._value as _FileSelected;
+
+  @override
+  $Res call({
+    Object filePath = freezed,
+  }) {
+    return _then(_FileSelected(
+      filePath: filePath == freezed ? _value.filePath : filePath as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_FileSelected implements _FileSelected {
+  const _$_FileSelected({@required this.filePath}) : assert(filePath != null);
+
+  @override
+  final String filePath;
+
+  @override
+  String toString() {
+    return 'LectureState.fileSelected(filePath: $filePath)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _FileSelected &&
+            (identical(other.filePath, filePath) ||
+                const DeepCollectionEquality()
+                    .equals(other.filePath, filePath)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(filePath);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FileSelectedCopyWith<_FileSelected> get copyWith =>
+      __$FileSelectedCopyWithImpl<_FileSelected>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initial(),
+    @required TResult loading(),
+    @required TResult failure(),
+    @required TResult fileSelected(String filePath),
+    @required TResult lectureLoaded(LectureEntity lectureEntity),
+    @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    @required TResult allCoursesLoaded(List<String> courseIds),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(failure != null);
+    assert(fileSelected != null);
+    assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
+    return fileSelected(filePath);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initial(),
+    TResult loading(),
+    TResult failure(),
+    TResult fileSelected(String filePath),
+    TResult lectureLoaded(LectureEntity lectureEntity),
+    TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
+    TResult allCoursesLoaded(List<String> courseIds),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (fileSelected != null) {
+      return fileSelected(filePath);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initial(_Initial value),
+    @required TResult loading(_Loading value),
+    @required TResult failure(_Failure value),
+    @required TResult fileSelected(_FileSelected value),
+    @required TResult lectureLoaded(_LectureLoaded value),
+    @required TResult allLecturesLoaded(_AllLecturesLoaded value),
+    @required TResult allCoursesLoaded(_AllCoursesLoaded value),
+  }) {
+    assert(initial != null);
+    assert(loading != null);
+    assert(failure != null);
+    assert(fileSelected != null);
+    assert(lectureLoaded != null);
+    assert(allLecturesLoaded != null);
+    assert(allCoursesLoaded != null);
+    return fileSelected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initial(_Initial value),
+    TResult loading(_Loading value),
+    TResult failure(_Failure value),
+    TResult fileSelected(_FileSelected value),
+    TResult lectureLoaded(_LectureLoaded value),
+    TResult allLecturesLoaded(_AllLecturesLoaded value),
+    TResult allCoursesLoaded(_AllCoursesLoaded value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (fileSelected != null) {
+      return fileSelected(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FileSelected implements LectureState {
+  const factory _FileSelected({@required String filePath}) = _$_FileSelected;
+
+  String get filePath;
+  @JsonKey(ignore: true)
+  _$FileSelectedCopyWith<_FileSelected> get copyWith;
 }
 
 /// @nodoc
@@ -1691,6 +2065,7 @@ class _$_LectureLoaded implements _LectureLoaded {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult failure(),
+    @required TResult fileSelected(String filePath),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     @required TResult allCoursesLoaded(List<String> courseIds),
@@ -1698,6 +2073,7 @@ class _$_LectureLoaded implements _LectureLoaded {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1710,6 +2086,7 @@ class _$_LectureLoaded implements _LectureLoaded {
     TResult initial(),
     TResult loading(),
     TResult failure(),
+    TResult fileSelected(String filePath),
     TResult lectureLoaded(LectureEntity lectureEntity),
     TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     TResult allCoursesLoaded(List<String> courseIds),
@@ -1728,6 +2105,7 @@ class _$_LectureLoaded implements _LectureLoaded {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult failure(_Failure value),
+    @required TResult fileSelected(_FileSelected value),
     @required TResult lectureLoaded(_LectureLoaded value),
     @required TResult allLecturesLoaded(_AllLecturesLoaded value),
     @required TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1735,6 +2113,7 @@ class _$_LectureLoaded implements _LectureLoaded {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1747,6 +2126,7 @@ class _$_LectureLoaded implements _LectureLoaded {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult failure(_Failure value),
+    TResult fileSelected(_FileSelected value),
     TResult lectureLoaded(_LectureLoaded value),
     TResult allLecturesLoaded(_AllLecturesLoaded value),
     TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1838,6 +2218,7 @@ class _$_AllLecturesLoaded implements _AllLecturesLoaded {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult failure(),
+    @required TResult fileSelected(String filePath),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     @required TResult allCoursesLoaded(List<String> courseIds),
@@ -1845,6 +2226,7 @@ class _$_AllLecturesLoaded implements _AllLecturesLoaded {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1857,6 +2239,7 @@ class _$_AllLecturesLoaded implements _AllLecturesLoaded {
     TResult initial(),
     TResult loading(),
     TResult failure(),
+    TResult fileSelected(String filePath),
     TResult lectureLoaded(LectureEntity lectureEntity),
     TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     TResult allCoursesLoaded(List<String> courseIds),
@@ -1875,6 +2258,7 @@ class _$_AllLecturesLoaded implements _AllLecturesLoaded {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult failure(_Failure value),
+    @required TResult fileSelected(_FileSelected value),
     @required TResult lectureLoaded(_LectureLoaded value),
     @required TResult allLecturesLoaded(_AllLecturesLoaded value),
     @required TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1882,6 +2266,7 @@ class _$_AllLecturesLoaded implements _AllLecturesLoaded {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -1894,6 +2279,7 @@ class _$_AllLecturesLoaded implements _AllLecturesLoaded {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult failure(_Failure value),
+    TResult fileSelected(_FileSelected value),
     TResult lectureLoaded(_LectureLoaded value),
     TResult allLecturesLoaded(_AllLecturesLoaded value),
     TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -1983,6 +2369,7 @@ class _$_AllCoursesLoaded implements _AllCoursesLoaded {
     @required TResult initial(),
     @required TResult loading(),
     @required TResult failure(),
+    @required TResult fileSelected(String filePath),
     @required TResult lectureLoaded(LectureEntity lectureEntity),
     @required TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     @required TResult allCoursesLoaded(List<String> courseIds),
@@ -1990,6 +2377,7 @@ class _$_AllCoursesLoaded implements _AllCoursesLoaded {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -2002,6 +2390,7 @@ class _$_AllCoursesLoaded implements _AllCoursesLoaded {
     TResult initial(),
     TResult loading(),
     TResult failure(),
+    TResult fileSelected(String filePath),
     TResult lectureLoaded(LectureEntity lectureEntity),
     TResult allLecturesLoaded(List<LectureEntity> lecturesEntities),
     TResult allCoursesLoaded(List<String> courseIds),
@@ -2020,6 +2409,7 @@ class _$_AllCoursesLoaded implements _AllCoursesLoaded {
     @required TResult initial(_Initial value),
     @required TResult loading(_Loading value),
     @required TResult failure(_Failure value),
+    @required TResult fileSelected(_FileSelected value),
     @required TResult lectureLoaded(_LectureLoaded value),
     @required TResult allLecturesLoaded(_AllLecturesLoaded value),
     @required TResult allCoursesLoaded(_AllCoursesLoaded value),
@@ -2027,6 +2417,7 @@ class _$_AllCoursesLoaded implements _AllCoursesLoaded {
     assert(initial != null);
     assert(loading != null);
     assert(failure != null);
+    assert(fileSelected != null);
     assert(lectureLoaded != null);
     assert(allLecturesLoaded != null);
     assert(allCoursesLoaded != null);
@@ -2039,6 +2430,7 @@ class _$_AllCoursesLoaded implements _AllCoursesLoaded {
     TResult initial(_Initial value),
     TResult loading(_Loading value),
     TResult failure(_Failure value),
+    TResult fileSelected(_FileSelected value),
     TResult lectureLoaded(_LectureLoaded value),
     TResult allLecturesLoaded(_AllLecturesLoaded value),
     TResult allCoursesLoaded(_AllCoursesLoaded value),

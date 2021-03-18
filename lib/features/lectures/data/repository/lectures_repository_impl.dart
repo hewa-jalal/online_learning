@@ -35,7 +35,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
       final lecture = await remoteDataSource.uploadLecture(
         fileUrl: fileUrl,
         user: user,
-        title: title,
+        lectureTitle: title,
         description: description,
         courseTitle: courseTitle,
       );

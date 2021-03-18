@@ -44,26 +44,21 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         yield LectureState.initial();
       },
       uploadLecture: (e) async* {
-        final result = await FilePicker.platform.pickFiles();
-        if (result != null) {
-          yield LectureState.loading();
+        yield LectureState.loading();
 
-          final either = await uploadLecture(
-            LectureParams(
-              fileUrl: result.files.single.path,
-              title: e.title,
-              description: e.description,
-              user: e.user,
-              courseTitle: e.courseTitle,
-            ),
-          );
-          // yield either.fold(
-          //   (l) => LectureState.failure(),
-          //   (r) => LectureState.lectureLoaded(lectureEntity: r),
-          // );
-        } else {
-          print('filePicker result is null');
-        }
+        final either = await uploadLecture(
+          LectureParams(
+            fileUrl: e.filePath,
+            title: e.title,
+            description: e.description,
+            user: e.user,
+            courseTitle: e.courseTitle,
+          ),
+        );
+        yield either.fold(
+          (l) => LectureState.failure(),
+          (r) => LectureState.lectureLoaded(lectureEntity: r),
+        );
       },
       downloadLecture: (e) async* {
         final either = await downloadLecture(LectureParams(fileUrl: e.fileUrl));
@@ -101,6 +96,10 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
           (failure) => LectureState.failure(),
           (courseIds) => LectureState.allCoursesLoaded(courseIds: courseIds),
         );
+      },
+      selectFile: (e) async* {
+        final result = await FilePicker.platform.pickFiles();
+        yield LectureState.fileSelected(filePath: result.files.single.path);
       },
     );
   }

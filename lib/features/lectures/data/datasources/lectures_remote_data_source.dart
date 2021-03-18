@@ -20,13 +20,14 @@ abstract class LecturesRemoteDataSource {
     @required String fileUrl,
     @required UserModel user,
     @required String courseTitle,
-    String title,
+    String lectureTitle,
     String description,
   });
 
   Future<List<LectureModel>> getAllLectures();
-  Future<List<LectureModel>> getAllLecturesByCourse(
-      {@required String courseTitle});
+  Future<List<LectureModel>> getAllLecturesByCourse({
+    @required String courseTitle,
+  });
   Future<List<String>> getAllCoursesByUserId({@required String userId});
   Future<Unit> createCourse({@required String courseTitle});
 }
@@ -62,18 +63,21 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     @required String fileUrl,
     @required UserModel user,
     @required String courseTitle,
-    String title,
+    String lectureTitle,
     String description,
   }) async {
     final lecture = LectureModel(
       fileUrl: fileUrl,
-      title: title,
+      title: lectureTitle,
       description: description,
     );
-    lectureTask.task = storageRef.lecturesStorage(title).putFile(File(fileUrl));
+    lectureTask.task =
+        storageRef.lecturesStorage(lectureTitle).putFile(File(fileUrl));
     final doc = userCoursesCollection.doc(courseTitle);
-    doc.collection('lectures').add(lecture.toDocument());
-    doc.set({'user_id': user.id}, SetOptions(merge: true));
+    // adding lecture to document
+    doc.collection('lectures').doc(lectureTitle).set(lecture.toDocument());
+    // adding user id that uploaded the lecture
+    doc.set({'uploader_id': user.id}, SetOptions(merge: true));
 
     return lecture;
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
+import 'package:mime/mime.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
@@ -21,11 +23,11 @@ class LectureFormPage extends StatefulWidget {
 }
 
 class _LectureFormPageState extends State<LectureFormPage> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<LectureBloc>().add(LectureEvent.started());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   context.read<LectureBloc>().add(LectureEvent.started());
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +49,6 @@ class _LectureFormPageState extends State<LectureFormPage> {
                 user: widget.user,
                 courseTitle: widget.courseTitle,
               ),
-              // loading: (e) => LoadingWidget(),
-              // orElse: () => FlutterLogo(),
             ),
           ),
         );
@@ -185,30 +185,86 @@ class _InitialWidgetState extends State<InitialWidget> {
   @override
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
-    return Column(
-      children: [
-        TextField(
-          decoration: InputDecoration(hintText: 'Enter title'),
-          onChanged: (val) => title = val.trim(),
-        ),
-        TextField(
-          decoration: InputDecoration(hintText: 'Enter description'),
-          onChanged: (val) => description = val.trim(),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            lectureBloc.add(
-              LectureEvent.uploadLecture(
-                user: user,
-                title: title,
-                description: description,
-                courseTitle: widget.courseTitle,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'title*',
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green, width: 2.0),
               ),
-            );
-          },
-          child: Text('Upload Lecture'),
-        ),
-      ],
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1.4),
+              ),
+            ),
+            onChanged: (val) => title = val.trim(),
+          ),
+          SizedBox(height: 20),
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'description',
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green, width: 2.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1.4),
+              ),
+            ),
+            onChanged: (val) => description = val.trim(),
+          ),
+          SizedBox(height: 20),
+          BlocBuilder<LectureBloc, LectureState>(
+            builder: (context, state) {
+              return state.maybeMap(
+                fileSelected: (fileState) {
+                  final fileName = fileState.filePath.split('/').last;
+                  final fileType = lookupMimeType(fileName);
+                  // print('endsWith --> ' + fileType.endsWith('pdf').toString());
+                  // print('mime -----> ' + lookupMimeType(fileName));
+                  return Column(
+                    children: [
+                      ListTile(
+                        enabled: true,
+                        leading: Icon(MaterialCommunityIcons.file_pdf),
+                        title: Text(fileName),
+                        trailing: IconButton(
+                          onPressed: () => context
+                              .read<LectureBloc>()
+                              .add(LectureEvent.started()),
+                          icon: Icon(MaterialCommunityIcons.close_box),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          lectureBloc.add(
+                            LectureEvent.uploadLecture(
+                              filePath: fileState.filePath,
+                              user: user,
+                              courseTitle: widget.courseTitle,
+                              title: title,
+                              description: description,
+                            ),
+                          );
+                        },
+                        child: Text('Upload Lecture'),
+                      ),
+                    ],
+                  );
+                },
+                orElse: () => ElevatedButton(
+                  onPressed: () {
+                    lectureBloc.add(LectureEvent.selectFile());
+                  },
+                  child: Text('Select Lecture'),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

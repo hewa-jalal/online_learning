@@ -16,14 +16,12 @@ class LecturesPage extends StatefulWidget {
 
 class _LecturesPageState extends State<LecturesPage> {
   @override
-  void initState() {
-    super.initState();
-    context.read<LectureBloc>().add(
-        LectureEvent.getAllLecturesByCourse(courseTitle: widget.courseTitle));
-  }
-
-  @override
   Widget build(BuildContext context) {
+    if (ModalRoute.of(context).isCurrent) {
+      context.read<LectureBloc>().add(
+          LectureEvent.getAllLecturesByCourse(courseTitle: widget.courseTitle));
+    }
+
     return SafeArea(
       child: Scaffold(
         body: BlocBuilder<LectureBloc, LectureState>(
@@ -48,7 +46,7 @@ class _LecturesPageState extends State<LecturesPage> {
               user: UserModel(id: '12'),
               courseTitle: widget.courseTitle,
             ),
-          ),
+          ).then((value) => setState(() {})),
         ),
       ),
     );

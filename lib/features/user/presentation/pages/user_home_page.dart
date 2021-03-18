@@ -25,9 +25,12 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
   @override
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
-    lectureBloc.add(LectureEvent.getAllCoursesByUserId(
-      userId: widget.user.id,
-    ));
+    if (ModalRoute.of(context).isCurrent) {
+      lectureBloc.add(LectureEvent.getAllCoursesByUserId(
+        userId: widget.user.id,
+      ));
+    }
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

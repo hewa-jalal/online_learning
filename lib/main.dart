@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc_observer.dart';
+import 'features/user/presentation/bloc/user_auth_bloc.dart';
 import 'features/user/presentation/pages/app_widget.dart';
 import 'package:online_learning/injection.dart' as di;
+import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
+import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
+import 'package:online_learning/features/user/domain/usecase/get_user.dart';
+import 'package:online_learning/features/user/domain/usecase/get_users.dart';
+import 'package:online_learning/features/user/domain/usecase/update_user_time.dart';
+import 'package:online_learning/features/user/domain/usecase/user_online_status.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +22,22 @@ void main() async {
   // await observer.connect();
   // Bloc.observer = observer;
 
-  di.configureInjection();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  await di.configureInjection();
+
+  runApp(
+    BlocProvider(
+      create: (_) => UserAuthBloc(
+        getUser: GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
+        getAllUsers:
+            GetAllUsers(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
+        updateUserTime: UpdateUserTime(
+          UserRepositoryImpl(FirebaseUserRemoteDataSource()),
+        ),
+        userOnlineStatus: UserOnlineStatus(
+            UserRepositoryImpl(FirebaseUserRemoteDataSource())),
+      ),
+      child: MyApp(),
+    ),
+  );
 }

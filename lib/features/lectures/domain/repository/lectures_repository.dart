@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:online_learning/features/lectures/domain/entities/lecture_entity.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 
 abstract class LecturesRepository {
   Future<Either<Failure, LectureEntity>> downloadLecture(String fileUrl);

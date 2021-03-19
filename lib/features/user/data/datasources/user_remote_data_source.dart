@@ -1,14 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/user/core/errors/exceptions.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 
 abstract class UserRemoteDataSource {
   Future<UserModel> getUser(int id);
-  Future<List<UserEntity>> getUsers();
+  Future<void> updateUserTime(int id);
+  Future<void> userOnlineStatus(int id, bool isOnline);
+  Future<List<UserEntity>> getAllUsers();
 }
 
-class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
+@LazySingleton(as: UserRemoteDataSource)
+class FirebaseUserRemoteDataSource extends UserRemoteDataSource {
   final users = FirebaseFirestore.instance.collection('users');
 
   @override
@@ -22,10 +26,30 @@ class FirebaseUserRemoteDataSource implements UserRemoteDataSource {
   }
 
   @override
-  Future<List<UserEntity>> getUsers() async {
+  Future<List<UserEntity>> getAllUsers() async {
     final querySnapshot = await users.get();
     return querySnapshot.docs
         .map((doc) => UserModel.fromSnapshot(doc))
         .toList();
+  }
+
+  @override
+  Future<void> updateUserTime(int id) async {
+    await users.doc(id.toString()).set(
+      {
+        'lastSeenInEpoch': DateTime.now().millisecondsSinceEpoch,
+      },
+      SetOptions(merge: true),
+    );
+  }
+
+  @override
+  Future<void> userOnlineStatus(int id, bool isOnline) async {
+    await users.doc(id.toString()).set(
+      {
+        'isOnline': isOnline,
+      },
+      SetOptions(merge: true),
+    );
   }
 }

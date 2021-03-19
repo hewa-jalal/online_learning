@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form_page.dart';
 import 'package:online_learning/features/lectures/presentation/UI/widgets/lecture_card.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 
 class LecturesPage extends StatefulWidget {
   final String courseTitle;
@@ -43,7 +43,10 @@ class _LecturesPageState extends State<LecturesPage> {
           child: Icon(Icons.picture_as_pdf),
           onPressed: () => Get.to(
             () => LectureFormPage(
-              user: UserModel(id: '12'),
+              user: UserModel(
+                id: '12',
+                lastSeenInEpoch: DateTime.now().millisecondsSinceEpoch,
+              ),
               courseTitle: widget.courseTitle,
             ),
           ).then((value) => setState(() {})),

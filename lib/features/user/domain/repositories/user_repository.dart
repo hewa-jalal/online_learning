@@ -4,5 +4,7 @@ import 'package:online_learning/features/user/domain/entites/user.dart';
 
 abstract class UserRepository {
   Future<Either<Failure, UserEntity>> getUser(int id);
-  Future<Either<Failure, List<UserEntity>>> getUsers();
+  Future<Either<Failure, Unit>> updateUserTime(int id);
+  Future<Either<Failure, Unit>> userOnlineStatus(int id, bool isOnline);
+  Future<Either<Failure, List<UserEntity>>> getAllUsers();
 }

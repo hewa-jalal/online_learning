@@ -15,15 +15,15 @@
 
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
+import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 
 import 'injection.config.dart';
 
 final sl = GetIt.I;
 
 Future<void> init() async {
-  sl.registerLazySingleton<LecturesRemoteDataSource>(
-    () => FirebaseLecturesRemoteDataSource(),
+  sl.registerFactory(
+    () => UserAuthBloc(getUser: sl(), getAllUsers: sl(), updateUserTime: sl()),
   );
 }
 

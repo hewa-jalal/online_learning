@@ -11,7 +11,7 @@ import 'package:injectable/injectable.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/lectures/data/models/lecture_model.dart';
 
-import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class LecturesRemoteDataSource {

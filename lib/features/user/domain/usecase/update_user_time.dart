@@ -4,17 +4,16 @@ import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/core/params/user_params.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/domain/repositories/user_repository.dart';
 
 @lazySingleton
-class GetUser extends UseCase<UserEntity, UserParam> {
+class UpdateUserTime extends UseCase<Unit, UserParam> {
   final UserRepository userRepository;
 
-  GetUser(this.userRepository);
+  UpdateUserTime(this.userRepository);
 
   @override
-  Future<Either<Failure, UserEntity>> call(UserParam params) {
-    return userRepository.getUser(params.id);
+  Future<Either<Failure, Unit>> call(UserParam params) {
+    return userRepository.updateUserTime(params.id);
   }
 }

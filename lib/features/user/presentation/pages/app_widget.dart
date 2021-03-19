@@ -16,15 +16,41 @@ import 'package:online_learning/features/lectures/domain/usecases/upload_lecture
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
 import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
 import 'package:online_learning/features/user/domain/usecase/get_user.dart';
 import 'package:online_learning/features/user/domain/usecase/get_users.dart';
+import 'package:online_learning/features/user/domain/usecase/update_user_time.dart';
+import 'package:online_learning/features/user/domain/usecase/user_online_status.dart';
+
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
-import 'package:online_learning/features/user/presentation/pages/user_home_page.dart';
 import 'package:online_learning/injection.dart';
 
-class MyApp extends StatelessWidget {
+import 'get_user_page.dart';
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed)
+      context
+          .read<UserAuthBloc>()
+          .add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
+    else
+      context
+          .read<UserAuthBloc>()
+          .add(UserAuthEvent.updateUserOnlineStatus(isOnline: false));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -32,14 +58,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => sl<ChatBloc>(),
         ),
-        BlocProvider(
-          create: (_) => UserAuthBloc(
-            getUser:
-                GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
-            getAllUsers:
-                GetAllUsers(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
-          ),
-        ),
+        // BlocProvider(
+        //   create: (_) => sl<UserAuthBloc>(),
+        // ),
+
         BlocProvider(
           create: (_) => LectureBloc(
             downloadLecture: DownloadLecture(
@@ -85,7 +107,7 @@ class MyApp extends StatelessWidget {
         builder: () => GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home: Scaffold(
-            body: UserHomePage(user: UserModel(id: '12')),
+            body: UserForm(),
           ),
         ),
       ),

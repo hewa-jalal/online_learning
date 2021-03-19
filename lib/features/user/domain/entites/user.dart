@@ -7,6 +7,7 @@ class UserEntity extends Equatable {
   final String role;
   final String dept;
   final int stage;
+  final int lastSeenInEpoch;
 
   const UserEntity({
     @required this.id,
@@ -14,6 +15,7 @@ class UserEntity extends Equatable {
     @required this.stage,
     @required this.dept,
     @required this.fullName,
+    @required this.lastSeenInEpoch,
   });
 
   @override

@@ -5,7 +5,7 @@ import 'package:online_learning/features/lectures/domain/entities/lecture_entity
 import 'package:dartz/dartz.dart';
 import 'package:online_learning/features/lectures/domain/repository/lectures_repository.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 
 @LazySingleton(as: LecturesRepository)
 class LecturesRepositoryImpl extends LecturesRepository {

@@ -166,28 +166,28 @@ class _UsersList extends StatelessWidget {
     context.read<UserAuthBloc>().add(UserAuthEvent.getAllUsers());
     return BlocBuilder<UserAuthBloc, UserAuthState>(
       builder: (context, state) {
-        return state.maybeMap(
-          usersLoaded: (usersState) {
-            final users = usersState.users;
-            return Material(
-              child: ListView.separated(
-                separatorBuilder: (context, index) => Divider(
-                  thickness: 1.5,
-                  color: Colors.grey[700],
-                ),
-                itemCount: users.length,
-                itemBuilder: (context, index) {
-                  final user = users[index];
-                  return ListTile(
-                    leading: CircleAvatar(child: Text(user.fullName[0])),
-                    title: Text(user.fullName),
-                  );
-                },
-              ),
-            );
-          },
-          orElse: () => FlutterLogo(),
-        );
+        // return state.maybeMap(
+        //   usersLoaded: (usersState) {
+        //     final users = usersState.users;
+        //     return Material(
+        //       child: ListView.separated(
+        //         separatorBuilder: (context, index) => Divider(
+        //           thickness: 1.5,
+        //           color: Colors.grey[700],
+        //         ),
+        //         itemCount: users.length,
+        //         itemBuilder: (context, index) {
+        //           final user = users[index];
+        //           return ListTile(
+        //             leading: CircleAvatar(child: Text(user.fullName[0])),
+        //             title: Text(user.fullName),
+        //           );
+        //         },
+        //       ),
+        //     );
+        //   },
+        //   orElse: () => FlutterLogo(),
+        // );
       },
     );
   }

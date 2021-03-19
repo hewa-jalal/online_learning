@@ -8,6 +8,7 @@ class UserModel extends UserEntity {
   final String role;
   final String dept;
   final int stage;
+  final int lastSeenInEpoch;
 
   const UserModel({
     @required this.id,
@@ -15,12 +16,14 @@ class UserModel extends UserEntity {
     @required this.stage,
     @required this.dept,
     @required this.fullName,
+    @required this.lastSeenInEpoch,
   }) : super(
           fullName: fullName,
           id: id,
           role: role,
           dept: dept,
           stage: stage,
+          lastSeenInEpoch: lastSeenInEpoch,
         );
 
   Map<String, dynamic> toDocument() {
@@ -29,17 +32,20 @@ class UserModel extends UserEntity {
       'dept': dept,
       'stage': stage,
       'fullName': fullName,
+      'lastSeenInEpoch': lastSeenInEpoch,
     };
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot snap) {
     final snapData = snap.data();
+
     return UserModel(
       id: snap.id,
       fullName: snapData['fullName'],
       role: snapData['role'],
       dept: snapData['dept'],
       stage: snapData['stage'],
+      lastSeenInEpoch: snapData['lastSeenInEpoch'],
     );
   }
 
@@ -50,6 +56,7 @@ class UserModel extends UserEntity {
       role: json['role'],
       dept: json['dept'],
       stage: json['stage'],
+      lastSeenInEpoch: json['lastSeenInEpoch'],
     );
   }
 }

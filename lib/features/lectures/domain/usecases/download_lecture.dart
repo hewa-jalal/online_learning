@@ -6,7 +6,7 @@ import 'package:online_learning/features/lectures/domain/entities/lecture_entity
 import 'package:online_learning/features/lectures/domain/repository/lectures_repository.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 
 @lazySingleton
 class DownloadLecture extends UseCase<LectureEntity, LectureParams> {

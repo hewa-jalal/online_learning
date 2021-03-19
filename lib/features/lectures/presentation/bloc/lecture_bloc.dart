@@ -12,7 +12,7 @@ import 'package:online_learning/features/lectures/domain/usecases/get_all_lectur
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
-import 'package:online_learning/features/user/data/models/user_mode.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 
 part 'lecture_event.dart';
 part 'lecture_state.dart';

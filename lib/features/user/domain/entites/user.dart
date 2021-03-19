@@ -8,6 +8,7 @@ class UserEntity extends Equatable {
   final String dept;
   final int stage;
   final int lastSeenInEpoch;
+  final bool isOnline;
 
   const UserEntity({
     @required this.id,
@@ -16,6 +17,7 @@ class UserEntity extends Equatable {
     @required this.dept,
     @required this.fullName,
     @required this.lastSeenInEpoch,
+    @required this.isOnline,
   });
 
   @override

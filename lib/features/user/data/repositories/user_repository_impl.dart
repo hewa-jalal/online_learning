@@ -40,4 +40,14 @@ class UserRepositoryImpl implements UserRepository {
       return left(UserNotFoundFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> userOnlineStatus(int id, bool isOnline) async {
+    try {
+      await userRemoteDataSource.userOnlineStatus(id, isOnline);
+      return right(unit);
+    } on UserNotFoundException {
+      return left(UserNotFoundFailure());
+    }
+  }
 }

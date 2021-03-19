@@ -9,6 +9,7 @@ import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class LectureFormPage extends StatefulWidget {
   final UserEntity user;
@@ -198,8 +199,12 @@ class _InitialWidgetState extends State<InitialWidget> {
         //       'userState ===> ' + userState.user.lastSeenInEpoch.toString()),
         //   orElse: () => print('lecture_form_page => orElse'),
         // );
+        var date = DateTime.fromMillisecondsSinceEpoch(state.lastSeenInEpoch);
+        var ago = timeago.format(date);
         print('come on copyWith: => ' + state.id.toString());
         print('come on copyWith name: => ' + state.fullName);
+        print('come on copyWith ago: => ' + ago);
+
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(

@@ -7,6 +7,7 @@ import 'package:online_learning/features/user/domain/entites/user.dart';
 abstract class UserRemoteDataSource {
   Future<UserModel> getUser(int id);
   Future<void> updateUserTime(int id);
+  Future<void> userOnlineStatus(int id, bool isOnline);
   Future<List<UserEntity>> getAllUsers();
 }
 
@@ -37,6 +38,16 @@ class FirebaseUserRemoteDataSource extends UserRemoteDataSource {
     await users.doc(id.toString()).set(
       {
         'lastSeenInEpoch': DateTime.now().millisecondsSinceEpoch,
+      },
+      SetOptions(merge: true),
+    );
+  }
+
+  @override
+  Future<void> userOnlineStatus(int id, bool isOnline) async {
+    await users.doc(id.toString()).set(
+      {
+        'isOnline': isOnline,
       },
       SetOptions(merge: true),
     );

@@ -24,6 +24,13 @@ class _$UserAuthEventTearOff {
   }
 
 // ignore: unused_element
+  _UpdateUserOnlineStatus updateUserOnlineStatus({@required bool isOnline}) {
+    return _UpdateUserOnlineStatus(
+      isOnline: isOnline,
+    );
+  }
+
+// ignore: unused_element
   _GetUserById getUserById({@required int id}) {
     return _GetUserById(
       id: id,
@@ -46,6 +53,7 @@ mixin _$UserAuthEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult updateUserTime(),
+    @required TResult updateUserOnlineStatus(bool isOnline),
     @required TResult getUserById(int id),
     @required TResult getAllUsers(),
   });
@@ -53,6 +61,7 @@ mixin _$UserAuthEvent {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult updateUserTime(),
+    TResult updateUserOnlineStatus(bool isOnline),
     TResult getUserById(int id),
     TResult getAllUsers(),
     @required TResult orElse(),
@@ -61,6 +70,7 @@ mixin _$UserAuthEvent {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult updateUserTime(_UpdateUserTime value),
+    @required TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     @required TResult getUserById(_GetUserById value),
     @required TResult getAllUsers(_GetAllUsers value),
   });
@@ -68,6 +78,7 @@ mixin _$UserAuthEvent {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult updateUserTime(_UpdateUserTime value),
+    TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     TResult getUserById(_GetUserById value),
     TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
@@ -129,11 +140,13 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult updateUserTime(),
+    @required TResult updateUserOnlineStatus(bool isOnline),
     @required TResult getUserById(int id),
     @required TResult getAllUsers(),
   }) {
     assert(started != null);
     assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
     assert(getUserById != null);
     assert(getAllUsers != null);
     return started();
@@ -144,6 +157,7 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult updateUserTime(),
+    TResult updateUserOnlineStatus(bool isOnline),
     TResult getUserById(int id),
     TResult getAllUsers(),
     @required TResult orElse(),
@@ -160,11 +174,13 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult updateUserTime(_UpdateUserTime value),
+    @required TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     @required TResult getUserById(_GetUserById value),
     @required TResult getAllUsers(_GetAllUsers value),
   }) {
     assert(started != null);
     assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
     assert(getUserById != null);
     assert(getAllUsers != null);
     return started(this);
@@ -175,6 +191,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult updateUserTime(_UpdateUserTime value),
+    TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     TResult getUserById(_GetUserById value),
     TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
@@ -232,11 +249,13 @@ class _$_UpdateUserTime implements _UpdateUserTime {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult updateUserTime(),
+    @required TResult updateUserOnlineStatus(bool isOnline),
     @required TResult getUserById(int id),
     @required TResult getAllUsers(),
   }) {
     assert(started != null);
     assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
     assert(getUserById != null);
     assert(getAllUsers != null);
     return updateUserTime();
@@ -247,6 +266,7 @@ class _$_UpdateUserTime implements _UpdateUserTime {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult updateUserTime(),
+    TResult updateUserOnlineStatus(bool isOnline),
     TResult getUserById(int id),
     TResult getAllUsers(),
     @required TResult orElse(),
@@ -263,11 +283,13 @@ class _$_UpdateUserTime implements _UpdateUserTime {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult updateUserTime(_UpdateUserTime value),
+    @required TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     @required TResult getUserById(_GetUserById value),
     @required TResult getAllUsers(_GetAllUsers value),
   }) {
     assert(started != null);
     assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
     assert(getUserById != null);
     assert(getAllUsers != null);
     return updateUserTime(this);
@@ -278,6 +300,7 @@ class _$_UpdateUserTime implements _UpdateUserTime {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult updateUserTime(_UpdateUserTime value),
+    TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     TResult getUserById(_GetUserById value),
     TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
@@ -292,6 +315,145 @@ class _$_UpdateUserTime implements _UpdateUserTime {
 
 abstract class _UpdateUserTime implements UserAuthEvent {
   const factory _UpdateUserTime() = _$_UpdateUserTime;
+}
+
+/// @nodoc
+abstract class _$UpdateUserOnlineStatusCopyWith<$Res> {
+  factory _$UpdateUserOnlineStatusCopyWith(_UpdateUserOnlineStatus value,
+          $Res Function(_UpdateUserOnlineStatus) then) =
+      __$UpdateUserOnlineStatusCopyWithImpl<$Res>;
+  $Res call({bool isOnline});
+}
+
+/// @nodoc
+class __$UpdateUserOnlineStatusCopyWithImpl<$Res>
+    extends _$UserAuthEventCopyWithImpl<$Res>
+    implements _$UpdateUserOnlineStatusCopyWith<$Res> {
+  __$UpdateUserOnlineStatusCopyWithImpl(_UpdateUserOnlineStatus _value,
+      $Res Function(_UpdateUserOnlineStatus) _then)
+      : super(_value, (v) => _then(v as _UpdateUserOnlineStatus));
+
+  @override
+  _UpdateUserOnlineStatus get _value => super._value as _UpdateUserOnlineStatus;
+
+  @override
+  $Res call({
+    Object isOnline = freezed,
+  }) {
+    return _then(_UpdateUserOnlineStatus(
+      isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_UpdateUserOnlineStatus implements _UpdateUserOnlineStatus {
+  const _$_UpdateUserOnlineStatus({@required this.isOnline})
+      : assert(isOnline != null);
+
+  @override
+  final bool isOnline;
+
+  @override
+  String toString() {
+    return 'UserAuthEvent.updateUserOnlineStatus(isOnline: $isOnline)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateUserOnlineStatus &&
+            (identical(other.isOnline, isOnline) ||
+                const DeepCollectionEquality()
+                    .equals(other.isOnline, isOnline)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isOnline);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateUserOnlineStatusCopyWith<_UpdateUserOnlineStatus> get copyWith =>
+      __$UpdateUserOnlineStatusCopyWithImpl<_UpdateUserOnlineStatus>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult updateUserTime(),
+    @required TResult updateUserOnlineStatus(bool isOnline),
+    @required TResult getUserById(int id),
+    @required TResult getAllUsers(),
+  }) {
+    assert(started != null);
+    assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
+    assert(getUserById != null);
+    assert(getAllUsers != null);
+    return updateUserOnlineStatus(isOnline);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult updateUserTime(),
+    TResult updateUserOnlineStatus(bool isOnline),
+    TResult getUserById(int id),
+    TResult getAllUsers(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateUserOnlineStatus != null) {
+      return updateUserOnlineStatus(isOnline);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult updateUserTime(_UpdateUserTime value),
+    @required TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
+    @required TResult getUserById(_GetUserById value),
+    @required TResult getAllUsers(_GetAllUsers value),
+  }) {
+    assert(started != null);
+    assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
+    assert(getUserById != null);
+    assert(getAllUsers != null);
+    return updateUserOnlineStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult updateUserTime(_UpdateUserTime value),
+    TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
+    TResult getUserById(_GetUserById value),
+    TResult getAllUsers(_GetAllUsers value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateUserOnlineStatus != null) {
+      return updateUserOnlineStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateUserOnlineStatus implements UserAuthEvent {
+  const factory _UpdateUserOnlineStatus({@required bool isOnline}) =
+      _$_UpdateUserOnlineStatus;
+
+  bool get isOnline;
+  @JsonKey(ignore: true)
+  _$UpdateUserOnlineStatusCopyWith<_UpdateUserOnlineStatus> get copyWith;
 }
 
 /// @nodoc
@@ -356,11 +518,13 @@ class _$_GetUserById implements _GetUserById {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult updateUserTime(),
+    @required TResult updateUserOnlineStatus(bool isOnline),
     @required TResult getUserById(int id),
     @required TResult getAllUsers(),
   }) {
     assert(started != null);
     assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
     assert(getUserById != null);
     assert(getAllUsers != null);
     return getUserById(id);
@@ -371,6 +535,7 @@ class _$_GetUserById implements _GetUserById {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult updateUserTime(),
+    TResult updateUserOnlineStatus(bool isOnline),
     TResult getUserById(int id),
     TResult getAllUsers(),
     @required TResult orElse(),
@@ -387,11 +552,13 @@ class _$_GetUserById implements _GetUserById {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult updateUserTime(_UpdateUserTime value),
+    @required TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     @required TResult getUserById(_GetUserById value),
     @required TResult getAllUsers(_GetAllUsers value),
   }) {
     assert(started != null);
     assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
     assert(getUserById != null);
     assert(getAllUsers != null);
     return getUserById(this);
@@ -402,6 +569,7 @@ class _$_GetUserById implements _GetUserById {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult updateUserTime(_UpdateUserTime value),
+    TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     TResult getUserById(_GetUserById value),
     TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
@@ -462,11 +630,13 @@ class _$_GetAllUsers implements _GetAllUsers {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult updateUserTime(),
+    @required TResult updateUserOnlineStatus(bool isOnline),
     @required TResult getUserById(int id),
     @required TResult getAllUsers(),
   }) {
     assert(started != null);
     assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
     assert(getUserById != null);
     assert(getAllUsers != null);
     return getAllUsers();
@@ -477,6 +647,7 @@ class _$_GetAllUsers implements _GetAllUsers {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult updateUserTime(),
+    TResult updateUserOnlineStatus(bool isOnline),
     TResult getUserById(int id),
     TResult getAllUsers(),
     @required TResult orElse(),
@@ -493,11 +664,13 @@ class _$_GetAllUsers implements _GetAllUsers {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult updateUserTime(_UpdateUserTime value),
+    @required TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     @required TResult getUserById(_GetUserById value),
     @required TResult getAllUsers(_GetAllUsers value),
   }) {
     assert(started != null);
     assert(updateUserTime != null);
+    assert(updateUserOnlineStatus != null);
     assert(getUserById != null);
     assert(getAllUsers != null);
     return getAllUsers(this);
@@ -508,6 +681,7 @@ class _$_GetAllUsers implements _GetAllUsers {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult updateUserTime(_UpdateUserTime value),
+    TResult updateUserOnlineStatus(_UpdateUserOnlineStatus value),
     TResult getUserById(_GetUserById value),
     TResult getAllUsers(_GetAllUsers value),
     @required TResult orElse(),
@@ -535,7 +709,9 @@ class _$UserAuthStateTearOff {
       @required int stage,
       @required String dept,
       @required String fullName,
-      @required int lastSeenInEpoch}) {
+      @required int lastSeenInEpoch,
+      @required bool isOnline,
+      @required List<UserEntity> users}) {
     return _UserAuthState(
       id: id,
       role: role,
@@ -543,6 +719,8 @@ class _$UserAuthStateTearOff {
       dept: dept,
       fullName: fullName,
       lastSeenInEpoch: lastSeenInEpoch,
+      isOnline: isOnline,
+      users: users,
     );
   }
 }
@@ -559,6 +737,8 @@ mixin _$UserAuthState {
   String get dept;
   String get fullName;
   int get lastSeenInEpoch;
+  bool get isOnline;
+  List<UserEntity> get users;
 
   @JsonKey(ignore: true)
   $UserAuthStateCopyWith<UserAuthState> get copyWith;
@@ -575,7 +755,9 @@ abstract class $UserAuthStateCopyWith<$Res> {
       int stage,
       String dept,
       String fullName,
-      int lastSeenInEpoch});
+      int lastSeenInEpoch,
+      bool isOnline,
+      List<UserEntity> users});
 }
 
 /// @nodoc
@@ -595,6 +777,8 @@ class _$UserAuthStateCopyWithImpl<$Res>
     Object dept = freezed,
     Object fullName = freezed,
     Object lastSeenInEpoch = freezed,
+    Object isOnline = freezed,
+    Object users = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as int,
@@ -605,6 +789,8 @@ class _$UserAuthStateCopyWithImpl<$Res>
       lastSeenInEpoch: lastSeenInEpoch == freezed
           ? _value.lastSeenInEpoch
           : lastSeenInEpoch as int,
+      isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool,
+      users: users == freezed ? _value.users : users as List<UserEntity>,
     ));
   }
 }
@@ -622,7 +808,9 @@ abstract class _$UserAuthStateCopyWith<$Res>
       int stage,
       String dept,
       String fullName,
-      int lastSeenInEpoch});
+      int lastSeenInEpoch,
+      bool isOnline,
+      List<UserEntity> users});
 }
 
 /// @nodoc
@@ -644,6 +832,8 @@ class __$UserAuthStateCopyWithImpl<$Res>
     Object dept = freezed,
     Object fullName = freezed,
     Object lastSeenInEpoch = freezed,
+    Object isOnline = freezed,
+    Object users = freezed,
   }) {
     return _then(_UserAuthState(
       id: id == freezed ? _value.id : id as int,
@@ -654,6 +844,8 @@ class __$UserAuthStateCopyWithImpl<$Res>
       lastSeenInEpoch: lastSeenInEpoch == freezed
           ? _value.lastSeenInEpoch
           : lastSeenInEpoch as int,
+      isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool,
+      users: users == freezed ? _value.users : users as List<UserEntity>,
     ));
   }
 }
@@ -666,13 +858,17 @@ class _$_UserAuthState implements _UserAuthState {
       @required this.stage,
       @required this.dept,
       @required this.fullName,
-      @required this.lastSeenInEpoch})
+      @required this.lastSeenInEpoch,
+      @required this.isOnline,
+      @required this.users})
       : assert(id != null),
         assert(role != null),
         assert(stage != null),
         assert(dept != null),
         assert(fullName != null),
-        assert(lastSeenInEpoch != null);
+        assert(lastSeenInEpoch != null),
+        assert(isOnline != null),
+        assert(users != null);
 
   @override
   final int id;
@@ -686,10 +882,14 @@ class _$_UserAuthState implements _UserAuthState {
   final String fullName;
   @override
   final int lastSeenInEpoch;
+  @override
+  final bool isOnline;
+  @override
+  final List<UserEntity> users;
 
   @override
   String toString() {
-    return 'UserAuthState(id: $id, role: $role, stage: $stage, dept: $dept, fullName: $fullName, lastSeenInEpoch: $lastSeenInEpoch)';
+    return 'UserAuthState(id: $id, role: $role, stage: $stage, dept: $dept, fullName: $fullName, lastSeenInEpoch: $lastSeenInEpoch, isOnline: $isOnline, users: $users)';
   }
 
   @override
@@ -709,7 +909,12 @@ class _$_UserAuthState implements _UserAuthState {
                     .equals(other.fullName, fullName)) &&
             (identical(other.lastSeenInEpoch, lastSeenInEpoch) ||
                 const DeepCollectionEquality()
-                    .equals(other.lastSeenInEpoch, lastSeenInEpoch)));
+                    .equals(other.lastSeenInEpoch, lastSeenInEpoch)) &&
+            (identical(other.isOnline, isOnline) ||
+                const DeepCollectionEquality()
+                    .equals(other.isOnline, isOnline)) &&
+            (identical(other.users, users) ||
+                const DeepCollectionEquality().equals(other.users, users)));
   }
 
   @override
@@ -720,7 +925,9 @@ class _$_UserAuthState implements _UserAuthState {
       const DeepCollectionEquality().hash(stage) ^
       const DeepCollectionEquality().hash(dept) ^
       const DeepCollectionEquality().hash(fullName) ^
-      const DeepCollectionEquality().hash(lastSeenInEpoch);
+      const DeepCollectionEquality().hash(lastSeenInEpoch) ^
+      const DeepCollectionEquality().hash(isOnline) ^
+      const DeepCollectionEquality().hash(users);
 
   @JsonKey(ignore: true)
   @override
@@ -735,7 +942,9 @@ abstract class _UserAuthState implements UserAuthState {
       @required int stage,
       @required String dept,
       @required String fullName,
-      @required int lastSeenInEpoch}) = _$_UserAuthState;
+      @required int lastSeenInEpoch,
+      @required bool isOnline,
+      @required List<UserEntity> users}) = _$_UserAuthState;
 
   @override
   int get id;
@@ -749,6 +958,10 @@ abstract class _UserAuthState implements UserAuthState {
   String get fullName;
   @override
   int get lastSeenInEpoch;
+  @override
+  bool get isOnline;
+  @override
+  List<UserEntity> get users;
   @override
   @JsonKey(ignore: true)
   _$UserAuthStateCopyWith<_UserAuthState> get copyWith;

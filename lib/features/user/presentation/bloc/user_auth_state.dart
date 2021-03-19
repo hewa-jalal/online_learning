@@ -21,6 +21,8 @@ abstract class UserAuthState with _$UserAuthState {
     @required String dept,
     @required String fullName,
     @required int lastSeenInEpoch,
+    @required bool isOnline,
+    @required List<UserEntity> users,
   }) = _UserAuthState;
 
   factory UserAuthState.initial() => UserAuthState(
@@ -30,5 +32,18 @@ abstract class UserAuthState with _$UserAuthState {
         role: '',
         stage: 0,
         lastSeenInEpoch: 0,
+        users: List.empty(),
+        isOnline: false,
+      );
+
+  factory UserAuthState.failure() => UserAuthState(
+        id: 0,
+        fullName: '',
+        dept: '',
+        role: '',
+        stage: 0,
+        lastSeenInEpoch: 0,
+        users: List.empty(),
+        isOnline: false,
       );
 }

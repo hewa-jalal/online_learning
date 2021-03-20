@@ -35,6 +35,12 @@ abstract class LecturesRemoteDataSource {
     @required String courseTitle,
     @required String lectureTitle,
   });
+
+  Future<List<String>> getAllSubmittedUsers({
+    @required String userId,
+    @required String courseTitle,
+    @required String lectureTitle,
+  });
 }
 
 @LazySingleton(as: LecturesRemoteDataSource)
@@ -126,9 +132,6 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     @required String courseTitle,
     @required String lectureTitle,
   }) async {
-    print('lectureTitle => $lectureTitle');
-    print('courseTitle => $courseTitle');
-    print('userId => $userId');
     final courseDoc = userCoursesCollection.doc(courseTitle);
     courseDoc
         .collection('lectures')
@@ -140,6 +143,25 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     });
 
     return unit;
+  }
+
+  @override
+  Future<List<String>> getAllSubmittedUsers({
+    @required String userId,
+    @required String courseTitle,
+    @required String lectureTitle,
+  }) async {
+    final courseDoc = userCoursesCollection.doc(courseTitle);
+    final submittedUsersCollection = await courseDoc
+        .collection('lectures')
+        .doc('dd')
+        .collection('submittedUsers')
+        .get();
+
+    final List<String> submittedUsers = List.from(
+        submittedUsersCollection.docs.map((e) => e['user_id']).toList());
+
+    return submittedUsers;
   }
 }
 

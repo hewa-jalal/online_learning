@@ -6,25 +6,30 @@ class LectureModel extends LectureEntity {
   final String fileUrl;
   final String title;
   final String description;
+  final List<String> submittedUsers;
 
   LectureModel({
     @required this.fileUrl,
     @required this.title,
     @required this.description,
+    this.submittedUsers,
   }) : super(
           fileUrl: fileUrl,
           title: title,
           description: description,
+          submittedUsers: submittedUsers,
         );
 
   LectureModel.empty({
     this.fileUrl = '',
     this.title = '',
     this.description = '',
+    this.submittedUsers = const [],
   }) : super(
           fileUrl: '',
           title: '',
           description: '',
+          submittedUsers: const [],
         );
 
   Map<String, dynamic> toDocument() {

@@ -18,8 +18,15 @@ class _LecturesPageState extends State<LecturesPage> {
   @override
   Widget build(BuildContext context) {
     if (ModalRoute.of(context).isCurrent) {
-      context.read<LectureBloc>().add(
+      context.watch<LectureBloc>().add(
           LectureEvent.getAllLecturesByCourse(courseTitle: widget.courseTitle));
+      context.watch<LectureBloc>().add(
+            LectureEvent.getAllSubmittedUsers(
+              userId: '12',
+              courseTitle: widget.courseTitle,
+              lectureTitle: 'dd',
+            ),
+          );
     }
 
     return SafeArea(
@@ -27,11 +34,15 @@ class _LecturesPageState extends State<LecturesPage> {
         body: BlocBuilder<LectureBloc, LectureState>(
           builder: (context, state) {
             final lectures = state.lectures;
+            // final submittedUsers = state.submittedUsers;
             return ListView.builder(
               itemCount: lectures.length,
-              itemBuilder: (context, index) => LectureCard(
-                lectureTitle: lectures[index].title,
-              ),
+              itemBuilder: (context, index) {
+                return LectureCard(
+                  lecture: lectures[index],
+                  // isSubmitted: lectures[index].submittedUsers.contains('12'),
+                );
+              },
             );
           },
         ),

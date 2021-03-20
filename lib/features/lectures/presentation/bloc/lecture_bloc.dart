@@ -11,6 +11,7 @@ import 'package:online_learning/features/lectures/domain/usecases/download_lectu
 import 'package:online_learning/features/lectures/domain/usecases/get_all_courses_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
+import 'package:online_learning/features/lectures/domain/usecases/get_all_submitted_users.dart';
 import 'package:online_learning/features/lectures/domain/usecases/submit_user.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
@@ -122,6 +123,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
   final GetAllCoursesByUserId getAllCoursesByUserId;
   final CreateCourse createCourse;
   final SubmitUser submitUser;
+  final GetAllSubmittedUsers getAllSubmittedUsers;
   LectureBloc({
     @required this.downloadLecture,
     @required this.uploadLecture,
@@ -130,6 +132,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
     @required this.getAllCoursesByUserId,
     @required this.createCourse,
     @required this.submitUser,
+    @required this.getAllSubmittedUsers,
   }) : super(LectureState.initial());
 
   @override
@@ -228,6 +231,28 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
             userId: e.userId,
             courseTitle: 'AI',
           ),
+        );
+      },
+      getAllSubmittedUsers: (e) async* {
+        final either = await getAllSubmittedUsers(
+          SubmitParams(
+            lectureTitle: e.lectureTitle,
+            userId: e.userId,
+            courseTitle: 'AI',
+          ),
+        );
+        yield either.fold(
+          (failure) => state.copyWith(
+            authFailureOrSuccessOption: none(),
+          ),
+          (submittedUsersRight) {
+            print('submittedUsersBloc: $submittedUsersRight');
+            return state.copyWith(
+              lecture: LectureEntity(
+                submittedUsers: submittedUsersRight,
+              ),
+            );
+          },
         );
       },
     );

@@ -26,6 +26,7 @@ abstract class LectureState with _$LectureState {
     @required bool isSubmitting,
     @required List<LectureEntity> lectures,
     @required List<String> courseIds,
+    // @required List<String> submittedUsers,
     @required Option<Either<LectureFailure, Unit>> authFailureOrSuccessOption,
   }) = _LectureState;
 
@@ -35,6 +36,7 @@ abstract class LectureState with _$LectureState {
         filePath: '',
         lectures: List.empty(),
         courseIds: List.empty(),
+        // submittedUsers: List.empty(),
         isSubmitting: false,
         authFailureOrSuccessOption: none(),
       );

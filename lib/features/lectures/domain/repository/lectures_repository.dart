@@ -28,4 +28,10 @@ abstract class LecturesRepository {
     @required String courseTitle,
     @required String lectureTitle,
   });
+
+  Future<Either<Failure, List<String>>> getAllSubmittedUsers({
+    @required String userId,
+    @required String courseTitle,
+    @required String lectureTitle,
+  });
 }

@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/lecture_entity.dart';
 import '../../bloc/lecture_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LectureCard extends StatelessWidget {
-  final String lectureTitle;
+  // final String lectureTitle;
+  // final bool isSubmitted;
+  final LectureEntity lecture;
 
   const LectureCard({
     Key key,
-    @required this.lectureTitle,
+    // @required this.lectureTitle,
+    // @required this.isSubmitted,
+    @required this.lecture,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final lectureBloc = context.read<LectureBloc>();
+    // final lectureBloc = context.read<LectureBloc>();
+    print('submittedUsers state: ${lecture.submittedUsers}');
+
     return ExpansionTile(
       childrenPadding: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
-      title: Text(lectureTitle),
+      title: Text(lecture.title),
       children: [
         SelectableText(
           'dolor sit amet, consectetur adipiscing elit. Quisque quis congue metus, ac tempus eros. Nunc tincidunt eros arcu, ac dictum nulla convallis sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo pretium leo, ac dictum lacus pellentesque quis. Fusce suscipit, orci eget venenatis dignissim, purus turpis imperdiet velit, vitae ullamcorper lectus libero eget eros.',
@@ -26,13 +33,13 @@ class LectureCard extends StatelessWidget {
           value: false,
           onChanged: (val) {
             print('switch onChange');
-            lectureBloc.add(
-              LectureEvent.submitUser(
-                lectureTitle: lectureTitle,
-                courseTitle: 'AI',
-                userId: '12',
-              ),
-            );
+            // lectureBloc.add(
+            //   LectureEvent.submitUser(
+            //     lectureTitle: lecture.title,
+            //     courseTitle: 'AI',
+            //     userId: '12',
+            //   ),
+            // );
           },
         )
       ],

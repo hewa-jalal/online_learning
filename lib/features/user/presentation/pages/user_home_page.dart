@@ -26,9 +26,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
     if (ModalRoute.of(context).isCurrent) {
-      lectureBloc.add(LectureEvent.getAllCoursesByUserId(
-        userId: widget.user.id,
-      ));
+      lectureBloc.add(LectureEvent.getAllCoursesByUserId());
     }
 
     return SafeArea(
@@ -76,35 +74,26 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
             BlocConsumer<LectureBloc, LectureState>(
               listener: (context, state) {
                 if (ModalRoute.of(context).isCurrent) {
-                  state.maybeMap(
-                    orElse: () => context.read<LectureBloc>().add(
-                          LectureEvent.getAllCoursesByUserId(
-                            userId: widget.user.id,
-                          ),
-                        ),
-                  );
+                  context.read<LectureBloc>().add(
+                        LectureEvent.getAllCoursesByUserId(),
+                      );
                 }
               },
               builder: (context, state) {
-                return state.maybeMap(
-                  allCoursesLoaded: (coursesState) {
-                    final courseIds = coursesState.courseIds;
-                    return courseIds.length > 0
-                        ? Expanded(
-                            child: ListView.builder(
-                              itemCount: courseIds.length,
-                              itemBuilder: (context, index) => CourseCard(
-                                onTap: () => Get.to(() => LecturesPage(
-                                        courseTitle: courseIds[index]))
-                                    .then((value) => setState(() {})),
-                                courseTitle: courseIds[index],
-                              ),
-                            ),
-                          )
-                        : Text('you have no courses');
-                  },
-                  orElse: () => CircularProgressIndicator(),
-                );
+                final courseIds = state.courseIds;
+                return courseIds.length > 0
+                    ? Expanded(
+                        child: ListView.builder(
+                          itemCount: courseIds.length,
+                          itemBuilder: (context, index) => CourseCard(
+                            onTap: () => Get.to(() =>
+                                    LecturesPage(courseTitle: courseIds[index]))
+                                .then((value) => setState(() {})),
+                            courseTitle: courseIds[index],
+                          ),
+                        ),
+                      )
+                    : Text('you have no courses');
               },
             ),
           ],

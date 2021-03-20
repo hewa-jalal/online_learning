@@ -29,13 +29,10 @@ class _LectureFormPageState extends State<LectureFormPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<LectureBloc, LectureState>(
       listener: (context, state) {
-        state.maybeMap(
-          loading: (e) {
-            context.read<ProgressBloc>().add(ProgressEvent.started());
-            Get.dialog(ProgressDialog());
-          },
-          orElse: () => print('lecture_form_page => orElse'),
-        );
+        if (state.isSubmitting) {
+          context.read<ProgressBloc>().add(ProgressEvent.started());
+          Get.dialog(ProgressDialog());
+        }
       },
       builder: (context, state) {
         return SafeArea(
@@ -50,11 +47,9 @@ class _LectureFormPageState extends State<LectureFormPage> {
             ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
-              body: state.maybeMap(
-                orElse: () => InitialWidget(
-                  user: widget.user,
-                  courseTitle: widget.courseTitle,
-                ),
+              body: InitialWidget(
+                user: widget.user,
+                courseTitle: widget.courseTitle,
               ),
             ),
           ),
@@ -238,49 +233,48 @@ class _InitialWidgetState extends State<InitialWidget> {
               SizedBox(height: 20),
               BlocBuilder<LectureBloc, LectureState>(
                 builder: (context, state) {
-                  return state.maybeMap(
-                    fileSelected: (fileState) {
-                      final fileName = fileState.filePath.split('/').last;
-                      final fileType = lookupMimeType(fileName);
-                      // print('endsWith --> ' + fileType.endsWith('pdf').toString());
-                      // print('mime -----> ' + lookupMimeType(fileName));
-                      return Column(
-                        children: [
-                          ListTile(
-                            enabled: true,
-                            leading: Icon(MaterialCommunityIcons.file_pdf),
-                            title: Text(fileName),
-                            trailing: IconButton(
-                              onPressed: () => context
-                                  .read<LectureBloc>()
-                                  .add(LectureEvent.started()),
-                              icon: Icon(MaterialCommunityIcons.close_box),
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              lectureBloc.add(
-                                LectureEvent.uploadLecture(
-                                  filePath: fileState.filePath,
-                                  user: user,
-                                  courseTitle: widget.courseTitle,
-                                  title: title,
-                                  description: description,
-                                ),
-                              );
-                            },
-                            child: Text('Upload Lecture'),
-                          ),
-                        ],
-                      );
-                    },
-                    orElse: () => ElevatedButton(
+                  if (state.filePath.isEmpty) {
+                    return ElevatedButton(
                       onPressed: () {
                         lectureBloc.add(LectureEvent.selectFile());
                       },
                       child: Text('Select Lecture'),
-                    ),
-                  );
+                    );
+                  } else {
+                    final fileName = state.filePath.split('/').last;
+                    final fileType = lookupMimeType(fileName);
+                    // print('endsWith --> ' + fileType.endsWith('pdf').toString());
+                    // print('mime -----> ' + lookupMimeType(fileName));
+                    return Column(
+                      children: [
+                        ListTile(
+                          enabled: true,
+                          leading: Icon(MaterialCommunityIcons.file_pdf),
+                          title: Text(fileName),
+                          trailing: IconButton(
+                            onPressed: () => context
+                                .read<LectureBloc>()
+                                .add(LectureEvent.started()),
+                            icon: Icon(MaterialCommunityIcons.close_box),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            lectureBloc.add(
+                              LectureEvent.uploadLecture(
+                                filePath: state.filePath,
+                                user: user,
+                                courseTitle: widget.courseTitle,
+                                title: title,
+                                description: description,
+                              ),
+                            );
+                          },
+                          child: Text('Upload Lecture'),
+                        ),
+                      ],
+                    );
+                  }
                 },
               ),
             ],

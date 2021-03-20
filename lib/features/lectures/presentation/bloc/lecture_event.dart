@@ -17,9 +17,7 @@ abstract class LectureEvent with _$LectureEvent {
   const factory LectureEvent.getAllLecturesByCourse({
     @required String courseTitle,
   }) = _GetAllLecturesByUserId;
-  const factory LectureEvent.getAllCoursesByUserId({
-    @required String userId,
-  }) = _GetAllCoursesByUserId;
+  const factory LectureEvent.getAllCoursesByUserId() = _GetAllCoursesByUserId;
 
   const factory LectureEvent.createCourse({
     @required String courseTitle,

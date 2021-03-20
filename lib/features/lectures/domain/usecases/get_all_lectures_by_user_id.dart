@@ -7,10 +7,10 @@ import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
 
 @lazySingleton
-class GetAllLecturesByUserId extends UseCase<List<LectureEntity>, String> {
+class GetAllLecturesByCourse extends UseCase<List<LectureEntity>, String> {
   final LecturesRepository lecturesRepository;
 
-  GetAllLecturesByUserId({@required this.lecturesRepository});
+  GetAllLecturesByCourse({@required this.lecturesRepository});
   @override
   Future<Either<Failure, List<LectureEntity>>> call(String courseTitle) {
     return lecturesRepository.getAllLecturesByCourse(courseTitle: courseTitle);

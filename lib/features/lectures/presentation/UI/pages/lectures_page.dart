@@ -26,16 +26,11 @@ class _LecturesPageState extends State<LecturesPage> {
       child: Scaffold(
         body: BlocBuilder<LectureBloc, LectureState>(
           builder: (context, state) {
-            return state.maybeMap(
-              allLecturesLoaded: (lecturesState) {
-                final lectures = lecturesState.lecturesEntities;
-                return ListView.builder(
-                  itemCount: lectures.length,
-                  itemBuilder: (context, index) =>
-                      LectureCard(courseTitle: lectures[index].title),
-                );
-              },
-              orElse: () => Text('orElse'),
+            final lectures = state.lectures;
+            return ListView.builder(
+              itemCount: lectures.length,
+              itemBuilder: (context, index) =>
+                  LectureCard(courseTitle: lectures[index].title),
             );
           },
         ),

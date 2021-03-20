@@ -85,8 +85,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       lecturesRepository: get<_i12.LecturesRepository>()));
   gh.lazySingleton<_i23.GetAllLectures>(() =>
       _i23.GetAllLectures(lecturesRepository: get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i24.GetAllLecturesByUserId>(() =>
-      _i24.GetAllLecturesByUserId(
+  gh.lazySingleton<_i24.GetAllLecturesByCourse>(() =>
+      _i24.GetAllLecturesByCourse(
           lecturesRepository: get<_i12.LecturesRepository>()));
   gh.lazySingleton<_i25.GetAllUsers>(
       () => _i25.GetAllUsers(get<_i17.UserRepository>()));
@@ -96,7 +96,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       downloadLecture: get<_i21.DownloadLecture>(),
       uploadLecture: get<_i15.UploadLecture>(),
       getAllLectures: get<_i23.GetAllLectures>(),
-      getAllLecturesByUserId: get<_i24.GetAllLecturesByUserId>(),
+      getAllLecturesByCourse: get<_i24.GetAllLecturesByCourse>(),
       getAllCoursesByUserId: get<_i22.GetAllCoursesByUserId>(),
       createCourse: get<_i20.CreateCourse>()));
   gh.lazySingleton<_i28.UpdateUserTime>(

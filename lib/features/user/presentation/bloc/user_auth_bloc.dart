@@ -83,6 +83,7 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
           ),
         );
         add(UserAuthEvent.updateUserTime());
+        add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
       },
       getAllUsers: (e) async* {
         final either = await getAllUsers(NoParams());

@@ -59,9 +59,6 @@ class _UserFormState extends State<UserForm> {
               onPressed: () {
                 userAuthBloc.add(UserAuthEvent.getUserById(id: userId));
 
-                userAuthBloc
-                    .add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
-
                 Get.to(
                   () => UserHomePage(
                     user: UserEntity(

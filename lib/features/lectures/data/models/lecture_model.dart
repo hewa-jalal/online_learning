@@ -17,6 +17,16 @@ class LectureModel extends LectureEntity {
           description: description,
         );
 
+  LectureModel.empty({
+    this.fileUrl = '',
+    this.title = '',
+    this.description = '',
+  }) : super(
+          fileUrl: '',
+          title: '',
+          description: '',
+        );
+
   Map<String, dynamic> toDocument() {
     return {
       'fileUrl': fileUrl,

@@ -15,12 +15,6 @@ import 'package:online_learning/features/lectures/domain/usecases/get_all_lectur
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
-import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
-import 'package:online_learning/features/user/data/repositories/user_repository_impl.dart';
-import 'package:online_learning/features/user/domain/usecase/get_user.dart';
-import 'package:online_learning/features/user/domain/usecase/get_users.dart';
-import 'package:online_learning/features/user/domain/usecase/update_user_time.dart';
-import 'package:online_learning/features/user/domain/usecase/user_online_status.dart';
 
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:online_learning/injection.dart';
@@ -41,14 +35,14 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed)
-      context
-          .read<UserAuthBloc>()
-          .add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
-    else
-      context
-          .read<UserAuthBloc>()
-          .add(UserAuthEvent.updateUserOnlineStatus(isOnline: false));
+    final userBloc = context.read<UserAuthBloc>();
+    if (state == AppLifecycleState.resumed) {
+      userBloc.add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
+      userBloc.add(UserAuthEvent.updateUserTime());
+    } else {
+      userBloc.add(UserAuthEvent.updateUserOnlineStatus(isOnline: false));
+      userBloc.add(UserAuthEvent.updateUserTime());
+    }
   }
 
   @override
@@ -58,10 +52,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         BlocProvider(
           create: (_) => sl<ChatBloc>(),
         ),
-        // BlocProvider(
-        //   create: (_) => sl<UserAuthBloc>(),
-        // ),
-
         BlocProvider(
           create: (_) => LectureBloc(
             downloadLecture: DownloadLecture(
@@ -73,7 +63,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             uploadLecture: UploadLecture(LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
                     dio: Dio(), lectureTask: sl<LectureTask>()))),
-            getAllLecturesByUserId: GetAllLecturesByUserId(
+            getAllLecturesByCourse: GetAllLecturesByCourse(
               lecturesRepository: LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
                     lectureTask: sl<LectureTask>(), dio: Dio()),

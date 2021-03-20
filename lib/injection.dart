@@ -15,17 +15,10 @@
 
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 
 import 'injection.config.dart';
 
 final sl = GetIt.I;
-
-Future<void> init() async {
-  sl.registerFactory(
-    () => UserAuthBloc(getUser: sl(), getAllUsers: sl(), updateUserTime: sl()),
-  );
-}
 
 //   // USECASES
 //   sl.registerLazySingleton(() => GetUser(sl()));

@@ -29,8 +29,9 @@ class _LecturesPageState extends State<LecturesPage> {
             final lectures = state.lectures;
             return ListView.builder(
               itemCount: lectures.length,
-              itemBuilder: (context, index) =>
-                  LectureCard(courseTitle: lectures[index].title),
+              itemBuilder: (context, index) => LectureCard(
+                lectureTitle: lectures[index].title,
+              ),
             );
           },
         ),

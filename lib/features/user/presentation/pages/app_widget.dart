@@ -12,6 +12,7 @@ import 'package:online_learning/features/lectures/domain/usecases/download_lectu
 import 'package:online_learning/features/lectures/domain/usecases/get_all_courses_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
+import 'package:online_learning/features/lectures/domain/usecases/submit_user.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
@@ -79,6 +80,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 FirebaseLecturesRemoteDataSource(
                     dio: Dio(), lectureTask: sl<LectureTask>()))),
             getAllCoursesByUserId: GetAllCoursesByUserId(
+              lecturesRepository: LecturesRepositoryImpl(
+                FirebaseLecturesRemoteDataSource(
+                    lectureTask: sl<LectureTask>(), dio: Dio()),
+              ),
+            ),
+            submitUser: SubmitUser(
               lecturesRepository: LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
                     lectureTask: sl<LectureTask>(), dio: Dio()),

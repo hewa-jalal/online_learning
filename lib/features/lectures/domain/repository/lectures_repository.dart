@@ -23,4 +23,9 @@ abstract class LecturesRepository {
   Future<Either<Failure, Unit>> createCourse({
     @required String courseTitle,
   });
+  Future<Either<Failure, Unit>> submitUser({
+    @required String userId,
+    @required String courseTitle,
+    @required String lectureTitle,
+  });
 }

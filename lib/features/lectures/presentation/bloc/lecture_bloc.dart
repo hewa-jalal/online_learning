@@ -11,6 +11,7 @@ import 'package:online_learning/features/lectures/domain/usecases/download_lectu
 import 'package:online_learning/features/lectures/domain/usecases/get_all_courses_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures.dart';
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
+import 'package:online_learning/features/lectures/domain/usecases/submit_user.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
 import 'package:online_learning/features/user/core/usecase/use_case.dart';
 import 'package:online_learning/features/user/data/models/user_model.dart';
@@ -120,6 +121,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
   final GetAllLecturesByCourse getAllLecturesByCourse;
   final GetAllCoursesByUserId getAllCoursesByUserId;
   final CreateCourse createCourse;
+  final SubmitUser submitUser;
   LectureBloc({
     @required this.downloadLecture,
     @required this.uploadLecture,
@@ -127,6 +129,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
     @required this.getAllLecturesByCourse,
     @required this.getAllCoursesByUserId,
     @required this.createCourse,
+    @required this.submitUser,
   }) : super(LectureState.initial());
 
   @override
@@ -153,14 +156,15 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         );
 
         yield either.fold(
-            (l) => state.copyWith(
-                  authFailureOrSuccessOption: none(),
-                ),
-            (lectureEntity) => state.copyWith(
-                  lecture: lectureEntity,
-                  userId: e.user.id,
-                  isSubmitting: false,
-                ));
+          (l) => state.copyWith(
+            authFailureOrSuccessOption: none(),
+          ),
+          (lectureEntity) => state.copyWith(
+            lecture: lectureEntity,
+            userId: e.user.id,
+            isSubmitting: false,
+          ),
+        );
       },
       downloadLecture: (e) async* {
         // final either = await downloadLecture(LectureParams(fileUrl: e.fileUrl));
@@ -193,6 +197,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       },
       createCourse: (e) async* {
         await createCourse(e.courseTitle);
+        // TODO: yield state to refresh courses card
       },
       getAllCoursesByUserId: (e) async* {
         // final either = await getAllCoursesByUserId(e.userId);
@@ -214,6 +219,15 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         final result = await FilePicker.platform.pickFiles();
         yield state.copyWith(
           filePath: result.files.single.path,
+        );
+      },
+      submitUser: (e) async* {
+        submitUser(
+          SubmitParams(
+            lectureTitle: e.lectureTitle,
+            userId: e.userId,
+            courseTitle: 'AI',
+          ),
         );
       },
     );

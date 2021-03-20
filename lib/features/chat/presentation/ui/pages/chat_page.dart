@@ -142,7 +142,6 @@ class _UsersList extends StatelessWidget {
     return BlocBuilder<UserAuthBloc, UserAuthState>(
       builder: (context, state) {
         final usersList = state.users;
-
         return Material(
           child: ListView.separated(
             separatorBuilder: (context, index) => Divider(
@@ -156,6 +155,9 @@ class _UsersList extends StatelessWidget {
                   DateTime.fromMillisecondsSinceEpoch(user.lastSeenInEpoch);
               var ago = timeago.format(date);
               var isOnline = user.isOnline;
+              var diffDate = DateTime.now().difference(date);
+              print('diffDate => $diffDate');
+
               return ListTile(
                 leading: CircleAvatar(child: Text(user.fullName[0])),
                 title: Text(user.fullName),

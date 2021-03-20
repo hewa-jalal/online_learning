@@ -71,29 +71,26 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                 ],
               ),
             ),
-            BlocConsumer<LectureBloc, LectureState>(
-              listener: (context, state) {
-                if (ModalRoute.of(context).isCurrent) {
-                  context.read<LectureBloc>().add(
-                        LectureEvent.getAllCoursesByUserId(),
-                      );
-                }
-              },
+            BlocBuilder<LectureBloc, LectureState>(
               builder: (context, state) {
-                final courseIds = state.courseIds;
-                return courseIds.length > 0
-                    ? Expanded(
-                        child: ListView.builder(
-                          itemCount: courseIds.length,
-                          itemBuilder: (context, index) => CourseCard(
-                            onTap: () => Get.to(() =>
-                                    LecturesPage(courseTitle: courseIds[index]))
-                                .then((value) => setState(() {})),
-                            courseTitle: courseIds[index],
+                if (state.isSubmitting) {
+                  return Center(child: CircularProgressIndicator());
+                } else {
+                  final courseIds = state.courseIds;
+                  return courseIds.length > 0
+                      ? Expanded(
+                          child: ListView.builder(
+                            itemCount: courseIds.length,
+                            itemBuilder: (context, index) => CourseCard(
+                              onTap: () => Get.to(() => LecturesPage(
+                                      courseTitle: courseIds[index]))
+                                  .then((value) => setState(() {})),
+                              courseTitle: courseIds[index],
+                            ),
                           ),
-                        ),
-                      )
-                    : Text('you have no courses');
+                        )
+                      : Text('you have no courses');
+                }
               },
             ),
           ],

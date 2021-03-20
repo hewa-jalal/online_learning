@@ -196,6 +196,9 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       },
       getAllCoursesByUserId: (e) async* {
         // final either = await getAllCoursesByUserId(e.userId);
+        yield state.copyWith(
+          isSubmitting: true,
+        );
         final either = await getAllCoursesByUserId(state.userId);
         yield either.fold(
           (failure) => state.copyWith(
@@ -203,6 +206,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
           ),
           (courseIds) => state.copyWith(
             courseIds: courseIds,
+            isSubmitting: false,
           ),
         );
       },

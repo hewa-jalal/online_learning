@@ -46,7 +46,6 @@ abstract class LecturesRemoteDataSource {
 @LazySingleton(as: LecturesRemoteDataSource)
 class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   final storageRef = FirebaseStorage.instance.ref();
-  final coursesCollection = FirebaseFirestore.instance.collection('courses');
   final userCoursesCollection =
       FirebaseFirestore.instance.collection('userCourses');
   final Dio dio;
@@ -89,6 +88,12 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     doc.collection('lectures').doc(lectureTitle).set(lecture.toDocument());
     // adding user id that uploaded the lecture
     doc.set({'uploader_id': user.id}, SetOptions(merge: true));
+    // create submittedUsers collection
+    doc
+        .collection('lectures')
+        .doc(lectureTitle)
+        .collection('submittedUsers')
+        .add({});
 
     return lecture;
   }
@@ -108,8 +113,13 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   }) async {
     final courseDoc = userCoursesCollection.doc(courseTitle);
     final lecturesQuery = await courseDoc.collection('lectures').get();
+    final submitQuery = await courseDoc
+        .collection('lectures')
+        .doc('dd')
+        .collection('submittedUsers')
+        .get();
     return lecturesQuery.docs
-        .map((doc) => LectureModel.fromSnapshot(doc))
+        .map((doc) => LectureModel.fromSnapshot(doc, submitQuery))
         .toList();
   }
 
@@ -154,7 +164,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     final courseDoc = userCoursesCollection.doc(courseTitle);
     final submittedUsersCollection = await courseDoc
         .collection('lectures')
-        .doc('dd')
+        .doc(lectureTitle)
         .collection('submittedUsers')
         .get();
 

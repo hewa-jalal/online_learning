@@ -203,7 +203,6 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         // TODO: yield state to refresh courses card
       },
       getAllCoursesByUserId: (e) async* {
-        // final either = await getAllCoursesByUserId(e.userId);
         yield state.copyWith(
           isSubmitting: true,
         );
@@ -245,14 +244,11 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
           (failure) => state.copyWith(
             authFailureOrSuccessOption: none(),
           ),
-          (submittedUsersRight) {
-            print('submittedUsersBloc: $submittedUsersRight');
-            return state.copyWith(
-              lecture: LectureEntity(
-                submittedUsers: submittedUsersRight,
-              ),
-            );
-          },
+          (submittedUsersRight) => state.copyWith(
+            lecture: LectureEntity(
+              submittedUsers: submittedUsersRight,
+            ),
+          ),
         );
       },
     );

@@ -18,7 +18,6 @@ class LectureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final lectureBloc = context.read<LectureBloc>();
-    print('submittedUsers state: ${lecture.submittedUsers}');
 
     return ExpansionTile(
       childrenPadding: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),

@@ -18,7 +18,7 @@ class _LecturesPageState extends State<LecturesPage> {
   @override
   Widget build(BuildContext context) {
     if (ModalRoute.of(context).isCurrent) {
-      context.watch<LectureBloc>().add(
+      context.read<LectureBloc>().add(
           LectureEvent.getAllLecturesByCourse(courseTitle: widget.courseTitle));
     }
 

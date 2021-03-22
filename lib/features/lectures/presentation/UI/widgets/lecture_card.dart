@@ -6,14 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LectureCard extends StatelessWidget {
   final LectureEntity lecture;
-
-  const LectureCard({
+  var isSubmitted = false;
+  LectureCard({
     Key key,
     @required this.lecture,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final lectureBloc = context.watch<LectureBloc>();
+    final lectureBloc = context.read<LectureBloc>();
 
     lectureBloc.add(
       LectureEvent.getAllSubmittedUsers(
@@ -22,7 +22,10 @@ class LectureCard extends StatelessWidget {
         lectureTitle: lecture.title,
       ),
     );
-
+    final list = lecture.submittedUsers;
+    if (list != null) {
+      isSubmitted = list.contains('12');
+    }
     return ExpansionTile(
       childrenPadding: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
       title: Text(lecture.title),
@@ -33,7 +36,7 @@ class LectureCard extends StatelessWidget {
         CheckboxListTile(
           secondary: Icon(Icons.explicit),
           title: Text('pdf file'),
-          value: false,
+          value: isSubmitted,
           onChanged: (val) {
             print('switch onChange');
             // lectureBloc.add(

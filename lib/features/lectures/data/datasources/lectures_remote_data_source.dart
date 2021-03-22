@@ -113,13 +113,13 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   }) async {
     final courseDoc = userCoursesCollection.doc(courseTitle);
     final lecturesQuery = await courseDoc.collection('lectures').get();
-    final submitQuery = await courseDoc
-        .collection('lectures')
-        .doc('dd')
-        .collection('submittedUsers')
-        .get();
+    // final submitQuery = await courseDoc
+    //     .collection('lectures')
+    //     .doc('dd')
+    //     .collection('submittedUsers')
+    //     .get();
     return lecturesQuery.docs
-        .map((doc) => LectureModel.fromSnapshot(doc, submitQuery))
+        .map((doc) => LectureModel.fromSnapshot(doc))
         .toList();
   }
 

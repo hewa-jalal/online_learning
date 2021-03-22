@@ -43,9 +43,9 @@ class LectureModel extends LectureEntity {
   static LectureModel fromSnapshot(DocumentSnapshot snap,
       [QuerySnapshot query]) {
     final data = snap.data();
-    final List<String> test =
-        List.from(query.docs.map((e) => e['user_id']).toList());
-    print('model test ====> $test');
+    // final List<String> test =
+    //     List.from(query.docs.map((e) => e['user_id']).toList());
+    // print('model test ====> $test');
     return LectureModel(
       fileUrl: data['fileUrl'] as String,
       title: data['title'] as String,

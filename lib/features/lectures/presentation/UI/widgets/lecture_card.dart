@@ -5,19 +5,23 @@ import '../../bloc/lecture_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LectureCard extends StatelessWidget {
-  // final String lectureTitle;
-  // final bool isSubmitted;
   final LectureEntity lecture;
 
   const LectureCard({
     Key key,
-    // @required this.lectureTitle,
-    // @required this.isSubmitted,
     @required this.lecture,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // final lectureBloc = context.read<LectureBloc>();
+    final lectureBloc = context.watch<LectureBloc>();
+
+    lectureBloc.add(
+      LectureEvent.getAllSubmittedUsers(
+        userId: '12',
+        courseTitle: 'AI',
+        lectureTitle: lecture.title,
+      ),
+    );
 
     return ExpansionTile(
       childrenPadding: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),

@@ -20,13 +20,6 @@ class _LecturesPageState extends State<LecturesPage> {
     if (ModalRoute.of(context).isCurrent) {
       context.watch<LectureBloc>().add(
           LectureEvent.getAllLecturesByCourse(courseTitle: widget.courseTitle));
-      context.watch<LectureBloc>().add(
-            LectureEvent.getAllSubmittedUsers(
-              userId: '12',
-              courseTitle: widget.courseTitle,
-              lectureTitle: 'dd',
-            ),
-          );
     }
 
     return SafeArea(
@@ -40,7 +33,6 @@ class _LecturesPageState extends State<LecturesPage> {
               itemBuilder: (context, index) {
                 return LectureCard(
                   lecture: lectures[index],
-                  // isSubmitted: lectures[index].submittedUsers.contains('12'),
                 );
               },
             );

@@ -240,15 +240,26 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
             courseTitle: 'AI',
           ),
         );
+        final lectures = state.lectures;
+
         yield either.fold(
           (failure) => state.copyWith(
             authFailureOrSuccessOption: none(),
           ),
-          (submittedUsersRight) => state.copyWith(
-            lecture: LectureEntity(
-              submittedUsers: submittedUsersRight,
-            ),
-          ),
+          (submittedUsersRight) {
+            final newLectures = lectures.map((element) {
+              return LectureModel(
+                title: element.title,
+                description: element.description,
+                fileUrl: element.fileUrl,
+                submittedUsers: submittedUsersRight,
+              );
+            }).toList();
+            print('newLectures ====> $newLectures');
+            return state.copyWith(
+              lectures: newLectures,
+            );
+          },
         );
       },
     );

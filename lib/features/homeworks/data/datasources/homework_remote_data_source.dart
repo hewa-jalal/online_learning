@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/homeworks/data/models/homework_model.dart';
+import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
 
 import '../../../../core/lecture_task.dart';
 import '../../../user/data/models/user_model.dart';
@@ -18,6 +19,10 @@ abstract class HomeWorkRemoteDataSource {
     @required int dueDate,
     String description,
     String fileUrl,
+  });
+
+  Future<List<HomeworkEntity>> getAllHomeworksByCourse({
+    @required String courseTitle,
   });
 }
 
@@ -55,6 +60,18 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
     doc.collection('homeworks').doc(title).set(homeWork.toDocument());
     doc.set({'uploader_id': user.id}, SetOptions(merge: true));
     return unit;
+  }
+
+  @override
+  Future<List<HomeworkEntity>> getAllHomeworksByCourse({
+    @required String courseTitle,
+  }) async {
+    final courseDoc = userHomeworksCollection.doc(courseTitle);
+    final homeworksQuery = await courseDoc.collection('homeworks').get();
+
+    return homeworksQuery.docs
+        .map((doc) => HomeworkModel.fromSnapshot(doc))
+        .toList();
   }
 }
 

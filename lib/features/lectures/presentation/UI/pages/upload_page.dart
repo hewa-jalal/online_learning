@@ -13,22 +13,22 @@ import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.d
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LectureFormPage extends StatefulWidget {
+class UploadPage extends StatefulWidget {
   final UserEntity user;
   final String courseTitle;
   final bool isHomeWork;
 
-  const LectureFormPage({
+  const UploadPage({
     Key key,
     @required this.user,
     @required this.courseTitle,
     @required this.isHomeWork,
   }) : super(key: key);
   @override
-  _LectureFormPageState createState() => _LectureFormPageState();
+  _UploadPageState createState() => _UploadPageState();
 }
 
-class _LectureFormPageState extends State<LectureFormPage> {
+class _UploadPageState extends State<UploadPage> {
   @override
   Widget build(BuildContext context) {
     // final homeworkCubit = context.watch<HomeworkBloc>().state;
@@ -54,7 +54,7 @@ class _LectureFormPageState extends State<LectureFormPage> {
           //   ),
           child: Scaffold(
             // backgroundColor: Colors.transparent,
-            body: InitialWidget(
+            body: _UploadForm(
               isHomework: widget.isHomeWork,
               user: widget.user,
               courseTitle: widget.courseTitle,
@@ -104,11 +104,11 @@ class ProgressDialog extends StatelessWidget {
   }
 }
 
-class InitialWidget extends StatefulWidget {
+class _UploadForm extends StatefulWidget {
   final UserEntity user;
   final String courseTitle;
   final bool isHomework;
-  const InitialWidget({
+  const _UploadForm({
     Key key,
     @required this.user,
     @required this.courseTitle,
@@ -116,10 +116,10 @@ class InitialWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _InitialWidgetState createState() => _InitialWidgetState();
+  _UploadFormState createState() => _UploadFormState();
 }
 
-class _InitialWidgetState extends State<InitialWidget> {
+class _UploadFormState extends State<_UploadForm> {
   UserEntity get user => widget.user;
   var title = '';
   var description = '';
@@ -135,12 +135,6 @@ class _InitialWidgetState extends State<InitialWidget> {
               TextField(
                 decoration: InputDecoration(
                   labelText: 'title*',
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 2.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1.4),
-                  ),
                 ),
                 onChanged: (val) => setState(() => title = val.trim()),
               ),
@@ -148,12 +142,6 @@ class _InitialWidgetState extends State<InitialWidget> {
               TextField(
                 decoration: InputDecoration(
                   labelText: 'description',
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green, width: 2.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1.4),
-                  ),
                 ),
                 onChanged: (val) => setState(() => description = val.trim()),
               ),

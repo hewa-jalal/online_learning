@@ -52,9 +52,9 @@ class _$LectureEventTearOff {
   }
 
 // ignore: unused_element
-  _GetAllLecturesByUserId getAllLecturesByCourse(
+  _GetAllLecturesByCourse getAllLecturesByCourse(
       {@required String courseTitle}) {
-    return _GetAllLecturesByUserId(
+    return _GetAllLecturesByCourse(
       courseTitle: courseTitle,
     );
   }
@@ -144,7 +144,7 @@ mixin _$LectureEvent {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -157,7 +157,7 @@ mixin _$LectureEvent {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -280,7 +280,7 @@ class _$_Started implements _Started {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -307,7 +307,7 @@ class _$_Started implements _Started {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -426,7 +426,7 @@ class _$_SelectFile implements _SelectFile {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -453,7 +453,7 @@ class _$_SelectFile implements _SelectFile {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -595,7 +595,7 @@ class _$_DownloadLecture implements _DownloadLecture {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -622,7 +622,7 @@ class _$_DownloadLecture implements _DownloadLecture {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -817,7 +817,7 @@ class _$_UploadLecture implements _UploadLecture {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -844,7 +844,7 @@ class _$_UploadLecture implements _UploadLecture {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -977,7 +977,7 @@ class _$_GetAllLectures implements _GetAllLectures {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -1004,7 +1004,7 @@ class _$_GetAllLectures implements _GetAllLectures {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -1024,29 +1024,29 @@ abstract class _GetAllLectures implements LectureEvent {
 }
 
 /// @nodoc
-abstract class _$GetAllLecturesByUserIdCopyWith<$Res> {
-  factory _$GetAllLecturesByUserIdCopyWith(_GetAllLecturesByUserId value,
-          $Res Function(_GetAllLecturesByUserId) then) =
-      __$GetAllLecturesByUserIdCopyWithImpl<$Res>;
+abstract class _$GetAllLecturesByCourseCopyWith<$Res> {
+  factory _$GetAllLecturesByCourseCopyWith(_GetAllLecturesByCourse value,
+          $Res Function(_GetAllLecturesByCourse) then) =
+      __$GetAllLecturesByCourseCopyWithImpl<$Res>;
   $Res call({String courseTitle});
 }
 
 /// @nodoc
-class __$GetAllLecturesByUserIdCopyWithImpl<$Res>
+class __$GetAllLecturesByCourseCopyWithImpl<$Res>
     extends _$LectureEventCopyWithImpl<$Res>
-    implements _$GetAllLecturesByUserIdCopyWith<$Res> {
-  __$GetAllLecturesByUserIdCopyWithImpl(_GetAllLecturesByUserId _value,
-      $Res Function(_GetAllLecturesByUserId) _then)
-      : super(_value, (v) => _then(v as _GetAllLecturesByUserId));
+    implements _$GetAllLecturesByCourseCopyWith<$Res> {
+  __$GetAllLecturesByCourseCopyWithImpl(_GetAllLecturesByCourse _value,
+      $Res Function(_GetAllLecturesByCourse) _then)
+      : super(_value, (v) => _then(v as _GetAllLecturesByCourse));
 
   @override
-  _GetAllLecturesByUserId get _value => super._value as _GetAllLecturesByUserId;
+  _GetAllLecturesByCourse get _value => super._value as _GetAllLecturesByCourse;
 
   @override
   $Res call({
     Object courseTitle = freezed,
   }) {
-    return _then(_GetAllLecturesByUserId(
+    return _then(_GetAllLecturesByCourse(
       courseTitle:
           courseTitle == freezed ? _value.courseTitle : courseTitle as String,
     ));
@@ -1054,8 +1054,8 @@ class __$GetAllLecturesByUserIdCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
-  const _$_GetAllLecturesByUserId({@required this.courseTitle})
+class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
+  const _$_GetAllLecturesByCourse({@required this.courseTitle})
       : assert(courseTitle != null);
 
   @override
@@ -1069,7 +1069,7 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GetAllLecturesByUserId &&
+        (other is _GetAllLecturesByCourse &&
             (identical(other.courseTitle, courseTitle) ||
                 const DeepCollectionEquality()
                     .equals(other.courseTitle, courseTitle)));
@@ -1081,8 +1081,8 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
 
   @JsonKey(ignore: true)
   @override
-  _$GetAllLecturesByUserIdCopyWith<_GetAllLecturesByUserId> get copyWith =>
-      __$GetAllLecturesByUserIdCopyWithImpl<_GetAllLecturesByUserId>(
+  _$GetAllLecturesByCourseCopyWith<_GetAllLecturesByCourse> get copyWith =>
+      __$GetAllLecturesByCourseCopyWithImpl<_GetAllLecturesByCourse>(
           this, _$identity);
 
   @override
@@ -1150,7 +1150,7 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -1177,7 +1177,7 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -1192,13 +1192,13 @@ class _$_GetAllLecturesByUserId implements _GetAllLecturesByUserId {
   }
 }
 
-abstract class _GetAllLecturesByUserId implements LectureEvent {
-  const factory _GetAllLecturesByUserId({@required String courseTitle}) =
-      _$_GetAllLecturesByUserId;
+abstract class _GetAllLecturesByCourse implements LectureEvent {
+  const factory _GetAllLecturesByCourse({@required String courseTitle}) =
+      _$_GetAllLecturesByCourse;
 
   String get courseTitle;
   @JsonKey(ignore: true)
-  _$GetAllLecturesByUserIdCopyWith<_GetAllLecturesByUserId> get copyWith;
+  _$GetAllLecturesByCourseCopyWith<_GetAllLecturesByCourse> get copyWith;
 }
 
 /// @nodoc
@@ -1302,7 +1302,7 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -1329,7 +1329,7 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -1473,7 +1473,7 @@ class _$_CreateCourse implements _CreateCourse {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -1500,7 +1500,7 @@ class _$_CreateCourse implements _CreateCourse {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -1671,7 +1671,7 @@ class _$_SubmitUser implements _SubmitUser {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -1698,7 +1698,7 @@ class _$_SubmitUser implements _SubmitUser {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
@@ -1876,7 +1876,7 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
     @required TResult downloadLecture(_DownloadLecture value),
     @required TResult uploadLecture(_UploadLecture value),
     @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
@@ -1903,7 +1903,7 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
     TResult downloadLecture(_DownloadLecture value),
     TResult uploadLecture(_UploadLecture value),
     TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByUserId value),
+    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),

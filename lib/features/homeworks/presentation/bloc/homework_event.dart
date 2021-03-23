@@ -14,4 +14,8 @@ abstract class HomeworkEvent with _$HomeworkEvent {
   }) = _UploadHomework;
 
   const factory HomeworkEvent.selectFile() = _SelectFile;
+
+  const factory HomeworkEvent.getAllHomeworksByCourse({
+    @required String courseTitle,
+  }) = _GetAllHomeworksByCourse;
 }

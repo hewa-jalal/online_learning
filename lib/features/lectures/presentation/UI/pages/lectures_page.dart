@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/lecture_form_page.dart';
+import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/upload_page.dart';
+import 'package:online_learning/features/lectures/presentation/UI/widgets/homework_card.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/user/data/models/user_model.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
@@ -42,7 +44,7 @@ class _LecturesPageState extends State<LecturesPage>
       ? FloatingActionButton(
           child: Icon(Icons.picture_as_pdf),
           onPressed: () => Get.to(
-            () => LectureFormPage(
+            () => UploadPage(
               isHomeWork: false,
               user: UserModel(
                 id: '12',
@@ -54,7 +56,7 @@ class _LecturesPageState extends State<LecturesPage>
       : FloatingActionButton(
           child: Icon(Icons.home_work),
           onPressed: () => Get.to(
-            () => LectureFormPage(
+            () => UploadPage(
               isHomeWork: true,
               user: UserModel(
                 id: '12',
@@ -66,11 +68,6 @@ class _LecturesPageState extends State<LecturesPage>
 
   @override
   Widget build(BuildContext context) {
-    if (ModalRoute.of(context).isCurrent) {
-      context.read<LectureBloc>().add(
-          LectureEvent.getAllLecturesByCourse(courseTitle: widget.courseTitle));
-    }
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -98,8 +95,8 @@ class _LecturesPageState extends State<LecturesPage>
             return TabBarView(
               controller: _tabController,
               children: [
-                _LecturesList(),
-                Text('g'),
+                _LecturesList(courseTitle: widget.courseTitle),
+                _HomeworksList(courseTitle: widget.courseTitle),
               ],
             );
           },
@@ -113,10 +110,18 @@ class _LecturesPageState extends State<LecturesPage>
 class _LecturesList extends StatelessWidget {
   const _LecturesList({
     Key key,
+    @required this.courseTitle,
   }) : super(key: key);
+
+  final String courseTitle;
 
   @override
   Widget build(BuildContext context) {
+    if (ModalRoute.of(context).isCurrent) {
+      context
+          .read<LectureBloc>()
+          .add(LectureEvent.getAllLecturesByCourse(courseTitle: courseTitle));
+    }
     return BlocBuilder<LectureBloc, LectureState>(
       builder: (context, state) {
         final lectures = state.lectures;
@@ -126,6 +131,36 @@ class _LecturesList extends StatelessWidget {
           itemBuilder: (context, index) {
             return LectureCard(
               lecture: lectures[index],
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _HomeworksList extends StatelessWidget {
+  const _HomeworksList({
+    Key key,
+    @required this.courseTitle,
+  }) : super(key: key);
+  final String courseTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    if (ModalRoute.of(context).isCurrent) {
+      context
+          .read<HomeworkBloc>()
+          .add(HomeworkEvent.getAllHomeworksByCourse(courseTitle: courseTitle));
+    }
+    return BlocBuilder<HomeworkBloc, HomeworkState>(
+      builder: (context, state) {
+        final homeworks = state.homeworks;
+        return ListView.builder(
+          itemCount: homeworks.length,
+          itemBuilder: (context, index) {
+            return HomeworkCard(
+              homework: homeworks[index],
             );
           },
         );

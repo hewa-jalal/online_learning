@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
+import 'package:online_learning/features/homeworks/domain/usecases/get_all_homeworks_by_course.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/upload_homework.dart';
 
 import '../../../user/core/errors/failures.dart';
@@ -17,8 +18,10 @@ part 'homework_bloc.freezed.dart';
 class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
   HomeworkBloc({
     @required this.uploadHomework,
+    @required this.getAllHomeworksByCourse,
   }) : super(HomeworkState.initial());
   final UploadHomework uploadHomework;
+  final GetAllHomeworksByCourse getAllHomeworksByCourse;
 
   @override
   Stream<HomeworkState> mapEventToState(
@@ -29,7 +32,6 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
         yield HomeworkState.initial();
       },
       uploadHomework: (e) async* {
-        print('event title => ${e.title}');
         yield state.copyWith(isSubmitting: true);
         final either = await uploadHomework(
           HomeworkParams(
@@ -43,13 +45,27 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
         );
         yield either.fold(
           (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
-          (unit) => state.copyWith(isSubmitting: true),
+          (unit) => state.copyWith(isSubmitting: false),
         );
       },
       selectFile: (e) async* {
         final result = await FilePicker.platform.pickFiles();
         yield state.copyWith(
           filePath: result.files.single.path,
+        );
+      },
+      getAllHomeworksByCourse: (e) async* {
+        yield state.copyWith(isSubmitting: true);
+        final either = await getAllHomeworksByCourse(
+          e.courseTitle,
+        );
+
+        yield either.fold(
+          (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
+          (homeworks) => state.copyWith(
+            homeworks: homeworks,
+            isSubmitting: false,
+          ),
         );
       },
     );

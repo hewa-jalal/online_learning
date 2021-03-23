@@ -8,6 +8,7 @@ import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:online_learning/features/homeworks/data/datasources/homework_remote_data_source.dart';
 import 'package:online_learning/features/homeworks/data/repository/homework_repository_impl.dart';
 import 'package:online_learning/features/homeworks/domain/repository/homework_repository.dart';
+import 'package:online_learning/features/homeworks/domain/usecases/get_all_homeworks_by_course.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/upload_homework.dart';
 import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
@@ -59,12 +60,20 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (_) => HomeworkBloc(
-                    uploadHomework: UploadHomework(HomeworkRepositoryImpl(
-                  FirebaseHomeworkRemoteDataSource(
-                    lectureTask: sl<LectureTask>(),
-                  ),
-                )))),
+          create: (_) => HomeworkBloc(
+            uploadHomework: UploadHomework(HomeworkRepositoryImpl(
+              FirebaseHomeworkRemoteDataSource(
+                lectureTask: sl<LectureTask>(),
+              ),
+            )),
+            getAllHomeworksByCourse: GetAllHomeworksByCourse(
+                homeworkRepository: HomeworkRepositoryImpl(
+              FirebaseHomeworkRemoteDataSource(
+                lectureTask: sl<LectureTask>(),
+              ),
+            )),
+          ),
+        ),
         BlocProvider(
           create: (_) => sl<ChatBloc>(),
         ),
@@ -122,6 +131,16 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       ],
       child: ScreenUtilInit(
         builder: () => GetMaterialApp(
+          theme: ThemeData.light().copyWith(
+            inputDecorationTheme: InputDecorationTheme(
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green, width: 2.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1.4),
+              ),
+            ),
+          ),
           debugShowCheckedModeBanner: false,
           home: Scaffold(
             body: UserHomePage(

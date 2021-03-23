@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/homeworks/data/datasources/homework_remote_data_source.dart';
+import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
 import 'package:online_learning/features/homeworks/domain/repository/homework_repository.dart';
 import 'package:online_learning/features/user/data/models/user_model.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
@@ -31,6 +32,21 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
         dueDate: dueDate,
       );
       return right(lecture);
+    } on Exception catch (e) {
+      print('exceptions ${e.toString()}');
+      return left(HomeworkFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<HomeworkEntity>>> getAllHomeworksByCourse({
+    @required String courseTitle,
+  }) async {
+    try {
+      final homeworks = await remoteDataSource.getAllHomeworksByCourse(
+        courseTitle: courseTitle,
+      );
+      return right(homeworks);
     } on Exception catch (e) {
       print('exceptions ${e.toString()}');
       return left(HomeworkFailure());

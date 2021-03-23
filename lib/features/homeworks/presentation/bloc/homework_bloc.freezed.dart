@@ -40,6 +40,14 @@ class _$HomeworkEventTearOff {
   _SelectFile selectFile() {
     return const _SelectFile();
   }
+
+// ignore: unused_element
+  _GetAllHomeworksByCourse getAllHomeworksByCourse(
+      {@required String courseTitle}) {
+    return _GetAllHomeworksByCourse(
+      courseTitle: courseTitle,
+    );
+  }
 }
 
 /// @nodoc
@@ -55,6 +63,7 @@ mixin _$HomeworkEvent {
         TResult uploadHomework(UserModel user, String title, String courseTitle,
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
+    @required TResult getAllHomeworksByCourse(String courseTitle),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -62,6 +71,7 @@ mixin _$HomeworkEvent {
     TResult uploadHomework(UserModel user, String title, String courseTitle,
         String filePath, int dueDate, String description),
     TResult selectFile(),
+    TResult getAllHomeworksByCourse(String courseTitle),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -69,12 +79,14 @@ mixin _$HomeworkEvent {
     @required TResult started(_Started value),
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
+    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
+    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
     @required TResult orElse(),
   });
 }
@@ -137,10 +149,12 @@ class _$_Started implements _Started {
         TResult uploadHomework(UserModel user, String title, String courseTitle,
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
+    @required TResult getAllHomeworksByCourse(String courseTitle),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
     return started();
   }
 
@@ -151,6 +165,7 @@ class _$_Started implements _Started {
     TResult uploadHomework(UserModel user, String title, String courseTitle,
         String filePath, int dueDate, String description),
     TResult selectFile(),
+    TResult getAllHomeworksByCourse(String courseTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -166,10 +181,12 @@ class _$_Started implements _Started {
     @required TResult started(_Started value),
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
+    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
     return started(this);
   }
 
@@ -179,6 +196,7 @@ class _$_Started implements _Started {
     TResult started(_Started value),
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
+    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -318,10 +336,12 @@ class _$_UploadHomework implements _UploadHomework {
         TResult uploadHomework(UserModel user, String title, String courseTitle,
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
+    @required TResult getAllHomeworksByCourse(String courseTitle),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
     return uploadHomework(
         user, title, courseTitle, filePath, dueDate, description);
   }
@@ -333,6 +353,7 @@ class _$_UploadHomework implements _UploadHomework {
     TResult uploadHomework(UserModel user, String title, String courseTitle,
         String filePath, int dueDate, String description),
     TResult selectFile(),
+    TResult getAllHomeworksByCourse(String courseTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -349,10 +370,12 @@ class _$_UploadHomework implements _UploadHomework {
     @required TResult started(_Started value),
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
+    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
     return uploadHomework(this);
   }
 
@@ -362,6 +385,7 @@ class _$_UploadHomework implements _UploadHomework {
     TResult started(_Started value),
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
+    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -434,10 +458,12 @@ class _$_SelectFile implements _SelectFile {
         TResult uploadHomework(UserModel user, String title, String courseTitle,
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
+    @required TResult getAllHomeworksByCourse(String courseTitle),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
     return selectFile();
   }
 
@@ -448,6 +474,7 @@ class _$_SelectFile implements _SelectFile {
     TResult uploadHomework(UserModel user, String title, String courseTitle,
         String filePath, int dueDate, String description),
     TResult selectFile(),
+    TResult getAllHomeworksByCourse(String courseTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -463,10 +490,12 @@ class _$_SelectFile implements _SelectFile {
     @required TResult started(_Started value),
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
+    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
     return selectFile(this);
   }
 
@@ -476,6 +505,7 @@ class _$_SelectFile implements _SelectFile {
     TResult started(_Started value),
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
+    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -488,6 +518,144 @@ class _$_SelectFile implements _SelectFile {
 
 abstract class _SelectFile implements HomeworkEvent {
   const factory _SelectFile() = _$_SelectFile;
+}
+
+/// @nodoc
+abstract class _$GetAllHomeworksByCourseCopyWith<$Res> {
+  factory _$GetAllHomeworksByCourseCopyWith(_GetAllHomeworksByCourse value,
+          $Res Function(_GetAllHomeworksByCourse) then) =
+      __$GetAllHomeworksByCourseCopyWithImpl<$Res>;
+  $Res call({String courseTitle});
+}
+
+/// @nodoc
+class __$GetAllHomeworksByCourseCopyWithImpl<$Res>
+    extends _$HomeworkEventCopyWithImpl<$Res>
+    implements _$GetAllHomeworksByCourseCopyWith<$Res> {
+  __$GetAllHomeworksByCourseCopyWithImpl(_GetAllHomeworksByCourse _value,
+      $Res Function(_GetAllHomeworksByCourse) _then)
+      : super(_value, (v) => _then(v as _GetAllHomeworksByCourse));
+
+  @override
+  _GetAllHomeworksByCourse get _value =>
+      super._value as _GetAllHomeworksByCourse;
+
+  @override
+  $Res call({
+    Object courseTitle = freezed,
+  }) {
+    return _then(_GetAllHomeworksByCourse(
+      courseTitle:
+          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
+  const _$_GetAllHomeworksByCourse({@required this.courseTitle})
+      : assert(courseTitle != null);
+
+  @override
+  final String courseTitle;
+
+  @override
+  String toString() {
+    return 'HomeworkEvent.getAllHomeworksByCourse(courseTitle: $courseTitle)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetAllHomeworksByCourse &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetAllHomeworksByCourseCopyWith<_GetAllHomeworksByCourse> get copyWith =>
+      __$GetAllHomeworksByCourseCopyWithImpl<_GetAllHomeworksByCourse>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required
+        TResult uploadHomework(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String description),
+    @required TResult selectFile(),
+    @required TResult getAllHomeworksByCourse(String courseTitle),
+  }) {
+    assert(started != null);
+    assert(uploadHomework != null);
+    assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
+    return getAllHomeworksByCourse(courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult uploadHomework(UserModel user, String title, String courseTitle,
+        String filePath, int dueDate, String description),
+    TResult selectFile(),
+    TResult getAllHomeworksByCourse(String courseTitle),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllHomeworksByCourse != null) {
+      return getAllHomeworksByCourse(courseTitle);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult uploadHomework(_UploadHomework value),
+    @required TResult selectFile(_SelectFile value),
+    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+  }) {
+    assert(started != null);
+    assert(uploadHomework != null);
+    assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
+    return getAllHomeworksByCourse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult uploadHomework(_UploadHomework value),
+    TResult selectFile(_SelectFile value),
+    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getAllHomeworksByCourse != null) {
+      return getAllHomeworksByCourse(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllHomeworksByCourse implements HomeworkEvent {
+  const factory _GetAllHomeworksByCourse({@required String courseTitle}) =
+      _$_GetAllHomeworksByCourse;
+
+  String get courseTitle;
+  @JsonKey(ignore: true)
+  _$GetAllHomeworksByCourseCopyWith<_GetAllHomeworksByCourse> get copyWith;
 }
 
 /// @nodoc

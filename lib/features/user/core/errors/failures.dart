@@ -10,3 +10,5 @@ class UserNotFoundFailure extends Failure {}
 class MessageFailure extends Failure {}
 
 class LectureFailure extends Failure {}
+
+class HomeworkFailure extends Failure {}

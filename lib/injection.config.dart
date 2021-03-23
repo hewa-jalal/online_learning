@@ -10,39 +10,47 @@ import 'package:firebase_storage/firebase_storage.dart' as _i8;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'core/firebase_injectable_module.dart' as _i33;
-import 'core/lecture_task.dart' as _i10;
+import 'core/firebase_injectable_module.dart' as _i38;
+import 'core/lecture_task.dart' as _i13;
 import 'features/chat/data/datasources/chat_remote_data_source.dart' as _i3;
 import 'features/chat/data/repositories/chat_repository_impl.dart' as _i5;
 import 'features/chat/domain/repositories/chat_repository.dart' as _i4;
 import 'features/chat/domain/usecases/get_all_messages.dart' as _i9;
-import 'features/chat/domain/usecases/send_message.dart' as _i14;
-import 'features/chat/presentation/bloc/chat_bloc.dart' as _i20;
-import 'features/lectures/data/datasources/lectures_remote_data_source.dart'
+import 'features/chat/domain/usecases/send_message.dart' as _i18;
+import 'features/chat/presentation/bloc/chat_bloc.dart' as _i25;
+import 'features/homeworks/data/datasources/homework_remote_data_source.dart'
+    as _i12;
+import 'features/homeworks/data/repository/homework_repository_impl.dart'
     as _i11;
+import 'features/homeworks/domain/repository/homework_repository.dart' as _i10;
+import 'features/homeworks/domain/usecases/upload_homework.dart' as _i20;
+import 'features/lectures/data/datasources/lectures_remote_data_source.dart'
+    as _i14;
 import 'features/lectures/data/repository/lectures_repository_impl.dart'
-    as _i13;
-import 'features/lectures/domain/repository/lectures_repository.dart' as _i12;
-import 'features/lectures/domain/usecases/create_course.dart' as _i21;
-import 'features/lectures/domain/usecases/download_lecture.dart' as _i22;
+    as _i16;
+import 'features/lectures/domain/repository/lectures_repository.dart' as _i15;
+import 'features/lectures/domain/usecases/create_course.dart' as _i26;
+import 'features/lectures/domain/usecases/download_lecture.dart' as _i27;
 import 'features/lectures/domain/usecases/get_all_courses_by_user_id.dart'
-    as _i23;
-import 'features/lectures/domain/usecases/get_all_lectures.dart' as _i24;
+    as _i28;
+import 'features/lectures/domain/usecases/get_all_lectures.dart' as _i29;
 import 'features/lectures/domain/usecases/get_all_lectures_by_user_id.dart'
-    as _i25;
-import 'features/lectures/domain/usecases/get_all_submitted_users.dart' as _i26;
-import 'features/lectures/domain/usecases/submit_user.dart' as _i15;
-import 'features/lectures/domain/usecases/upload_lecture.dart' as _i16;
-import 'features/lectures/presentation/bloc/lecture_bloc.dart' as _i29;
-import 'features/user/data/datasources/user_remote_data_source.dart' as _i17;
-import 'features/user/data/repositories/user_repository_impl.dart' as _i19;
-import 'features/user/domain/repositories/user_repository.dart' as _i18;
-import 'features/user/domain/usecase/get_user.dart' as _i28;
-import 'features/user/domain/usecase/get_users.dart' as _i27;
-import 'features/user/domain/usecase/update_user_time.dart' as _i30;
-import 'features/user/domain/usecase/user_online_status.dart' as _i31;
+    as _i30;
+import 'features/lectures/domain/usecases/get_all_submitted_users.dart' as _i31;
+import 'features/lectures/domain/usecases/submit_user.dart' as _i19;
+import 'features/lectures/domain/usecases/upload_lecture.dart' as _i21;
+import 'features/lectures/presentation/bloc/lecture_bloc.dart' as _i34;
+import 'features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart'
+    as _i17;
+import 'features/user/data/datasources/user_remote_data_source.dart' as _i22;
+import 'features/user/data/repositories/user_repository_impl.dart' as _i24;
+import 'features/user/domain/repositories/user_repository.dart' as _i23;
+import 'features/user/domain/usecase/get_user.dart' as _i33;
+import 'features/user/domain/usecase/get_users.dart' as _i32;
+import 'features/user/domain/usecase/update_user_time.dart' as _i35;
+import 'features/user/domain/usecase/user_online_status.dart' as _i36;
 import 'features/user/presentation/bloc/user_auth_bloc.dart'
-    as _i32; // ignore_for_file: unnecessary_lambdas
+    as _i37; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -62,63 +70,72 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => firebaseInjectableModule.firebaseStorage);
   gh.lazySingleton<_i9.GetAllMessages>(
       () => _i9.GetAllMessages(chatRepository: get<_i4.ChatRepository>()));
-  gh.lazySingleton<_i10.LectureTask>(() => _i10.LectureTask());
-  gh.lazySingleton<_i11.LecturesRemoteDataSource>(() =>
-      _i11.FirebaseLecturesRemoteDataSource(
-          lectureTask: get<_i10.LectureTask>(), dio: get<_i6.Dio>()));
-  gh.lazySingleton<_i12.LecturesRepository>(() => _i13.LecturesRepositoryImpl(
-      get<_i11.FirebaseLecturesRemoteDataSource>()));
-  gh.lazySingleton<_i14.SendMessage>(
-      () => _i14.SendMessage(chatRepository: get<_i4.ChatRepository>()));
-  gh.lazySingleton<_i15.SubmitUser>(() =>
-      _i15.SubmitUser(lecturesRepository: get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i16.UploadLecture>(
-      () => _i16.UploadLecture(get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i17.UserRemoteDataSource>(
-      () => _i17.FirebaseUserRemoteDataSource());
-  gh.lazySingleton<_i18.UserRepository>(
-      () => _i19.UserRepositoryImpl(get<_i17.UserRemoteDataSource>()));
-  gh.factory<_i20.ChatBloc>(() => _i20.ChatBloc(
-      sendMessage: get<_i14.SendMessage>(),
+  gh.lazySingleton<_i10.HomeworkRepository>(() => _i11.HomeworkRepositoryImpl(
+      get<_i12.FirebaseHomeworkRemoteDataSource>()));
+  gh.lazySingleton<_i13.LectureTask>(() => _i13.LectureTask());
+  gh.lazySingleton<_i14.LecturesRemoteDataSource>(() =>
+      _i14.FirebaseLecturesRemoteDataSource(
+          lectureTask: get<_i13.LectureTask>(), dio: get<_i6.Dio>()));
+  gh.lazySingleton<_i15.LecturesRepository>(() => _i16.LecturesRepositoryImpl(
+      get<_i14.FirebaseLecturesRemoteDataSource>()));
+  gh.factory<_i17.ProgressBloc>(
+      () => _i17.ProgressBloc(lectureTask: get<_i13.LectureTask>()));
+  gh.lazySingleton<_i18.SendMessage>(
+      () => _i18.SendMessage(chatRepository: get<_i4.ChatRepository>()));
+  gh.lazySingleton<_i19.SubmitUser>(() =>
+      _i19.SubmitUser(lecturesRepository: get<_i15.LecturesRepository>()));
+  gh.lazySingleton<_i20.UploadHomework>(
+      () => _i20.UploadHomework(get<_i10.HomeworkRepository>()));
+  gh.lazySingleton<_i21.UploadLecture>(
+      () => _i21.UploadLecture(get<_i15.LecturesRepository>()));
+  gh.lazySingleton<_i22.UserRemoteDataSource>(
+      () => _i22.FirebaseUserRemoteDataSource());
+  gh.lazySingleton<_i23.UserRepository>(
+      () => _i24.UserRepositoryImpl(get<_i22.UserRemoteDataSource>()));
+  gh.factory<_i25.ChatBloc>(() => _i25.ChatBloc(
+      sendMessage: get<_i18.SendMessage>(),
       getAllMessages: get<_i9.GetAllMessages>()));
-  gh.lazySingleton<_i21.CreateCourse>(
-      () => _i21.CreateCourse(get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i22.DownloadLecture>(
-      () => _i22.DownloadLecture(get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i23.GetAllCoursesByUserId>(() => _i23.GetAllCoursesByUserId(
-      lecturesRepository: get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i24.GetAllLectures>(() =>
-      _i24.GetAllLectures(lecturesRepository: get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i25.GetAllLecturesByCourse>(() =>
-      _i25.GetAllLecturesByCourse(
-          lecturesRepository: get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i26.GetAllSubmittedUsers>(() => _i26.GetAllSubmittedUsers(
-      lecturesRepository: get<_i12.LecturesRepository>()));
-  gh.lazySingleton<_i27.GetAllUsers>(
-      () => _i27.GetAllUsers(get<_i18.UserRepository>()));
-  gh.lazySingleton<_i28.GetUser>(
-      () => _i28.GetUser(get<_i18.UserRepository>()));
-  gh.factory<_i29.LectureBloc>(() => _i29.LectureBloc(
-      downloadLecture: get<_i22.DownloadLecture>(),
-      uploadLecture: get<_i16.UploadLecture>(),
-      getAllLectures: get<_i24.GetAllLectures>(),
-      getAllLecturesByCourse: get<_i25.GetAllLecturesByCourse>(),
-      getAllCoursesByUserId: get<_i23.GetAllCoursesByUserId>(),
-      createCourse: get<_i21.CreateCourse>(),
-      submitUser: get<_i15.SubmitUser>(),
-      getAllSubmittedUsers: get<_i26.GetAllSubmittedUsers>()));
-  gh.lazySingleton<_i30.UpdateUserTime>(
-      () => _i30.UpdateUserTime(get<_i18.UserRepository>()));
-  gh.lazySingleton<_i31.UserOnlineStatus>(
-      () => _i31.UserOnlineStatus(get<_i18.UserRepository>()));
-  gh.factory<_i32.UserAuthBloc>(() => _i32.UserAuthBloc(
-      getUser: get<_i28.GetUser>(),
-      getAllUsers: get<_i27.GetAllUsers>(),
-      updateUserTime: get<_i30.UpdateUserTime>(),
-      userOnlineStatus: get<_i31.UserOnlineStatus>()));
+  gh.lazySingleton<_i26.CreateCourse>(
+      () => _i26.CreateCourse(get<_i15.LecturesRepository>()));
+  gh.lazySingleton<_i27.DownloadLecture>(
+      () => _i27.DownloadLecture(get<_i15.LecturesRepository>()));
+  gh.lazySingleton<_i28.GetAllCoursesByUserId>(() => _i28.GetAllCoursesByUserId(
+      lecturesRepository: get<_i15.LecturesRepository>()));
+  gh.lazySingleton<_i29.GetAllLectures>(() =>
+      _i29.GetAllLectures(lecturesRepository: get<_i15.LecturesRepository>()));
+  gh.lazySingleton<_i30.GetAllLecturesByCourse>(() =>
+      _i30.GetAllLecturesByCourse(
+          lecturesRepository: get<_i15.LecturesRepository>()));
+  gh.lazySingleton<_i31.GetAllSubmittedUsers>(() => _i31.GetAllSubmittedUsers(
+      lecturesRepository: get<_i15.LecturesRepository>()));
+  gh.lazySingleton<_i32.GetAllUsers>(
+      () => _i32.GetAllUsers(get<_i23.UserRepository>()));
+  gh.lazySingleton<_i33.GetUser>(
+      () => _i33.GetUser(get<_i23.UserRepository>()));
+  gh.lazySingleton<_i12.HomeWorkRemoteDataSource>(() =>
+      _i12.FirebaseHomeworkRemoteDataSource(
+          lectureTask: get<_i13.LectureTask>()));
+  gh.factory<_i34.LectureBloc>(() => _i34.LectureBloc(
+      downloadLecture: get<_i27.DownloadLecture>(),
+      uploadLecture: get<_i21.UploadLecture>(),
+      getAllLectures: get<_i29.GetAllLectures>(),
+      getAllLecturesByCourse: get<_i30.GetAllLecturesByCourse>(),
+      getAllCoursesByUserId: get<_i28.GetAllCoursesByUserId>(),
+      createCourse: get<_i26.CreateCourse>(),
+      submitUser: get<_i19.SubmitUser>(),
+      getAllSubmittedUsers: get<_i31.GetAllSubmittedUsers>()));
+  gh.lazySingleton<_i35.UpdateUserTime>(
+      () => _i35.UpdateUserTime(get<_i23.UserRepository>()));
+  gh.lazySingleton<_i36.UserOnlineStatus>(
+      () => _i36.UserOnlineStatus(get<_i23.UserRepository>()));
+  gh.factory<_i37.UserAuthBloc>(() => _i37.UserAuthBloc(
+      getUser: get<_i33.GetUser>(),
+      getAllUsers: get<_i32.GetAllUsers>(),
+      updateUserTime: get<_i35.UpdateUserTime>(),
+      userOnlineStatus: get<_i36.UserOnlineStatus>()));
   return get;
 }
 
-class _$DioInjectableModule extends _i33.DioInjectableModule {}
+class _$DioInjectableModule extends _i38.DioInjectableModule {}
 
-class _$FirebaseInjectableModule extends _i33.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i38.FirebaseInjectableModule {}

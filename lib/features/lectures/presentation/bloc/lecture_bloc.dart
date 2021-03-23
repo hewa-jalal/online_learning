@@ -20,8 +20,6 @@ import 'package:online_learning/features/user/data/models/user_model.dart';
 import '../../../user/core/errors/failures.dart';
 import '../../data/models/lecture_model.dart';
 import '../../domain/entities/lecture_entity.dart';
-import '../../domain/entities/lecture_entity.dart';
-import '../../domain/entities/lecture_entity.dart';
 
 part 'lecture_event.dart';
 part 'lecture_state.dart';
@@ -160,7 +158,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
 
         yield either.fold(
           (l) => state.copyWith(
-            authFailureOrSuccessOption: none(),
+            lectureFailureOrSuccessOption: none(),
           ),
           (lectureEntity) => state.copyWith(
             lecture: lectureEntity,
@@ -180,7 +178,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         final either = await getAllLectures(NoParams());
         yield either.fold(
           (failure) => state.copyWith(
-            authFailureOrSuccessOption: none(),
+            lectureFailureOrSuccessOption: none(),
           ),
           (lectures) => state.copyWith(
             lectures: lectures,
@@ -191,7 +189,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         final either = await getAllLecturesByCourse(e.courseTitle);
         yield either.fold(
           (failure) => state.copyWith(
-            authFailureOrSuccessOption: none(),
+            lectureFailureOrSuccessOption: none(),
           ),
           (lectures) => state.copyWith(
             lectures: lectures,
@@ -209,7 +207,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         final either = await getAllCoursesByUserId(state.userId);
         yield either.fold(
           (failure) => state.copyWith(
-            authFailureOrSuccessOption: none(),
+            lectureFailureOrSuccessOption: none(),
           ),
           (courseIds) => state.copyWith(
             courseIds: courseIds,
@@ -244,7 +242,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
 
         yield either.fold(
           (failure) => state.copyWith(
-            authFailureOrSuccessOption: none(),
+            lectureFailureOrSuccessOption: none(),
           ),
           (submittedUsersRight) {
             final newLectures = lectures.map((element) {
@@ -255,7 +253,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
                 submittedUsers: submittedUsersRight,
               );
             }).toList();
-            print('newLectures ====> $newLectures');
+
             return state.copyWith(
               lectures: newLectures,
             );

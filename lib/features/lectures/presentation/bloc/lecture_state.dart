@@ -27,7 +27,8 @@ abstract class LectureState with _$LectureState {
     @required List<LectureEntity> lectures,
     @required List<String> courseIds,
     // @required List<String> submittedUsers,
-    @required Option<Either<LectureFailure, Unit>> authFailureOrSuccessOption,
+    @required
+        Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption,
   }) = _LectureState;
 
   factory LectureState.initial() => LectureState(
@@ -38,6 +39,6 @@ abstract class LectureState with _$LectureState {
         courseIds: List.empty(),
         // submittedUsers: List.empty(),
         isSubmitting: false,
-        authFailureOrSuccessOption: none(),
+        lectureFailureOrSuccessOption: none(),
       );
 }

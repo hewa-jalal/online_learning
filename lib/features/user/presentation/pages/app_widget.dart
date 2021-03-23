@@ -5,6 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
+import 'package:online_learning/features/homeworks/data/datasources/homework_remote_data_source.dart';
+import 'package:online_learning/features/homeworks/data/repository/homework_repository_impl.dart';
+import 'package:online_learning/features/homeworks/domain/repository/homework_repository.dart';
+import 'package:online_learning/features/homeworks/domain/usecases/upload_homework.dart';
+import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
 import 'package:online_learning/features/lectures/data/repository/lectures_repository_impl.dart';
 import 'package:online_learning/features/lectures/domain/usecases/create_course.dart';
@@ -21,7 +26,9 @@ import 'package:online_learning/features/lectures/presentation/bloc/progress_blo
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:online_learning/injection.dart';
 
+import '../../domain/entites/user.dart';
 import 'get_user_page.dart';
+import 'user_home_page.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -51,6 +58,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+            create: (_) => HomeworkBloc(
+                    uploadHomework: UploadHomework(HomeworkRepositoryImpl(
+                  FirebaseHomeworkRemoteDataSource(
+                    lectureTask: sl<LectureTask>(),
+                  ),
+                )))),
         BlocProvider(
           create: (_) => sl<ChatBloc>(),
         ),
@@ -103,7 +117,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         BlocProvider(
           create: (context) => ProgressBloc(
             lectureTask: sl<LectureTask>(),
-            lectureBloc: context.read<LectureBloc>(),
           ),
         )
       ],
@@ -111,7 +124,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         builder: () => GetMaterialApp(
           debugShowCheckedModeBanner: false,
           home: Scaffold(
-            body: UserForm(),
+            body: UserHomePage(
+              user: UserEntity(id: '12'),
+            ),
           ),
         ),
       ),

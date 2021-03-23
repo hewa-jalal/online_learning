@@ -1950,7 +1950,7 @@ class _$LectureStateTearOff {
       @required
           List<String> courseIds,
       @required
-          Option<Either<LectureFailure, Unit>> authFailureOrSuccessOption}) {
+          Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption}) {
     return _LectureState(
       lecture: lecture,
       userId: userId,
@@ -1958,7 +1958,7 @@ class _$LectureStateTearOff {
       isSubmitting: isSubmitting,
       lectures: lectures,
       courseIds: courseIds,
-      authFailureOrSuccessOption: authFailureOrSuccessOption,
+      lectureFailureOrSuccessOption: lectureFailureOrSuccessOption,
     );
   }
 }
@@ -1975,7 +1975,7 @@ mixin _$LectureState {
   bool get isSubmitting;
   List<LectureEntity> get lectures;
   List<String> get courseIds; // @required List<String> submittedUsers,
-  Option<Either<LectureFailure, Unit>> get authFailureOrSuccessOption;
+  Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption;
 
   @JsonKey(ignore: true)
   $LectureStateCopyWith<LectureState> get copyWith;
@@ -1993,7 +1993,7 @@ abstract class $LectureStateCopyWith<$Res> {
       bool isSubmitting,
       List<LectureEntity> lectures,
       List<String> courseIds,
-      Option<Either<LectureFailure, Unit>> authFailureOrSuccessOption});
+      Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -2012,7 +2012,7 @@ class _$LectureStateCopyWithImpl<$Res> implements $LectureStateCopyWith<$Res> {
     Object isSubmitting = freezed,
     Object lectures = freezed,
     Object courseIds = freezed,
-    Object authFailureOrSuccessOption = freezed,
+    Object lectureFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
       lecture: lecture == freezed ? _value.lecture : lecture as LectureEntity,
@@ -2025,9 +2025,10 @@ class _$LectureStateCopyWithImpl<$Res> implements $LectureStateCopyWith<$Res> {
           : lectures as List<LectureEntity>,
       courseIds:
           courseIds == freezed ? _value.courseIds : courseIds as List<String>,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption as Option<Either<LectureFailure, Unit>>,
+      lectureFailureOrSuccessOption: lectureFailureOrSuccessOption == freezed
+          ? _value.lectureFailureOrSuccessOption
+          : lectureFailureOrSuccessOption
+              as Option<Either<LectureFailure, Unit>>,
     ));
   }
 }
@@ -2046,7 +2047,7 @@ abstract class _$LectureStateCopyWith<$Res>
       bool isSubmitting,
       List<LectureEntity> lectures,
       List<String> courseIds,
-      Option<Either<LectureFailure, Unit>> authFailureOrSuccessOption});
+      Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -2067,7 +2068,7 @@ class __$LectureStateCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
     Object isSubmitting = freezed,
     Object lectures = freezed,
     Object courseIds = freezed,
-    Object authFailureOrSuccessOption = freezed,
+    Object lectureFailureOrSuccessOption = freezed,
   }) {
     return _then(_LectureState(
       lecture: lecture == freezed ? _value.lecture : lecture as LectureEntity,
@@ -2080,9 +2081,10 @@ class __$LectureStateCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
           : lectures as List<LectureEntity>,
       courseIds:
           courseIds == freezed ? _value.courseIds : courseIds as List<String>,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
-          ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption as Option<Either<LectureFailure, Unit>>,
+      lectureFailureOrSuccessOption: lectureFailureOrSuccessOption == freezed
+          ? _value.lectureFailureOrSuccessOption
+          : lectureFailureOrSuccessOption
+              as Option<Either<LectureFailure, Unit>>,
     ));
   }
 }
@@ -2096,14 +2098,14 @@ class _$_LectureState implements _LectureState {
       @required this.isSubmitting,
       @required this.lectures,
       @required this.courseIds,
-      @required this.authFailureOrSuccessOption})
+      @required this.lectureFailureOrSuccessOption})
       : assert(lecture != null),
         assert(userId != null),
         assert(filePath != null),
         assert(isSubmitting != null),
         assert(lectures != null),
         assert(courseIds != null),
-        assert(authFailureOrSuccessOption != null);
+        assert(lectureFailureOrSuccessOption != null);
 
   @override
   final LectureEntity lecture;
@@ -2118,11 +2120,11 @@ class _$_LectureState implements _LectureState {
   @override
   final List<String> courseIds;
   @override // @required List<String> submittedUsers,
-  final Option<Either<LectureFailure, Unit>> authFailureOrSuccessOption;
+  final Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'LectureState(lecture: $lecture, userId: $userId, filePath: $filePath, isSubmitting: $isSubmitting, lectures: $lectures, courseIds: $courseIds, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'LectureState(lecture: $lecture, userId: $userId, filePath: $filePath, isSubmitting: $isSubmitting, lectures: $lectures, courseIds: $courseIds, lectureFailureOrSuccessOption: $lectureFailureOrSuccessOption)';
   }
 
   @override
@@ -2146,11 +2148,11 @@ class _$_LectureState implements _LectureState {
             (identical(other.courseIds, courseIds) ||
                 const DeepCollectionEquality()
                     .equals(other.courseIds, courseIds)) &&
-            (identical(other.authFailureOrSuccessOption,
-                    authFailureOrSuccessOption) ||
+            (identical(other.lectureFailureOrSuccessOption,
+                    lectureFailureOrSuccessOption) ||
                 const DeepCollectionEquality().equals(
-                    other.authFailureOrSuccessOption,
-                    authFailureOrSuccessOption)));
+                    other.lectureFailureOrSuccessOption,
+                    lectureFailureOrSuccessOption)));
   }
 
   @override
@@ -2162,7 +2164,7 @@ class _$_LectureState implements _LectureState {
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(lectures) ^
       const DeepCollectionEquality().hash(courseIds) ^
-      const DeepCollectionEquality().hash(authFailureOrSuccessOption);
+      const DeepCollectionEquality().hash(lectureFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
@@ -2186,7 +2188,7 @@ abstract class _LectureState implements LectureState {
           List<String> courseIds,
       @required
           Option<Either<LectureFailure, Unit>>
-              authFailureOrSuccessOption}) = _$_LectureState;
+              lectureFailureOrSuccessOption}) = _$_LectureState;
 
   @override
   LectureEntity get lecture;
@@ -2201,7 +2203,7 @@ abstract class _LectureState implements LectureState {
   @override
   List<String> get courseIds;
   @override // @required List<String> submittedUsers,
-  Option<Either<LectureFailure, Unit>> get authFailureOrSuccessOption;
+  Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$LectureStateCopyWith<_LectureState> get copyWith;

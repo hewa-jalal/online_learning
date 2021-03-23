@@ -23,6 +23,7 @@ class LectureCard extends StatelessWidget {
       ),
     );
     final list = lecture.submittedUsers;
+    print('list => $list');
     if (list != null) {
       isSubmitted = list.contains('12');
     }
@@ -38,14 +39,13 @@ class LectureCard extends StatelessWidget {
           title: Text('pdf file'),
           value: isSubmitted,
           onChanged: (val) {
-            print('switch onChange');
-            // lectureBloc.add(
-            //   LectureEvent.submitUser(
-            //     lectureTitle: lecture.title,
-            //     courseTitle: 'AI',
-            //     userId: '12',
-            //   ),
-            // );
+            lectureBloc.add(
+              LectureEvent.submitUser(
+                lectureTitle: lecture.title,
+                courseTitle: 'AI',
+                userId: '12',
+              ),
+            );
           },
         )
       ],

@@ -3,21 +3,19 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:online_learning/core/lecture_task.dart';
-
-import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 
 part 'progress_event.dart';
 part 'progress_state.dart';
 part 'progress_bloc.freezed.dart';
 
+@injectable
 class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
-  final LectureBloc lectureBloc;
   final LectureTask lectureTask;
   StreamSubscription _subscription;
 
   ProgressBloc({
-    @required this.lectureBloc,
     @required this.lectureTask,
   }) : super(_Initial());
 

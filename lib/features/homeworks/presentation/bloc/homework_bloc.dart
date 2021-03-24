@@ -67,6 +67,7 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
           (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
           (homeworks) => state.copyWith(
             homeworks: homeworks,
+            courseTitle: e.courseTitle,
             isSubmitting: false,
           ),
         );
@@ -78,6 +79,7 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
             fileUrl: e.fileUrl,
             note: e.note,
             homeworkTitle: e.homeworkTitle,
+            submitDate: e.submitDate,
           ),
         );
         either.fold(
@@ -86,6 +88,9 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
             isSubmitting: false,
           ),
         );
+        add(HomeworkEvent.getAllHomeworksByCourse(
+          courseTitle: state.courseTitle,
+        ));
       },
     );
   }

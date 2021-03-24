@@ -4,6 +4,7 @@ part of 'homework_bloc.dart';
 abstract class HomeworkState with _$HomeworkState {
   const factory HomeworkState({
     @required String title,
+    @required String courseTitle,
     @required String userId,
     @required List<HomeworkEntity> homeworks,
     String description,
@@ -13,6 +14,7 @@ abstract class HomeworkState with _$HomeworkState {
   }) = _HomeworkState;
   factory HomeworkState.initial() => HomeworkState(
         title: '',
+        courseTitle: '',
         userId: '',
         homeworks: List.empty(),
         description: '',

@@ -110,15 +110,14 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
     @required String fileUrl,
     @required String note,
     @required String homeworkTitle,
+    @required int submitDate,
   }) async {
     final submitHomework = HomeworkSubmitModel(
       userId: userId,
       fileUrl: fileUrl,
       note: note,
+      submitDate: submitDate,
     );
-    final courseDoc = userHomeworksCollection.doc('AI');
-
-    final homeworksQuery = await courseDoc.collection('homeworks').get();
 
     userHomeworksCollection
         .doc('AI')

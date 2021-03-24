@@ -54,12 +54,14 @@ class _$HomeworkEventTearOff {
       {@required String userId,
       @required String fileUrl,
       @required String note,
-      @required String homeworkTitle}) {
+      @required String homeworkTitle,
+      @required int submitDate}) {
     return _SubmitHomework(
       userId: userId,
       fileUrl: fileUrl,
       note: note,
       homeworkTitle: homeworkTitle,
+      submitDate: submitDate,
     );
   }
 }
@@ -79,8 +81,8 @@ mixin _$HomeworkEvent {
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
     @required
-        TResult submitHomework(
-            String userId, String fileUrl, String note, String homeworkTitle),
+        TResult submitHomework(String userId, String fileUrl, String note,
+            String homeworkTitle, int submitDate),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -89,8 +91,8 @@ mixin _$HomeworkEvent {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
-    TResult submitHomework(
-        String userId, String fileUrl, String note, String homeworkTitle),
+    TResult submitHomework(String userId, String fileUrl, String note,
+        String homeworkTitle, int submitDate),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -172,8 +174,8 @@ class _$_Started implements _Started {
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
     @required
-        TResult submitHomework(
-            String userId, String fileUrl, String note, String homeworkTitle),
+        TResult submitHomework(String userId, String fileUrl, String note,
+            String homeworkTitle, int submitDate),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
@@ -191,8 +193,8 @@ class _$_Started implements _Started {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
-    TResult submitHomework(
-        String userId, String fileUrl, String note, String homeworkTitle),
+    TResult submitHomework(String userId, String fileUrl, String note,
+        String homeworkTitle, int submitDate),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -368,8 +370,8 @@ class _$_UploadHomework implements _UploadHomework {
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
     @required
-        TResult submitHomework(
-            String userId, String fileUrl, String note, String homeworkTitle),
+        TResult submitHomework(String userId, String fileUrl, String note,
+            String homeworkTitle, int submitDate),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
@@ -388,8 +390,8 @@ class _$_UploadHomework implements _UploadHomework {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
-    TResult submitHomework(
-        String userId, String fileUrl, String note, String homeworkTitle),
+    TResult submitHomework(String userId, String fileUrl, String note,
+        String homeworkTitle, int submitDate),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -499,8 +501,8 @@ class _$_SelectFile implements _SelectFile {
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
     @required
-        TResult submitHomework(
-            String userId, String fileUrl, String note, String homeworkTitle),
+        TResult submitHomework(String userId, String fileUrl, String note,
+            String homeworkTitle, int submitDate),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
@@ -518,8 +520,8 @@ class _$_SelectFile implements _SelectFile {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
-    TResult submitHomework(
-        String userId, String fileUrl, String note, String homeworkTitle),
+    TResult submitHomework(String userId, String fileUrl, String note,
+        String homeworkTitle, int submitDate),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -641,8 +643,8 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
     @required
-        TResult submitHomework(
-            String userId, String fileUrl, String note, String homeworkTitle),
+        TResult submitHomework(String userId, String fileUrl, String note,
+            String homeworkTitle, int submitDate),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
@@ -660,8 +662,8 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
-    TResult submitHomework(
-        String userId, String fileUrl, String note, String homeworkTitle),
+    TResult submitHomework(String userId, String fileUrl, String note,
+        String homeworkTitle, int submitDate),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -720,7 +722,12 @@ abstract class _$SubmitHomeworkCopyWith<$Res> {
   factory _$SubmitHomeworkCopyWith(
           _SubmitHomework value, $Res Function(_SubmitHomework) then) =
       __$SubmitHomeworkCopyWithImpl<$Res>;
-  $Res call({String userId, String fileUrl, String note, String homeworkTitle});
+  $Res call(
+      {String userId,
+      String fileUrl,
+      String note,
+      String homeworkTitle,
+      int submitDate});
 }
 
 /// @nodoc
@@ -740,6 +747,7 @@ class __$SubmitHomeworkCopyWithImpl<$Res>
     Object fileUrl = freezed,
     Object note = freezed,
     Object homeworkTitle = freezed,
+    Object submitDate = freezed,
   }) {
     return _then(_SubmitHomework(
       userId: userId == freezed ? _value.userId : userId as String,
@@ -748,6 +756,7 @@ class __$SubmitHomeworkCopyWithImpl<$Res>
       homeworkTitle: homeworkTitle == freezed
           ? _value.homeworkTitle
           : homeworkTitle as String,
+      submitDate: submitDate == freezed ? _value.submitDate : submitDate as int,
     ));
   }
 }
@@ -758,11 +767,13 @@ class _$_SubmitHomework implements _SubmitHomework {
       {@required this.userId,
       @required this.fileUrl,
       @required this.note,
-      @required this.homeworkTitle})
+      @required this.homeworkTitle,
+      @required this.submitDate})
       : assert(userId != null),
         assert(fileUrl != null),
         assert(note != null),
-        assert(homeworkTitle != null);
+        assert(homeworkTitle != null),
+        assert(submitDate != null);
 
   @override
   final String userId;
@@ -772,10 +783,12 @@ class _$_SubmitHomework implements _SubmitHomework {
   final String note;
   @override
   final String homeworkTitle;
+  @override
+  final int submitDate;
 
   @override
   String toString() {
-    return 'HomeworkEvent.submitHomework(userId: $userId, fileUrl: $fileUrl, note: $note, homeworkTitle: $homeworkTitle)';
+    return 'HomeworkEvent.submitHomework(userId: $userId, fileUrl: $fileUrl, note: $note, homeworkTitle: $homeworkTitle, submitDate: $submitDate)';
   }
 
   @override
@@ -791,7 +804,10 @@ class _$_SubmitHomework implements _SubmitHomework {
                 const DeepCollectionEquality().equals(other.note, note)) &&
             (identical(other.homeworkTitle, homeworkTitle) ||
                 const DeepCollectionEquality()
-                    .equals(other.homeworkTitle, homeworkTitle)));
+                    .equals(other.homeworkTitle, homeworkTitle)) &&
+            (identical(other.submitDate, submitDate) ||
+                const DeepCollectionEquality()
+                    .equals(other.submitDate, submitDate)));
   }
 
   @override
@@ -800,7 +816,8 @@ class _$_SubmitHomework implements _SubmitHomework {
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(fileUrl) ^
       const DeepCollectionEquality().hash(note) ^
-      const DeepCollectionEquality().hash(homeworkTitle);
+      const DeepCollectionEquality().hash(homeworkTitle) ^
+      const DeepCollectionEquality().hash(submitDate);
 
   @JsonKey(ignore: true)
   @override
@@ -817,15 +834,15 @@ class _$_SubmitHomework implements _SubmitHomework {
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
     @required
-        TResult submitHomework(
-            String userId, String fileUrl, String note, String homeworkTitle),
+        TResult submitHomework(String userId, String fileUrl, String note,
+            String homeworkTitle, int submitDate),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
     assert(submitHomework != null);
-    return submitHomework(userId, fileUrl, note, homeworkTitle);
+    return submitHomework(userId, fileUrl, note, homeworkTitle, submitDate);
   }
 
   @override
@@ -836,13 +853,13 @@ class _$_SubmitHomework implements _SubmitHomework {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
-    TResult submitHomework(
-        String userId, String fileUrl, String note, String homeworkTitle),
+    TResult submitHomework(String userId, String fileUrl, String note,
+        String homeworkTitle, int submitDate),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (submitHomework != null) {
-      return submitHomework(userId, fileUrl, note, homeworkTitle);
+      return submitHomework(userId, fileUrl, note, homeworkTitle, submitDate);
     }
     return orElse();
   }
@@ -887,12 +904,14 @@ abstract class _SubmitHomework implements HomeworkEvent {
       {@required String userId,
       @required String fileUrl,
       @required String note,
-      @required String homeworkTitle}) = _$_SubmitHomework;
+      @required String homeworkTitle,
+      @required int submitDate}) = _$_SubmitHomework;
 
   String get userId;
   String get fileUrl;
   String get note;
   String get homeworkTitle;
+  int get submitDate;
   @JsonKey(ignore: true)
   _$SubmitHomeworkCopyWith<_SubmitHomework> get copyWith;
 }
@@ -904,6 +923,7 @@ class _$HomeworkStateTearOff {
 // ignore: unused_element
   _HomeworkState call(
       {@required String title,
+      @required String courseTitle,
       @required String userId,
       @required List<HomeworkEntity> homeworks,
       String description,
@@ -912,6 +932,7 @@ class _$HomeworkStateTearOff {
       Option<Either<HomeworkFailure, Unit>> homeworkFailureOrSuccessOption}) {
     return _HomeworkState(
       title: title,
+      courseTitle: courseTitle,
       userId: userId,
       homeworks: homeworks,
       description: description,
@@ -929,6 +950,7 @@ const $HomeworkState = _$HomeworkStateTearOff();
 /// @nodoc
 mixin _$HomeworkState {
   String get title;
+  String get courseTitle;
   String get userId;
   List<HomeworkEntity> get homeworks;
   String get description;
@@ -947,6 +969,7 @@ abstract class $HomeworkStateCopyWith<$Res> {
       _$HomeworkStateCopyWithImpl<$Res>;
   $Res call(
       {String title,
+      String courseTitle,
       String userId,
       List<HomeworkEntity> homeworks,
       String description,
@@ -967,6 +990,7 @@ class _$HomeworkStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object title = freezed,
+    Object courseTitle = freezed,
     Object userId = freezed,
     Object homeworks = freezed,
     Object description = freezed,
@@ -976,6 +1000,8 @@ class _$HomeworkStateCopyWithImpl<$Res>
   }) {
     return _then(_value.copyWith(
       title: title == freezed ? _value.title : title as String,
+      courseTitle:
+          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
       userId: userId == freezed ? _value.userId : userId as String,
       homeworks: homeworks == freezed
           ? _value.homeworks
@@ -1002,6 +1028,7 @@ abstract class _$HomeworkStateCopyWith<$Res>
   @override
   $Res call(
       {String title,
+      String courseTitle,
       String userId,
       List<HomeworkEntity> homeworks,
       String description,
@@ -1024,6 +1051,7 @@ class __$HomeworkStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object title = freezed,
+    Object courseTitle = freezed,
     Object userId = freezed,
     Object homeworks = freezed,
     Object description = freezed,
@@ -1033,6 +1061,8 @@ class __$HomeworkStateCopyWithImpl<$Res>
   }) {
     return _then(_HomeworkState(
       title: title == freezed ? _value.title : title as String,
+      courseTitle:
+          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
       userId: userId == freezed ? _value.userId : userId as String,
       homeworks: homeworks == freezed
           ? _value.homeworks
@@ -1054,6 +1084,7 @@ class __$HomeworkStateCopyWithImpl<$Res>
 class _$_HomeworkState implements _HomeworkState {
   const _$_HomeworkState(
       {@required this.title,
+      @required this.courseTitle,
       @required this.userId,
       @required this.homeworks,
       this.description,
@@ -1061,11 +1092,14 @@ class _$_HomeworkState implements _HomeworkState {
       this.isSubmitting,
       this.homeworkFailureOrSuccessOption})
       : assert(title != null),
+        assert(courseTitle != null),
         assert(userId != null),
         assert(homeworks != null);
 
   @override
   final String title;
+  @override
+  final String courseTitle;
   @override
   final String userId;
   @override
@@ -1081,7 +1115,7 @@ class _$_HomeworkState implements _HomeworkState {
 
   @override
   String toString() {
-    return 'HomeworkState(title: $title, userId: $userId, homeworks: $homeworks, description: $description, filePath: $filePath, isSubmitting: $isSubmitting, homeworkFailureOrSuccessOption: $homeworkFailureOrSuccessOption)';
+    return 'HomeworkState(title: $title, courseTitle: $courseTitle, userId: $userId, homeworks: $homeworks, description: $description, filePath: $filePath, isSubmitting: $isSubmitting, homeworkFailureOrSuccessOption: $homeworkFailureOrSuccessOption)';
   }
 
   @override
@@ -1090,6 +1124,9 @@ class _$_HomeworkState implements _HomeworkState {
         (other is _HomeworkState &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)) &&
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)) &&
             (identical(other.homeworks, homeworks) ||
@@ -1115,6 +1152,7 @@ class _$_HomeworkState implements _HomeworkState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(courseTitle) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(homeworks) ^
       const DeepCollectionEquality().hash(description) ^
@@ -1131,6 +1169,7 @@ class _$_HomeworkState implements _HomeworkState {
 abstract class _HomeworkState implements HomeworkState {
   const factory _HomeworkState(
       {@required String title,
+      @required String courseTitle,
       @required String userId,
       @required List<HomeworkEntity> homeworks,
       String description,
@@ -1141,6 +1180,8 @@ abstract class _HomeworkState implements HomeworkState {
 
   @override
   String get title;
+  @override
+  String get courseTitle;
   @override
   String get userId;
   @override

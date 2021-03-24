@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/lectures_page.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/course_page.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
@@ -82,8 +82,8 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                           child: ListView.builder(
                             itemCount: courseIds.length,
                             itemBuilder: (context, index) => CourseCard(
-                              onTap: () => Get.to(() => LecturesPage(
-                                      courseTitle: courseIds[index]))
+                              onTap: () => Get.to(() =>
+                                      CoursePage(courseTitle: courseIds[index]))
                                   .then((value) => setState(() {})),
                               courseTitle: courseIds[index],
                             ),

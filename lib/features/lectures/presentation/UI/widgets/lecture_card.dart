@@ -15,13 +15,6 @@ class LectureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
 
-    // lectureBloc.add(
-    //   LectureEvent.getAllSubmittedUsers(
-    //     userId: '12',
-    //     courseTitle: 'AI',
-    //     lectureTitle: lecture.title,
-    //   ),
-    // );
     final list = lecture.submittedUsers;
     print('list => $list');
     if (list != null) {

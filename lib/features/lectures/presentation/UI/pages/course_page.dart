@@ -10,15 +10,15 @@ import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 import '../widgets/lecture_card.dart';
 
-class LecturesPage extends StatefulWidget {
+class CoursePage extends StatefulWidget {
   final String courseTitle;
 
-  const LecturesPage({Key key, @required this.courseTitle}) : super(key: key);
+  const CoursePage({Key key, @required this.courseTitle}) : super(key: key);
   @override
-  _LecturesPageState createState() => _LecturesPageState();
+  _CoursePageState createState() => _CoursePageState();
 }
 
-class _LecturesPageState extends State<LecturesPage>
+class _CoursePageState extends State<CoursePage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
 
@@ -124,16 +124,20 @@ class _LecturesList extends StatelessWidget {
     }
     return BlocBuilder<LectureBloc, LectureState>(
       builder: (context, state) {
-        final lectures = state.lectures;
+        if (state.isSubmitting) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          final lectures = state.lectures;
 
-        return ListView.builder(
-          itemCount: lectures.length,
-          itemBuilder: (context, index) {
-            return LectureCard(
-              lecture: lectures[index],
-            );
-          },
-        );
+          return ListView.builder(
+            itemCount: lectures.length,
+            itemBuilder: (context, index) {
+              return LectureCard(
+                lecture: lectures[index],
+              );
+            },
+          );
+        }
       },
     );
   }

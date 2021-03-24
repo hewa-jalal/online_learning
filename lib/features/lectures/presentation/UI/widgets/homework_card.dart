@@ -3,6 +3,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
+import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 
 class HomeworkCard extends StatelessWidget {
   final HomeworkEntity homework;
@@ -12,6 +13,8 @@ class HomeworkCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final userAuthState = context.watch<UserAuthBloc>().state;
+    var isSubmitted = homework.submittedHomeworks.contains('222');
     print('card => ${homework.submittedHomeworks}');
     final dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
     final jifDate = Jiffy(dueDate);
@@ -28,14 +31,16 @@ class HomeworkCard extends StatelessWidget {
         ),
         // trailing: Icon(MaterialIcons.arrow_forward),
         trailing: Checkbox(
-          value: false,
+          value: isSubmitted,
           onChanged: (val) {
+            print('switch userId => ${userAuthState.id}');
             context.read<HomeworkBloc>().add(
                   HomeworkEvent.submitHomework(
                     userId: '222',
                     fileUrl: 'fileUrl',
                     note: 'note',
                     homeworkTitle: homework.title,
+                    submitDate: DateTime.now().millisecondsSinceEpoch,
                   ),
                 );
           },

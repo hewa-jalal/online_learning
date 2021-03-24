@@ -59,6 +59,7 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
     @required String fileUrl,
     @required String note,
     @required String homeworkTitle,
+    @required int submitDate,
   }) async {
     try {
       final submitUnit = await remoteDataSource.submitHomework(
@@ -66,6 +67,7 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
         fileUrl: fileUrl,
         note: note,
         homeworkTitle: homeworkTitle,
+        submitDate: submitDate,
       );
       return right(submitUnit);
     } on Exception catch (e) {

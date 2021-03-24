@@ -24,5 +24,6 @@ abstract class HomeworkEvent with _$HomeworkEvent {
     @required String fileUrl,
     @required String note,
     @required String homeworkTitle,
+    @required int submitDate,
   }) = _SubmitHomework;
 }

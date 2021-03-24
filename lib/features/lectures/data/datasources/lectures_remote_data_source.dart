@@ -175,17 +175,6 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
         .collection('submittedUsers')
         .get();
 
-    // final List<String> submittedUsers =
-    //     List.from(submittedUsersCollection.docs.map((doc) {
-    //   final docData = doc.data();
-    //   if (docData.containsKey('user_id')) {
-    //     return docData['user_id'];
-    //   } else {
-    //     // returns empty string to indicate user hasn't submitted
-    //     return '';
-    //   }
-    // }).toList());
-
     final List<String> submittedUsers =
         List.from(submittedUsersCollection.docs.map((doc) => doc.id).toList());
 

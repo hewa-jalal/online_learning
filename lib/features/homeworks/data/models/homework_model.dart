@@ -7,12 +7,14 @@ class HomeworkModel extends HomeworkEntity {
   final String title;
   final String description;
   final int dueDate;
+  final List<String> submittedHomeworks;
 
   HomeworkModel({
     @required this.title,
     @required this.dueDate,
     this.description,
     this.fileUrl,
+    this.submittedHomeworks,
   }) : super(
           fileUrl: fileUrl,
           title: title,
@@ -25,11 +27,13 @@ class HomeworkModel extends HomeworkEntity {
     this.title = '',
     this.description = '',
     this.dueDate = 0,
+    this.submittedHomeworks = const [],
   }) : super(
           fileUrl: '',
           title: '',
           description: '',
           dueDate: 0,
+          submittedHomeworks: const [],
         );
 
   Map<String, dynamic> toDocument() {
@@ -41,13 +45,19 @@ class HomeworkModel extends HomeworkEntity {
     };
   }
 
-  static HomeworkModel fromSnapshot(DocumentSnapshot snap) {
+  static HomeworkModel fromSnapshot(
+    DocumentSnapshot snap, [
+    List<String> submittedUsersList,
+  ]) {
     final data = snap.data();
+    print('model data => $data');
+    print('model list => $submittedUsersList');
     return HomeworkModel(
       fileUrl: data['fileUrl'] as String,
       title: data['title'] as String,
       description: data['description'] as String,
       dueDate: data['dueDate'] as int,
+      submittedHomeworks: submittedUsersList,
     );
   }
 }

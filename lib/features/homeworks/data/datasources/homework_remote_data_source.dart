@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/homeworks/data/models/homework_model.dart';
+import 'package:online_learning/features/homeworks/data/models/homework_submit_model.dart';
 import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
 
 import '../../../../core/lecture_task.dart';
@@ -23,6 +24,13 @@ abstract class HomeWorkRemoteDataSource {
 
   Future<List<HomeworkEntity>> getAllHomeworksByCourse({
     @required String courseTitle,
+  });
+
+  Future<Unit> submitHomework({
+    @required String userId,
+    @required String fileUrl,
+    @required String note,
+    @required String homeworkTitle,
   });
 }
 
@@ -66,12 +74,60 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
   Future<List<HomeworkEntity>> getAllHomeworksByCourse({
     @required String courseTitle,
   }) async {
+    final homeWorksList = <HomeworkModel>[];
     final courseDoc = userHomeworksCollection.doc(courseTitle);
     final homeworksQuery = await courseDoc.collection('homeworks').get();
+    if (homeworksQuery.docs.isNotEmpty) {
+      for (var doc in homeworksQuery.docs) {
+        // print('loop doc => ${doc.data()}');
+        List<String> listOfSubmittedUsers;
+        listOfSubmittedUsers = await userHomeworksCollection
+            .doc('AI')
+            .collection('homeworks')
+            .doc(doc.data()['title'])
+            .collection('submittedUsers')
+            .get()
+            .then((value) => value.docs.map((e) => e.id).toList());
+        // print('listOfSubmittedUsers => $listOfSubmittedUsers');
+        homeWorksList.add(
+          HomeworkModel.fromSnapshot(doc, listOfSubmittedUsers),
+        );
+      }
+    }
 
-    return homeworksQuery.docs
-        .map((doc) => HomeworkModel.fromSnapshot(doc))
-        .toList();
+    // final list =
+    //     homeworksQuery.docs.map((element) => element.data()['title']).toList();
+    // print('title list => $list');
+    // return homeworksQuery.docs
+    //     .map((doc) => HomeworkModel.fromSnapshot(doc))
+    //     .toList();
+    return homeWorksList;
+  }
+
+  @override
+  Future<Unit> submitHomework({
+    @required String userId,
+    @required String fileUrl,
+    @required String note,
+    @required String homeworkTitle,
+  }) async {
+    final submitHomework = HomeworkSubmitModel(
+      userId: userId,
+      fileUrl: fileUrl,
+      note: note,
+    );
+    final courseDoc = userHomeworksCollection.doc('AI');
+
+    final homeworksQuery = await courseDoc.collection('homeworks').get();
+
+    userHomeworksCollection
+        .doc('AI')
+        .collection('homeworks')
+        .doc(homeworkTitle)
+        .collection('submittedUsers')
+        .doc(userId)
+        .set(submitHomework.toDocument());
+    return unit;
   }
 }
 

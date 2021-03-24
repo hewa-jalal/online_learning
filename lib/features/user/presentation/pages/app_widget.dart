@@ -7,8 +7,8 @@ import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:online_learning/features/homeworks/data/datasources/homework_remote_data_source.dart';
 import 'package:online_learning/features/homeworks/data/repository/homework_repository_impl.dart';
-import 'package:online_learning/features/homeworks/domain/repository/homework_repository.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/get_all_homeworks_by_course.dart';
+import 'package:online_learning/features/homeworks/domain/usecases/submit_homework.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/upload_homework.dart';
 import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
@@ -68,6 +68,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             )),
             getAllHomeworksByCourse: GetAllHomeworksByCourse(
                 homeworkRepository: HomeworkRepositoryImpl(
+              FirebaseHomeworkRemoteDataSource(
+                lectureTask: sl<LectureTask>(),
+              ),
+            )),
+            submitHomework: SubmitHomework(HomeworkRepositoryImpl(
               FirebaseHomeworkRemoteDataSource(
                 lectureTask: sl<LectureTask>(),
               ),

@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/get_all_homeworks_by_course.dart';
+import 'package:online_learning/features/homeworks/domain/usecases/submit_homework.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/upload_homework.dart';
 
 import '../../../user/core/errors/failures.dart';
@@ -19,9 +20,11 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
   HomeworkBloc({
     @required this.uploadHomework,
     @required this.getAllHomeworksByCourse,
+    @required this.submitHomework,
   }) : super(HomeworkState.initial());
   final UploadHomework uploadHomework;
   final GetAllHomeworksByCourse getAllHomeworksByCourse;
+  final SubmitHomework submitHomework;
 
   @override
   Stream<HomeworkState> mapEventToState(
@@ -64,6 +67,22 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
           (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
           (homeworks) => state.copyWith(
             homeworks: homeworks,
+            isSubmitting: false,
+          ),
+        );
+      },
+      submitHomework: (e) async* {
+        final either = await submitHomework(
+          SubmitParams(
+            userId: e.userId,
+            fileUrl: e.fileUrl,
+            note: e.note,
+            homeworkTitle: e.homeworkTitle,
+          ),
+        );
+        either.fold(
+          (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
+          (unit) => state.copyWith(
             isSubmitting: false,
           ),
         );

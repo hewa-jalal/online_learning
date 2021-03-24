@@ -18,4 +18,11 @@ abstract class HomeworkRepository {
   Future<Either<Failure, List<HomeworkEntity>>> getAllHomeworksByCourse({
     @required String courseTitle,
   });
+
+  Future<Either<Failure, Unit>> submitHomework({
+    @required String userId,
+    @required String fileUrl,
+    @required String note,
+    @required String homeworkTitle,
+  });
 }

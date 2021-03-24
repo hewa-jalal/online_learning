@@ -52,4 +52,25 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
       return left(HomeworkFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> submitHomework({
+    @required String userId,
+    @required String fileUrl,
+    @required String note,
+    @required String homeworkTitle,
+  }) async {
+    try {
+      final submitUnit = await remoteDataSource.submitHomework(
+        userId: userId,
+        fileUrl: fileUrl,
+        note: note,
+        homeworkTitle: homeworkTitle,
+      );
+      return right(submitUnit);
+    } on Exception catch (e) {
+      print('exceptions ${e.toString()}');
+      return left(HomeworkFailure());
+    }
+  }
 }

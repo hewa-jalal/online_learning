@@ -71,6 +71,7 @@ class _CoursePageState extends State<CoursePage>
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          title: Text(widget.courseTitle),
           bottom: TabBar(
             controller: _tabController,
             tabs: [

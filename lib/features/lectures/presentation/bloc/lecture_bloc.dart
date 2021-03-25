@@ -157,7 +157,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         );
 
         yield either.fold(
-          (l) => state.copyWith(
+          (failure) => state.copyWith(
             lectureFailureOrSuccessOption: none(),
           ),
           (lectureEntity) => state.copyWith(
@@ -168,11 +168,14 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         );
       },
       downloadLecture: (e) async* {
-        // final either = await downloadLecture(LectureParams(fileUrl: e.fileUrl));
-        // yield either.fold(
-        //   (failure) => LectureState.initial(),
-        //   (lecture) => LectureState.lectureLoaded(lectureEntity: lecture),
-        // );
+        final either = await downloadLecture(LectureParams(fileUrl: e.fileUrl));
+        yield either.fold(
+          (failure) => state.copyWith(
+            lectureFailureOrSuccessOption: none(),
+          ),
+          // we don't want anything to happen when a file is downloading
+          (lecture) => state,
+        );
       },
       getAllLectures: (e) async* {
         final either = await getAllLectures(NoParams());

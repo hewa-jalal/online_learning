@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LectureCard extends StatelessWidget {
   final LectureEntity lecture;
-  var isSubmitted = false;
   LectureCard({
     Key key,
     @required this.lecture,
@@ -15,32 +14,31 @@ class LectureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
 
-    final list = lecture.submittedUsers;
-    print('list => $list');
-    if (list != null) {
-      isSubmitted = list.contains('12');
-    }
     return ExpansionTile(
-      childrenPadding: EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
+      childrenPadding: EdgeInsets.only(left: 8.0, right: 8.0),
       title: Text(lecture.title),
       children: [
         SelectableText(
           'dolor sit amet, consectetur adipiscing elit. Quisque quis congue metus, ac tempus eros. Nunc tincidunt eros arcu, ac dictum nulla convallis sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo pretium leo, ac dictum lacus pellentesque quis. Fusce suscipit, orci eget venenatis dignissim, purus turpis imperdiet velit, vitae ullamcorper lectus libero eget eros.',
         ),
-        CheckboxListTile(
-          secondary: Icon(Icons.explicit),
-          title: Text('pdf file'),
-          value: isSubmitted,
-          onChanged: (val) {
-            lectureBloc.add(
-              LectureEvent.submitUser(
-                lectureTitle: lecture.title,
-                courseTitle: 'AI',
-                userId: '12',
+        ListTile(
+          leading: Icon(Icons.picture_as_pdf_outlined),
+          title: Row(
+            children: [
+              Text('file'),
+              Spacer(),
+              InkWell(
+                onTap: () => lectureBloc.add(
+                    LectureEvent.downloadLecture(fileUrl: lecture.fileUrl)),
+                child: Icon(Icons.download_outlined),
               ),
-            );
-          },
-        )
+            ],
+          ),
+          trailing: Checkbox(
+            value: false,
+            onChanged: (val) {},
+          ),
+        ),
       ],
     );
   }

@@ -27,6 +27,8 @@ import 'package:online_learning/features/lectures/presentation/bloc/progress_blo
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:online_learning/injection.dart';
 
+import 'package:permission_handler/permission_handler.dart';
+
 import '../../domain/entites/user.dart';
 import 'get_user_page.dart';
 import 'user_home_page.dart';
@@ -40,7 +42,16 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    getPermission();
     WidgetsBinding.instance.addObserver(this);
+  }
+
+  void getPermission() async {
+    print('getPermission');
+    if (await Permission.storage.request().isGranted) {
+      print('isGranted');
+    }
+    await Permission.storage.request();
   }
 
   @override

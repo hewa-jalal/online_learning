@@ -58,12 +58,20 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
 
   @override
   Future<LectureModel> downloadLecture(String fileUrl) async {
-    var dir = await getTemporaryDirectory();
-    final url = await storageRef.child('test444457').getDownloadURL();
+    var dir = await getExternalStorageDirectory();
 
-    // await dio.download(url, '${dir.path}lectures.pdf');
+    print('fileUrl => $fileUrl');
+    // await dio.download(url, '${dir.path}/lectures.pdf',
+    //     onReceiveProgress: (rcv, total) {
+    //   print(
+    //       'received: ${rcv.toStringAsFixed(0)} out of total: ${total.toStringAsFixed(0)}');
+    // });
 
-    await FlutterDownloader.enqueue(url: url, savedDir: dir.path);
+    await FlutterDownloader.enqueue(
+      url: fileUrl,
+      savedDir: dir.path,
+      fileName: 'newFile',
+    );
 
     return LectureModel(fileUrl: fileUrl);
   }
@@ -76,31 +84,20 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     String lectureTitle,
     String description,
   }) async {
+    lectureTask.task =
+        storageRef.lecturesStorage(lectureTitle).putFile(File(fileUrl));
+    final downalodUrl =
+        await storageRef.lecturesStorage(lectureTitle).getDownloadURL();
     final lecture = LectureModel(
-      fileUrl: fileUrl,
+      fileUrl: downalodUrl,
       title: lectureTitle,
       description: description,
     );
-    lectureTask.task =
-        storageRef.lecturesStorage(lectureTitle).putFile(File(fileUrl));
     final doc = userCoursesCollection.doc(courseTitle);
     // adding lecture to document
     doc.collection('lectures').doc(lectureTitle).set(lecture.toDocument());
     // adding user id that uploaded the lecture
     doc.set({'uploader_id': user.id}, SetOptions(merge: true));
-    // create submittedUsers collection
-    // doc
-    //     .collection('lectures')
-    //     .doc(lectureTitle)
-    //     .collection('submittedUsers')
-    //     .add({});
-
-    // doc
-    //     .collection('lectures')
-    //     .doc(lectureTitle)
-    //     .collection('submittedUsers')
-    //     .doc(user.id)
-    //     .set({});
 
     return lecture;
   }
@@ -120,11 +117,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   }) async {
     final courseDoc = userCoursesCollection.doc(courseTitle);
     final lecturesQuery = await courseDoc.collection('lectures').get();
-    // final submitQuery = await courseDoc
-    //     .collection('lectures')
-    //     .doc('dd')
-    //     .collection('submittedUsers')
-    //     .get();
+
     return lecturesQuery.docs
         .map((doc) => LectureModel.fromSnapshot(doc))
         .toList();
@@ -137,7 +130,9 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   }
 
   @override
-  Future<List<String>> getAllCoursesByUserId({@required String userId}) async {
+  Future<List<String>> getAllCoursesByUserId({
+    @required String userId,
+  }) async {
     // final getQuery = await userCoursesCollection.where('user_id', isEqualTo: userId).get();
     final getQuery = await userCoursesCollection.get();
     return getQuery.docs.map((doc) => doc.id).toList();

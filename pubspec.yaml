@@ -67,6 +67,7 @@ dependencies:
   sleek_circular_slider: ^1.2.0+web
   tab_indicator_styler: ^1.0.0
   timeago: ^3.0.2
+  permission_handler: ^5.1.0
 
 dev_dependencies:
   flutter_test:

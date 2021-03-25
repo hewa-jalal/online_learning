@@ -149,7 +149,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         final either = await uploadLecture(
           LectureParams(
             fileUrl: e.filePath,
-            title: e.title,
+            lectureTitle: e.title,
             description: e.description,
             user: e.user,
             courseTitle: e.courseTitle,
@@ -168,7 +168,13 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         );
       },
       downloadLecture: (e) async* {
-        final either = await downloadLecture(LectureParams(fileUrl: e.fileUrl));
+        final either = await downloadLecture(
+          LectureParams(
+            fileUrl: e.fileUrl,
+            lectureTitle: e.lectureTitle,
+            courseTitle: e.courseTitle,
+          ),
+        );
         yield either.fold(
           (failure) => state.copyWith(
             lectureFailureOrSuccessOption: none(),

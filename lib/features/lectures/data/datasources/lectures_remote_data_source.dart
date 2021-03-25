@@ -15,7 +15,11 @@ import 'package:online_learning/features/user/data/models/user_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class LecturesRemoteDataSource {
-  Future<LectureModel> downloadLecture(String fileUrl);
+  Future<Unit> downloadLecture({
+    @required String fileUrl,
+    @required String courseTitle,
+    @required String lectureTitle,
+  });
   Future<LectureModel> uploadLecture({
     @required String fileUrl,
     @required UserModel user,
@@ -57,10 +61,17 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   });
 
   @override
-  Future<LectureModel> downloadLecture(String fileUrl) async {
+  Future<Unit> downloadLecture({
+    @required String fileUrl,
+    @required String courseTitle,
+    @required String lectureTitle,
+  }) async {
+    final doc = userCoursesCollection.doc(courseTitle);
+    doc.collection('lectures').doc(lectureTitle).set({
+      'downloadedUsers': ['12'],
+    }, SetOptions(merge: true));
     var dir = await getExternalStorageDirectory();
 
-    print('fileUrl => $fileUrl');
     // await dio.download(url, '${dir.path}/lectures.pdf',
     //     onReceiveProgress: (rcv, total) {
     //   print(
@@ -73,7 +84,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
       fileName: 'newFile',
     );
 
-    return LectureModel(fileUrl: fileUrl);
+    return unit;
   }
 
   @override
@@ -153,7 +164,6 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
       'user_id': userId,
       'submitDate': DateTime.now().millisecondsSinceEpoch,
     });
-
     return unit;
   }
 

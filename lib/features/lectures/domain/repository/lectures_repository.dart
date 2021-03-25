@@ -5,7 +5,11 @@ import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/data/models/user_model.dart';
 
 abstract class LecturesRepository {
-  Future<Either<Failure, LectureEntity>> downloadLecture(String fileUrl);
+  Future<Either<Failure, Unit>> downloadLecture({
+    @required String fileUrl,
+    @required String courseTitle,
+    @required String lectureTitle,
+  });
   Future<Either<Failure, LectureEntity>> uploadLecture({
     @required String fileUrl,
     @required UserModel user,

@@ -6,9 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LectureCard extends StatelessWidget {
   final LectureEntity lecture;
+  final String courseTitle;
   LectureCard({
     Key key,
     @required this.lecture,
+    @required this.courseTitle,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,12 @@ class LectureCard extends StatelessWidget {
               Spacer(),
               InkWell(
                 onTap: () => lectureBloc.add(
-                    LectureEvent.downloadLecture(fileUrl: lecture.fileUrl)),
+                  LectureEvent.downloadLecture(
+                    fileUrl: lecture.fileUrl,
+                    lectureTitle: lecture.title,
+                    courseTitle: courseTitle,
+                  ),
+                ),
                 child: Icon(Icons.download_outlined),
               ),
             ],

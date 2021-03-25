@@ -13,9 +13,17 @@ class LecturesRepositoryImpl extends LecturesRepository {
 
   LecturesRepositoryImpl(this.remoteDataSource);
   @override
-  Future<Either<Failure, LectureEntity>> downloadLecture(String fileUrl) async {
+  Future<Either<Failure, Unit>> downloadLecture({
+    @required String fileUrl,
+    @required String courseTitle,
+    @required String lectureTitle,
+  }) async {
     try {
-      final lecture = await remoteDataSource.downloadLecture(fileUrl);
+      final lecture = await remoteDataSource.downloadLecture(
+        fileUrl: fileUrl,
+        courseTitle: courseTitle,
+        lectureTitle: lectureTitle,
+      );
       return right(lecture);
     } on Exception catch (e) {
       print('exceptions ${e.toString()}');

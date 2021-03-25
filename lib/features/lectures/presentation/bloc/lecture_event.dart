@@ -4,8 +4,11 @@ part of 'lecture_bloc.dart';
 abstract class LectureEvent with _$LectureEvent {
   const factory LectureEvent.started() = _Started;
   const factory LectureEvent.selectFile() = _SelectFile;
-  const factory LectureEvent.downloadLecture({@required String fileUrl}) =
-      _DownloadLecture;
+  const factory LectureEvent.downloadLecture({
+    @required String fileUrl,
+    @required String courseTitle,
+    @required String lectureTitle,
+  }) = _DownloadLecture;
   const factory LectureEvent.uploadLecture({
     @required UserModel user,
     @required String title,

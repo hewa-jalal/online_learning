@@ -135,6 +135,7 @@ class _LecturesList extends StatelessWidget {
             itemBuilder: (context, index) {
               return LectureCard(
                 lecture: lectures[index],
+                courseTitle: courseTitle,
               );
             },
           );

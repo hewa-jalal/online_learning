@@ -24,9 +24,14 @@ class _$LectureEventTearOff {
   }
 
 // ignore: unused_element
-  _DownloadLecture downloadLecture({@required String fileUrl}) {
+  _DownloadLecture downloadLecture(
+      {@required String fileUrl,
+      @required String courseTitle,
+      @required String lectureTitle}) {
     return _DownloadLecture(
       fileUrl: fileUrl,
+      courseTitle: courseTitle,
+      lectureTitle: lectureTitle,
     );
   }
 
@@ -106,7 +111,9 @@ mixin _$LectureEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -125,7 +132,8 @@ mixin _$LectureEvent {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -220,7 +228,9 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -253,7 +263,8 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -366,7 +377,9 @@ class _$_SelectFile implements _SelectFile {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -399,7 +412,8 @@ class _$_SelectFile implements _SelectFile {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -477,7 +491,7 @@ abstract class _$DownloadLectureCopyWith<$Res> {
   factory _$DownloadLectureCopyWith(
           _DownloadLecture value, $Res Function(_DownloadLecture) then) =
       __$DownloadLectureCopyWithImpl<$Res>;
-  $Res call({String fileUrl});
+  $Res call({String fileUrl, String courseTitle, String lectureTitle});
 }
 
 /// @nodoc
@@ -494,23 +508,40 @@ class __$DownloadLectureCopyWithImpl<$Res>
   @override
   $Res call({
     Object fileUrl = freezed,
+    Object courseTitle = freezed,
+    Object lectureTitle = freezed,
   }) {
     return _then(_DownloadLecture(
       fileUrl: fileUrl == freezed ? _value.fileUrl : fileUrl as String,
+      courseTitle:
+          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      lectureTitle: lectureTitle == freezed
+          ? _value.lectureTitle
+          : lectureTitle as String,
     ));
   }
 }
 
 /// @nodoc
 class _$_DownloadLecture implements _DownloadLecture {
-  const _$_DownloadLecture({@required this.fileUrl}) : assert(fileUrl != null);
+  const _$_DownloadLecture(
+      {@required this.fileUrl,
+      @required this.courseTitle,
+      @required this.lectureTitle})
+      : assert(fileUrl != null),
+        assert(courseTitle != null),
+        assert(lectureTitle != null);
 
   @override
   final String fileUrl;
+  @override
+  final String courseTitle;
+  @override
+  final String lectureTitle;
 
   @override
   String toString() {
-    return 'LectureEvent.downloadLecture(fileUrl: $fileUrl)';
+    return 'LectureEvent.downloadLecture(fileUrl: $fileUrl, courseTitle: $courseTitle, lectureTitle: $lectureTitle)';
   }
 
   @override
@@ -518,12 +549,22 @@ class _$_DownloadLecture implements _DownloadLecture {
     return identical(this, other) ||
         (other is _DownloadLecture &&
             (identical(other.fileUrl, fileUrl) ||
-                const DeepCollectionEquality().equals(other.fileUrl, fileUrl)));
+                const DeepCollectionEquality()
+                    .equals(other.fileUrl, fileUrl)) &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)) &&
+            (identical(other.lectureTitle, lectureTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.lectureTitle, lectureTitle)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(fileUrl);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(fileUrl) ^
+      const DeepCollectionEquality().hash(courseTitle) ^
+      const DeepCollectionEquality().hash(lectureTitle);
 
   @JsonKey(ignore: true)
   @override
@@ -535,7 +576,9 @@ class _$_DownloadLecture implements _DownloadLecture {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -560,7 +603,7 @@ class _$_DownloadLecture implements _DownloadLecture {
     assert(createCourse != null);
     assert(submitUser != null);
     assert(getAllSubmittedUsers != null);
-    return downloadLecture(fileUrl);
+    return downloadLecture(fileUrl, courseTitle, lectureTitle);
   }
 
   @override
@@ -568,7 +611,8 @@ class _$_DownloadLecture implements _DownloadLecture {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -582,7 +626,7 @@ class _$_DownloadLecture implements _DownloadLecture {
   }) {
     assert(orElse != null);
     if (downloadLecture != null) {
-      return downloadLecture(fileUrl);
+      return downloadLecture(fileUrl, courseTitle, lectureTitle);
     }
     return orElse();
   }
@@ -638,10 +682,14 @@ class _$_DownloadLecture implements _DownloadLecture {
 }
 
 abstract class _DownloadLecture implements LectureEvent {
-  const factory _DownloadLecture({@required String fileUrl}) =
-      _$_DownloadLecture;
+  const factory _DownloadLecture(
+      {@required String fileUrl,
+      @required String courseTitle,
+      @required String lectureTitle}) = _$_DownloadLecture;
 
   String get fileUrl;
+  String get courseTitle;
+  String get lectureTitle;
   @JsonKey(ignore: true)
   _$DownloadLectureCopyWith<_DownloadLecture> get copyWith;
 }
@@ -757,7 +805,9 @@ class _$_UploadLecture implements _UploadLecture {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -790,7 +840,8 @@ class _$_UploadLecture implements _UploadLecture {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -917,7 +968,9 @@ class _$_GetAllLectures implements _GetAllLectures {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -950,7 +1003,8 @@ class _$_GetAllLectures implements _GetAllLectures {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -1090,7 +1144,9 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -1123,7 +1179,8 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -1242,7 +1299,9 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -1275,7 +1334,8 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -1413,7 +1473,9 @@ class _$_CreateCourse implements _CreateCourse {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -1446,7 +1508,8 @@ class _$_CreateCourse implements _CreateCourse {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -1611,7 +1674,9 @@ class _$_SubmitUser implements _SubmitUser {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -1644,7 +1709,8 @@ class _$_SubmitUser implements _SubmitUser {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),
@@ -1816,7 +1882,9 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult selectFile(),
-    @required TResult downloadLecture(String fileUrl),
+    @required
+        TResult downloadLecture(
+            String fileUrl, String courseTitle, String lectureTitle),
     @required
         TResult uploadLecture(UserModel user, String title, String courseTitle,
             String filePath, String description),
@@ -1849,7 +1917,8 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult selectFile(),
-    TResult downloadLecture(String fileUrl),
+    TResult downloadLecture(
+        String fileUrl, String courseTitle, String lectureTitle),
     TResult uploadLecture(UserModel user, String title, String courseTitle,
         String filePath, String description),
     TResult getAllLectures(),

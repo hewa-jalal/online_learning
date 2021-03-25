@@ -17,7 +17,7 @@ class UploadLecture extends UseCase<LectureEntity, LectureParams> {
     return lecturesRepository.uploadLecture(
       fileUrl: params.fileUrl,
       user: params.user,
-      title: params.title,
+      title: params.lectureTitle,
       description: params.description,
       courseTitle: params.courseTitle,
     );

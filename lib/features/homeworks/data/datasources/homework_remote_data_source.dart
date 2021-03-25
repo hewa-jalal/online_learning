@@ -79,7 +79,6 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
     final homeworksQuery = await courseDoc.collection('homeworks').get();
     if (homeworksQuery.docs.isNotEmpty) {
       for (var doc in homeworksQuery.docs) {
-        // print('loop doc => ${doc.data()}');
         List<String> listOfSubmittedUsers;
         listOfSubmittedUsers = await userHomeworksCollection
             .doc('AI')
@@ -88,19 +87,13 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
             .collection('submittedUsers')
             .get()
             .then((value) => value.docs.map((e) => e.id).toList());
-        // print('listOfSubmittedUsers => $listOfSubmittedUsers');
+
         homeWorksList.add(
           HomeworkModel.fromSnapshot(doc, listOfSubmittedUsers),
         );
       }
     }
 
-    // final list =
-    //     homeworksQuery.docs.map((element) => element.data()['title']).toList();
-    // print('title list => $list');
-    // return homeworksQuery.docs
-    //     .map((doc) => HomeworkModel.fromSnapshot(doc))
-    //     .toList();
     return homeWorksList;
   }
 

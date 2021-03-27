@@ -64,10 +64,11 @@ dependencies:
   mime: ^1.0.0
   path_provider: ^1.6.27
   percent_indicator: ^2.1.9+1
+  permission_handler: ^5.1.0
+  shimmer: ^1.1.2
   sleek_circular_slider: ^1.2.0+web
   tab_indicator_styler: ^1.0.0
   timeago: ^3.0.2
-  permission_handler: ^5.1.0
 
 dev_dependencies:
   flutter_test:

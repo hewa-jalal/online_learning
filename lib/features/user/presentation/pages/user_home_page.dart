@@ -7,6 +7,7 @@ import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 
 class UserHomePage extends StatefulWidget {
   final UserEntity user;
@@ -77,6 +78,24 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                   return Center(child: CircularProgressIndicator());
                 } else {
                   final courseIds = state.courseIds;
+                  // return SizedBox(
+                  //   width: 200.0,
+                  //   height: 100.0,
+                  //   child: Shimmer.fromColors(
+                  //     baseColor: Colors.red,
+                  //     highlightColor: Colors.yellow,
+                  //     child: Card(
+                  //       child: Text(
+                  //         'Shimmer',
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //           fontSize: 40.0,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // );
                   return courseIds.length > 0
                       ? Expanded(
                           child: ListView.builder(

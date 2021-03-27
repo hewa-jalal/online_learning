@@ -43,21 +43,24 @@ class _UploadPageState extends State<UploadPage> {
       },
       builder: (context, state) {
         return SafeArea(
-          // child: Container(
-          //   decoration: BoxDecoration(
-          //     image: DecorationImage(
-          //       image: AssetImage(
-          //         'assets/images/undraw_Add_files.png',
-          //       ),
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          child: Scaffold(
-            // backgroundColor: Colors.transparent,
-            body: _UploadForm(
-              isHomework: widget.isHomeWork,
-              user: widget.user,
-              courseTitle: widget.courseTitle,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Color(0xff9796f0),
+                  Color(0xfffbc7d4),
+                ],
+              ),
+            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: _UploadForm(
+                isHomework: widget.isHomeWork,
+                user: widget.user,
+                courseTitle: widget.courseTitle,
+              ),
             ),
           ),
         );

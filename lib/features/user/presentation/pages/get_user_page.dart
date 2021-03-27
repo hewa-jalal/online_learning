@@ -23,59 +23,63 @@ class _UserFormState extends State<UserForm> {
     final userAuthBloc = context.read<UserAuthBloc>();
     return BlocBuilder<UserAuthBloc, UserAuthState>(
       builder: (context, state) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 250.0,
-              child: TyperAnimatedTextKit(
-                text: ['Learn anywhere'],
-                textStyle: TextStyle(fontSize: 30.0, fontFamily: "Bobbers"),
-                textAlign: TextAlign.center,
-                speed: Duration(milliseconds: 40),
-              ),
-            ),
-            Lottie.asset('assets/lottie/work_from_home.json'),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: 'Enter your id',
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green, width: 2.0),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 1.4),
-                    ),
+        return SafeArea(
+          child: Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 250.0,
+                  child: TyperAnimatedTextKit(
+                    text: ['Learn anywhere'],
+                    textStyle: TextStyle(fontSize: 30.0, fontFamily: "Bobbers"),
+                    textAlign: TextAlign.center,
+                    speed: Duration(milliseconds: 40),
                   ),
-                  onChanged: (val) => userId = int.parse(val.trim()),
                 ),
-              ),
-            ),
-            SizedBox(height: 10.0),
-            ElevatedButton(
-              onPressed: () {
-                userAuthBloc.add(UserAuthEvent.getUserById(id: userId));
-
-                Get.to(
-                  () => UserHomePage(
-                    user: UserEntity(
-                      id: state.id.toString(),
-                      fullName: state.fullName,
-                      dept: state.dept,
-                      role: state.role,
-                      stage: state.stage,
-                      lastSeenInEpoch: state.lastSeenInEpoch,
-                      isOnline: state.isOnline,
+                Lottie.asset('assets/lottie/intro.json'),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Enter your id',
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 2.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1.4),
+                        ),
+                      ),
+                      onChanged: (val) => userId = int.parse(val.trim()),
                     ),
                   ),
-                );
-              },
-              child: Text('Get user'),
-            )
-          ],
+                ),
+                SizedBox(height: 10.0),
+                ElevatedButton(
+                  onPressed: () {
+                    userAuthBloc.add(UserAuthEvent.getUserById(id: userId));
+                    Get.to(
+                      () => UserHomePage(
+                        user: UserEntity(
+                          id: state.id.toString(),
+                          fullName: state.fullName,
+                          dept: state.dept,
+                          role: state.role,
+                          stage: state.stage,
+                          lastSeenInEpoch: state.lastSeenInEpoch,
+                          isOnline: state.isOnline,
+                        ),
+                      ),
+                    );
+                  },
+                  child: Text('Get user'),
+                )
+              ],
+            ),
+          ),
         );
       },
     );

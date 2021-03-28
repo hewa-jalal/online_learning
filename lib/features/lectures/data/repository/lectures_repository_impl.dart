@@ -122,23 +122,4 @@ class LecturesRepositoryImpl extends LecturesRepository {
       return left(LectureFailure());
     }
   }
-
-  @override
-  Future<Either<Failure, List<String>>> getAllSubmittedUsers({
-    @required String userId,
-    @required String courseTitle,
-    @required String lectureTitle,
-  }) async {
-    try {
-      final submittedUsers = await remoteDataSource.getAllSubmittedUsers(
-        userId: userId,
-        courseTitle: courseTitle,
-        lectureTitle: lectureTitle,
-      );
-      return right(submittedUsers);
-    } catch (e) {
-      print(e.toString());
-      return left(LectureFailure());
-    }
-  }
 }

@@ -39,12 +39,6 @@ abstract class LecturesRemoteDataSource {
     @required String courseTitle,
     @required String lectureTitle,
   });
-
-  Future<List<String>> getAllSubmittedUsers({
-    @required String userId,
-    @required String courseTitle,
-    @required String lectureTitle,
-  });
 }
 
 @LazySingleton(as: LecturesRemoteDataSource)
@@ -95,10 +89,11 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     String lectureTitle,
     String description,
   }) async {
-    lectureTask.task =
-        storageRef.lecturesStorage(lectureTitle).putFile(File(fileUrl));
+    // lectureTask.task =
+    //     storageRef.lecturesStorage(lectureTitle).putFile(File(fileUrl));
     final downalodUrl =
         await storageRef.lecturesStorage(lectureTitle).getDownloadURL();
+
     final lecture = LectureModel(
       fileUrl: downalodUrl,
       title: lectureTitle,
@@ -126,12 +121,29 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   Future<List<LectureModel>> getAllLecturesByCourse({
     @required String courseTitle,
   }) async {
+    final lectureList = <LectureModel>[];
+
     final courseDoc = userCoursesCollection.doc(courseTitle);
     final lecturesQuery = await courseDoc.collection('lectures').get();
 
-    return lecturesQuery.docs
-        .map((doc) => LectureModel.fromSnapshot(doc))
-        .toList();
+    if (lecturesQuery.docs.isNotEmpty) {
+      for (var doc in lecturesQuery.docs) {
+        List<String> listOfSubmittedUsers;
+        listOfSubmittedUsers = await userCoursesCollection
+            .doc('AI')
+            .collection('lectures')
+            .doc(doc.data()['title'])
+            .collection('submittedUsers')
+            .get()
+            .then((value) => value.docs.map((e) => e.id).toList());
+
+        lectureList.add(
+          LectureModel.fromSnapshot(doc, listOfSubmittedUsers),
+        );
+      }
+    }
+
+    return lectureList;
   }
 
   @override
@@ -165,25 +177,6 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
       'submitDate': DateTime.now().millisecondsSinceEpoch,
     });
     return unit;
-  }
-
-  @override
-  Future<List<String>> getAllSubmittedUsers({
-    @required String userId,
-    @required String courseTitle,
-    @required String lectureTitle,
-  }) async {
-    final courseDoc = userCoursesCollection.doc(courseTitle);
-    final submittedUsersCollection = await courseDoc
-        .collection('lectures')
-        .doc(lectureTitle)
-        .collection('submittedUsers')
-        .get();
-
-    final List<String> submittedUsers =
-        List.from(submittedUsersCollection.docs.map((doc) => doc.id).toList());
-
-    return submittedUsers;
   }
 }
 

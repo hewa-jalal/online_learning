@@ -31,10 +31,4 @@ abstract class LectureEvent with _$LectureEvent {
     @required String courseTitle,
     @required String lectureTitle,
   }) = _SubmitUser;
-
-  const factory LectureEvent.getAllSubmittedUsers({
-    @required String userId,
-    @required String courseTitle,
-    @required String lectureTitle,
-  }) = _GetAllSubmittedUsers;
 }

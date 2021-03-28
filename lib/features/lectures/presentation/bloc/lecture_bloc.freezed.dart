@@ -87,18 +87,6 @@ class _$LectureEventTearOff {
       lectureTitle: lectureTitle,
     );
   }
-
-// ignore: unused_element
-  _GetAllSubmittedUsers getAllSubmittedUsers(
-      {@required String userId,
-      @required String courseTitle,
-      @required String lectureTitle}) {
-    return _GetAllSubmittedUsers(
-      userId: userId,
-      courseTitle: courseTitle,
-      lectureTitle: lectureTitle,
-    );
-  }
 }
 
 /// @nodoc
@@ -124,9 +112,6 @@ mixin _$LectureEvent {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -141,8 +126,6 @@ mixin _$LectureEvent {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -156,7 +139,6 @@ mixin _$LectureEvent {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -169,7 +151,6 @@ mixin _$LectureEvent {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   });
 }
@@ -241,9 +222,6 @@ class _$_Started implements _Started {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -254,7 +232,6 @@ class _$_Started implements _Started {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return started();
   }
 
@@ -272,8 +249,6 @@ class _$_Started implements _Started {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -295,7 +270,6 @@ class _$_Started implements _Started {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -306,7 +280,6 @@ class _$_Started implements _Started {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return started(this);
   }
 
@@ -322,7 +295,6 @@ class _$_Started implements _Started {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -390,9 +362,6 @@ class _$_SelectFile implements _SelectFile {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -403,7 +372,6 @@ class _$_SelectFile implements _SelectFile {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return selectFile();
   }
 
@@ -421,8 +389,6 @@ class _$_SelectFile implements _SelectFile {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -444,7 +410,6 @@ class _$_SelectFile implements _SelectFile {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -455,7 +420,6 @@ class _$_SelectFile implements _SelectFile {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return selectFile(this);
   }
 
@@ -471,7 +435,6 @@ class _$_SelectFile implements _SelectFile {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -589,9 +552,6 @@ class _$_DownloadLecture implements _DownloadLecture {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -602,7 +562,6 @@ class _$_DownloadLecture implements _DownloadLecture {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return downloadLecture(fileUrl, courseTitle, lectureTitle);
   }
 
@@ -620,8 +579,6 @@ class _$_DownloadLecture implements _DownloadLecture {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -643,7 +600,6 @@ class _$_DownloadLecture implements _DownloadLecture {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -654,7 +610,6 @@ class _$_DownloadLecture implements _DownloadLecture {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return downloadLecture(this);
   }
 
@@ -670,7 +625,6 @@ class _$_DownloadLecture implements _DownloadLecture {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -818,9 +772,6 @@ class _$_UploadLecture implements _UploadLecture {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -831,7 +782,6 @@ class _$_UploadLecture implements _UploadLecture {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return uploadLecture(user, title, courseTitle, filePath, description);
   }
 
@@ -849,8 +799,6 @@ class _$_UploadLecture implements _UploadLecture {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -872,7 +820,6 @@ class _$_UploadLecture implements _UploadLecture {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -883,7 +830,6 @@ class _$_UploadLecture implements _UploadLecture {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return uploadLecture(this);
   }
 
@@ -899,7 +845,6 @@ class _$_UploadLecture implements _UploadLecture {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -981,9 +926,6 @@ class _$_GetAllLectures implements _GetAllLectures {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -994,7 +936,6 @@ class _$_GetAllLectures implements _GetAllLectures {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return getAllLectures();
   }
 
@@ -1012,8 +953,6 @@ class _$_GetAllLectures implements _GetAllLectures {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1035,7 +974,6 @@ class _$_GetAllLectures implements _GetAllLectures {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1046,7 +984,6 @@ class _$_GetAllLectures implements _GetAllLectures {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return getAllLectures(this);
   }
 
@@ -1062,7 +999,6 @@ class _$_GetAllLectures implements _GetAllLectures {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1157,9 +1093,6 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1170,7 +1103,6 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return getAllLecturesByCourse(courseTitle);
   }
 
@@ -1188,8 +1120,6 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1211,7 +1141,6 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1222,7 +1151,6 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return getAllLecturesByCourse(this);
   }
 
@@ -1238,7 +1166,6 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1312,9 +1239,6 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1325,7 +1249,6 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return getAllCoursesByUserId();
   }
 
@@ -1343,8 +1266,6 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1366,7 +1287,6 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1377,7 +1297,6 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return getAllCoursesByUserId(this);
   }
 
@@ -1393,7 +1312,6 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1486,9 +1404,6 @@ class _$_CreateCourse implements _CreateCourse {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1499,7 +1414,6 @@ class _$_CreateCourse implements _CreateCourse {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return createCourse(courseTitle);
   }
 
@@ -1517,8 +1431,6 @@ class _$_CreateCourse implements _CreateCourse {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1540,7 +1452,6 @@ class _$_CreateCourse implements _CreateCourse {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1551,7 +1462,6 @@ class _$_CreateCourse implements _CreateCourse {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return createCourse(this);
   }
 
@@ -1567,7 +1477,6 @@ class _$_CreateCourse implements _CreateCourse {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1687,9 +1596,6 @@ class _$_SubmitUser implements _SubmitUser {
     @required
         TResult submitUser(
             String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1700,7 +1606,6 @@ class _$_SubmitUser implements _SubmitUser {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return submitUser(userId, courseTitle, lectureTitle);
   }
 
@@ -1718,8 +1623,6 @@ class _$_SubmitUser implements _SubmitUser {
     TResult getAllCoursesByUserId(),
     TResult createCourse(String courseTitle),
     TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1741,7 +1644,6 @@ class _$_SubmitUser implements _SubmitUser {
     @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     @required TResult createCourse(_CreateCourse value),
     @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
   }) {
     assert(started != null);
     assert(selectFile != null);
@@ -1752,7 +1654,6 @@ class _$_SubmitUser implements _SubmitUser {
     assert(getAllCoursesByUserId != null);
     assert(createCourse != null);
     assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
     return submitUser(this);
   }
 
@@ -1768,7 +1669,6 @@ class _$_SubmitUser implements _SubmitUser {
     TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
     TResult createCourse(_CreateCourse value),
     TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1790,214 +1690,6 @@ abstract class _SubmitUser implements LectureEvent {
   String get lectureTitle;
   @JsonKey(ignore: true)
   _$SubmitUserCopyWith<_SubmitUser> get copyWith;
-}
-
-/// @nodoc
-abstract class _$GetAllSubmittedUsersCopyWith<$Res> {
-  factory _$GetAllSubmittedUsersCopyWith(_GetAllSubmittedUsers value,
-          $Res Function(_GetAllSubmittedUsers) then) =
-      __$GetAllSubmittedUsersCopyWithImpl<$Res>;
-  $Res call({String userId, String courseTitle, String lectureTitle});
-}
-
-/// @nodoc
-class __$GetAllSubmittedUsersCopyWithImpl<$Res>
-    extends _$LectureEventCopyWithImpl<$Res>
-    implements _$GetAllSubmittedUsersCopyWith<$Res> {
-  __$GetAllSubmittedUsersCopyWithImpl(
-      _GetAllSubmittedUsers _value, $Res Function(_GetAllSubmittedUsers) _then)
-      : super(_value, (v) => _then(v as _GetAllSubmittedUsers));
-
-  @override
-  _GetAllSubmittedUsers get _value => super._value as _GetAllSubmittedUsers;
-
-  @override
-  $Res call({
-    Object userId = freezed,
-    Object courseTitle = freezed,
-    Object lectureTitle = freezed,
-  }) {
-    return _then(_GetAllSubmittedUsers(
-      userId: userId == freezed ? _value.userId : userId as String,
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
-      lectureTitle: lectureTitle == freezed
-          ? _value.lectureTitle
-          : lectureTitle as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
-  const _$_GetAllSubmittedUsers(
-      {@required this.userId,
-      @required this.courseTitle,
-      @required this.lectureTitle})
-      : assert(userId != null),
-        assert(courseTitle != null),
-        assert(lectureTitle != null);
-
-  @override
-  final String userId;
-  @override
-  final String courseTitle;
-  @override
-  final String lectureTitle;
-
-  @override
-  String toString() {
-    return 'LectureEvent.getAllSubmittedUsers(userId: $userId, courseTitle: $courseTitle, lectureTitle: $lectureTitle)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _GetAllSubmittedUsers &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
-            (identical(other.lectureTitle, lectureTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.lectureTitle, lectureTitle)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(lectureTitle);
-
-  @JsonKey(ignore: true)
-  @override
-  _$GetAllSubmittedUsersCopyWith<_GetAllSubmittedUsers> get copyWith =>
-      __$GetAllSubmittedUsersCopyWithImpl<_GetAllSubmittedUsers>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
-    @required
-        TResult getAllSubmittedUsers(
-            String userId, String courseTitle, String lectureTitle),
-  }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
-    return getAllSubmittedUsers(userId, courseTitle, lectureTitle);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    TResult getAllSubmittedUsers(
-        String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (getAllSubmittedUsers != null) {
-      return getAllSubmittedUsers(userId, courseTitle, lectureTitle);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
-    @required TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
-  }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
-    assert(getAllSubmittedUsers != null);
-    return getAllSubmittedUsers(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    TResult getAllSubmittedUsers(_GetAllSubmittedUsers value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (getAllSubmittedUsers != null) {
-      return getAllSubmittedUsers(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetAllSubmittedUsers implements LectureEvent {
-  const factory _GetAllSubmittedUsers(
-      {@required String userId,
-      @required String courseTitle,
-      @required String lectureTitle}) = _$_GetAllSubmittedUsers;
-
-  String get userId;
-  String get courseTitle;
-  String get lectureTitle;
-  @JsonKey(ignore: true)
-  _$GetAllSubmittedUsersCopyWith<_GetAllSubmittedUsers> get copyWith;
 }
 
 /// @nodoc

@@ -50,8 +50,7 @@ class HomeworkModel extends HomeworkEntity {
     List<String> submittedUsersList,
   ]) {
     final data = snap.data();
-    print('model data => $data');
-    print('model list => $submittedUsersList');
+
     return HomeworkModel(
       fileUrl: data['fileUrl'] as String,
       title: data['title'] as String,

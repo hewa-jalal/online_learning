@@ -40,16 +40,17 @@ class LectureModel extends LectureEntity {
     };
   }
 
-  static LectureModel fromSnapshot(DocumentSnapshot snap,
-      [QuerySnapshot query]) {
+  static LectureModel fromSnapshot(
+    DocumentSnapshot snap, [
+    List<String> submittedUsersList,
+  ]) {
     final data = snap.data();
-    // final List<String> test =
-    //     List.from(query.docs.map((e) => e['user_id']).toList());
-    // print('model test ====> $test');
+
     return LectureModel(
       fileUrl: data['fileUrl'] as String,
       title: data['title'] as String,
       description: data['description'] as String,
+      submittedUsers: submittedUsersList,
     );
   }
 }

@@ -15,10 +15,11 @@ class HomeworkCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final userAuthState = context.watch<UserAuthBloc>().state;
     var isSubmitted = homework.submittedHomeworks.contains('222');
-    print('card => ${homework.submittedHomeworks}');
+    print('homework card => ${homework.submittedHomeworks}');
     final dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
     final jifDate = Jiffy(dueDate);
     return Card(
+      color: Color(0xff5F36DA),
       child: ListTile(
         leading: Text(homework.title),
         title: Column(

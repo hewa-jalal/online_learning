@@ -15,6 +15,9 @@ class LectureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
+    var isSubmitted = lecture.submittedUsers.contains('ASmxMarJL3i0rxdhMO8W');
+
+    print('lecture card ====> ${lecture.submittedUsers}');
 
     return ExpansionTile(
       childrenPadding: EdgeInsets.only(left: 8.0, right: 8.0),
@@ -24,6 +27,7 @@ class LectureCard extends StatelessWidget {
           'dolor sit amet, consectetur adipiscing elit. Quisque quis congue metus, ac tempus eros. Nunc tincidunt eros arcu, ac dictum nulla convallis sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo pretium leo, ac dictum lacus pellentesque quis. Fusce suscipit, orci eget venenatis dignissim, purus turpis imperdiet velit, vitae ullamcorper lectus libero eget eros.',
         ),
         ListTile(
+          hoverColor: Colors.red,
           leading: Icon(Icons.picture_as_pdf_outlined),
           title: Row(
             children: [
@@ -42,7 +46,8 @@ class LectureCard extends StatelessWidget {
             ],
           ),
           trailing: Checkbox(
-            value: false,
+            value: isSubmitted,
+            activeColor: Color(0xff5F36DA),
             onChanged: (val) {},
           ),
         ),

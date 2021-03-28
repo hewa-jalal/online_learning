@@ -148,13 +148,34 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: ScreenUtilInit(
         builder: () => GetMaterialApp(
           theme: ThemeData.light().copyWith(
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                    return Color(0xff5F36DA);
+                  },
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(28.0),
+                    side: BorderSide(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+            floatingActionButtonTheme: FloatingActionButtonThemeData(
+              backgroundColor: Color(0xff5F36DA),
+            ),
+            primaryColor: Color(0xff101422),
+            scaffoldBackgroundColor: Colors.blueGrey[900],
             inputDecorationTheme: InputDecorationTheme(
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.green, width: 2.0),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 1.4),
+                borderSide: BorderSide(width: 1.4, color: Colors.white),
               ),
+              labelStyle: TextStyle(color: Color(0xffA5A6AA)),
             ),
           ),
           debugShowCheckedModeBanner: false,

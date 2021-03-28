@@ -37,7 +37,7 @@ abstract class HomeWorkRemoteDataSource {
 @LazySingleton(as: HomeWorkRemoteDataSource)
 class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
   final userHomeworksCollection =
-      FirebaseFirestore.instance.collection('userHomeworks');
+      FirebaseFirestore.instance.collection('userCourses');
   final storageRef = FirebaseStorage.instance.ref();
 
   final LectureTask lectureTask;

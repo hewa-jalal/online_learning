@@ -78,24 +78,6 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                   return Center(child: CircularProgressIndicator());
                 } else {
                   final courseIds = state.courseIds;
-                  // return SizedBox(
-                  //   width: 200.0,
-                  //   height: 100.0,
-                  //   child: Shimmer.fromColors(
-                  //     baseColor: Colors.red,
-                  //     highlightColor: Colors.yellow,
-                  //     child: Card(
-                  //       child: Text(
-                  //         'Shimmer',
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //           fontSize: 40.0,
-                  //           fontWeight: FontWeight.bold,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // );
                   return courseIds.length > 0
                       ? Expanded(
                           child: ListView.builder(

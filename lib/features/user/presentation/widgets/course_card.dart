@@ -17,6 +17,7 @@ class CourseCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
+        color: Color(0xffA5A6AA),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
         ),
@@ -32,7 +33,7 @@ class CourseCard extends StatelessWidget {
                     appearance: CircularSliderAppearance(
                       size: 80.h,
                       customColors: CustomSliderColors(
-                        progressBarColor: Colors.orange,
+                        progressBarColor: Color(0xff5F36DA),
                         dotColor: Colors.transparent,
                       ),
                     ),

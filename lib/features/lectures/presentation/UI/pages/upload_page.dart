@@ -1,8 +1,10 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:date_picker_timeline/extra/dimen.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mime/mime.dart';
 import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
@@ -31,8 +33,6 @@ class UploadPage extends StatefulWidget {
 class _UploadPageState extends State<UploadPage> {
   @override
   Widget build(BuildContext context) {
-    // final homeworkCubit = context.watch<HomeworkBloc>().state;
-    // print('watch ${homeworkCubit.isSubmitting}');
     return BlocConsumer<LectureBloc, LectureState>(
       listener: (context, state) {
         if (state.isSubmitting) {
@@ -43,24 +43,12 @@ class _UploadPageState extends State<UploadPage> {
       },
       builder: (context, state) {
         return SafeArea(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Color(0xff9796f0),
-                  Color(0xfffbc7d4),
-                ],
-              ),
-            ),
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              body: _UploadForm(
-                isHomework: widget.isHomeWork,
-                user: widget.user,
-                courseTitle: widget.courseTitle,
-              ),
+          child: Scaffold(
+            backgroundColor: Color(0xff101622),
+            body: _UploadForm(
+              isHomework: widget.isHomeWork,
+              user: widget.user,
+              courseTitle: widget.courseTitle,
             ),
           ),
         );
@@ -128,27 +116,35 @@ class _UploadFormState extends State<_UploadForm> {
   var description = '';
   @override
   Widget build(BuildContext context) {
+    final _isFileSelected =
+        context.watch<HomeworkBloc>().state.filePath.isNotEmpty;
     return BlocBuilder<UserAuthBloc, UserAuthState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: _isFileSelected ? 0.02.sh : 0.08.sh),
+              SvgPicture.asset(
+                'assets/svg/add_file.svg',
+                height: 0.3.sh,
+              ),
+              SizedBox(height: _isFileSelected ? 0.033.sh : 0.05.sh),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'title*',
                 ),
                 onChanged: (val) => setState(() => title = val.trim()),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 0.03.sh),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'description',
                 ),
                 onChanged: (val) => setState(() => description = val.trim()),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: _isFileSelected ? 0.02.sh : 0.06.sh),
               widget.isHomework
                   ? _HomeworkBottomSelection(
                       title: title,
@@ -205,16 +201,16 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
 
   @override
   Widget build(BuildContext context) {
-    final homeworkBloc = context.read<HomeworkBloc>();
+    final _homeworkBloc = context.read<HomeworkBloc>();
 
     return BlocBuilder<HomeworkBloc, HomeworkState>(
       builder: (context, state) {
         if (state.filePath.isEmpty) {
-          return ElevatedButton(
-            onPressed: () {
-              homeworkBloc.add(HomeworkEvent.selectFile());
-            },
-            child: Text('Select Lecture'),
+          return HomeworkUploadButton(
+            user: widget.user,
+            title: widget.title,
+            courseTitle: widget.courseTitle,
+            description: widget.description,
           );
         } else {
           final fileName = state.filePath.split('/').last;
@@ -223,50 +219,142 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
           // print('mime -----> ' + lookupMimeType(fileName));
           return Column(
             children: [
-              DatePicker(
-                DateTime.now(),
-                onDateChange: (date) {
-                  _formattedString =
-                      '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
-                  _dueDate = DateTime.parse(_formattedString);
-
-                  Navigator.of(context).push(
-                    showPicker(
-                      context: context,
-                      value: _time,
-                      onChange: onTimeChanged,
-                    ),
-                  );
-                },
-              ),
-              ListTile(
-                enabled: true,
-                leading: Icon(MaterialCommunityIcons.file_pdf),
-                title: Text(fileName),
-                trailing: IconButton(
-                  onPressed: () => homeworkBloc.add(HomeworkEvent.started()),
-                  icon: Icon(MaterialCommunityIcons.close_box),
+              SizedBox(height: 0.01.sh),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    'Select a due date:',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  homeworkBloc.add(
-                    HomeworkEvent.uploadHomework(
-                      user: widget.user,
-                      title: widget.title,
-                      courseTitle: widget.courseTitle,
-                      description: widget.description,
-                      filePath: state.filePath,
-                      dueDate: _dueDate.millisecondsSinceEpoch,
-                    ),
-                  );
-                },
-                child: Text('Upload Homework'),
+              Container(
+                child: DatePicker(
+                  DateTime.now(),
+                  dayTextStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: Dimen.dayTextSize,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  monthTextStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: Dimen.dayTextSize,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  dateTextStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: Dimen.dayTextSize,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  selectionColor: Color(0xff5F36DA),
+                  onDateChange: (date) {
+                    _formattedString =
+                        '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+                    _dueDate = DateTime.parse(_formattedString);
+
+                    Navigator.of(context).push(
+                      showPicker(
+                        context: context,
+                        value: _time,
+                        onChange: onTimeChanged,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: 0.02.sh),
+              ListTile(
+                tileColor: Color(0xff5F36DA),
+                enabled: true,
+                leading: Icon(
+                  MaterialCommunityIcons.file_pdf,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  fileName,
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                trailing: IconButton(
+                  onPressed: () => _homeworkBloc.add(HomeworkEvent.started()),
+                  icon: Icon(
+                    MaterialCommunityIcons.close_box,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: 0.03.sh),
+              HomeworkUploadButton(
+                user: widget.user,
+                title: widget.title,
+                courseTitle: widget.courseTitle,
+                description: widget.description,
+                dueDate: _dueDate,
               ),
             ],
           );
         }
       },
+    );
+  }
+}
+
+class HomeworkUploadButton extends StatelessWidget {
+  final UserEntity user;
+  final String title;
+  final String courseTitle;
+  final String description;
+  final DateTime dueDate;
+
+  const HomeworkUploadButton({
+    Key key,
+    @required this.user,
+    @required this.title,
+    @required this.courseTitle,
+    @required this.description,
+    this.dueDate,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final _homeworkBloc = context.watch<HomeworkBloc>();
+    final _isFileSelected = _homeworkBloc.state.filePath.isNotEmpty;
+    return SizedBox(
+      height: 0.072.sh,
+      width: 0.8.sw,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            (Set<MaterialState> states) {
+              return Color(0xff5F36DA);
+            },
+          ),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(28.0),
+              side: BorderSide(color: Colors.white),
+            ),
+          ),
+        ),
+        onPressed: () => _isFileSelected
+            ? _homeworkBloc.add(
+                HomeworkEvent.uploadHomework(
+                  user: user,
+                  title: title,
+                  courseTitle: courseTitle,
+                  description: description,
+                  filePath: _homeworkBloc.state.filePath,
+                  dueDate: dueDate.millisecondsSinceEpoch,
+                ),
+              )
+            : _homeworkBloc.add(HomeworkEvent.selectFile()),
+        child: Text(
+          _isFileSelected ? 'upload homework' : 'select homework',
+          style: TextStyle(fontSize: 20.sp),
+        ),
+      ),
     );
   }
 }

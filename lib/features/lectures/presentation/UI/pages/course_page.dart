@@ -88,7 +88,7 @@ class _CoursePageState extends State<CoursePage>
                 ),
               ),
             ],
-            indicator: MaterialIndicator(),
+            indicator: MaterialIndicator(color: Color(0xff5F36DA)),
           ),
         ),
         body: BlocBuilder<LectureBloc, LectureState>(

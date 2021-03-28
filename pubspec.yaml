@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   animated_text_kit: ^4.0.0
   auto_route: ^0.6.9
+  beauty_textfield: ^0.0.1
   cached_network_image: ^2.5.0
   cloud_firestore: ^0.16.0
   cupertino_icons: ^1.0.0
@@ -46,10 +47,12 @@ dependencies:
   flutter_downloader: ^1.5.2
   flutter_icons: ^1.1.0
   flutter_inner_drawer: ^1.0.0+1
-  flutter_screenutil: ^4.0.2+8
+  flutter_screenutil: ^4.0.4
+  flutter_svg: ^0.19.3
   flutter_uploader: ^1.2.1
   fluttertoast: ^7.1.6
   foldable_sidebar: ^1.0.0
+  formz: ^0.3.2
   freezed_annotation: ^0.12.0
   get: ^3.24.0
   get_it: ^5.0.6
@@ -94,6 +97,7 @@ flutter:
   assets:
     - assets/lottie/
     - assets/images/
+    - assets/svg/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

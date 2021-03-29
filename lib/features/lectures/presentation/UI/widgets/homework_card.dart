@@ -13,9 +13,9 @@ class HomeworkCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final userAuthState = context.watch<UserAuthBloc>().state;
+    // can be used later, don't delete!
+    final _userAuthState = context.watch<UserAuthBloc>().state;
     var isSubmitted = homework.submittedHomeworks.contains('222');
-    print('homework card => ${homework.submittedHomeworks}');
     final dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
     final jifDate = Jiffy(dueDate);
     return Card(
@@ -34,7 +34,6 @@ class HomeworkCard extends StatelessWidget {
         trailing: Checkbox(
           value: isSubmitted,
           onChanged: (val) {
-            print('switch userId => ${userAuthState.id}');
             context.read<HomeworkBloc>().add(
                   HomeworkEvent.submitHomework(
                     userId: '222',

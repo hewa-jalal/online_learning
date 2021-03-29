@@ -22,9 +22,6 @@ class LectureCard extends StatelessWidget {
     var isSubmitted =
         lecture.submittedUsers.contains(_userAuthState.id.toString());
 
-    print('lecture card ====> ${lecture.submittedUsers}');
-    print('isSubmitted ====> ${isSubmitted}');
-
     return ExpansionTile(
       childrenPadding: EdgeInsets.only(left: 8.0, right: 8.0),
       title: Text(lecture.title),
@@ -51,20 +48,21 @@ class LectureCard extends StatelessWidget {
               ),
             ],
           ),
-          // trailing: Checkbox(
-          //   value: isSubmitted,
-          //   activeColor: Color(0xff5F36DA),
-          //   onChanged: (val) {},
-          // ),
           trailing: CircularCheckBox(
             activeColor: Color(0xff5F36DA),
             value: isSubmitted,
             onChanged: (val) {
-              _lectureBloc.add(LectureEvent.submitUser(
-                userId: _userAuthState.id.toString(),
-                courseTitle: courseTitle,
-                lectureTitle: lecture.title,
-              ));
+              _lectureBloc.add(
+                LectureEvent.submitUser(
+                  userId: _userAuthState.id.toString(),
+                  courseTitle: courseTitle,
+                  lectureTitle: lecture.title,
+                ),
+              );
+              // to refresh the list
+              _lectureBloc.add(
+                LectureEvent.getAllLecturesByCourse(courseTitle: courseTitle),
+              );
             },
           ),
         ),

@@ -144,6 +144,7 @@ class _UsersList extends StatelessWidget {
       builder: (context, state) {
         final usersList = state.users;
         return Material(
+          color: Colors.black,
           child: ListView.separated(
             separatorBuilder: (context, index) => Divider(
               thickness: 1.5,

@@ -61,7 +61,7 @@ class LectureCard extends StatelessWidget {
           trailing: CircularCheckBox(
             activeColor: Color(0xff5F36DA),
             value: isSubmitted,
-            onChanged: (val) {
+            onChanged: (_) {
               _lectureBloc.add(
                 LectureEvent.submitUser(
                   userId: _userAuthState.id.toString(),

@@ -123,43 +123,45 @@ class _UploadFormState extends State<_UploadForm> {
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: _isFileSelected ? 0.02.sh : 0.08.sh),
-              SvgPicture.asset(
-                'assets/svg/add_file.svg',
-                height: 0.3.sh,
-              ),
-              SizedBox(height: _isFileSelected ? 0.033.sh : 0.05.sh),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'title*',
+          child: SingleChildScrollView(
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: _isFileSelected ? 0.02.sh : 0.08.sh),
+                SvgPicture.asset(
+                  'assets/svg/add_file.svg',
+                  height: 0.3.sh,
                 ),
-                onChanged: (val) => setState(() => title = val.trim()),
-              ),
-              SizedBox(height: 0.03.sh),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'description',
+                SizedBox(height: _isFileSelected ? 0.033.sh : 0.05.sh),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'title*',
+                  ),
+                  onChanged: (val) => setState(() => title = val.trim()),
                 ),
-                onChanged: (val) => setState(() => description = val.trim()),
-              ),
-              SizedBox(height: _isFileSelected ? 0.02.sh : 0.06.sh),
-              widget.isHomework
-                  ? _HomeworkBottomSelection(
-                      title: title,
-                      description: description,
-                      user: user,
-                      courseTitle: widget.courseTitle,
-                    )
-                  : _LecutreBottomSelection(
-                      user: user,
-                      courseTitle: widget.courseTitle,
-                      title: title,
-                      description: description,
-                    ),
-            ],
+                SizedBox(height: 0.03.sh),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'description',
+                  ),
+                  onChanged: (val) => setState(() => description = val.trim()),
+                ),
+                SizedBox(height: _isFileSelected ? 0.02.sh : 0.06.sh),
+                widget.isHomework
+                    ? _HomeworkBottomSelection(
+                        title: title,
+                        description: description,
+                        user: user,
+                        courseTitle: widget.courseTitle,
+                      )
+                    : _LecutreBottomSelection(
+                        user: user,
+                        courseTitle: widget.courseTitle,
+                        title: title,
+                        description: description,
+                      ),
+              ],
+            ),
           ),
         );
       },

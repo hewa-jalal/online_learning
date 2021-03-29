@@ -79,6 +79,7 @@ class _ChatPageState extends State<ChatPage> {
                               text: msg.message,
                               user: ChatUser(
                                 uid: msg.fromUserId,
+                                containerColor: Color(0xff5F36DA),
                               ),
                               image: msg.imageUrl,
                             ),

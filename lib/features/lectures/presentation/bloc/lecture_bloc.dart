@@ -158,8 +158,6 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
             lectureFailureOrSuccessOption: none(),
           ),
           (lectureEntity) => state.copyWith(
-            lecture: lectureEntity,
-            userId: e.user.id,
             isSubmitting: false,
           ),
         );

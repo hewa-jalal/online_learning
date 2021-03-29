@@ -10,7 +10,7 @@ abstract class LecturesRepository {
     @required String courseTitle,
     @required String lectureTitle,
   });
-  Future<Either<Failure, LectureEntity>> uploadLecture({
+  Future<Either<Failure, Unit>> uploadLecture({
     @required String fileUrl,
     @required UserModel user,
     @required String courseTitle,

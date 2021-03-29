@@ -32,7 +32,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
   }
 
   @override
-  Future<Either<Failure, LectureEntity>> uploadLecture({
+  Future<Either<Failure, Unit>> uploadLecture({
     @required String fileUrl,
     @required UserModel user,
     @required String courseTitle,

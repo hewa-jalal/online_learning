@@ -21,7 +21,7 @@ abstract class LecturesRemoteDataSource {
     @required String courseTitle,
     @required String lectureTitle,
   });
-  Future<LectureModel> uploadLecture({
+  Future<Unit> uploadLecture({
     @required String filePath,
     @required UserModel user,
     @required String courseTitle,
@@ -83,7 +83,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   }
 
   @override
-  Future<LectureModel> uploadLecture({
+  Future<Unit> uploadLecture({
     @required String filePath,
     @required UserModel user,
     @required String courseTitle,
@@ -107,7 +107,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
       doc.set({'uploader_id': user.id}, SetOptions(merge: true));
     });
 
-    return LectureModel();
+    return unit;
   }
 
   @override

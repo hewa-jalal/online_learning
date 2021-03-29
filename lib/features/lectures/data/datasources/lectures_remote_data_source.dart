@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter_uploader/flutter_uploader.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/lectures/data/models/lecture_model.dart';
@@ -21,7 +22,7 @@ abstract class LecturesRemoteDataSource {
     @required String lectureTitle,
   });
   Future<LectureModel> uploadLecture({
-    @required String fileUrl,
+    @required String filePath,
     @required UserModel user,
     @required String courseTitle,
     String lectureTitle,
@@ -83,29 +84,30 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
 
   @override
   Future<LectureModel> uploadLecture({
-    @required String fileUrl,
+    @required String filePath,
     @required UserModel user,
     @required String courseTitle,
     String lectureTitle,
     String description,
   }) async {
-    // lectureTask.task =
-    //     storageRef.lecturesStorage(lectureTitle).putFile(File(fileUrl));
-    final downalodUrl =
-        await storageRef.lecturesStorage(lectureTitle).getDownloadURL();
+    lectureTask.task =
+        storageRef.lecturesStorage(lectureTitle).putFile(File(filePath));
 
-    final lecture = LectureModel(
-      fileUrl: downalodUrl,
-      title: lectureTitle,
-      description: description,
-    );
-    final doc = userCoursesCollection.doc(courseTitle);
-    // adding lecture to document
-    doc.collection('lectures').doc(lectureTitle).set(lecture.toDocument());
-    // adding user id that uploaded the lecture
-    doc.set({'uploader_id': user.id}, SetOptions(merge: true));
+    lectureTask.task.then((res) async {
+      final downloadUrl = await res.ref.getDownloadURL();
+      final lecture = LectureModel(
+        fileUrl: downloadUrl,
+        title: lectureTitle,
+        description: description,
+      );
+      final doc = userCoursesCollection.doc(courseTitle);
+      // adding lecture to document
+      doc.collection('lectures').doc(lectureTitle).set(lecture.toDocument());
+      // adding user id that uploaded the lecture
+      doc.set({'uploader_id': user.id}, SetOptions(merge: true));
+    });
 
-    return lecture;
+    return LectureModel();
   }
 
   @override
@@ -167,19 +169,21 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     @required String courseTitle,
     @required String lectureTitle,
   }) async {
-    final courseDoc = userCoursesCollection.doc(courseTitle);
-    courseDoc
+    userCoursesCollection
+        .doc(courseTitle)
         .collection('lectures')
         .doc(lectureTitle)
         .collection('submittedUsers')
-        .add({
-      'user_id': userId,
+        .doc(userId)
+        .set({
+      'userId': userId,
       'submitDate': DateTime.now().millisecondsSinceEpoch,
     });
+
     return unit;
   }
 }
 
 extension StorageReferenceX on Reference {
-  Reference lecturesStorage(String title) => child('courses').child(title);
+  Reference lecturesStorage(String title) => child('lectures').child(title);
 }

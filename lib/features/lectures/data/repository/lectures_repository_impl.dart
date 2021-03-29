@@ -41,7 +41,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
   }) async {
     try {
       final lecture = await remoteDataSource.uploadLecture(
-        fileUrl: fileUrl,
+        filePath: fileUrl,
         user: user,
         lectureTitle: title,
         description: description,

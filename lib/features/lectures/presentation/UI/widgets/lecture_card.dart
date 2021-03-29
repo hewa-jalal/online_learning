@@ -1,4 +1,6 @@
+import 'package:circular_check_box/circular_check_box.dart';
 import 'package:flutter/material.dart';
+import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 
 import '../../../domain/entities/lecture_entity.dart';
 import '../../bloc/lecture_bloc.dart';
@@ -14,10 +16,14 @@ class LectureCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final lectureBloc = context.read<LectureBloc>();
-    var isSubmitted = lecture.submittedUsers.contains('ASmxMarJL3i0rxdhMO8W');
+    final _lectureBloc = context.watch<LectureBloc>();
+    final _userAuthState = context.watch<UserAuthBloc>().state;
+
+    var isSubmitted =
+        lecture.submittedUsers.contains(_userAuthState.id.toString());
 
     print('lecture card ====> ${lecture.submittedUsers}');
+    print('isSubmitted ====> ${isSubmitted}');
 
     return ExpansionTile(
       childrenPadding: EdgeInsets.only(left: 8.0, right: 8.0),
@@ -34,21 +40,32 @@ class LectureCard extends StatelessWidget {
               Text('file'),
               Spacer(),
               InkWell(
-                onTap: () => lectureBloc.add(
+                onTap: () => _lectureBloc.add(
                   LectureEvent.downloadLecture(
                     fileUrl: lecture.fileUrl,
                     lectureTitle: lecture.title,
                     courseTitle: courseTitle,
                   ),
                 ),
-                child: Icon(Icons.download_outlined),
+                child: Icon(Icons.download_outlined, color: Color(0xff5F36DA)),
               ),
             ],
           ),
-          trailing: Checkbox(
-            value: isSubmitted,
+          // trailing: Checkbox(
+          //   value: isSubmitted,
+          //   activeColor: Color(0xff5F36DA),
+          //   onChanged: (val) {},
+          // ),
+          trailing: CircularCheckBox(
             activeColor: Color(0xff5F36DA),
-            onChanged: (val) {},
+            value: isSubmitted,
+            onChanged: (val) {
+              _lectureBloc.add(LectureEvent.submitUser(
+                userId: _userAuthState.id.toString(),
+                courseTitle: courseTitle,
+                lectureTitle: lecture.title,
+              ));
+            },
           ),
         ),
       ],

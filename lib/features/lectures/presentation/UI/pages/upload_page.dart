@@ -34,9 +34,10 @@ class _UploadPageState extends State<UploadPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LectureBloc, LectureState>(
+      // TODO: progress won't work for homework because this is lecture state
       listener: (context, state) {
         if (state.isSubmitting) {
-          print('IF progress');
+          // TODO: Fix progress
           context.read<ProgressBloc>().add(ProgressEvent.started());
           Get.dialog(ProgressDialog());
         }

@@ -27,6 +27,7 @@ dependencies:
   auto_route: ^0.6.9
   beauty_textfield: ^0.0.1
   cached_network_image: ^2.5.0
+  circular_check_box: ^1.0.4
   cloud_firestore: ^0.16.0
   cupertino_icons: ^1.0.0
   dartz: ^0.9.2

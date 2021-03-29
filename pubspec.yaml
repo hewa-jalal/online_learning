@@ -36,6 +36,7 @@ dependencies:
   day_night_time_picker: ^1.0.1
   dio: ^3.0.10
   equatable: ^1.2.5
+  expansion_tile_card: ^2.0.0
   file_icon: ^1.0.0
   file_picker: ^2.1.6
   firebase_auth: ^0.20.0+1

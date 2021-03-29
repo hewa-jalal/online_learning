@@ -7,7 +7,6 @@ import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
 
 class UserHomePage extends StatefulWidget {
   final UserEntity user;
@@ -100,6 +99,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
           child: Icon(Icons.drive_folder_upload),
           onPressed: () => Get.dialog(
             Dialog(
+              backgroundColor: Color(0xffA5A6AA),
               child: SizedBox(
                 height: 0.15.sh,
                 child: Padding(
@@ -112,6 +112,14 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                           child: TextField(
                             onChanged: (val) => courseTitle = val,
                             decoration: InputDecoration(
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.green, width: 2.0),
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(width: 1.4, color: Colors.white),
+                              ),
                               hintText: 'Enter course name',
                             ),
                           ),

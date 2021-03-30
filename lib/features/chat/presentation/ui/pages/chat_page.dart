@@ -95,10 +95,18 @@ class _ChatPageState extends State<ChatPage> {
                             fit: BoxFit.fill,
                           );
                         },
-                        chatFooterBuilder: () => IconButton(
-                          icon: Icon(Icons.image),
-                          onPressed: getNewImage,
+                        inputContainerStyle: null,
+                        inputTextStyle: TextStyle(
+                          color: Colors.black,
                         ),
+                        inputDecoration: InputDecoration(
+                          border: InputBorder.none,
+                          filled: false,
+                        ),
+                        // chatFooterBuilder: () => IconButton(
+                        //   icon: Icon(Icons.image),
+                        //   onPressed: getNewImage,
+                        // ),
                         inverted: true,
                         user: ChatUser(
                           uid: user.id,

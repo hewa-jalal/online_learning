@@ -17,30 +17,36 @@ class CourseCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
+        margin: EdgeInsets.symmetric(horizontal: 6.0),
         color: Color(0xffA5A6AA),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(18),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(courseTitle),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: SleekCircularSlider(
-                    appearance: CircularSliderAppearance(
-                      size: 80.h,
-                      customColors: CustomSliderColors(
-                        progressBarColor: Color(0xff5F36DA),
-                        dotColor: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                );
-              },
+            Text(
+              courseTitle,
+              // textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 22.sp),
             ),
+            SizedBox(height: 0.12.sh),
+            // LayoutBuilder(
+            //   builder: (context, constraints) {
+            //     return Padding(
+            //       padding: const EdgeInsets.only(top: 8.0),
+            //       child: SleekCircularSlider(
+            //         appearance: CircularSliderAppearance(
+            //           size: 80.h,
+            //           customColors: CustomSliderColors(
+            //             progressBarColor: Color(0xff5F36DA),
+            //             dotColor: Colors.transparent,
+            //           ),
+            //         ),
+            //       ),
+            //     );
+            //   },
+            // ),
           ],
         ),
       ),

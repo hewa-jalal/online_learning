@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/UI/pages/upload_page.dart';
@@ -7,6 +8,7 @@ import 'package:online_learning/features/lectures/presentation/UI/widgets/homewo
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/user/data/models/user_model.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/lecture_card.dart';
 
@@ -129,16 +131,17 @@ class _LecturesList extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         } else {
           final lectures = state.lectures;
-
-          return ListView.builder(
-            itemCount: lectures.length,
-            itemBuilder: (context, index) {
-              return LectureCard(
-                lecture: lectures[index],
-                courseTitle: courseTitle,
-              );
-            },
-          );
+          return lectures.length > 0
+              ? ListView.builder(
+                  itemCount: lectures.length,
+                  itemBuilder: (context, index) {
+                    return LectureCard(
+                      lecture: lectures[index],
+                      courseTitle: courseTitle,
+                    );
+                  },
+                )
+              : _LectureEmptyWidget();
         }
       },
     );
@@ -162,15 +165,73 @@ class _HomeworksList extends StatelessWidget {
     return BlocBuilder<HomeworkBloc, HomeworkState>(
       builder: (context, state) {
         final homeworks = state.homeworks;
-        return ListView.builder(
-          itemCount: homeworks.length,
-          itemBuilder: (context, index) {
-            return HomeworkCard(
-              homework: homeworks[index],
-            );
-          },
-        );
+        return homeworks.length > 0
+            ? ListView.builder(
+                itemCount: homeworks.length,
+                itemBuilder: (context, index) {
+                  return HomeworkCard(
+                    homework: homeworks[index],
+                  );
+                },
+              )
+            : _HomeworkEmptyWidget();
       },
+    );
+  }
+}
+
+class _LectureEmptyWidget extends StatelessWidget {
+  const _LectureEmptyWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Entypo.text_document,
+          size: 0.2.sh,
+          color: Colors.blueGrey[100],
+        ),
+        SizedBox(height: 0.05.sh),
+        Text(
+          'you haven\'t uploaded any lectures yet',
+          style: TextStyle(
+            fontSize: 18.sp,
+            color: Colors.grey,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _HomeworkEmptyWidget extends StatelessWidget {
+  const _HomeworkEmptyWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Entypo.text_document,
+          size: 0.2.sh,
+          color: Colors.blueGrey[100],
+        ),
+        SizedBox(height: 0.05.sh),
+        Text(
+          'you haven\'t uploaded any homework yet',
+          style: TextStyle(
+            fontSize: 18.sp,
+            color: Colors.grey,
+          ),
+        ),
+      ],
     );
   }
 }

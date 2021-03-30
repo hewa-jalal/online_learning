@@ -31,6 +31,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../domain/entites/user.dart';
 import 'get_user_page.dart';
 import 'user_home_page.dart';
+import 'package:online_learning/video_page.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -183,7 +184,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             // body: UserHomePage(
             //   user: UserEntity(id: '12'),
             // ),
-            body: UserForm(),
+            body: VideoPage(),
           ),
         ),
       ),

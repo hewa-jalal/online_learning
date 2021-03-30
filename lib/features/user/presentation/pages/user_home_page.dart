@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
 import 'package:online_learning/features/lectures/presentation/UI/pages/course_page.dart';
@@ -31,6 +32,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           actions: [
             Padding(
@@ -46,6 +48,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
         ),
         body: Column(
           children: [
+            SizedBox(height: 0.01.sh),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 18.w),
               child: Row(
@@ -71,6 +74,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                 ],
               ),
             ),
+            SizedBox(height: 0.02.sh),
             BlocBuilder<LectureBloc, LectureState>(
               builder: (context, state) {
                 if (state.isSubmitting) {
@@ -89,7 +93,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                             ),
                           ),
                         )
-                      : Text('you have no courses');
+                      : _EmptyWidget();
                 }
               },
             ),
@@ -135,6 +139,8 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                                     courseTitle: courseTitle,
                                   ),
                                 );
+                            lectureBloc
+                                .add(LectureEvent.getAllCoursesByUserId());
                           },
                           child: Text('Done'),
                         ),
@@ -148,6 +154,34 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _EmptyWidget extends StatelessWidget {
+  const _EmptyWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: 0.15.sh),
+        SvgPicture.asset(
+          'assets/svg/empty_courses.svg',
+          height: 0.35.sh,
+          alignment: Alignment.bottomCenter,
+        ),
+        SizedBox(height: 0.03.sh),
+        Text(
+          'you haven\'t created any course yet',
+          style: TextStyle(
+            fontSize: 21.sp,
+            color: Colors.grey,
+          ),
+        ),
+      ],
     );
   }
 }

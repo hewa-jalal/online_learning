@@ -25,13 +25,13 @@ import 'package:online_learning/features/lectures/presentation/bloc/progress_blo
 
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:online_learning/injection.dart';
+import 'package:online_learning/video_page.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../domain/entites/user.dart';
 import 'get_user_page.dart';
 import 'user_home_page.dart';
-import 'package:online_learning/video_page.dart';
 
 class MyApp extends StatefulWidget {
   @override

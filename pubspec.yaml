@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  jitsi_meet: ^2.0.0
   agora_rtc_engine: ^1.0.5
   animated_text_kit: ^4.0.0
   auto_route: ^0.6.9

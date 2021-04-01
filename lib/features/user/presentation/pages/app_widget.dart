@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
+import 'package:online_learning/features/chat/video/cubit/video_cubit.dart';
+import 'package:online_learning/features/chat/video/video_repository.dart';
 import 'package:online_learning/features/homeworks/data/datasources/homework_remote_data_source.dart';
 import 'package:online_learning/features/homeworks/data/repository/homework_repository_impl.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/get_all_homeworks_by_course.dart';
@@ -25,7 +27,7 @@ import 'package:online_learning/features/lectures/presentation/bloc/progress_blo
 
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:online_learning/injection.dart';
-import 'package:online_learning/video_page.dart';
+import 'package:online_learning/features/chat/video/video_page.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -70,6 +72,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (_) => VideoCubit(VideoRepositoy()),
+        ),
         BlocProvider(
           create: (_) => HomeworkBloc(
             uploadHomework: UploadHomework(HomeworkRepositoryImpl(

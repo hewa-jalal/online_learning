@@ -8,6 +8,7 @@ import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:jitsi_meet/jitsi_meeting_listener.dart';
 import 'package:jitsi_meet/room_name_constraint.dart';
 import 'package:jitsi_meet/room_name_constraint_type.dart';
+import 'package:online_learning/features/chat/video/cubit/video_cubit.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -167,7 +168,7 @@ class _VideoPageState extends State<VideoPage> {
 
   _joinMeeting() async {
     final _userAuthState = context.read<UserAuthBloc>().state;
-    final _videosCollection = FirebaseFirestore.instance.collection('videos');
+    final _videoCubit = context.read<VideoCubit>();
 
     String serverUrl =
         serverText.text?.trim()?.isEmpty ?? "" ? null : serverText.text;
@@ -202,11 +203,8 @@ class _VideoPageState extends State<VideoPage> {
         ..videoMuted = isVideoMuted
         ..featureFlag = featureFlag;
 
-      _videosCollection.add(
-        {
-          'serverUrl': 'https://meet.jit.si/${roomText.text}',
-        },
-      );
+      // added video room url to firestore
+      _videoCubit.addVideoRoomUrl(roomText: roomText.text);
 
       debugPrint("JitsiMeetingOptions: $options");
       await JitsiMeet.joinMeeting(

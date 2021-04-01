@@ -10,7 +10,7 @@ import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../video_page.dart';
+import '../../../chat/video/video_page.dart';
 
 class UserHomePage extends StatefulWidget {
   final UserEntity user;

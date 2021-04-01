@@ -24,7 +24,7 @@ class _UserFormState extends State<UserForm> {
 
   @override
   Widget build(BuildContext context) {
-    final userAuthBloc = context.read<UserAuthBloc>();
+    final _userAuthBloc = context.read<UserAuthBloc>();
     final _formKey = GlobalKey<FormState>();
     return BlocConsumer<UserAuthBloc, UserAuthState>(
       listener: (context, state) {
@@ -87,7 +87,6 @@ class _UserFormState extends State<UserForm> {
                         },
                         onFieldSubmitted: (val) =>
                             _formKey.currentState.validate(),
-                        // onSubmitted: (val) => print('formz => ${name.value}'),
                         validator: (val) {
                           print('validator => ${name.valid}');
                           return name.valid ? 'ok' : 'please enter an id';
@@ -99,10 +98,8 @@ class _UserFormState extends State<UserForm> {
                   SizedBox(
                     width: 0.8.sw,
                     child: ElevatedButton(
-                      onPressed: () {
-                        userAuthBloc.add(
-                            UserAuthEvent.getUserById(id: int.parse(userId)));
-                      },
+                      onPressed: () => _userAuthBloc.add(
+                          UserAuthEvent.getUserById(id: int.parse(userId))),
                       child: Text('Get user'),
                     ),
                   ),

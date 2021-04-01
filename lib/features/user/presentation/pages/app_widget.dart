@@ -181,10 +181,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           ),
           debugShowCheckedModeBanner: false,
           home: Scaffold(
-            // body: UserHomePage(
-            //   user: UserEntity(id: '12'),
-            // ),
-            body: VideoPage(),
+            body: UserHomePage(
+              user: UserEntity(id: '12'),
+            ),
+            // body: VideoPage(),
           ),
         ),
       ),

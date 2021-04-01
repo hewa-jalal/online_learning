@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,6 +9,9 @@ import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:widget_circular_animator/widget_circular_animator.dart';
+
+import '../../../../video_page.dart';
 
 class UserHomePage extends StatefulWidget {
   final UserEntity user;
@@ -41,6 +45,18 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                 icon: Icon(Icons.chat),
                 onPressed: () => Get.to(
                   () => ChatPage(userEntity: widget.user),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: AvatarGlow(
+                endRadius: 20,
+                child: IconButton(
+                  icon: Icon(Icons.videocam),
+                  onPressed: () => Get.to(
+                    () => VideoPage(),
+                  ),
                 ),
               ),
             ),

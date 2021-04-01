@@ -1,16 +1,10 @@
 part of 'user_auth_bloc.dart';
 
-// @freezed
-// abstract class UserAuthState with _$UserAuthState {
-//   const factory UserAuthState.initial() = _Initial;
-//   const factory UserAuthState.userLoaded({
-//     @required UserEntity user,
-//   }) = _UserLoaded;
-//   const factory UserAuthState.usersLoaded({
-//     @required List<UserEntity> users,
-//   }) = _UsersLoaded;
-//   const factory UserAuthState.userError() = _UserError;
-// }
+enum UserStatus {
+  initial,
+  waiting,
+  done,
+}
 
 @freezed
 abstract class UserAuthState with _$UserAuthState {
@@ -23,6 +17,7 @@ abstract class UserAuthState with _$UserAuthState {
     @required int lastSeenInEpoch,
     @required bool isOnline,
     @required List<UserEntity> users,
+    @required UserStatus userStatus,
   }) = _UserAuthState;
 
   factory UserAuthState.initial() => UserAuthState(
@@ -34,6 +29,7 @@ abstract class UserAuthState with _$UserAuthState {
         lastSeenInEpoch: 0,
         users: List.empty(),
         isOnline: false,
+        userStatus: UserStatus.initial,
       );
 
   factory UserAuthState.failure() => UserAuthState(
@@ -45,5 +41,6 @@ abstract class UserAuthState with _$UserAuthState {
         lastSeenInEpoch: 0,
         users: List.empty(),
         isOnline: false,
+        userStatus: UserStatus.initial,
       );
 }

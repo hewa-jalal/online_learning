@@ -7,6 +7,7 @@ import 'package:online_learning/features/lectures/presentation/UI/pages/upload_p
 import 'package:online_learning/features/lectures/presentation/UI/widgets/homework_card.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/user/data/models/user_model.dart';
+import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -70,6 +71,7 @@ class _CoursePageState extends State<CoursePage>
 
   @override
   Widget build(BuildContext context) {
+    final _userAuthState = context.read<UserAuthBloc>().state;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -104,7 +106,7 @@ class _CoursePageState extends State<CoursePage>
             );
           },
         ),
-        floatingActionButton: _fab(),
+        floatingActionButton: _userAuthState.role == 'teacher' ? _fab() : null,
       ),
     );
   }

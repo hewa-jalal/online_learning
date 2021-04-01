@@ -711,7 +711,8 @@ class _$UserAuthStateTearOff {
       @required String fullName,
       @required int lastSeenInEpoch,
       @required bool isOnline,
-      @required List<UserEntity> users}) {
+      @required List<UserEntity> users,
+      @required UserStatus userStatus}) {
     return _UserAuthState(
       id: id,
       role: role,
@@ -721,6 +722,7 @@ class _$UserAuthStateTearOff {
       lastSeenInEpoch: lastSeenInEpoch,
       isOnline: isOnline,
       users: users,
+      userStatus: userStatus,
     );
   }
 }
@@ -739,6 +741,7 @@ mixin _$UserAuthState {
   int get lastSeenInEpoch;
   bool get isOnline;
   List<UserEntity> get users;
+  UserStatus get userStatus;
 
   @JsonKey(ignore: true)
   $UserAuthStateCopyWith<UserAuthState> get copyWith;
@@ -757,7 +760,8 @@ abstract class $UserAuthStateCopyWith<$Res> {
       String fullName,
       int lastSeenInEpoch,
       bool isOnline,
-      List<UserEntity> users});
+      List<UserEntity> users,
+      UserStatus userStatus});
 }
 
 /// @nodoc
@@ -779,6 +783,7 @@ class _$UserAuthStateCopyWithImpl<$Res>
     Object lastSeenInEpoch = freezed,
     Object isOnline = freezed,
     Object users = freezed,
+    Object userStatus = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as int,
@@ -791,6 +796,8 @@ class _$UserAuthStateCopyWithImpl<$Res>
           : lastSeenInEpoch as int,
       isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool,
       users: users == freezed ? _value.users : users as List<UserEntity>,
+      userStatus:
+          userStatus == freezed ? _value.userStatus : userStatus as UserStatus,
     ));
   }
 }
@@ -810,7 +817,8 @@ abstract class _$UserAuthStateCopyWith<$Res>
       String fullName,
       int lastSeenInEpoch,
       bool isOnline,
-      List<UserEntity> users});
+      List<UserEntity> users,
+      UserStatus userStatus});
 }
 
 /// @nodoc
@@ -834,6 +842,7 @@ class __$UserAuthStateCopyWithImpl<$Res>
     Object lastSeenInEpoch = freezed,
     Object isOnline = freezed,
     Object users = freezed,
+    Object userStatus = freezed,
   }) {
     return _then(_UserAuthState(
       id: id == freezed ? _value.id : id as int,
@@ -846,6 +855,8 @@ class __$UserAuthStateCopyWithImpl<$Res>
           : lastSeenInEpoch as int,
       isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool,
       users: users == freezed ? _value.users : users as List<UserEntity>,
+      userStatus:
+          userStatus == freezed ? _value.userStatus : userStatus as UserStatus,
     ));
   }
 }
@@ -860,7 +871,8 @@ class _$_UserAuthState implements _UserAuthState {
       @required this.fullName,
       @required this.lastSeenInEpoch,
       @required this.isOnline,
-      @required this.users})
+      @required this.users,
+      @required this.userStatus})
       : assert(id != null),
         assert(role != null),
         assert(stage != null),
@@ -868,7 +880,8 @@ class _$_UserAuthState implements _UserAuthState {
         assert(fullName != null),
         assert(lastSeenInEpoch != null),
         assert(isOnline != null),
-        assert(users != null);
+        assert(users != null),
+        assert(userStatus != null);
 
   @override
   final int id;
@@ -886,10 +899,12 @@ class _$_UserAuthState implements _UserAuthState {
   final bool isOnline;
   @override
   final List<UserEntity> users;
+  @override
+  final UserStatus userStatus;
 
   @override
   String toString() {
-    return 'UserAuthState(id: $id, role: $role, stage: $stage, dept: $dept, fullName: $fullName, lastSeenInEpoch: $lastSeenInEpoch, isOnline: $isOnline, users: $users)';
+    return 'UserAuthState(id: $id, role: $role, stage: $stage, dept: $dept, fullName: $fullName, lastSeenInEpoch: $lastSeenInEpoch, isOnline: $isOnline, users: $users, userStatus: $userStatus)';
   }
 
   @override
@@ -914,7 +929,10 @@ class _$_UserAuthState implements _UserAuthState {
                 const DeepCollectionEquality()
                     .equals(other.isOnline, isOnline)) &&
             (identical(other.users, users) ||
-                const DeepCollectionEquality().equals(other.users, users)));
+                const DeepCollectionEquality().equals(other.users, users)) &&
+            (identical(other.userStatus, userStatus) ||
+                const DeepCollectionEquality()
+                    .equals(other.userStatus, userStatus)));
   }
 
   @override
@@ -927,7 +945,8 @@ class _$_UserAuthState implements _UserAuthState {
       const DeepCollectionEquality().hash(fullName) ^
       const DeepCollectionEquality().hash(lastSeenInEpoch) ^
       const DeepCollectionEquality().hash(isOnline) ^
-      const DeepCollectionEquality().hash(users);
+      const DeepCollectionEquality().hash(users) ^
+      const DeepCollectionEquality().hash(userStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -944,7 +963,8 @@ abstract class _UserAuthState implements UserAuthState {
       @required String fullName,
       @required int lastSeenInEpoch,
       @required bool isOnline,
-      @required List<UserEntity> users}) = _$_UserAuthState;
+      @required List<UserEntity> users,
+      @required UserStatus userStatus}) = _$_UserAuthState;
 
   @override
   int get id;
@@ -962,6 +982,8 @@ abstract class _UserAuthState implements UserAuthState {
   bool get isOnline;
   @override
   List<UserEntity> get users;
+  @override
+  UserStatus get userStatus;
   @override
   @JsonKey(ignore: true)
   _$UserAuthStateCopyWith<_UserAuthState> get copyWith;

@@ -70,6 +70,9 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
         yield state.copyWith();
       },
       getUserById: (e) async* {
+        yield state.copyWith(
+          userStatus: UserStatus.waiting,
+        );
         final either = await getUser(UserParam(id: e.id));
         yield either.fold(
           (failure) => UserAuthState.failure(),
@@ -80,8 +83,10 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
             role: user.role,
             stage: user.stage,
             lastSeenInEpoch: user.lastSeenInEpoch,
+            userStatus: UserStatus.done,
           ),
         );
+        // TODO: maybe wrong
         add(UserAuthEvent.updateUserTime());
         add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
       },

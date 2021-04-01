@@ -9,7 +9,6 @@ import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:widget_circular_animator/widget_circular_animator.dart';
 
 import '../../../../video_page.dart';
 
@@ -25,10 +24,11 @@ class UserHomePage extends StatefulWidget {
 }
 
 class _UserLoadedWidgetState extends State<UserHomePage> {
-  var courseTitle = '';
+  UserEntity get user => widget.user;
 
   @override
   Widget build(BuildContext context) {
+    print('user_role => ${user.role}');
     final lectureBloc = context.read<LectureBloc>();
     if (ModalRoute.of(context).isCurrent) {
       lectureBloc.add(LectureEvent.getAllCoursesByUserId());
@@ -115,60 +115,76 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.drive_folder_upload),
-          onPressed: () => Get.dialog(
-            Dialog(
-              backgroundColor: Color(0xffA5A6AA),
-              child: SizedBox(
-                height: 0.15.sh,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Column(
-                    children: [
-                      Flexible(
-                        flex: 2,
-                        child: Center(
-                          child: TextField(
-                            onChanged: (val) => courseTitle = val,
-                            decoration: InputDecoration(
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.green, width: 2.0),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 1.4, color: Colors.white),
-                              ),
-                              hintText: 'Enter course name',
-                            ),
+        floatingActionButton:
+            user.role == 'teacher' ? _CreateCourseFab() : null,
+      ),
+    );
+  }
+}
+
+class _CreateCourseFab extends StatefulWidget {
+  @override
+  __CreateCourseFabState createState() => __CreateCourseFabState();
+}
+
+class __CreateCourseFabState extends State<_CreateCourseFab> {
+  var courseTitle = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final lectureBloc = context.read<LectureBloc>();
+
+    return FloatingActionButton(
+      child: Icon(Icons.drive_folder_upload),
+      onPressed: () => Get.dialog(
+        Dialog(
+          backgroundColor: Color(0xffA5A6AA),
+          child: SizedBox(
+            height: 0.15.sh,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: [
+                  Flexible(
+                    flex: 2,
+                    child: Center(
+                      child: TextField(
+                        onChanged: (val) => courseTitle = val,
+                        decoration: InputDecoration(
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.green, width: 2.0),
                           ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 1.4, color: Colors.white),
+                          ),
+                          hintText: 'Enter course name',
                         ),
                       ),
-                      Flexible(
-                        flex: 2,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Get.back();
-                            context.read<LectureBloc>().add(
-                                  LectureEvent.createCourse(
-                                    courseTitle: courseTitle,
-                                  ),
-                                );
-                            lectureBloc
-                                .add(LectureEvent.getAllCoursesByUserId());
-                          },
-                          child: Text('Done'),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                  Flexible(
+                    flex: 2,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                        context.read<LectureBloc>().add(
+                              LectureEvent.createCourse(
+                                courseTitle: courseTitle,
+                              ),
+                            );
+                        lectureBloc.add(LectureEvent.getAllCoursesByUserId());
+                      },
+                      child: Text('Done'),
+                    ),
+                  ),
+                ],
               ),
             ),
-            barrierDismissible: true,
           ),
         ),
+        barrierDismissible: true,
       ),
     );
   }

@@ -2,6 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 
+enum UserRole {
+  student,
+  teacher,
+}
+
 class UserModel extends UserEntity {
   final String fullName;
   final String id;

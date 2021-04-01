@@ -1735,7 +1735,7 @@ mixin _$LectureState {
   String get filePath;
   bool get isSubmitting;
   List<LectureEntity> get lectures;
-  List<String> get courseIds; // @required List<String> submittedUsers,
+  List<String> get courseIds;
   Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption;
 
   @JsonKey(ignore: true)
@@ -1880,7 +1880,7 @@ class _$_LectureState implements _LectureState {
   final List<LectureEntity> lectures;
   @override
   final List<String> courseIds;
-  @override // @required List<String> submittedUsers,
+  @override
   final Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption;
 
   @override
@@ -1963,7 +1963,7 @@ abstract class _LectureState implements LectureState {
   List<LectureEntity> get lectures;
   @override
   List<String> get courseIds;
-  @override // @required List<String> submittedUsers,
+  @override
   Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)

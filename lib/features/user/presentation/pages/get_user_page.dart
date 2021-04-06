@@ -49,67 +49,70 @@ class _UserFormState extends State<UserForm> {
           key: _formKey,
           child: SafeArea(
             child: Scaffold(
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: 250.0,
-                    child: TyperAnimatedTextKit(
-                      text: ['Learn anywhere'],
-                      textStyle: TextStyle(
-                        fontSize: 30.0,
-                        fontFamily: "Bobbers",
-                        color: Colors.white,
-                      ),
-                      textAlign: TextAlign.center,
-                      speed: Duration(milliseconds: 40),
-                    ),
-                  ),
-                  Lottie.asset('assets/lottie/intro.json'),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Enter your id',
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.green, width: 2.0),
+              body: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: 250.0,
+                        child: TyperAnimatedTextKit(
+                          text: ['Learn anywhere'],
+                          textStyle: TextStyle(
+                            fontSize: 30.0,
+                            fontFamily: "Bobbers",
+                            color: Colors.white,
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 1.4),
+                          textAlign: TextAlign.center,
+                          speed: Duration(milliseconds: 40),
+                        ),
+                      ),
+                      Lottie.asset('assets/lottie/intro.json'),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              labelText: 'Enter your id',
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.green, width: 2.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(width: 1.4),
+                              ),
+                            ),
+                            onChanged: (val) {
+                              userId = val.trim();
+                              name = NameInput.dirty(value: val);
+                            },
+                            onFieldSubmitted: (val) =>
+                                _formKey.currentState.validate(),
+                            validator: (val) {
+                              print('validator => ${name.valid}');
+                              return name.valid ? 'ok' : 'please enter an id';
+                            },
                           ),
                         ),
-                        onChanged: (val) {
-                          userId = val.trim();
-                          name = NameInput.dirty(value: val);
-                        },
-                        onFieldSubmitted: (val) =>
-                            _formKey.currentState.validate(),
-                        validator: (val) {
-                          print('validator => ${name.valid}');
-                          return name.valid ? 'ok' : 'please enter an id';
-                        },
                       ),
-                    ),
+                      SizedBox(height: 0.04.sh),
+                      SizedBox(
+                        width: 0.8.sw,
+                        child: ElevatedButton(
+                          onPressed: () => _userAuthBloc.add(
+                              UserAuthEvent.getUserById(id: int.parse(userId))),
+                          child: Text('Get user'),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () => Get.dialog(
+                          Lottie.asset('assets/lottie/loading_animation.json'),
+                        ),
+                        child: Text('dialog animation test'),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 0.04.sh),
-                  SizedBox(
-                    width: 0.8.sw,
-                    child: ElevatedButton(
-                      onPressed: () => _userAuthBloc.add(
-                          UserAuthEvent.getUserById(id: int.parse(userId))),
-                      child: Text('Get user'),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () => Get.dialog(
-                      Lottie.asset('assets/lottie/loading_animation.json'),
-                    ),
-                    child: Text('dialog animation test'),
-                  ),
-                ],
+                ),
               ),
             ),
           ),

@@ -10,8 +10,6 @@ import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../chat/video/video_page.dart';
-
 class UserHomePage extends StatefulWidget {
   final UserEntity user;
   const UserHomePage({
@@ -28,7 +26,6 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('user_role => ${user.role}');
     final lectureBloc = context.read<LectureBloc>();
     if (ModalRoute.of(context).isCurrent) {
       lectureBloc.add(LectureEvent.getAllCoursesByUserId());
@@ -45,18 +42,6 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                 icon: Icon(Icons.chat),
                 onPressed: () => Get.to(
                   () => ChatPage(userEntity: widget.user),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: AvatarGlow(
-                endRadius: 20,
-                child: IconButton(
-                  icon: Icon(Icons.videocam),
-                  onPressed: () => Get.to(
-                    () => VideoPage(),
-                  ),
                 ),
               ),
             ),
@@ -109,7 +94,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                             ),
                           ),
                         )
-                      : _EmptyWidget();
+                      : _EmptyCourseWidget();
                 }
               },
             ),
@@ -190,8 +175,8 @@ class __CreateCourseFabState extends State<_CreateCourseFab> {
   }
 }
 
-class _EmptyWidget extends StatelessWidget {
-  const _EmptyWidget({
+class _EmptyCourseWidget extends StatelessWidget {
+  const _EmptyCourseWidget({
     Key key,
   }) : super(key: key);
 

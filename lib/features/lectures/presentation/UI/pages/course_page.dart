@@ -1,7 +1,10 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
+import 'package:online_learning/features/chat/video/cubit/video_cubit.dart';
+import 'package:online_learning/features/chat/video/video_page.dart';
 import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/UI/pages/upload_page.dart';
 import 'package:online_learning/features/lectures/presentation/UI/widgets/homework_card.dart';
@@ -23,6 +26,7 @@ class CoursePage extends StatefulWidget {
 
 class _CoursePageState extends State<CoursePage>
     with SingleTickerProviderStateMixin {
+  String get courseTitle => widget.courseTitle;
   TabController _tabController;
 
   @override
@@ -52,7 +56,7 @@ class _CoursePageState extends State<CoursePage>
               user: UserModel(
                 id: '12',
               ),
-              courseTitle: widget.courseTitle,
+              courseTitle: courseTitle,
             ),
           ).then((value) => setState(() {})),
         )
@@ -64,7 +68,7 @@ class _CoursePageState extends State<CoursePage>
               user: UserModel(
                 id: '12',
               ),
-              courseTitle: widget.courseTitle,
+              courseTitle: courseTitle,
             ),
           ).then((value) => setState(() {})),
         );
@@ -72,10 +76,28 @@ class _CoursePageState extends State<CoursePage>
   @override
   Widget build(BuildContext context) {
     final _userAuthState = context.read<UserAuthBloc>().state;
+    context.read<VideoCubit>().getVideoUrl();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.courseTitle),
+          title: Text(courseTitle),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: BlocBuilder<VideoCubit, VideoState>(
+                builder: (context, state) {
+                  if (_userAuthState.role == 'teacher') {
+                    return _TeacherVideoButton(courseTitle: courseTitle);
+                  }
+                  return state.map(
+                    initial: (e) => _VideoButton(),
+                    chatRoomLoaded: (e) =>
+                        _GlowVideoButton(courseTitle: courseTitle),
+                  );
+                },
+              ),
+            ),
+          ],
           bottom: TabBar(
             controller: _tabController,
             tabs: [
@@ -100,13 +122,83 @@ class _CoursePageState extends State<CoursePage>
             return TabBarView(
               controller: _tabController,
               children: [
-                _LecturesList(courseTitle: widget.courseTitle),
-                _HomeworksList(courseTitle: widget.courseTitle),
+                _LecturesList(courseTitle: courseTitle),
+                _HomeworksList(courseTitle: courseTitle),
               ],
             );
           },
         ),
         floatingActionButton: _userAuthState.role == 'teacher' ? _fab() : null,
+      ),
+    );
+  }
+}
+
+class _GlowVideoButton extends StatelessWidget {
+  const _GlowVideoButton({
+    Key key,
+    @required this.courseTitle,
+  }) : super(key: key);
+
+  final String courseTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return AvatarGlow(
+      endRadius: 20,
+      child: IconButton(
+        icon: Icon(Icons.videocam),
+        onPressed: () => Get.to(
+          () => VideoPage(courseTitle: courseTitle),
+        ),
+      ),
+    );
+  }
+}
+
+class _VideoButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.videocam),
+      onPressed: () => Get.dialog(
+        Dialog(
+          backgroundColor: Color(0xffA5A6AA),
+          child: SizedBox(
+            height: 0.15.sh,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(MaterialIcons.videocam_off, size: 60),
+                Text(
+                  'currently there is no live lecture',
+                  style: TextStyle(
+                    fontSize: 22.sp,
+                  ),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _TeacherVideoButton extends StatelessWidget {
+  const _TeacherVideoButton({
+    Key key,
+    @required this.courseTitle,
+  }) : super(key: key);
+
+  final String courseTitle;
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.videocam),
+      onPressed: () => Get.to(
+        () => VideoPage(courseTitle: courseTitle),
       ),
     );
   }

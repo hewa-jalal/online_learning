@@ -11,6 +11,21 @@ class VideoCubit extends Cubit<VideoState> {
 
   void addVideoRoomUrl({
     @required String roomText,
+    @required String courseTitle,
+    @required String dept,
+    @required int stage,
   }) =>
-      _videoRepositoy.addVideoUrl(roomText: roomText);
+      _videoRepositoy.addVideoUrl(
+        roomText: roomText,
+        courseTitle: courseTitle,
+        dept: dept,
+        stage: stage,
+      );
+
+  void getVideoUrl() async {
+    final videoUrl = await _videoRepositoy.getVideoUrl(roomText: '2');
+    if (videoUrl.isNotEmpty) {
+      emit(VideoState.chatRoomLoaded(chatRoomUrl: videoUrl));
+    }
+  }
 }

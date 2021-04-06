@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jitsi_meet/feature_flag/feature_flag.dart';
@@ -9,20 +8,33 @@ import 'package:jitsi_meet/jitsi_meeting_listener.dart';
 import 'package:jitsi_meet/room_name_constraint.dart';
 import 'package:jitsi_meet/room_name_constraint_type.dart';
 import 'package:online_learning/features/chat/video/cubit/video_cubit.dart';
+
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'cubit/video_cubit.dart';
+import 'cubit/video_cubit.dart';
+
 class VideoPage extends StatefulWidget {
+  final String courseTitle;
+
+  const VideoPage({
+    Key key,
+    @required this.courseTitle,
+  }) : super(key: key);
   @override
   _VideoPageState createState() => _VideoPageState();
 }
 
 class _VideoPageState extends State<VideoPage> {
+  String get courseTitle => widget.courseTitle;
+
   final serverText = TextEditingController();
   final roomText = TextEditingController(text: "plugintestroom");
   final subjectText = TextEditingController(text: "My Plugin Test Meeting");
   final nameText = TextEditingController(text: "Plugin Test User");
   final emailText = TextEditingController(text: "fake@email.com");
+
   var isAudioOnly = true;
   var isAudioMuted = true;
   var isVideoMuted = true;
@@ -50,7 +62,103 @@ class _VideoPageState extends State<VideoPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _userAuthBloc = context.read<UserAuthBloc>();
+    final _videoCubit = context.watch<VideoCubit>();
+    // calling to check if there is a live video
+    _videoCubit.getVideoUrl();
+    print('videoState => ${_videoCubit.state}');
+    _videoCubit.state.maybeMap(
+      chatRoomLoaded: (e) {
+        print('chatRoomloaded without listener');
+        _joinMeeting(e.chatRoomUrl);
+      },
+      orElse: () => print('video_page => orElse'),
+    );
+    return BlocListener<VideoCubit, VideoState>(
+      listener: (context, state) {
+        print('listener state $state');
+        state.maybeMap(
+          chatRoomLoaded: (e) {
+            print('e chatRoomUrl ==>  ${e.chatRoomUrl}');
+            _joinMeeting(e.chatRoomUrl);
+          },
+          orElse: () => print('video_page => orElse'),
+        );
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Plugin example app'),
+        ),
+        body: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: roomText,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Room",
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: subjectText,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Subject",
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                CheckboxListTile(
+                  title: Text("Audio Only"),
+                  value: isAudioOnly,
+                  onChanged: _onAudioOnlyChanged,
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                CheckboxListTile(
+                  title: Text("Audio Muted"),
+                  value: isAudioMuted,
+                  onChanged: _onAudioMutedChanged,
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                CheckboxListTile(
+                  title: Text("Video Muted"),
+                  value: isVideoMuted,
+                  onChanged: _onVideoMutedChanged,
+                ),
+                Divider(
+                  height: 48.0,
+                  thickness: 2.0,
+                ),
+                SizedBox(
+                  height: 64.0,
+                  width: double.maxFinite,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _joinMeeting();
+                    },
+                    child: Text(
+                      "Join Meeting",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 48.0),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text('Plugin example app'),
@@ -166,13 +274,17 @@ class _VideoPageState extends State<VideoPage> {
     });
   }
 
-  _joinMeeting() async {
+  _joinMeeting([String videoUrl = '']) async {
     final _userAuthState = context.read<UserAuthBloc>().state;
     final _videoCubit = context.read<VideoCubit>();
 
     String serverUrl =
         serverText.text?.trim()?.isEmpty ?? "" ? null : serverText.text;
 
+    if (videoUrl.isNotEmpty) {
+      serverUrl = videoUrl;
+      print('inside => videoUrl.isNotEmpty <= if statment');
+    }
     try {
       // Enable or disable any feature flag here
       // If feature flag are not provided, default values will be used
@@ -204,7 +316,12 @@ class _VideoPageState extends State<VideoPage> {
         ..featureFlag = featureFlag;
 
       // added video room url to firestore
-      _videoCubit.addVideoRoomUrl(roomText: roomText.text);
+      _videoCubit.addVideoRoomUrl(
+        roomText: roomText.text,
+        courseTitle: courseTitle,
+        dept: _userAuthState.dept,
+        stage: _userAuthState.stage,
+      );
 
       debugPrint("JitsiMeetingOptions: $options");
       await JitsiMeet.joinMeeting(

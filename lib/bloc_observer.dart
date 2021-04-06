@@ -12,10 +12,4 @@ class AppBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
     print('onTransition $transition');
   }
-
-  @override
-  void onError(Cubit cubit, Object error, StackTrace stackTrace) {
-    super.onError(cubit, error, stackTrace);
-    print('onError $error');
-  }
 }

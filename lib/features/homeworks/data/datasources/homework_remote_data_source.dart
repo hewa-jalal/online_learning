@@ -29,6 +29,7 @@ abstract class HomeWorkRemoteDataSource {
   Future<Unit> submitHomework({
     @required String userId,
     @required String fileUrl,
+    @required String courseTitle,
     @required String note,
     @required String homeworkTitle,
   });
@@ -81,7 +82,7 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
       for (var doc in homeworksQuery.docs) {
         List<String> listOfSubmittedUsers;
         listOfSubmittedUsers = await userHomeworksCollection
-            .doc('AI')
+            .doc(courseTitle)
             .collection('homeworks')
             .doc(doc.data()['title'])
             .collection('submittedUsers')
@@ -101,6 +102,7 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
   Future<Unit> submitHomework({
     @required String userId,
     @required String fileUrl,
+    @required String courseTitle,
     @required String note,
     @required String homeworkTitle,
     @required int submitDate,
@@ -113,7 +115,7 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
     );
 
     userHomeworksCollection
-        .doc('AI')
+        .doc(courseTitle)
         .collection('homeworks')
         .doc(homeworkTitle)
         .collection('submittedUsers')

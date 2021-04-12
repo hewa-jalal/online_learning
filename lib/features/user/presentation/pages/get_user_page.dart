@@ -42,6 +42,10 @@ class _UserFormState extends State<UserForm> {
               ),
             ),
           );
+        } else if (state.userStatus == UserStatus.waiting) {
+          Get.dialog(
+            Lottie.asset('assets/lottie/loading_animation.json'),
+          );
         }
       },
       builder: (context, state) {
@@ -66,7 +70,7 @@ class _UserFormState extends State<UserForm> {
                           speed: Duration(milliseconds: 40),
                         ),
                       ),
-                      Lottie.asset('assets/lottie/intro.json'),
+                      // Lottie.asset('assets/lottie/intro.json'),
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),

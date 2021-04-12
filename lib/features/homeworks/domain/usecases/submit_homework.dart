@@ -20,6 +20,7 @@ class SubmitHomework extends UseCase<Unit, SubmitParams> {
       note: params.note,
       homeworkTitle: params.homeworkTitle,
       submitDate: params.submitDate,
+      courseTitle: params.courseTitle,
     );
   }
 }
@@ -29,6 +30,8 @@ class SubmitParams extends Equatable {
   final String fileUrl;
   final String note;
   final String homeworkTitle;
+  final String courseTitle;
+
   final int submitDate;
 
   SubmitParams({
@@ -37,8 +40,16 @@ class SubmitParams extends Equatable {
     @required this.note,
     @required this.homeworkTitle,
     @required this.submitDate,
+    @required this.courseTitle,
   });
 
   @override
-  List<Object> get props => [userId, fileUrl, note, homeworkTitle, submitDate];
+  List<Object> get props => [
+        userId,
+        fileUrl,
+        note,
+        homeworkTitle,
+        submitDate,
+        courseTitle,
+      ];
 }

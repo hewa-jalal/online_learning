@@ -28,6 +28,7 @@ dependencies:
   auto_route: ^0.6.9
   avatar_glow: ^2.0.1
   beauty_textfield: ^0.0.1
+  bubble: ^1.2.1
   cached_network_image: ^2.5.0
   circular_check_box: ^1.0.4
   cloud_firestore: ^0.16.0
@@ -47,7 +48,6 @@ dependencies:
   flushbar: ^1.10.4
   flutter_advanced_segment: ^2.0.0
   flutter_bloc: ^7.0.0
-  # flutter_bloc_devtools: ^0.1.1
   flutter_downloader: ^1.5.2
   flutter_icons: ^1.1.0
   flutter_inner_drawer: ^1.0.0+1
@@ -70,6 +70,7 @@ dependencies:
   kt_dart: ^0.8.0
   lottie: ^0.2.0
   mime: ^1.0.0
+  nil: ^1.1.1
   path_provider: ^1.6.27
   percent_indicator: ^2.1.9+1
   permission_handler: ^5.1.0
@@ -78,7 +79,6 @@ dependencies:
   tab_indicator_styler: ^1.0.0
   timeago: ^3.0.2
   widget_circular_animator: ^0.1.5+1
-  bubble: ^1.2.1
 
 dev_dependencies:
   flutter_test:

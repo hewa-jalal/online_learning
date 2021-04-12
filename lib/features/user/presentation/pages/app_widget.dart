@@ -151,7 +151,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               bodyText1: TextStyle(),
               bodyText2: TextStyle(),
             ).apply(
-              bodyColor: Colors.white,
+              bodyColor: Colors.black,
               displayColor: Colors.blue,
             ),
             elevatedButtonTheme: ElevatedButtonThemeData(

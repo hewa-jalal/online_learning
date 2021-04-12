@@ -265,6 +265,7 @@ class _HomeworksList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return HomeworkCard(
                     homework: homeworks[index],
+                    courseTitle: courseTitle,
                   );
                 },
               )

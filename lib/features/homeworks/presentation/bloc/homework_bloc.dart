@@ -80,6 +80,7 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
             note: e.note,
             homeworkTitle: e.homeworkTitle,
             submitDate: e.submitDate,
+            courseTitle: e.courseTitle,
           ),
         );
         either.fold(

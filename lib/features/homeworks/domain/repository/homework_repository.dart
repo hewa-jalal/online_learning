@@ -24,6 +24,7 @@ abstract class HomeworkRepository {
     @required String fileUrl,
     @required String note,
     @required String homeworkTitle,
+    @required String courseTitle,
     @required int submitDate,
   });
 }

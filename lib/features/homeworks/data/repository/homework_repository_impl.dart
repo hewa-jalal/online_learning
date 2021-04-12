@@ -59,6 +59,7 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
     @required String fileUrl,
     @required String note,
     @required String homeworkTitle,
+    @required String courseTitle,
     @required int submitDate,
   }) async {
     try {
@@ -68,6 +69,7 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
         note: note,
         homeworkTitle: homeworkTitle,
         submitDate: submitDate,
+        courseTitle: courseTitle,
       );
       return right(submitUnit);
     } on Exception catch (e) {

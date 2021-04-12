@@ -37,7 +37,6 @@ class _UploadPageState extends State<UploadPage> {
       // TODO: progress won't work for homework because this is lecture state
       listener: (context, state) {
         if (state.isSubmitting) {
-          // TODO: Fix progress
           context.read<ProgressBloc>().add(ProgressEvent.started());
           Get.dialog(ProgressDialog());
         }
@@ -125,7 +124,6 @@ class _UploadFormState extends State<_UploadForm> {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: SingleChildScrollView(
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: _isFileSelected ? 0.02.sh : 0.08.sh),
                 SvgPicture.asset(
@@ -328,19 +326,6 @@ class HomeworkUploadButton extends StatelessWidget {
       height: 0.072.sh,
       width: 0.8.sw,
       child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-              return Color(0xff5F36DA);
-            },
-          ),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(28.0),
-              side: BorderSide(color: Colors.white),
-            ),
-          ),
-        ),
         onPressed: () => _isFileSelected
             ? _homeworkBloc.add(
                 HomeworkEvent.uploadHomework(

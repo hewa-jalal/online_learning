@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
@@ -20,9 +21,10 @@ class HomeworkCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // can be used later, don't delete!
     final _userAuthState = context.watch<UserAuthBloc>().state;
-    var isSubmitted = homework.submittedHomeworks.contains('222');
-    final dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
-    final jifDate = Jiffy(dueDate);
+
+    final _isSubmitted = homework.submittedHomeworks.contains('222');
+    final _dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
+    final _jifDate = Jiffy(_dueDate);
     return Card(
       color: Color(0xff5F36DA),
       child: ListTile(
@@ -33,21 +35,16 @@ class HomeworkCard extends StatelessWidget {
             Text('due date'),
             SizedBox(height: 4),
             // Text(jifDate.yMMMdjm),
-            IconButton(
-              icon: Icon(Icons.arrow_right),
-              onPressed: () => Get.to(
-                () => SubmitHomeworkPage(
-                  homework: homework,
-                  courseTitle: courseTitle,
-                ),
-              ),
-            ),
           ],
         ),
-        // trailing: Icon(MaterialIcons.arrow_forward),
-        trailing: Checkbox(
-          value: isSubmitted,
-          onChanged: (val) {},
+        trailing: IconButton(
+          icon: Icon(MaterialIcons.arrow_forward),
+          onPressed: () => Get.to(
+            () => SubmitHomeworkPage(
+              homework: homework,
+              courseTitle: courseTitle,
+            ),
+          ),
         ),
       ),
     );

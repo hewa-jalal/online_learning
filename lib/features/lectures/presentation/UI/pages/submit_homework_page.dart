@@ -8,6 +8,7 @@ import 'package:online_learning/features/homeworks/presentation/bloc/homework_bl
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:path/path.dart' as path;
+import 'package:faker/faker.dart';
 
 class SubmitHomeworkPage extends StatefulWidget {
   final HomeworkEntity homework;
@@ -25,6 +26,8 @@ class SubmitHomeworkPage extends StatefulWidget {
 
 class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
   var note = '';
+  HomeworkEntity get homework => widget.homework;
+  final _faker = Faker();
   @override
   Widget build(BuildContext context) {
     final _homeworkBloc = context.watch<HomeworkBloc>();
@@ -43,24 +46,57 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
                   height: 0.3.sh,
                   width: 1.sw,
                   child: Card(
+                    color: Color(0xffA5A6AA),
+
                     // margin: EdgeInsets.symmetric(horizontal: 0.02.sw),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(widget.homework.title),
-                        Text(widget.homework.description),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, top: 4.0),
+                          child: Text(
+                            homework.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 18.sp,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 0.01.sh),
+                        Expanded(
+                          child: RawScrollbar(
+                            isAlwaysShown: true,
+                            thumbColor: Color(0xff5F36DA),
+                            thickness: 2.5,
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0, vertical: 10),
+                                child: Text(
+                                  _faker.lorem.sentences(18).toString(),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(height: 0.1.sh),
                 TextField(
+                  maxLines: null,
                   onChanged: (val) => note = val,
                   decoration: InputDecoration(
                     labelText: 'note',
                   ),
                 ),
-                SizedBox(height: 0.15.sh),
+                SizedBox(height: 0.12.sh),
                 if (_isFileSelected) ...[
                   ListTile(
                     enabled: true,
@@ -72,7 +108,7 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
                       icon: Icon(MaterialCommunityIcons.close_box),
                     ),
                   ),
-                  SizedBox(height: 0.1)
+                  SizedBox(height: 0.04.sh)
                 ],
                 SizedBox(
                   height: 0.072.sh,
@@ -85,7 +121,7 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
                               fileUrl: _homeworkBloc.state.filePath,
                               courseTitle: widget.courseTitle,
                               note: note,
-                              homeworkTitle: widget.homework.title,
+                              homeworkTitle: homework.title,
                               submitDate: DateTime.now().millisecondsSinceEpoch,
                             ),
                           )

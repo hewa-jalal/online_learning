@@ -202,7 +202,6 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       },
       createCourse: (e) async* {
         await createCourse(e.courseTitle);
-        // TODO: yield state to refresh courses card
       },
       getAllCoursesByUserId: (e) async* {
         yield state.copyWith(

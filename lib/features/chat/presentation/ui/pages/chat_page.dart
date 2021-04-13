@@ -6,10 +6,13 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:dash_chat/dash_chat.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class ChatPage extends StatefulWidget {
   final UserEntity userEntity;
@@ -27,6 +30,7 @@ class _ChatPageState extends State<ChatPage> {
   File _image;
   UserEntity get user => widget.userEntity;
   final _scrollController = ScrollController();
+  final _innerDrawerKey = GlobalKey<InnerDrawerState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,91 +38,95 @@ class _ChatPageState extends State<ChatPage> {
     chatBloc.add(ChatEvent.getAllMessages());
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
       return SafeArea(
-        child: Scaffold(
-          // floatingActionButton: FloatingActionButton(
-          //   onPressed: () {
-          //     context.read<ChatBloc>().add(
-          //           ChatEvent.sendMessage(
-          //             message: '3',
-          //             fromUserId: widget.userEntity.id,
-          //           ),
-          //         );
-          //   },
-          // ),
-          body: BlocBuilder<ChatBloc, ChatState>(
-            builder: (context, state) {
-              return state.map(
-                initial: (state) => CircularProgressIndicator(),
-                allMessagesLoaded: (state) {
-                  // final messages = state.allMessages
-                  //     .map(
-                  //       (msg) => ChatMessage(
-                  //         text: msg.message,
-                  //         user: ChatUser(
-                  //           uid: msg.fromUserId,
-                  //         ),
-                  //         image: msg.imageUrl,
-                  //       ),
-                  //     )
-                  //     .toList();
-                  // return _CustomDashChat(
-                  //   user: user,
-                  //   chatBloc: chatBloc,
-                  //   messages: messages,
-                  // );
+        child: InnerDrawer(
+          swipe: false,
+          key: _innerDrawerKey,
+          rightAnimationType: InnerDrawerAnimation.quadratic,
+          rightChild: _UsersList(),
+          scaffold: Scaffold(
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () => _innerDrawerKey.currentState.open(),
+                  icon: Icon(Feather.users),
+                ),
+              ],
+            ),
+            body: BlocBuilder<ChatBloc, ChatState>(
+              builder: (context, state) {
+                return state.map(
+                  initial: (state) => CircularProgressIndicator(),
+                  allMessagesLoaded: (state) {
+                    // final messages = state.allMessages
+                    //     .map(
+                    //       (msg) => ChatMessage(
+                    //         text: msg.message,
+                    //         user: ChatUser(
+                    //           uid: msg.fromUserId,
+                    //         ),
+                    //         image: msg.imageUrl,
+                    //       ),
+                    //     )
+                    //     .toList();
+                    // return _CustomDashChat(
+                    //   user: user,
+                    //   chatBloc: chatBloc,
+                    //   messages: messages,
+                    // );
 
-                  final messages = state.allMessages
-                      .map(
-                        (message) {
-                          return _CustomChatBubble(
-                            message: message,
-                            user: user,
-                          );
-                        },
-                      )
-                      .toList()
-                      .reversed
-                      .toList();
-                  return Column(
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.9,
-                                // flex: 5,
-                                child: ListView(
-                                  padding: const EdgeInsets.all(8),
-                                  controller: _scrollController,
-                                  children: messages,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.1,
-                        child: Align(
-                          alignment: FractionalOffset.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 10.0),
-                            child: _SendMessageTextField(
-                              chatBloc: chatBloc,
+                    final messages = state.allMessages
+                        .map(
+                          (message) {
+                            return _CustomChatBubble(
+                              message: message,
                               user: user,
-                              chatListController: _scrollController,
+                            );
+                          },
+                        )
+                        .toList()
+                        .reversed
+                        .toList();
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.9,
+                                  // flex: 5,
+                                  child: ListView(
+                                    padding: const EdgeInsets.all(8),
+                                    controller: _scrollController,
+                                    children: messages,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-                messageFailure: (state) => Text('Failed to load messages'),
-              );
-            },
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          child: Align(
+                            alignment: FractionalOffset.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: _SendMessageTextField(
+                                chatBloc: chatBloc,
+                                user: user,
+                                chatListController: _scrollController,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                  messageFailure: (state) => Text('Failed to load messages'),
+                );
+              },
+            ),
           ),
         ),
       );
@@ -333,6 +341,54 @@ class __CustomDashChatState extends State<_CustomDashChat> {
         widget.chatBloc.add(ChatEvent.getAllMessages());
       },
       messages: widget.messages,
+    );
+  }
+}
+
+class _UsersList extends StatelessWidget {
+  const _UsersList({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (ModalRoute.of(context).isCurrent) {
+      context.read<UserAuthBloc>().add(UserAuthEvent.getAllUsers());
+    }
+    return BlocBuilder<UserAuthBloc, UserAuthState>(
+      builder: (context, state) {
+        final _usersList = state.users;
+
+        return Material(
+          color: Colors.blueGrey[900],
+          child: ListView.separated(
+            separatorBuilder: (context, index) => Divider(
+              thickness: 1.5,
+              color: Colors.grey[700],
+            ),
+            itemCount: _usersList.length,
+            itemBuilder: (context, index) {
+              final user = _usersList[index];
+              final date =
+                  DateTime.fromMillisecondsSinceEpoch(user.lastSeenInEpoch);
+              final ago = timeago.format(date);
+              final isOnline = user.isOnline;
+              return ListTile(
+                leading: CircleAvatar(child: Text(user.fullName[0])),
+                title: Text(user.fullName),
+                subtitle: isOnline
+                    ? Row(
+                        children: [
+                          Icon(Icons.circle, color: Colors.green),
+                          Text('Online'),
+                        ],
+                      )
+                    : Text('last seen $ago'),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

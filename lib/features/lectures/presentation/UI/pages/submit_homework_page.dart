@@ -10,6 +10,8 @@ import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.d
 import 'package:path/path.dart' as path;
 import 'package:faker/faker.dart';
 
+const APP_PURPlE = Color(0xff5F36DA);
+
 class SubmitHomeworkPage extends StatefulWidget {
   final HomeworkEntity homework;
   final String courseTitle;
@@ -43,17 +45,20 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
               children: [
                 SizedBox(height: 0.02.sh),
                 SizedBox(
-                  height: 0.3.sh,
+                  height: 0.35.sh,
                   width: 1.sw,
                   child: Card(
-                    color: Color(0xffA5A6AA),
-
+                    color: APP_PURPlE,
                     // margin: EdgeInsets.symmetric(horizontal: 0.02.sw),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(left: 8.0, top: 4.0),
+                          padding: const EdgeInsets.only(
+                            left: 8.0,
+                            top: 4.0,
+                            right: 8.0,
+                          ),
                           child: Text(
                             homework.title,
                             style: TextStyle(
@@ -67,7 +72,7 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
                         Expanded(
                           child: RawScrollbar(
                             isAlwaysShown: true,
-                            thumbColor: Color(0xff5F36DA),
+                            thumbColor: Colors.white,
                             thickness: 2.5,
                             child: SingleChildScrollView(
                               child: Padding(
@@ -84,6 +89,7 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
                             ),
                           ),
                         ),
+                        SizedBox(height: 0.015.sh)
                       ],
                     ),
                   ),

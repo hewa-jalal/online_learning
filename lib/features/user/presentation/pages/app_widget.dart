@@ -58,13 +58,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    final userBloc = context.read<UserAuthBloc>();
+    final _userBloc = context.read<UserAuthBloc>();
     if (state == AppLifecycleState.resumed) {
-      userBloc.add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
-      userBloc.add(UserAuthEvent.updateUserTime());
+      _userBloc.add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
+      _userBloc.add(UserAuthEvent.updateUserTime());
     } else {
-      userBloc.add(UserAuthEvent.updateUserOnlineStatus(isOnline: false));
-      userBloc.add(UserAuthEvent.updateUserTime());
+      _userBloc.add(UserAuthEvent.updateUserOnlineStatus(isOnline: false));
+      _userBloc.add(UserAuthEvent.updateUserTime());
     }
   }
 
@@ -147,6 +147,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       child: ScreenUtilInit(
         builder: () => GetMaterialApp(
           theme: ThemeData.light().copyWith(
+            primaryColor: Color(0xff101422),
+            scaffoldBackgroundColor: Colors.blueGrey[900],
             textTheme: TextTheme(
               bodyText1: TextStyle(),
               bodyText2: TextStyle(),
@@ -172,8 +174,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             floatingActionButtonTheme: FloatingActionButtonThemeData(
               backgroundColor: Color(0xff5F36DA),
             ),
-            primaryColor: Color(0xff101422),
-            scaffoldBackgroundColor: Colors.blueGrey[900],
             inputDecorationTheme: InputDecorationTheme(
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.green, width: 2.0),

@@ -229,7 +229,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
           SubmitParams(
             lectureTitle: e.lectureTitle,
             userId: e.userId,
-            courseTitle: 'AI',
+            courseTitle: e.courseTitle,
           ),
         );
       },

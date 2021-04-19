@@ -13,7 +13,6 @@ import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.d
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubit/video_cubit.dart';
-import 'cubit/video_cubit.dart';
 
 class VideoPage extends StatefulWidget {
   final String courseTitle;
@@ -155,101 +154,6 @@ class _VideoPageState extends State<VideoPage> {
                 SizedBox(height: 48.0),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Plugin example app'),
-      ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 16.0),
-              TextField(
-                controller: roomText,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Room",
-                ),
-              ),
-              SizedBox(height: 16.0),
-              TextField(
-                controller: subjectText,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Subject",
-                ),
-              ),
-              // SizedBox(height: 16.0),
-              // TextField(
-              //   controller: nameText,
-              //   decoration: InputDecoration(
-              //     border: OutlineInputBorder(),
-              //     labelText: "Display Name",
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 16.0,
-              // ),
-              // TextField(
-              //   controller: emailText,
-              //   decoration: InputDecoration(
-              //     border: OutlineInputBorder(),
-              //     labelText: "Email",
-              //   ),
-              // ),
-              SizedBox(
-                height: 16.0,
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              CheckboxListTile(
-                title: Text("Audio Only"),
-                value: isAudioOnly,
-                onChanged: _onAudioOnlyChanged,
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              CheckboxListTile(
-                title: Text("Audio Muted"),
-                value: isAudioMuted,
-                onChanged: _onAudioMutedChanged,
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              CheckboxListTile(
-                title: Text("Video Muted"),
-                value: isVideoMuted,
-                onChanged: _onVideoMutedChanged,
-              ),
-              Divider(
-                height: 48.0,
-                thickness: 2.0,
-              ),
-              SizedBox(
-                height: 64.0,
-                width: double.maxFinite,
-                child: ElevatedButton(
-                  onPressed: () {
-                    _joinMeeting();
-                  },
-                  child: Text(
-                    "Join Meeting",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-              SizedBox(height: 48.0),
-            ],
           ),
         ),
       ),

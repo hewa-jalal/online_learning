@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/get_all_homeworks_by_course.dart';
+import 'package:online_learning/features/homeworks/domain/usecases/get_homework.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/submit_homework.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/upload_homework.dart';
 
@@ -21,10 +22,13 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
     @required this.uploadHomework,
     @required this.getAllHomeworksByCourse,
     @required this.submitHomework,
+    @required this.getHomework,
   }) : super(HomeworkState.initial());
+
   final UploadHomework uploadHomework;
   final GetAllHomeworksByCourse getAllHomeworksByCourse;
   final SubmitHomework submitHomework;
+  final GetHomework getHomework;
 
   @override
   Stream<HomeworkState> mapEventToState(
@@ -33,6 +37,12 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
     yield* event.map(
       started: (e) async* {
         yield HomeworkState.initial();
+      },
+      selectFile: (e) async* {
+        final result = await FilePicker.platform.pickFiles();
+        yield state.copyWith(
+          filePath: result.files.single.path,
+        );
       },
       uploadHomework: (e) async* {
         yield state.copyWith(isSubmitting: true);
@@ -51,10 +61,14 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
           (unit) => state.copyWith(isSubmitting: false),
         );
       },
-      selectFile: (e) async* {
-        final result = await FilePicker.platform.pickFiles();
-        yield state.copyWith(
-          filePath: result.files.single.path,
+      getHomework: (e) async* {
+        final either = await getHomework(e.courseTitle);
+        yield either.fold(
+          (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
+          (homeworkSubmit) => state.copyWith(
+            filePath: homeworkSubmit.fileUrl,
+            note: homeworkSubmit.note,
+          ),
         );
       },
       getAllHomeworksByCourse: (e) async* {
@@ -89,6 +103,7 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
             isSubmitting: false,
           ),
         );
+        // to referesh the UI
         add(HomeworkEvent.getAllHomeworksByCourse(
           courseTitle: state.courseTitle,
         ));

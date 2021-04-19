@@ -10,6 +10,7 @@ import 'package:online_learning/features/chat/video/video_repository.dart';
 import 'package:online_learning/features/homeworks/data/datasources/homework_remote_data_source.dart';
 import 'package:online_learning/features/homeworks/data/repository/homework_repository_impl.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/get_all_homeworks_by_course.dart';
+import 'package:online_learning/features/homeworks/domain/usecases/get_homework.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/submit_homework.dart';
 import 'package:online_learning/features/homeworks/domain/usecases/upload_homework.dart';
 import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
@@ -93,6 +94,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 lectureTask: sl<LectureTask>(),
               ),
             )),
+            getHomework: GetHomework(
+                homeworkRepository: HomeworkRepositoryImpl(
+              FirebaseHomeworkRemoteDataSource(
+                lectureTask: sl<LectureTask>(),
+              ),
+            )),
           ),
         ),
         BlocProvider(
@@ -153,7 +160,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               bodyText1: TextStyle(),
               bodyText2: TextStyle(),
             ).apply(
-              bodyColor: Colors.black,
+              bodyColor: Colors.white,
               displayColor: Colors.blue,
             ),
             elevatedButtonTheme: ElevatedButtonThemeData(

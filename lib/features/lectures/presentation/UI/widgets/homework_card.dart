@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/UI/pages/submit_homework_page.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 
@@ -22,7 +21,9 @@ class HomeworkCard extends StatelessWidget {
     // can be used later, don't delete!
     final _userAuthState = context.watch<UserAuthBloc>().state;
 
-    final _isSubmitted = homework.submittedHomeworks.contains('222');
+    // we need toString() method as it's a list of strings
+    final _isSubmitted =
+        homework.submittedHomeworks.contains(_userAuthState.id.toString());
     final _dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
     final _jifDate = Jiffy(_dueDate);
     return Card(
@@ -34,11 +35,13 @@ class HomeworkCard extends StatelessWidget {
             SizedBox(height: 4),
             Text('due date'),
             SizedBox(height: 4),
-            // Text(jifDate.yMMMdjm),
+            Text(_jifDate.yMMMdjm),
           ],
         ),
         trailing: IconButton(
-          icon: Icon(MaterialIcons.arrow_forward),
+          icon: _isSubmitted
+              ? Icon(Feather.edit_2)
+              : Icon(MaterialIcons.arrow_forward),
           onPressed: () => Get.to(
             () => SubmitHomeworkPage(
               homework: homework,

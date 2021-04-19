@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
+import 'package:online_learning/features/homeworks/domain/entities/homework_submit_entity.dart';
 
 import '../../../user/core/errors/failures.dart';
 import '../../../user/data/models/user_model.dart';
@@ -16,6 +17,10 @@ abstract class HomeworkRepository {
   });
 
   Future<Either<Failure, List<HomeworkEntity>>> getAllHomeworksByCourse({
+    @required String courseTitle,
+  });
+
+  Future<Either<Failure, HomeworkSubmitEntity>> getHomework({
     @required String courseTitle,
   });
 

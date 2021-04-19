@@ -50,6 +50,13 @@ class _$HomeworkEventTearOff {
   }
 
 // ignore: unused_element
+  _GetHomework getHomework({@required String courseTitle}) {
+    return _GetHomework(
+      courseTitle: courseTitle,
+    );
+  }
+
+// ignore: unused_element
   _SubmitHomework submitHomework(
       {@required String userId,
       @required String fileUrl,
@@ -82,6 +89,7 @@ mixin _$HomeworkEvent {
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
+    @required TResult getHomework(String courseTitle),
     @required
         TResult submitHomework(
             String userId,
@@ -98,6 +106,7 @@ mixin _$HomeworkEvent {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
+    TResult getHomework(String courseTitle),
     TResult submitHomework(String userId, String fileUrl, String courseTitle,
         String note, String homeworkTitle, int submitDate),
     @required TResult orElse(),
@@ -108,6 +117,7 @@ mixin _$HomeworkEvent {
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
     @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    @required TResult getHomework(_GetHomework value),
     @required TResult submitHomework(_SubmitHomework value),
   });
   @optionalTypeArgs
@@ -116,6 +126,7 @@ mixin _$HomeworkEvent {
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
     TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    TResult getHomework(_GetHomework value),
     TResult submitHomework(_SubmitHomework value),
     @required TResult orElse(),
   });
@@ -180,6 +191,7 @@ class _$_Started implements _Started {
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
+    @required TResult getHomework(String courseTitle),
     @required
         TResult submitHomework(
             String userId,
@@ -193,6 +205,7 @@ class _$_Started implements _Started {
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return started();
   }
@@ -205,6 +218,7 @@ class _$_Started implements _Started {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
+    TResult getHomework(String courseTitle),
     TResult submitHomework(String userId, String fileUrl, String courseTitle,
         String note, String homeworkTitle, int submitDate),
     @required TResult orElse(),
@@ -223,12 +237,14 @@ class _$_Started implements _Started {
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
     @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    @required TResult getHomework(_GetHomework value),
     @required TResult submitHomework(_SubmitHomework value),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return started(this);
   }
@@ -240,6 +256,7 @@ class _$_Started implements _Started {
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
     TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    TResult getHomework(_GetHomework value),
     TResult submitHomework(_SubmitHomework value),
     @required TResult orElse(),
   }) {
@@ -381,6 +398,7 @@ class _$_UploadHomework implements _UploadHomework {
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
+    @required TResult getHomework(String courseTitle),
     @required
         TResult submitHomework(
             String userId,
@@ -394,6 +412,7 @@ class _$_UploadHomework implements _UploadHomework {
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return uploadHomework(
         user, title, courseTitle, filePath, dueDate, description);
@@ -407,6 +426,7 @@ class _$_UploadHomework implements _UploadHomework {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
+    TResult getHomework(String courseTitle),
     TResult submitHomework(String userId, String fileUrl, String courseTitle,
         String note, String homeworkTitle, int submitDate),
     @required TResult orElse(),
@@ -426,12 +446,14 @@ class _$_UploadHomework implements _UploadHomework {
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
     @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    @required TResult getHomework(_GetHomework value),
     @required TResult submitHomework(_SubmitHomework value),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return uploadHomework(this);
   }
@@ -443,6 +465,7 @@ class _$_UploadHomework implements _UploadHomework {
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
     TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    TResult getHomework(_GetHomework value),
     TResult submitHomework(_SubmitHomework value),
     @required TResult orElse(),
   }) {
@@ -517,6 +540,7 @@ class _$_SelectFile implements _SelectFile {
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
+    @required TResult getHomework(String courseTitle),
     @required
         TResult submitHomework(
             String userId,
@@ -530,6 +554,7 @@ class _$_SelectFile implements _SelectFile {
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return selectFile();
   }
@@ -542,6 +567,7 @@ class _$_SelectFile implements _SelectFile {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
+    TResult getHomework(String courseTitle),
     TResult submitHomework(String userId, String fileUrl, String courseTitle,
         String note, String homeworkTitle, int submitDate),
     @required TResult orElse(),
@@ -560,12 +586,14 @@ class _$_SelectFile implements _SelectFile {
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
     @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    @required TResult getHomework(_GetHomework value),
     @required TResult submitHomework(_SubmitHomework value),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return selectFile(this);
   }
@@ -577,6 +605,7 @@ class _$_SelectFile implements _SelectFile {
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
     TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    TResult getHomework(_GetHomework value),
     TResult submitHomework(_SubmitHomework value),
     @required TResult orElse(),
   }) {
@@ -664,6 +693,7 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
+    @required TResult getHomework(String courseTitle),
     @required
         TResult submitHomework(
             String userId,
@@ -677,6 +707,7 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return getAllHomeworksByCourse(courseTitle);
   }
@@ -689,6 +720,7 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
+    TResult getHomework(String courseTitle),
     TResult submitHomework(String userId, String fileUrl, String courseTitle,
         String note, String homeworkTitle, int submitDate),
     @required TResult orElse(),
@@ -707,12 +739,14 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
     @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    @required TResult getHomework(_GetHomework value),
     @required TResult submitHomework(_SubmitHomework value),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return getAllHomeworksByCourse(this);
   }
@@ -724,6 +758,7 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
     TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    TResult getHomework(_GetHomework value),
     TResult submitHomework(_SubmitHomework value),
     @required TResult orElse(),
   }) {
@@ -742,6 +777,160 @@ abstract class _GetAllHomeworksByCourse implements HomeworkEvent {
   String get courseTitle;
   @JsonKey(ignore: true)
   _$GetAllHomeworksByCourseCopyWith<_GetAllHomeworksByCourse> get copyWith;
+}
+
+/// @nodoc
+abstract class _$GetHomeworkCopyWith<$Res> {
+  factory _$GetHomeworkCopyWith(
+          _GetHomework value, $Res Function(_GetHomework) then) =
+      __$GetHomeworkCopyWithImpl<$Res>;
+  $Res call({String courseTitle});
+}
+
+/// @nodoc
+class __$GetHomeworkCopyWithImpl<$Res> extends _$HomeworkEventCopyWithImpl<$Res>
+    implements _$GetHomeworkCopyWith<$Res> {
+  __$GetHomeworkCopyWithImpl(
+      _GetHomework _value, $Res Function(_GetHomework) _then)
+      : super(_value, (v) => _then(v as _GetHomework));
+
+  @override
+  _GetHomework get _value => super._value as _GetHomework;
+
+  @override
+  $Res call({
+    Object courseTitle = freezed,
+  }) {
+    return _then(_GetHomework(
+      courseTitle:
+          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_GetHomework implements _GetHomework {
+  const _$_GetHomework({@required this.courseTitle})
+      : assert(courseTitle != null);
+
+  @override
+  final String courseTitle;
+
+  @override
+  String toString() {
+    return 'HomeworkEvent.getHomework(courseTitle: $courseTitle)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetHomework &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetHomeworkCopyWith<_GetHomework> get copyWith =>
+      __$GetHomeworkCopyWithImpl<_GetHomework>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required
+        TResult uploadHomework(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String description),
+    @required TResult selectFile(),
+    @required TResult getAllHomeworksByCourse(String courseTitle),
+    @required TResult getHomework(String courseTitle),
+    @required
+        TResult submitHomework(
+            String userId,
+            String fileUrl,
+            String courseTitle,
+            String note,
+            String homeworkTitle,
+            int submitDate),
+  }) {
+    assert(started != null);
+    assert(uploadHomework != null);
+    assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
+    assert(submitHomework != null);
+    return getHomework(courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult uploadHomework(UserModel user, String title, String courseTitle,
+        String filePath, int dueDate, String description),
+    TResult selectFile(),
+    TResult getAllHomeworksByCourse(String courseTitle),
+    TResult getHomework(String courseTitle),
+    TResult submitHomework(String userId, String fileUrl, String courseTitle,
+        String note, String homeworkTitle, int submitDate),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getHomework != null) {
+      return getHomework(courseTitle);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult uploadHomework(_UploadHomework value),
+    @required TResult selectFile(_SelectFile value),
+    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    @required TResult getHomework(_GetHomework value),
+    @required TResult submitHomework(_SubmitHomework value),
+  }) {
+    assert(started != null);
+    assert(uploadHomework != null);
+    assert(selectFile != null);
+    assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
+    assert(submitHomework != null);
+    return getHomework(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult uploadHomework(_UploadHomework value),
+    TResult selectFile(_SelectFile value),
+    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    TResult getHomework(_GetHomework value),
+    TResult submitHomework(_SubmitHomework value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getHomework != null) {
+      return getHomework(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetHomework implements HomeworkEvent {
+  const factory _GetHomework({@required String courseTitle}) = _$_GetHomework;
+
+  String get courseTitle;
+  @JsonKey(ignore: true)
+  _$GetHomeworkCopyWith<_GetHomework> get copyWith;
 }
 
 /// @nodoc
@@ -872,6 +1061,7 @@ class _$_SubmitHomework implements _SubmitHomework {
             String filePath, int dueDate, String description),
     @required TResult selectFile(),
     @required TResult getAllHomeworksByCourse(String courseTitle),
+    @required TResult getHomework(String courseTitle),
     @required
         TResult submitHomework(
             String userId,
@@ -885,6 +1075,7 @@ class _$_SubmitHomework implements _SubmitHomework {
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return submitHomework(
         userId, fileUrl, courseTitle, note, homeworkTitle, submitDate);
@@ -898,6 +1089,7 @@ class _$_SubmitHomework implements _SubmitHomework {
         String filePath, int dueDate, String description),
     TResult selectFile(),
     TResult getAllHomeworksByCourse(String courseTitle),
+    TResult getHomework(String courseTitle),
     TResult submitHomework(String userId, String fileUrl, String courseTitle,
         String note, String homeworkTitle, int submitDate),
     @required TResult orElse(),
@@ -917,12 +1109,14 @@ class _$_SubmitHomework implements _SubmitHomework {
     @required TResult uploadHomework(_UploadHomework value),
     @required TResult selectFile(_SelectFile value),
     @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    @required TResult getHomework(_GetHomework value),
     @required TResult submitHomework(_SubmitHomework value),
   }) {
     assert(started != null);
     assert(uploadHomework != null);
     assert(selectFile != null);
     assert(getAllHomeworksByCourse != null);
+    assert(getHomework != null);
     assert(submitHomework != null);
     return submitHomework(this);
   }
@@ -934,6 +1128,7 @@ class _$_SubmitHomework implements _SubmitHomework {
     TResult uploadHomework(_UploadHomework value),
     TResult selectFile(_SelectFile value),
     TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
+    TResult getHomework(_GetHomework value),
     TResult submitHomework(_SubmitHomework value),
     @required TResult orElse(),
   }) {
@@ -974,6 +1169,7 @@ class _$HomeworkStateTearOff {
       @required String courseTitle,
       @required String userId,
       @required List<HomeworkEntity> homeworks,
+      String note,
       String description,
       String filePath,
       bool isSubmitting,
@@ -983,6 +1179,7 @@ class _$HomeworkStateTearOff {
       courseTitle: courseTitle,
       userId: userId,
       homeworks: homeworks,
+      note: note,
       description: description,
       filePath: filePath,
       isSubmitting: isSubmitting,
@@ -1001,6 +1198,7 @@ mixin _$HomeworkState {
   String get courseTitle;
   String get userId;
   List<HomeworkEntity> get homeworks;
+  String get note;
   String get description;
   String get filePath;
   bool get isSubmitting;
@@ -1020,6 +1218,7 @@ abstract class $HomeworkStateCopyWith<$Res> {
       String courseTitle,
       String userId,
       List<HomeworkEntity> homeworks,
+      String note,
       String description,
       String filePath,
       bool isSubmitting,
@@ -1041,6 +1240,7 @@ class _$HomeworkStateCopyWithImpl<$Res>
     Object courseTitle = freezed,
     Object userId = freezed,
     Object homeworks = freezed,
+    Object note = freezed,
     Object description = freezed,
     Object filePath = freezed,
     Object isSubmitting = freezed,
@@ -1054,6 +1254,7 @@ class _$HomeworkStateCopyWithImpl<$Res>
       homeworks: homeworks == freezed
           ? _value.homeworks
           : homeworks as List<HomeworkEntity>,
+      note: note == freezed ? _value.note : note as String,
       description:
           description == freezed ? _value.description : description as String,
       filePath: filePath == freezed ? _value.filePath : filePath as String,
@@ -1079,6 +1280,7 @@ abstract class _$HomeworkStateCopyWith<$Res>
       String courseTitle,
       String userId,
       List<HomeworkEntity> homeworks,
+      String note,
       String description,
       String filePath,
       bool isSubmitting,
@@ -1102,6 +1304,7 @@ class __$HomeworkStateCopyWithImpl<$Res>
     Object courseTitle = freezed,
     Object userId = freezed,
     Object homeworks = freezed,
+    Object note = freezed,
     Object description = freezed,
     Object filePath = freezed,
     Object isSubmitting = freezed,
@@ -1115,6 +1318,7 @@ class __$HomeworkStateCopyWithImpl<$Res>
       homeworks: homeworks == freezed
           ? _value.homeworks
           : homeworks as List<HomeworkEntity>,
+      note: note == freezed ? _value.note : note as String,
       description:
           description == freezed ? _value.description : description as String,
       filePath: filePath == freezed ? _value.filePath : filePath as String,
@@ -1135,6 +1339,7 @@ class _$_HomeworkState implements _HomeworkState {
       @required this.courseTitle,
       @required this.userId,
       @required this.homeworks,
+      this.note,
       this.description,
       this.filePath,
       this.isSubmitting,
@@ -1153,6 +1358,8 @@ class _$_HomeworkState implements _HomeworkState {
   @override
   final List<HomeworkEntity> homeworks;
   @override
+  final String note;
+  @override
   final String description;
   @override
   final String filePath;
@@ -1163,7 +1370,7 @@ class _$_HomeworkState implements _HomeworkState {
 
   @override
   String toString() {
-    return 'HomeworkState(title: $title, courseTitle: $courseTitle, userId: $userId, homeworks: $homeworks, description: $description, filePath: $filePath, isSubmitting: $isSubmitting, homeworkFailureOrSuccessOption: $homeworkFailureOrSuccessOption)';
+    return 'HomeworkState(title: $title, courseTitle: $courseTitle, userId: $userId, homeworks: $homeworks, note: $note, description: $description, filePath: $filePath, isSubmitting: $isSubmitting, homeworkFailureOrSuccessOption: $homeworkFailureOrSuccessOption)';
   }
 
   @override
@@ -1180,6 +1387,8 @@ class _$_HomeworkState implements _HomeworkState {
             (identical(other.homeworks, homeworks) ||
                 const DeepCollectionEquality()
                     .equals(other.homeworks, homeworks)) &&
+            (identical(other.note, note) ||
+                const DeepCollectionEquality().equals(other.note, note)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)) &&
@@ -1203,6 +1412,7 @@ class _$_HomeworkState implements _HomeworkState {
       const DeepCollectionEquality().hash(courseTitle) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(homeworks) ^
+      const DeepCollectionEquality().hash(note) ^
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(filePath) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
@@ -1220,6 +1430,7 @@ abstract class _HomeworkState implements HomeworkState {
       @required String courseTitle,
       @required String userId,
       @required List<HomeworkEntity> homeworks,
+      String note,
       String description,
       String filePath,
       bool isSubmitting,
@@ -1234,6 +1445,8 @@ abstract class _HomeworkState implements HomeworkState {
   String get userId;
   @override
   List<HomeworkEntity> get homeworks;
+  @override
+  String get note;
   @override
   String get description;
   @override

@@ -41,10 +41,7 @@ class HomeworkSubmitModel extends HomeworkSubmitEntity {
     };
   }
 
-  static HomeworkSubmitModel fromSnapshot(
-    DocumentSnapshot snap, [
-    List<String> submittedUsersList,
-  ]) {
+  static HomeworkSubmitModel fromSnapshot(DocumentSnapshot snap) {
     final data = snap.data();
 
     return HomeworkSubmitModel(

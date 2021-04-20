@@ -21,14 +21,15 @@ abstract class HomeworkEvent with _$HomeworkEvent {
 
   const factory HomeworkEvent.getHomework({
     @required String courseTitle,
+    @required String homeworkTitle,
   }) = _GetHomework;
 
   const factory HomeworkEvent.submitHomework({
     @required String userId,
     @required String fileUrl,
     @required String courseTitle,
-    @required String note,
     @required String homeworkTitle,
-    @required int submitDate,
+    String note,
+    int submitDate,
   }) = _SubmitHomework;
 }

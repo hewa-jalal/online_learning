@@ -62,7 +62,12 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
         );
       },
       getHomework: (e) async* {
-        final either = await getHomework(e.courseTitle);
+        final either = await getHomework(SubmitParams(
+          homeworkTitle: e.homeworkTitle,
+          fileUrl: state.filePath,
+          courseTitle: e.courseTitle,
+          userId: state.userId,
+        ));
         yield either.fold(
           (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
           (homeworkSubmit) => state.copyWith(

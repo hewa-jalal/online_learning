@@ -18,11 +18,13 @@ final faker = Faker();
 class SubmitHomeworkPage extends StatefulWidget {
   final HomeworkEntity homework;
   final String courseTitle;
+  final bool isSubmitted;
 
   const SubmitHomeworkPage({
     Key key,
     @required this.homework,
     @required this.courseTitle,
+    @required this.isSubmitted,
   }) : super(key: key);
 
   @override
@@ -31,6 +33,7 @@ class SubmitHomeworkPage extends StatefulWidget {
 
 class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
   HomeworkEntity get homework => widget.homework;
+  bool get isSubmitted => widget.isSubmitted;
   @override
   Widget build(BuildContext context) {
     final _homeworkBloc = context.watch<HomeworkBloc>();
@@ -94,14 +97,15 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
                     ),
                   ),
                 ),
-                SubmittedHomework(
-                  homeworkTitle: homework.title,
-                  courseTitle: widget.courseTitle,
-                ),
-                // NotSubmittedHomework(
-                //   homeworkTitle: homework.title,
-                //   courseTitle: widget.courseTitle,
-                // ),
+                isSubmitted
+                    ? SubmittedHomework(
+                        homeworkTitle: homework.title,
+                        courseTitle: widget.courseTitle,
+                      )
+                    : NotSubmittedHomework(
+                        homeworkTitle: homework.title,
+                        courseTitle: widget.courseTitle,
+                      ),
               ],
             ),
           ),
@@ -202,9 +206,10 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
   @override
   void initState() {
     super.initState();
-    context
-        .read<HomeworkBloc>()
-        .add(HomeworkEvent.getHomework(courseTitle: 'IT'));
+    context.read<HomeworkBloc>().add(HomeworkEvent.getHomework(
+          courseTitle: widget.courseTitle,
+          homeworkTitle: widget.homeworkTitle,
+        ));
   }
 
   @override
@@ -238,7 +243,7 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
               trailing: IconButton(
                 onPressed: () {
                   Get.dialog(
-                    DeleteFileSubmissionDialog(),
+                    _DeleteFileSubmissionDialog(),
                   );
                 },
                 icon: Icon(MaterialCommunityIcons.close_box),
@@ -342,8 +347,8 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
   }
 }
 
-class DeleteFileSubmissionDialog extends StatelessWidget {
-  const DeleteFileSubmissionDialog({
+class _DeleteFileSubmissionDialog extends StatelessWidget {
+  const _DeleteFileSubmissionDialog({
     Key key,
   }) : super(key: key);
 

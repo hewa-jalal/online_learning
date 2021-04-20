@@ -25,6 +25,7 @@ abstract class HomeWorkRemoteDataSource {
 
   Future<HomeworkSubmitEntity> getHomework({
     @required String courseTitle,
+    @required String homeworkTitle,
   });
 
   Future<List<HomeworkEntity>> getAllHomeworksByCourse({
@@ -79,11 +80,13 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
   @override
   Future<HomeworkSubmitEntity> getHomework({
     @required String courseTitle,
+    @required String homeworkTitle,
   }) async {
+    print('remote homework title ====> $homeworkTitle');
     final courseDoc = userHomeworksCollection.doc(courseTitle);
     final homeworkSnap = await courseDoc
         .collection('homeworks')
-        .doc('new')
+        .doc(homeworkTitle)
         .collection('submittedUsers')
         .doc('21')
         .get();

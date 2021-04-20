@@ -81,11 +81,14 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
 
   @override
   Future<Either<Failure, HomeworkSubmitEntity>> getHomework({
-    String courseTitle,
+    @required String courseTitle,
+    @required String homeworkTitle,
   }) async {
     try {
-      final homework =
-          await remoteDataSource.getHomework(courseTitle: courseTitle);
+      final homework = await remoteDataSource.getHomework(
+        courseTitle: courseTitle,
+        homeworkTitle: homeworkTitle,
+      );
       return right(homework);
     } on Exception catch (e) {
       print('exceptions ${e.toString()}');

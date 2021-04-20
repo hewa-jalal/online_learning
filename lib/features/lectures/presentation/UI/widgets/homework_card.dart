@@ -46,6 +46,7 @@ class HomeworkCard extends StatelessWidget {
             () => SubmitHomeworkPage(
               homework: homework,
               courseTitle: courseTitle,
+              isSubmitted: _isSubmitted,
             ),
           ),
         ),

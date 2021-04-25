@@ -14,18 +14,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubit/video_cubit.dart';
 
-class VideoPage extends StatefulWidget {
+class VideoChatPage extends StatefulWidget {
   final String courseTitle;
 
-  const VideoPage({
+  const VideoChatPage({
     Key key,
     @required this.courseTitle,
   }) : super(key: key);
   @override
-  _VideoPageState createState() => _VideoPageState();
+  _VideoChatPageState createState() => _VideoChatPageState();
 }
 
-class _VideoPageState extends State<VideoPage> {
+class _VideoChatPageState extends State<VideoChatPage> {
   String get courseTitle => widget.courseTitle;
 
   final serverText = TextEditingController();

@@ -28,6 +28,7 @@ dependencies:
   auto_route: ^0.6.9
   avatar_glow: ^2.0.1
   beauty_textfield: ^0.0.1
+  better_player: ^0.0.64
   bubble: ^1.2.1
   cached_network_image: ^2.5.0
   circular_check_box: ^1.0.4
@@ -72,13 +73,15 @@ dependencies:
   lottie: ^0.2.0
   mime: ^1.0.0
   nil: ^1.1.1
-  path_provider: ^1.6.27
+  open_file: ^3.2.0
+  path_provider: ^2.0.1
   percent_indicator: ^2.1.9+1
   permission_handler: ^5.1.0
   shimmer: ^1.1.2
   sleek_circular_slider: ^1.2.0+web
   tab_indicator_styler: ^1.0.0
   timeago: ^3.0.2
+  url_launcher: ^6.0.3
   widget_circular_animator: ^0.1.5+1
 
 dev_dependencies:

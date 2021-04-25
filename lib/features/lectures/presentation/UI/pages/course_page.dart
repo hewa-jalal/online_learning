@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:online_learning/features/chat/video/cubit/video_cubit.dart';
-import 'package:online_learning/features/chat/video/video_page.dart';
+import 'package:online_learning/features/chat/video/video_chat_page.dart';
 import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/UI/pages/upload_page.dart';
 import 'package:online_learning/features/lectures/presentation/UI/widgets/homework_card.dart';
@@ -149,7 +149,7 @@ class _GlowVideoButton extends StatelessWidget {
       child: IconButton(
         icon: Icon(Icons.videocam),
         onPressed: () => Get.to(
-          () => VideoPage(courseTitle: courseTitle),
+          () => VideoChatPage(courseTitle: courseTitle),
         ),
       ),
     );
@@ -198,7 +198,7 @@ class _TeacherVideoButton extends StatelessWidget {
     return IconButton(
       icon: Icon(Icons.videocam),
       onPressed: () => Get.to(
-        () => VideoPage(courseTitle: courseTitle),
+        () => VideoChatPage(courseTitle: courseTitle),
       ),
     );
   }

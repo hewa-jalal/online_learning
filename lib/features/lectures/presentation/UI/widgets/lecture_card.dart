@@ -1,11 +1,16 @@
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/submit_homework_page.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/video_player_page.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../domain/entities/lecture_entity.dart';
 import '../../bloc/lecture_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
+import 'package:get/get.dart';
 
 class LectureCard extends StatelessWidget {
   final LectureEntity lecture;
@@ -20,7 +25,9 @@ class LectureCard extends StatelessWidget {
     final _lectureBloc = context.watch<LectureBloc>();
     final _userAuthState = context.watch<UserAuthBloc>().state;
 
-    var isSubmitted =
+    final isFileVideo = lecture.fileType.contains('video');
+
+    final isSubmitted =
         lecture.submittedUsers.contains(_userAuthState.id.toString());
 
     return ExpansionTileCard(
@@ -40,8 +47,11 @@ class LectureCard extends StatelessWidget {
         ),
         ListTile(
           hoverColor: Colors.red,
-          leading:
-              Icon(Icons.picture_as_pdf_outlined, color: Color(0xff5F36DA)),
+          leading: Icon(
+            MaterialCommunityIcons.file_video_outline,
+            color: Color(0xff5F36DA),
+            size: 34,
+          ),
           title: Row(
             children: [
               Text('file'),
@@ -54,8 +64,25 @@ class LectureCard extends StatelessWidget {
                     courseTitle: courseTitle,
                   ),
                 ),
-                child: Icon(Icons.download_outlined, color: Color(0xff5F36DA)),
+                child: Icon(
+                  Icons.download_outlined,
+                  color: Color(0xff5F36DA),
+                ),
               ),
+              if (isFileVideo) ...[
+                SizedBox(width: 0.05.sw),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => VideoPlayerPage(
+                          videoUrl: lecture.fileUrl,
+                        ));
+                  },
+                  child: Icon(
+                    Icons.play_circle_filled_outlined,
+                    color: APP_PURPlE,
+                  ),
+                ),
+              ]
             ],
           ),
           trailing: CircularCheckBox(

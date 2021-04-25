@@ -7,13 +7,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:flutter_uploader/flutter_uploader.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/lectures/data/models/lecture_model.dart';
 
 import 'package:online_learning/features/user/data/models/user_model.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:mime/mime.dart' as mime;
 
 abstract class LecturesRemoteDataSource {
   Future<Unit> downloadLecture({
@@ -100,9 +100,18 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
         title: lectureTitle,
         description: description,
       );
+      final metaData =
+          await storageRef.lecturesStorage(lectureTitle).getMetadata();
+      print('metadata contentType ========>  ' + metaData.contentType);
+      final memeString = mime.lookupMimeType(metaData.contentType);
+      print('MIME: $memeString');
+
       final doc = userCoursesCollection.doc(courseTitle);
       // adding lecture to document
       doc.collection('lectures').doc(lectureTitle).set(lecture.toDocument());
+      doc.collection('lectures').doc(lectureTitle).set({
+        'fileType': metaData.contentType,
+      }, SetOptions(merge: true));
       // adding user id that uploaded the lecture
       doc.set({'uploader_id': user.id}, SetOptions(merge: true));
     });
@@ -132,7 +141,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
       for (var doc in lecturesQuery.docs) {
         List<String> listOfSubmittedUsers;
         listOfSubmittedUsers = await userCoursesCollection
-            .doc('AI')
+            .doc(courseTitle)
             .collection('lectures')
             .doc(doc.data()['title'])
             .collection('submittedUsers')

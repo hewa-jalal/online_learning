@@ -6,29 +6,34 @@ class LectureModel extends LectureEntity {
   final String fileUrl;
   final String title;
   final String description;
+  final String fileType;
   final List<String> submittedUsers;
 
   LectureModel({
     @required this.fileUrl,
     @required this.title,
     @required this.description,
+    @required this.fileType,
     this.submittedUsers,
   }) : super(
           fileUrl: fileUrl,
           title: title,
           description: description,
           submittedUsers: submittedUsers,
+          fileType: fileType,
         );
 
   LectureModel.empty({
     this.fileUrl = '',
     this.title = '',
     this.description = '',
+    this.fileType = '',
     this.submittedUsers = const [],
   }) : super(
           fileUrl: '',
           title: '',
           description: '',
+          fileType: '',
           submittedUsers: const [],
         );
 
@@ -37,6 +42,7 @@ class LectureModel extends LectureEntity {
       'fileUrl': fileUrl,
       'title': title,
       'description': description,
+      'fileType': fileType,
     };
   }
 
@@ -50,6 +56,7 @@ class LectureModel extends LectureEntity {
       fileUrl: data['fileUrl'] as String,
       title: data['title'] as String,
       description: data['description'] as String,
+      fileType: data['fileType'] as String,
       submittedUsers: submittedUsersList,
     );
   }

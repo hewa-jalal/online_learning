@@ -23,12 +23,13 @@ import 'package:online_learning/features/lectures/domain/usecases/get_all_lectur
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/submit_user.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/video_player_page.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:online_learning/injection.dart';
-import 'package:online_learning/features/chat/video/video_page.dart';
+import 'package:online_learning/features/chat/video/video_chat_page.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
@@ -196,8 +197,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             // body: UserHomePage(
             //   user: UserEntity(id: '21', role: 'teacher'),
             // ),
-            // body: VideoPage(),
+            // body: VideoChatPage(),
             body: UserForm(),
+            // body: VideoPlayerPage(),
           ),
         ),
       ),

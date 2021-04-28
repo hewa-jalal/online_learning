@@ -16,7 +16,6 @@ class SendMessage extends UseCase<Unit, MessageParams> {
     return chatRepository.sendMessage(
       message: params.message,
       fromUserId: params.fromUserId,
-      imageUrl: params.imageUrl,
     );
   }
 }

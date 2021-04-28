@@ -206,3 +206,77 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     );
   }
 }
+
+// class AnimTest extends StatefulWidget {
+//   @override
+//   _AnimTestState createState() => _AnimTestState();
+// }
+
+// class _AnimTestState extends State<AnimTest>
+//     with SingleTickerProviderStateMixin {
+//   AnimationController _controller;
+//   Animation _animation;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = AnimationController(
+//       vsync: this,
+//       duration: Duration(seconds: 2),
+//     );
+//     _animation = Tween(
+//       begin: 1.0,
+//       end: 0.0,
+//     ).animate(_controller);
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     _controller.forward();
+//     return Scaffold(
+//       body: Center(
+//         child: FadeTransition(
+//           opacity: _animation,
+//           child: Text('Fade'),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+class NewAnimTest extends StatefulWidget {
+  @override
+  NewAnimTestState createState() => NewAnimTestState();
+}
+
+class NewAnimTestState extends State<NewAnimTest>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<Offset> _offsetAnimation;
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat(reverse: true);
+    _offsetAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(1.5, 1.0),
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _offsetAnimation,
+      child: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: FlutterLogo(size: 150.0),
+      ),
+    );
+  }
+}

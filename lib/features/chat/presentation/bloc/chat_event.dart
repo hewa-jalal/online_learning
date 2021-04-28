@@ -6,7 +6,6 @@ abstract class ChatEvent with _$ChatEvent {
   const factory ChatEvent.sendMessage({
     @required String message,
     @required String fromUserId,
-    String imageUrl,
   }) = _SendMessage;
   const factory ChatEvent.getAllMessages() = _GetAllMessages;
 }

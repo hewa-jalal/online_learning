@@ -8,10 +8,12 @@ import 'package:dash_chat/dash_chat.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
+import 'package:online_learning/features/chat/data/models/message_model.dart';
 import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ChatPage extends StatefulWidget {
@@ -73,19 +75,20 @@ class _ChatPageState extends State<ChatPage> {
                     //   chatBloc: chatBloc,
                     //   messages: messages,
                     // );
+                    // final messages = state.allMessages
+                    //     .map(
+                    //       (message) {
+                    //         return _MessageWidget(
+                    //           message: message,
+                    //           user: user,
+                    //         );
+                    //       },
+                    //     )
+                    //     .toList()
+                    //     .reversed
+                    //     .toList();
+                    final messages = state.allMessages.reversed.toList();
 
-                    final messages = state.allMessages
-                        .map(
-                          (message) {
-                            return _CustomChatBubble(
-                              message: message,
-                              user: user,
-                            );
-                          },
-                        )
-                        .toList()
-                        .reversed
-                        .toList();
                     return Column(
                       children: [
                         Expanded(
@@ -93,13 +96,16 @@ class _ChatPageState extends State<ChatPage> {
                             child: Column(
                               children: [
                                 Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.9,
-                                  // flex: 5,
-                                  child: ListView(
-                                    padding: const EdgeInsets.all(8),
-                                    controller: _scrollController,
-                                    children: messages,
+                                  height: 0.9.sh,
+                                  // child: ListView(
+                                  //   padding: const EdgeInsets.all(8),
+                                  //   controller: _scrollController,
+                                  //   children: messages,
+                                  // ),
+                                  child: _MessageWidget(
+                                    messages: messages,
+                                    user: user,
+                                    chatListController: _scrollController,
                                   ),
                                 ),
                               ],
@@ -107,7 +113,7 @@ class _ChatPageState extends State<ChatPage> {
                           ),
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.height * 0.1,
+                          height: 0.1.sh,
                           child: Align(
                             alignment: FractionalOffset.bottomCenter,
                             child: Padding(
@@ -134,6 +140,69 @@ class _ChatPageState extends State<ChatPage> {
   }
 }
 
+class _MessageWidget extends StatelessWidget {
+  final UserEntity user;
+  final List<Message> messages;
+  final ScrollController chatListController;
+
+  const _MessageWidget({
+    Key key,
+    @required this.user,
+    @required this.messages,
+    @required this.chatListController,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: messages.length,
+      shrinkWrap: true,
+      controller: chatListController,
+      itemBuilder: (context, index) {
+        final msg = messages[index];
+        if (msg is ImageMessage) {
+          return Bubble(
+            child: Image.network(msg.imageUrl),
+            style: BubbleStyle(
+              nip: BubbleNip.rightCenter,
+              color: Color.fromARGB(255, 225, 255, 199),
+              borderColor: Colors.blue,
+              borderWidth: 1,
+              margin: BubbleEdges.only(top: 8, left: 50),
+              alignment: Alignment.topRight,
+            ),
+          );
+        } else if (msg is TextMessage) {
+          return _CustomChatBubble(
+            textMessage: msg,
+            user: user,
+          );
+        }
+        return Text('Woah what did you send');
+      },
+      // children: messages.map((msg) {
+      //   if (msg is ImageMessage) {
+      //     return Bubble(
+      //       child: Image.network(msg.imageUrl),
+      //       style: BubbleStyle(
+      //         nip: BubbleNip.rightCenter,
+      //         color: Color.fromARGB(255, 225, 255, 199),
+      //         borderColor: Colors.blue,
+      //         borderWidth: 1,
+      //         margin: BubbleEdges.only(top: 8, left: 50),
+      //         alignment: Alignment.topRight,
+      //       ),
+      //     );
+      //   } else if (msg is TextMessage) {
+      //     return _CustomChatBubble(
+      //       textMessage: msg,
+      //       user: user,
+      //     );
+      //   }
+      // }).toList(),
+    );
+  }
+}
+
 class _CustomChatBubble extends StatelessWidget {
   static const styleSomebody = BubbleStyle(
     nip: BubbleNip.leftCenter,
@@ -155,23 +224,23 @@ class _CustomChatBubble extends StatelessWidget {
 
   const _CustomChatBubble({
     Key key,
-    @required this.message,
+    @required this.textMessage,
     @required this.user,
   }) : super(key: key);
 
-  final MessageEntity message;
+  final TextMessage textMessage;
   final UserEntity user;
 
   @override
   Widget build(BuildContext context) {
-    return message.fromUserId == user.id
+    return textMessage.senderId == user.id
         ? _ChatRowMe(
-            message: message,
+            message: textMessage,
             user: user,
             styleMe: styleMe,
           )
         : _ChatRowSomebody(
-            message: message,
+            message: textMessage,
             user: user,
             styleSomebody: styleSomebody,
           );
@@ -186,7 +255,7 @@ class _ChatRowMe extends StatelessWidget {
     @required this.styleMe,
   }) : super(key: key);
 
-  final MessageEntity message;
+  final TextMessage message;
   final UserEntity user;
   final BubbleStyle styleMe;
 
@@ -196,12 +265,17 @@ class _ChatRowMe extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Bubble(
-          child: Text(message.message),
+          child: Text(
+            message.text,
+            style: TextStyle(color: Colors.black),
+          ),
           style: styleMe,
         ),
-        CircleAvatar(
-          child: Text('H'),
-        ),
+        //* no need for avatar when it's you
+
+        // CircleAvatar(
+        //   child: Text(user.fullName[0]),
+        // ),
       ],
     );
   }
@@ -215,7 +289,8 @@ class _ChatRowSomebody extends StatelessWidget {
     @required this.styleSomebody,
   }) : super(key: key);
 
-  final MessageEntity message;
+  final TextMessage message;
+
   final UserEntity user;
   final BubbleStyle styleSomebody;
 
@@ -227,7 +302,7 @@ class _ChatRowSomebody extends StatelessWidget {
           child: Text('H'),
         ),
         Bubble(
-          child: Text(message.message),
+          child: Text(message.text),
           style: styleSomebody,
         ),
       ],
@@ -273,6 +348,7 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
             // to referesh the messages
             widget.chatBloc.add(ChatEvent.getAllMessages());
             _controller.clear();
+            // ! setState
             widget.chatListController.animateTo(
               widget.chatListController.position.maxScrollExtent,
               duration: const Duration(milliseconds: 200),

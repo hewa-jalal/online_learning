@@ -9,5 +9,11 @@ abstract class ChatRepository {
     @required String fromUserId,
   });
 
+  Future<Either<Failure, Unit>> sendImageMessage({
+    @required String message,
+    @required String fromUserId,
+    @required String imageUrl,
+  });
+
   Future<Either<Failure, List<Message>>> getAllMessages();
 }

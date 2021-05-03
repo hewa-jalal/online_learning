@@ -28,6 +28,18 @@ class _$ChatEventTearOff {
   }
 
 // ignore: unused_element
+  _SendImageMessage sendImageMessage(
+      {@required String message,
+      @required String fromUserId,
+      @required String imageUrl}) {
+    return _SendImageMessage(
+      message: message,
+      fromUserId: fromUserId,
+      imageUrl: imageUrl,
+    );
+  }
+
+// ignore: unused_element
   _GetAllMessages getAllMessages() {
     return const _GetAllMessages();
   }
@@ -43,12 +55,17 @@ mixin _$ChatEvent {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
+    @required
+        TResult sendImageMessage(
+            String message, String fromUserId, String imageUrl),
     @required TResult getAllMessages(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
+    TResult sendImageMessage(
+        String message, String fromUserId, String imageUrl),
     TResult getAllMessages(),
     @required TResult orElse(),
   });
@@ -56,12 +73,14 @@ mixin _$ChatEvent {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult sendMessage(_SendMessage value),
+    @required TResult sendImageMessage(_SendImageMessage value),
     @required TResult getAllMessages(_GetAllMessages value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult sendMessage(_SendMessage value),
+    TResult sendImageMessage(_SendImageMessage value),
     TResult getAllMessages(_GetAllMessages value),
     @required TResult orElse(),
   });
@@ -120,10 +139,14 @@ class _$_Started implements _Started {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
+    @required
+        TResult sendImageMessage(
+            String message, String fromUserId, String imageUrl),
     @required TResult getAllMessages(),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(sendImageMessage != null);
     assert(getAllMessages != null);
     return started();
   }
@@ -133,6 +156,8 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
+    TResult sendImageMessage(
+        String message, String fromUserId, String imageUrl),
     TResult getAllMessages(),
     @required TResult orElse(),
   }) {
@@ -148,10 +173,12 @@ class _$_Started implements _Started {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult sendMessage(_SendMessage value),
+    @required TResult sendImageMessage(_SendImageMessage value),
     @required TResult getAllMessages(_GetAllMessages value),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(sendImageMessage != null);
     assert(getAllMessages != null);
     return started(this);
   }
@@ -161,6 +188,7 @@ class _$_Started implements _Started {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult sendMessage(_SendMessage value),
+    TResult sendImageMessage(_SendImageMessage value),
     TResult getAllMessages(_GetAllMessages value),
     @required TResult orElse(),
   }) {
@@ -251,10 +279,14 @@ class _$_SendMessage implements _SendMessage {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
+    @required
+        TResult sendImageMessage(
+            String message, String fromUserId, String imageUrl),
     @required TResult getAllMessages(),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(sendImageMessage != null);
     assert(getAllMessages != null);
     return sendMessage(message, fromUserId);
   }
@@ -264,6 +296,8 @@ class _$_SendMessage implements _SendMessage {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
+    TResult sendImageMessage(
+        String message, String fromUserId, String imageUrl),
     TResult getAllMessages(),
     @required TResult orElse(),
   }) {
@@ -279,10 +313,12 @@ class _$_SendMessage implements _SendMessage {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult sendMessage(_SendMessage value),
+    @required TResult sendImageMessage(_SendImageMessage value),
     @required TResult getAllMessages(_GetAllMessages value),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(sendImageMessage != null);
     assert(getAllMessages != null);
     return sendMessage(this);
   }
@@ -292,6 +328,7 @@ class _$_SendMessage implements _SendMessage {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult sendMessage(_SendMessage value),
+    TResult sendImageMessage(_SendImageMessage value),
     TResult getAllMessages(_GetAllMessages value),
     @required TResult orElse(),
   }) {
@@ -311,6 +348,168 @@ abstract class _SendMessage implements ChatEvent {
   String get fromUserId;
   @JsonKey(ignore: true)
   _$SendMessageCopyWith<_SendMessage> get copyWith;
+}
+
+/// @nodoc
+abstract class _$SendImageMessageCopyWith<$Res> {
+  factory _$SendImageMessageCopyWith(
+          _SendImageMessage value, $Res Function(_SendImageMessage) then) =
+      __$SendImageMessageCopyWithImpl<$Res>;
+  $Res call({String message, String fromUserId, String imageUrl});
+}
+
+/// @nodoc
+class __$SendImageMessageCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res>
+    implements _$SendImageMessageCopyWith<$Res> {
+  __$SendImageMessageCopyWithImpl(
+      _SendImageMessage _value, $Res Function(_SendImageMessage) _then)
+      : super(_value, (v) => _then(v as _SendImageMessage));
+
+  @override
+  _SendImageMessage get _value => super._value as _SendImageMessage;
+
+  @override
+  $Res call({
+    Object message = freezed,
+    Object fromUserId = freezed,
+    Object imageUrl = freezed,
+  }) {
+    return _then(_SendImageMessage(
+      message: message == freezed ? _value.message : message as String,
+      fromUserId:
+          fromUserId == freezed ? _value.fromUserId : fromUserId as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_SendImageMessage implements _SendImageMessage {
+  const _$_SendImageMessage(
+      {@required this.message,
+      @required this.fromUserId,
+      @required this.imageUrl})
+      : assert(message != null),
+        assert(fromUserId != null),
+        assert(imageUrl != null);
+
+  @override
+  final String message;
+  @override
+  final String fromUserId;
+  @override
+  final String imageUrl;
+
+  @override
+  String toString() {
+    return 'ChatEvent.sendImageMessage(message: $message, fromUserId: $fromUserId, imageUrl: $imageUrl)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _SendImageMessage &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality()
+                    .equals(other.message, message)) &&
+            (identical(other.fromUserId, fromUserId) ||
+                const DeepCollectionEquality()
+                    .equals(other.fromUserId, fromUserId)) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(fromUserId) ^
+      const DeepCollectionEquality().hash(imageUrl);
+
+  @JsonKey(ignore: true)
+  @override
+  _$SendImageMessageCopyWith<_SendImageMessage> get copyWith =>
+      __$SendImageMessageCopyWithImpl<_SendImageMessage>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult started(),
+    @required TResult sendMessage(String message, String fromUserId),
+    @required
+        TResult sendImageMessage(
+            String message, String fromUserId, String imageUrl),
+    @required TResult getAllMessages(),
+  }) {
+    assert(started != null);
+    assert(sendMessage != null);
+    assert(sendImageMessage != null);
+    assert(getAllMessages != null);
+    return sendImageMessage(message, fromUserId, imageUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult started(),
+    TResult sendMessage(String message, String fromUserId),
+    TResult sendImageMessage(
+        String message, String fromUserId, String imageUrl),
+    TResult getAllMessages(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sendImageMessage != null) {
+      return sendImageMessage(message, fromUserId, imageUrl);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult started(_Started value),
+    @required TResult sendMessage(_SendMessage value),
+    @required TResult sendImageMessage(_SendImageMessage value),
+    @required TResult getAllMessages(_GetAllMessages value),
+  }) {
+    assert(started != null);
+    assert(sendMessage != null);
+    assert(sendImageMessage != null);
+    assert(getAllMessages != null);
+    return sendImageMessage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult started(_Started value),
+    TResult sendMessage(_SendMessage value),
+    TResult sendImageMessage(_SendImageMessage value),
+    TResult getAllMessages(_GetAllMessages value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sendImageMessage != null) {
+      return sendImageMessage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SendImageMessage implements ChatEvent {
+  const factory _SendImageMessage(
+      {@required String message,
+      @required String fromUserId,
+      @required String imageUrl}) = _$_SendImageMessage;
+
+  String get message;
+  String get fromUserId;
+  String get imageUrl;
+  @JsonKey(ignore: true)
+  _$SendImageMessageCopyWith<_SendImageMessage> get copyWith;
 }
 
 /// @nodoc
@@ -353,10 +552,14 @@ class _$_GetAllMessages implements _GetAllMessages {
   TResult when<TResult extends Object>({
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
+    @required
+        TResult sendImageMessage(
+            String message, String fromUserId, String imageUrl),
     @required TResult getAllMessages(),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(sendImageMessage != null);
     assert(getAllMessages != null);
     return getAllMessages();
   }
@@ -366,6 +569,8 @@ class _$_GetAllMessages implements _GetAllMessages {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
+    TResult sendImageMessage(
+        String message, String fromUserId, String imageUrl),
     TResult getAllMessages(),
     @required TResult orElse(),
   }) {
@@ -381,10 +586,12 @@ class _$_GetAllMessages implements _GetAllMessages {
   TResult map<TResult extends Object>({
     @required TResult started(_Started value),
     @required TResult sendMessage(_SendMessage value),
+    @required TResult sendImageMessage(_SendImageMessage value),
     @required TResult getAllMessages(_GetAllMessages value),
   }) {
     assert(started != null);
     assert(sendMessage != null);
+    assert(sendImageMessage != null);
     assert(getAllMessages != null);
     return getAllMessages(this);
   }
@@ -394,6 +601,7 @@ class _$_GetAllMessages implements _GetAllMessages {
   TResult maybeMap<TResult extends Object>({
     TResult started(_Started value),
     TResult sendMessage(_SendMessage value),
+    TResult sendImageMessage(_SendImageMessage value),
     TResult getAllMessages(_GetAllMessages value),
     @required TResult orElse(),
   }) {

@@ -12,6 +12,7 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'core/firebase_injectable_module.dart' as _i40;
 import 'core/lecture_task.dart' as _i13;
+import 'core/lecture_task.dart';
 import 'features/chat/data/datasources/chat_remote_data_source.dart' as _i3;
 import 'features/chat/data/repositories/chat_repository_impl.dart' as _i5;
 import 'features/chat/domain/repositories/chat_repository.dart' as _i4;
@@ -63,7 +64,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final dioInjectableModule = _$DioInjectableModule();
   final firebaseInjectableModule = _$FirebaseInjectableModule();
   gh.lazySingleton<_i3.ChatRemoteDataSource>(
-      () => _i3.FireStoreChatRemoteDataSource());
+      () => _i3.FireStoreChatRemoteDataSource(LectureTask()));
   gh.lazySingleton<_i4.ChatRepository>(() => _i5.ChatRepositoryImpl(
       remoteDataSource: get<_i3.ChatRemoteDataSource>()));
   gh.lazySingleton<_i6.Dio>(() => dioInjectableModule.dio);
@@ -97,9 +98,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i23.FirebaseUserRemoteDataSource());
   gh.lazySingleton<_i24.UserRepository>(
       () => _i25.UserRepositoryImpl(get<_i23.UserRemoteDataSource>()));
-  gh.factory<_i26.ChatBloc>(() => _i26.ChatBloc(
-      sendMessage: get<_i18.SendMessage>(),
-      getAllMessages: get<_i9.GetAllMessages>()));
+  gh.factory<_i26.ChatBloc>(
+      () => _i26.ChatBloc(chatRepository: get<_i4.ChatRepository>()));
   gh.lazySingleton<_i27.CreateCourse>(
       () => _i27.CreateCourse(get<_i15.LecturesRepository>()));
   gh.lazySingleton<_i28.DownloadLecture>(

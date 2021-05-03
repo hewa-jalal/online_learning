@@ -31,11 +31,26 @@ class ChatRepositoryImpl extends ChatRepository {
 
   @override
   Future<Either<Failure, List<Message>>> getAllMessages() async {
-    print('all messages repo impl');
     try {
       final messageList = await remoteDataSource.getAllMessages();
-      print('messageList $messageList');
       return right(messageList);
+    } on MessageException {
+      return left(MessageFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> sendImageMessage({
+    String message,
+    String fromUserId,
+    String imageUrl,
+  }) async {
+    try {
+      remoteDataSource.sendImageMessage(
+        imageUrl: imageUrl,
+        fromUserId: fromUserId,
+      );
+      return right(unit);
     } on MessageException {
       return left(MessageFailure());
     }

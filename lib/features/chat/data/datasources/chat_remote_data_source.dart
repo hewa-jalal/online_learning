@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/data/models/message_model.dart';
 
 abstract class ChatRemoteDataSource {
@@ -10,27 +14,30 @@ abstract class ChatRemoteDataSource {
     String fromUserId,
   );
 
-  Future<Unit> sendImageMessage(
-    String imageUrl,
-    String fromUserId,
-  );
+  Future<Unit> sendImageMessage({
+    @required String imageUrl,
+    @required String fromUserId,
+  });
   Future<List<Message>> getAllMessages();
 }
 
 @LazySingleton(as: ChatRemoteDataSource)
 class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
+  final LectureTask lectureTask;
+
   final messagesCollection = FirebaseFirestore.instance.collection('messages');
   final storageRef = FirebaseStorage.instance.ref();
+
+  FireStoreChatRemoteDataSource(this.lectureTask);
 
   @override
   Future<Unit> sendMessage(
     String message,
     String fromUserId,
   ) async {
-    print('send message remote');
     final messageModel = TextMessage(
       message,
-      10,
+      DateTime.now().millisecondsSinceEpoch,
       fromUserId,
     );
     messagesCollection.add(messageModel.toMap());
@@ -39,21 +46,35 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
 
   @override
   Future<List<Message>> getAllMessages() async {
-    print('all messages remote');
     final querySnapshot =
         await messagesCollection.orderBy('timeStamp', descending: true).get();
     return querySnapshot.docs.map((doc) => Message.fromFirestore(doc)).toList();
   }
 
   @override
-  Future<Unit> sendImageMessage(String imageUrl, String fromUserId) async {
-    final messageModel = ImageMessage(
-      imageUrl,
-      fromUserId,
-      10,
-    );
+  Future<Unit> sendImageMessage({
+    @required String imageUrl,
+    @required String fromUserId,
+  }) async {
+    lectureTask.task = storageRef
+        .messageImagesStorage(DateTime.now().toIso8601String())
+        .putFile(File(imageUrl));
 
-    messagesCollection.add(messageModel.toMap());
+    lectureTask.task.then((res) async {
+      final downloadUrl = await res.ref.getDownloadURL();
+      final messageModel = ImageMessage(
+        imageUrl: downloadUrl,
+        senderId: fromUserId,
+        timeStamp: DateTime.now().millisecondsSinceEpoch,
+      );
+      messagesCollection.add(messageModel.toMap());
+    });
+
     return unit;
   }
+}
+
+extension StorageReferenceX on Reference {
+  Reference messageImagesStorage(String title) =>
+      child('messageImages').child(title);
 }

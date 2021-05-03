@@ -1,16 +1,20 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:bubble/bubble.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:dash_chat/dash_chat.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:hawk_fab_menu/hawk_fab_menu.dart';
 import 'package:online_learning/features/chat/data/models/message_model.dart';
 import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
+import 'package:online_learning/features/chat/presentation/bloc/cubit/attachment_cubit.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,6 +50,19 @@ class _ChatPageState extends State<ChatPage> {
           rightAnimationType: InnerDrawerAnimation.quadratic,
           rightChild: _UsersList(),
           scaffold: Scaffold(
+            // floatingActionButton: Row(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: <Widget>[
+            //     SpeedDial(
+            //       children: [
+            //         SpeedDialChild(
+            //           label: 'Image',
+            //           child: Icon(Icons.home),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
             appBar: AppBar(
               actions: [
                 IconButton(
@@ -126,6 +143,21 @@ class _ChatPageState extends State<ChatPage> {
                             ),
                           ),
                         ),
+                        if (context.watch<AttachmentCubit>().state) ...[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              _AttachmentSelection(
+                                icon: Entypo.images,
+                                label: 'Image',
+                              ),
+                              _AttachmentSelection(
+                                icon: Icons.file_copy_outlined,
+                                label: 'File',
+                              ),
+                            ],
+                          )
+                        ]
                       ],
                     );
                   },
@@ -137,6 +169,47 @@ class _ChatPageState extends State<ChatPage> {
         ),
       );
     });
+  }
+}
+
+class _AttachmentSelection extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  const _AttachmentSelection({
+    Key key,
+    @required this.icon,
+    @required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ClipOval(
+          child: Material(
+            color: Colors.blue,
+            child: InkWell(
+              splashColor: Colors.red,
+              child: SizedBox(
+                width: 56,
+                height: 56,
+                child: Icon(icon),
+              ),
+              onTap: () {
+                context.read<ChatBloc>().add(
+                      ChatEvent.sendImageMessage(
+                        message: 'message',
+                        fromUserId: '21',
+                        imageUrl: 'imageUrl',
+                      ),
+                    );
+              },
+            ),
+          ),
+        ),
+        Text(label),
+      ],
+    );
   }
 }
 
@@ -161,7 +234,11 @@ class _MessageWidget extends StatelessWidget {
         final msg = messages[index];
         if (msg is ImageMessage) {
           return Bubble(
-            child: Image.network(msg.imageUrl),
+            child: Image.network(
+              msg.imageUrl,
+              // placeholder: (context, url) => CircularProgressIndicator(),
+              // errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
             style: BubbleStyle(
               nip: BubbleNip.rightCenter,
               color: Color.fromARGB(255, 225, 255, 199),
@@ -328,98 +405,148 @@ class _SendMessageTextField extends StatefulWidget {
 
 class __SendMessageTextFieldState extends State<_SendMessageTextField> {
   final _controller = TextEditingController();
+  final _focusNode = FocusNode();
+  var _expandTextField = false;
 
   var msg = '';
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: _controller,
-      onChanged: (val) => msg = val.trim(),
-      decoration: InputDecoration(
-        suffixIcon: IconButton(
-          icon: Icon(Icons.send),
-          onPressed: () {
-            widget.chatBloc.add(
-              ChatEvent.sendMessage(
-                message: msg,
-                fromUserId: widget.user.id,
+    final isAttachmentOpen = context.watch<AttachmentCubit>().state;
+    // return Stack(
+    //   alignment: Alignment.centerRight,
+    //   children: <Widget>[
+    //     Align(
+    //       alignment: Alignment.centerLeft,
+    //       child: IconButton(
+    //         alignment: Alignment.centerLeft,
+    //         icon: Icon(Icons.dialpad),
+    //         onPressed: () {
+    //           // do something
+    //         },
+    //       ),
+    //     ),
+    //     TextField(
+    //     ),
+    //   ],
+    // );
+
+    return Row(
+      children: [
+        Expanded(
+          flex: 5,
+          child: TextField(
+            controller: _controller,
+            focusNode: _focusNode,
+            onTap: () => setState(() => _expandTextField = true),
+            onChanged: (val) => msg = val.trim(),
+            decoration: InputDecoration(
+              prefixIcon: IconButton(
+                splashRadius: 19,
+                icon: Icon(isAttachmentOpen ? Icons.close : Ionicons.md_attach),
+                onPressed: () {
+                  // Future.delayed(Duration.zero, () {
+                  //   _focusNode.unfocus();
+                  // });
+                  context
+                      .read<AttachmentCubit>()
+                      .changeStatus(!isAttachmentOpen);
+                },
               ),
-            );
-            // to referesh the messages
-            widget.chatBloc.add(ChatEvent.getAllMessages());
-            _controller.clear();
-            // ! setState
-            widget.chatListController.animateTo(
-              widget.chatListController.position.maxScrollExtent,
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeIn,
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class _CustomDashChat extends StatefulWidget {
-  const _CustomDashChat({
-    Key key,
-    @required this.user,
-    @required this.chatBloc,
-    @required this.messages,
-  }) : super(key: key);
-
-  final UserEntity user;
-  final ChatBloc chatBloc;
-  final List<ChatMessage> messages;
-
-  @override
-  __CustomDashChatState createState() => __CustomDashChatState();
-}
-
-class __CustomDashChatState extends State<_CustomDashChat> {
-  File _image;
-  Future getNewImage() async {
-    final result = await FilePicker.platform.pickFiles(type: FileType.image);
-    if (result != null) {
-      _image = File(result.files.single.path);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return DashChat(
-      messageImageBuilder: (url, [_]) {
-        return CachedNetworkImage(
-          imageUrl: url,
-          placeholder: (context, str) => CircularProgressIndicator(),
-          fit: BoxFit.fill,
-        );
-      },
-      chatFooterBuilder: () => IconButton(
-        icon: Icon(Icons.image),
-        onPressed: getNewImage,
-      ),
-      inverted: true,
-      user: ChatUser(
-        uid: widget.user.id,
-        firstName: widget.user.fullName,
-        color: Colors.yellow,
-      ),
-      onSend: (msg) {
-        widget.chatBloc.add(
-          ChatEvent.sendMessage(
-            message: msg.text,
-            fromUserId: msg.user.uid,
+              filled: true,
+              border: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(
+                  const Radius.circular(20.0),
+                ),
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(Icons.send),
+                onPressed: () {
+                  widget.chatBloc.add(
+                    ChatEvent.sendMessage(
+                      message: msg,
+                      fromUserId: widget.user.id,
+                    ),
+                  );
+                  // to referesh the messages
+                  widget.chatBloc.add(ChatEvent.getAllMessages());
+                  _controller.clear();
+                  // ! maybe use setState
+                  setState(() {
+                    widget.chatListController.animateTo(
+                      widget.chatListController.position.maxScrollExtent,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.easeIn,
+                    );
+                  });
+                },
+              ),
+            ),
           ),
-        );
-        // to referesh the messages
-        widget.chatBloc.add(ChatEvent.getAllMessages());
-      },
-      messages: widget.messages,
+        ),
+      ],
     );
   }
 }
+
+// class _CustomDashChat extends StatefulWidget {
+//   const _CustomDashChat({
+//     Key key,
+//     @required this.user,
+//     @required this.chatBloc,
+//     @required this.messages,
+//   }) : super(key: key);
+
+//   final UserEntity user;
+//   final ChatBloc chatBloc;
+//   final List<ChatMessage> messages;
+
+//   @override
+//   __CustomDashChatState createState() => __CustomDashChatState();
+// }
+
+// class __CustomDashChatState extends State<_CustomDashChat> {
+//   File _image;
+//   Future getNewImage() async {
+//     final result = await FilePicker.platform.pickFiles(type: FileType.image);
+//     if (result != null) {
+//       _image = File(result.files.single.path);
+//     }
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DashChat(
+//       messageImageBuilder: (url, [_]) {
+//         return CachedNetworkImage(
+//           imageUrl: url,
+//           placeholder: (context, str) => CircularProgressIndicator(),
+//           fit: BoxFit.fill,
+//         );
+//       },
+//       chatFooterBuilder: () => IconButton(
+//         icon: Icon(Icons.image),
+//         onPressed: getNewImage,
+//       ),
+//       inverted: true,
+//       user: ChatUser(
+//         uid: widget.user.id,
+//         firstName: widget.user.fullName,
+//         color: Colors.yellow,
+//       ),
+//       onSend: (msg) {
+//         widget.chatBloc.add(
+//           ChatEvent.sendMessage(
+//             message: msg.text,
+//             fromUserId: msg.user.uid,
+//           ),
+//         );
+//         // to referesh the messages
+//         widget.chatBloc.add(ChatEvent.getAllMessages());
+//       },
+//       messages: widget.messages,
+//     );
+//   }
+// }
 
 class _UsersList extends StatelessWidget {
   const _UsersList({

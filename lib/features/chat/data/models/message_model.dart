@@ -105,8 +105,11 @@ class TextMessage extends Message {
 class ImageMessage extends Message {
   String imageUrl;
 
-  ImageMessage(this.imageUrl, timeStamp, senderId)
-      : super(
+  ImageMessage({
+    @required this.imageUrl,
+    @required timeStamp,
+    @required senderId,
+  }) : super(
           timeStamp: timeStamp,
           senderId: senderId,
         );
@@ -114,9 +117,9 @@ class ImageMessage extends Message {
   factory ImageMessage.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data();
     return ImageMessage(
-      data['imageUrl'],
-      data['timeStamp'],
-      data['senderId'],
+      timeStamp: data['timeStamp'],
+      senderId: data['senderId'],
+      imageUrl: data['imageUrl'],
     );
   }
 

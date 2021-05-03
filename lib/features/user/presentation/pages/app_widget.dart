@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
+import 'package:online_learning/features/chat/presentation/bloc/cubit/attachment_cubit.dart';
 import 'package:online_learning/features/chat/video/cubit/video_cubit.dart';
 import 'package:online_learning/features/chat/video/video_repository.dart';
 import 'package:online_learning/features/homeworks/data/datasources/homework_remote_data_source.dart';
@@ -23,7 +24,6 @@ import 'package:online_learning/features/lectures/domain/usecases/get_all_lectur
 import 'package:online_learning/features/lectures/domain/usecases/get_all_lectures_by_user_id.dart';
 import 'package:online_learning/features/lectures/domain/usecases/submit_user.dart';
 import 'package:online_learning/features/lectures/domain/usecases/upload_lecture.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/video_player_page.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
 import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 
@@ -76,6 +76,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       providers: [
         BlocProvider(
           create: (_) => VideoCubit(VideoRepositoy()),
+        ),
+        BlocProvider(
+          create: (_) => AttachmentCubit(),
         ),
         BlocProvider(
           create: (_) => HomeworkBloc(

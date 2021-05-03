@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
@@ -220,6 +221,8 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       },
       selectFile: (e) async* {
         final result = await FilePicker.platform.pickFiles();
+        final hash = result.files.single.bytes;
+        print('hash $hash');
         yield state.copyWith(
           filePath: result.files.single.path,
         );

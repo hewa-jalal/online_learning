@@ -5,5 +5,8 @@
   },
   "cSpell.words": [
     "Hewa"
+  ],
+  "cSpell.enableFiletypes": [
+    "!dart"
   ]
 }

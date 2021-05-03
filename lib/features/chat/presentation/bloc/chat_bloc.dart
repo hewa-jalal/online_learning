@@ -1,15 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/chat/data/models/message_model.dart';
-import 'package:online_learning/features/chat/data/repositories/chat_repository_impl.dart';
-import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
+
 import 'package:online_learning/features/chat/domain/repositories/chat_repository.dart';
-import 'package:online_learning/features/chat/domain/usecases/get_all_messages.dart';
-import 'package:online_learning/features/chat/domain/usecases/send_message.dart';
-import 'package:online_learning/features/user/core/usecase/use_case.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
@@ -17,13 +14,13 @@ part 'chat_bloc.freezed.dart';
 
 @injectable
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  final SendMessage sendMessage;
-  final GetAllMessages getAllMessages;
-  // final ChatRepository chatRepository;
+  // final SendMessage sendMessage;
+  // final GetAllMessages getAllMessages;
+  final ChatRepository chatRepository;
   ChatBloc({
-    @required this.sendMessage,
-    @required this.getAllMessages,
-    // @required this.chatRepository,
+    // @required this.sendMessage,
+    // @required this.getAllMessages,
+    @required this.chatRepository,
   }) : super(_Initial());
 
   @override
@@ -33,23 +30,37 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     yield* event.map(
       started: (e) async* {},
       sendMessage: (e) async* {
-        // chatRepository.sendMessage(
-        //   message: e.message,
-        //   fromUserId: e.fromUserId,
-        // );
-        sendMessage(
-          MessageParams(
-            message: e.message,
-            fromUserId: e.fromUserId,
-          ),
+        chatRepository.sendMessage(
+          message: e.message,
+          fromUserId: e.fromUserId,
         );
+        // sendMessage(
+        //   MessageParams(
+        //     message: e.message,
+        //     fromUserId: e.fromUserId,
+        //   ),
+        // );
+        add(ChatEvent.getAllMessages());
       },
       getAllMessages: (e) async* {
-        final messages = await getAllMessages(NoParams());
+        final messages = await chatRepository.getAllMessages();
         yield messages.fold(
           (failure) => ChatState.messageFailure(),
           (messages) => ChatState.allMessagesLoaded(allMessages: messages),
         );
+      },
+      sendImageMessage: (e) async* {
+        final result = await FilePicker.platform.pickFiles(
+          type: FileType.image,
+        );
+
+        chatRepository.sendImageMessage(
+          message: e.message,
+          fromUserId: e.fromUserId,
+          imageUrl: result.files.single.path,
+        );
+
+        add(ChatEvent.getAllMessages());
       },
     );
   }

@@ -29,7 +29,8 @@ dependencies:
   avatar_glow: ^2.0.1
   better_player: ^0.0.64
   bubble: ^1.2.1
-  # cached_network_image: ^2.5.0
+  # cached_network_image: ^2.4.1
+  octo_image: ^1.0.0+1
   circular_check_box: ^1.0.4
   cloud_firestore: ^1.0.7
   cupertino_icons: ^1.0.0

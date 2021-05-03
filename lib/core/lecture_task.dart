@@ -10,7 +10,7 @@ class Ticker {
 }
 
 @lazySingleton
-class LectureTask {
+class CustomUploadTask {
   Task task;
 
   Stream<TaskSnapshot> progress() => task.snapshotEvents;

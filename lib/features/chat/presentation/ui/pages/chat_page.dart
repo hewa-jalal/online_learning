@@ -195,14 +195,21 @@ class _AttachmentSelection extends StatelessWidget {
                 height: 56,
                 child: Icon(icon),
               ),
-              onTap: () {
-                context.read<ChatBloc>().add(
-                      ChatEvent.sendImageMessage(
-                        message: 'message',
-                        fromUserId: '21',
-                        imageUrl: 'imageUrl',
-                      ),
-                    );
+              onTap: () async {
+                final result = await FilePicker.platform.pickFiles();
+                if (result != null) {
+                  final file = File(result.files.single.path);
+
+                  Image.file(file);
+                }
+
+                // context.read<ChatBloc>().add(
+                //       ChatEvent.sendImageMessage(
+                //         message: 'message',
+                //         fromUserId: '21',
+                //         imageUrl: 'imageUrl',
+                //       ),
+                //     );
               },
             ),
           ),
@@ -444,9 +451,6 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                 splashRadius: 19,
                 icon: Icon(isAttachmentOpen ? Icons.close : Ionicons.md_attach),
                 onPressed: () {
-                  // Future.delayed(Duration.zero, () {
-                  //   _focusNode.unfocus();
-                  // });
                   context
                       .read<AttachmentCubit>()
                       .changeStatus(!isAttachmentOpen);

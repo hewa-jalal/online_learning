@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 import 'package:online_learning/features/chat/data/datasources/chat_remote_data_source.dart';
 import 'package:online_learning/features/chat/data/models/message_model.dart';
-import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
 
 import 'package:online_learning/features/chat/domain/repositories/chat_repository.dart';
 import 'package:online_learning/features/user/core/errors/exceptions.dart';

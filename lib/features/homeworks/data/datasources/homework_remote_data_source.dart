@@ -47,7 +47,7 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
       FirebaseFirestore.instance.collection('userCourses');
   final storageRef = FirebaseStorage.instance.ref();
 
-  final LectureTask lectureTask;
+  final CustomUploadTask lectureTask;
 
   FirebaseHomeworkRemoteDataSource({
     @required this.lectureTask,

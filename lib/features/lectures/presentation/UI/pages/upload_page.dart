@@ -33,8 +33,7 @@ class UploadPage extends StatefulWidget {
 class _UploadPageState extends State<UploadPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LectureBloc, LectureState>(
-      // TODO: progress won't work for homework because this is lecture state
+    return BlocConsumer<HomeworkBloc, HomeworkState>(
       listener: (context, state) {
         if (state.isSubmitting) {
           context.read<ProgressBloc>().add(ProgressEvent.started());

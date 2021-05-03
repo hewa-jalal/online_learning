@@ -64,7 +64,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final dioInjectableModule = _$DioInjectableModule();
   final firebaseInjectableModule = _$FirebaseInjectableModule();
   gh.lazySingleton<_i3.ChatRemoteDataSource>(
-      () => _i3.FireStoreChatRemoteDataSource(LectureTask()));
+      () => _i3.FireStoreChatRemoteDataSource(CustomUploadTask()));
   gh.lazySingleton<_i4.ChatRepository>(() => _i5.ChatRepositoryImpl(
       remoteDataSource: get<_i3.ChatRemoteDataSource>()));
   gh.lazySingleton<_i6.Dio>(() => dioInjectableModule.dio);
@@ -76,14 +76,14 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i9.GetAllMessages(chatRepository: get<_i4.ChatRepository>()));
   gh.lazySingleton<_i10.HomeworkRepository>(() => _i11.HomeworkRepositoryImpl(
       get<_i12.FirebaseHomeworkRemoteDataSource>()));
-  gh.lazySingleton<_i13.LectureTask>(() => _i13.LectureTask());
+  gh.lazySingleton<_i13.CustomUploadTask>(() => _i13.CustomUploadTask());
   gh.lazySingleton<_i14.LecturesRemoteDataSource>(() =>
       _i14.FirebaseLecturesRemoteDataSource(
-          lectureTask: get<_i13.LectureTask>(), dio: get<_i6.Dio>()));
+          lectureTask: get<_i13.CustomUploadTask>(), dio: get<_i6.Dio>()));
   gh.lazySingleton<_i15.LecturesRepository>(() => _i16.LecturesRepositoryImpl(
       get<_i14.FirebaseLecturesRemoteDataSource>()));
   gh.factory<_i17.ProgressBloc>(
-      () => _i17.ProgressBloc(lectureTask: get<_i13.LectureTask>()));
+      () => _i17.ProgressBloc(lectureTask: get<_i13.CustomUploadTask>()));
   gh.lazySingleton<_i18.SendMessage>(
       () => _i18.SendMessage(chatRepository: get<_i4.ChatRepository>()));
   gh.lazySingleton<_i19.SubmitHomework>(
@@ -122,7 +122,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i35.GetUser(get<_i24.UserRepository>()));
   gh.lazySingleton<_i12.HomeWorkRemoteDataSource>(() =>
       _i12.FirebaseHomeworkRemoteDataSource(
-          lectureTask: get<_i13.LectureTask>()));
+          lectureTask: get<_i13.CustomUploadTask>()));
   gh.factory<_i36.LectureBloc>(() => _i36.LectureBloc(
       downloadLecture: get<_i28.DownloadLecture>(),
       uploadLecture: get<_i22.UploadLecture>(),

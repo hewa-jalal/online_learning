@@ -23,7 +23,7 @@ abstract class ChatRemoteDataSource {
 
 @LazySingleton(as: ChatRemoteDataSource)
 class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
-  final LectureTask lectureTask;
+  final CustomUploadTask lectureTask;
 
   final messagesCollection = FirebaseFirestore.instance.collection('messages');
   final storageRef = FirebaseStorage.instance.ref();

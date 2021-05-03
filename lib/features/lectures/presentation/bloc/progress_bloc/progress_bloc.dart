@@ -12,7 +12,7 @@ part 'progress_bloc.freezed.dart';
 
 @injectable
 class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
-  final LectureTask lectureTask;
+  final CustomUploadTask lectureTask;
   StreamSubscription _subscription;
 
   ProgressBloc({

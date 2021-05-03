@@ -48,7 +48,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   final userCoursesCollection =
       FirebaseFirestore.instance.collection('userCourses');
   final Dio dio;
-  final LectureTask lectureTask;
+  final CustomUploadTask lectureTask;
 
   FirebaseLecturesRemoteDataSource({
     @required this.lectureTask,

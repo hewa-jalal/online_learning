@@ -84,24 +84,24 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           create: (_) => HomeworkBloc(
             uploadHomework: UploadHomework(HomeworkRepositoryImpl(
               FirebaseHomeworkRemoteDataSource(
-                lectureTask: sl<LectureTask>(),
+                lectureTask: sl<CustomUploadTask>(),
               ),
             )),
             getAllHomeworksByCourse: GetAllHomeworksByCourse(
                 homeworkRepository: HomeworkRepositoryImpl(
               FirebaseHomeworkRemoteDataSource(
-                lectureTask: sl<LectureTask>(),
+                lectureTask: sl<CustomUploadTask>(),
               ),
             )),
             submitHomework: SubmitHomework(HomeworkRepositoryImpl(
               FirebaseHomeworkRemoteDataSource(
-                lectureTask: sl<LectureTask>(),
+                lectureTask: sl<CustomUploadTask>(),
               ),
             )),
             getHomework: GetHomework(
                 homeworkRepository: HomeworkRepositoryImpl(
               FirebaseHomeworkRemoteDataSource(
-                lectureTask: sl<LectureTask>(),
+                lectureTask: sl<CustomUploadTask>(),
               ),
             )),
           ),
@@ -114,44 +114,44 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             downloadLecture: DownloadLecture(
               LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
-                    lectureTask: sl<LectureTask>(), dio: Dio()),
+                    lectureTask: sl<CustomUploadTask>(), dio: Dio()),
               ),
             ),
             uploadLecture: UploadLecture(LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
-                    dio: Dio(), lectureTask: sl<LectureTask>()))),
+                    dio: Dio(), lectureTask: sl<CustomUploadTask>()))),
             getAllLecturesByCourse: GetAllLecturesByCourse(
               lecturesRepository: LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
-                    lectureTask: sl<LectureTask>(), dio: Dio()),
+                    lectureTask: sl<CustomUploadTask>(), dio: Dio()),
               ),
             ),
             getAllLectures: GetAllLectures(
               lecturesRepository: LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
-                    lectureTask: sl<LectureTask>(), dio: Dio()),
+                    lectureTask: sl<CustomUploadTask>(), dio: Dio()),
               ),
             ),
             createCourse: CreateCourse(LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
-                    dio: Dio(), lectureTask: sl<LectureTask>()))),
+                    dio: Dio(), lectureTask: sl<CustomUploadTask>()))),
             getAllCoursesByUserId: GetAllCoursesByUserId(
               lecturesRepository: LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
-                    lectureTask: sl<LectureTask>(), dio: Dio()),
+                    lectureTask: sl<CustomUploadTask>(), dio: Dio()),
               ),
             ),
             submitUser: SubmitUser(
               lecturesRepository: LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
-                    lectureTask: sl<LectureTask>(), dio: Dio()),
+                    lectureTask: sl<CustomUploadTask>(), dio: Dio()),
               ),
             ),
           ),
         ),
         BlocProvider(
           create: (context) => ProgressBloc(
-            lectureTask: sl<LectureTask>(),
+            lectureTask: sl<CustomUploadTask>(),
           ),
         )
       ],

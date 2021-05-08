@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:online_learning/features/chat/data/models/message_model.dart';
+import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
 
 abstract class ChatRepository {
@@ -13,6 +14,7 @@ abstract class ChatRepository {
     @required String message,
     @required String fromUserId,
     @required String imageUrl,
+    @required ImageUploaderCubit imageUploaderCubit,
   });
 
   Future<Either<Failure, List<Message>>> getAllMessages();

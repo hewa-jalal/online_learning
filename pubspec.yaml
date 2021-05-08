@@ -29,15 +29,11 @@ dependencies:
   avatar_glow: ^2.0.1
   better_player: ^0.0.64
   bubble: ^1.2.1
-  # cached_network_image: ^2.4.1
-  octo_image: ^1.0.0+1
   circular_check_box: ^1.0.4
   cloud_firestore: ^1.0.7
   cupertino_icons: ^1.0.0
   dartz: ^0.9.2
-  # dash_chat: ^1.1.15
   date_picker_timeline: ^1.2.1
-  # blurhash_dart: ^1.0.2
   day_night_time_picker: ^1.0.1
   dio: ^4.0.0
   equatable: ^2.0.0
@@ -55,6 +51,7 @@ dependencies:
   flutter_icons: ^1.1.0
   flutter_inner_drawer: ^1.0.0+1
   flutter_screenutil: ^4.0.4
+  flutter_speed_dial: ^3.0.5
   flutter_svg: ^0.22.0
   flutter_uploader: ^1.2.1
   fluttertoast: ^7.1.6
@@ -63,20 +60,18 @@ dependencies:
   freezed_annotation: ^0.12.0
   get: ^3.24.0
   get_it: ^5.0.0
-  flutter_speed_dial: ^3.0.5
   google_sign_in: ^4.5.9
   hawk_fab_menu: ^0.3.2
-  # image_picker: ^0.6.7+22
   injectable: ^1.0.7
   intl: ^0.17.0
   jiffy: ^4.1.0
   jitsi_meet: ^2.0.0
   json_annotation: ^3.1.1
-  # json_annotation: ^4.0.1
   kt_dart: ^0.8.0
   lottie: ^0.7.0
   mime: ^1.0.0
   nil: ^1.1.1
+  octo_image: ^1.0.0+1
   open_file: ^3.2.0
   path_provider: ^2.0.1
   percent_indicator: ^2.1.9+1
@@ -98,9 +93,6 @@ dev_dependencies:
   freezed: ^0.12.7
   injectable_generator: ^1.1.2
   json_serializable: ^3.5.1
-  # json_serializable: ^4.1.1
-  # lint: ^1.5.1
-  # mockito: ^5.0.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

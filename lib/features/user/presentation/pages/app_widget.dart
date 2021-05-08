@@ -6,6 +6,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
 import 'package:online_learning/features/chat/presentation/bloc/cubit/attachment_cubit.dart';
+import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
 import 'package:online_learning/features/chat/video/cubit/video_cubit.dart';
 import 'package:online_learning/features/chat/video/video_repository.dart';
 import 'package:online_learning/features/homeworks/data/datasources/homework_remote_data_source.dart';
@@ -105,6 +106,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               ),
             )),
           ),
+        ),
+        BlocProvider(
+          create: (_) => ImageUploaderCubit(),
         ),
         BlocProvider(
           create: (_) => sl<ChatBloc>(),

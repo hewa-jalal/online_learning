@@ -5,28 +5,30 @@ import 'package:bubble/bubble.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:hawk_fab_menu/hawk_fab_menu.dart';
+import 'package:octo_image/octo_image.dart';
+import 'package:online_learning/core/universal_variables.dart';
+
 import 'package:online_learning/features/chat/data/models/message_model.dart';
-import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
 import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
-import 'package:online_learning/features/chat/presentation/bloc/cubit/attachment_cubit.dart';
+import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/submit_homework_page.dart';
 import 'package:online_learning/features/user/domain/entites/user.dart';
 import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ChatPage extends StatefulWidget {
-  final UserEntity userEntity;
-
   const ChatPage({
     Key key,
     @required this.userEntity,
   }) : super(key: key);
+
+  final UserEntity userEntity;
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -34,12 +36,16 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   File _image;
-  UserEntity get user => widget.userEntity;
-  final _scrollController = ScrollController();
   final _innerDrawerKey = GlobalKey<InnerDrawerState>();
+  final _scrollController = ScrollController();
+
+  UserEntity get user => widget.userEntity;
 
   @override
   Widget build(BuildContext context) {
+    final imageUploaderCubit = context.watch<ImageUploaderCubit>();
+    print('imageUploaderCubit.state' + imageUploaderCubit.state.toString());
+
     final chatBloc = context.read<ChatBloc>();
     chatBloc.add(ChatEvent.getAllMessages());
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
@@ -50,19 +56,6 @@ class _ChatPageState extends State<ChatPage> {
           rightAnimationType: InnerDrawerAnimation.quadratic,
           rightChild: _UsersList(),
           scaffold: Scaffold(
-            // floatingActionButton: Row(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: <Widget>[
-            //     SpeedDial(
-            //       children: [
-            //         SpeedDialChild(
-            //           label: 'Image',
-            //           child: Icon(Icons.home),
-            //         ),
-            //       ],
-            //     ),
-            //   ],
-            // ),
             appBar: AppBar(
               actions: [
                 IconButton(
@@ -76,88 +69,34 @@ class _ChatPageState extends State<ChatPage> {
                 return state.map(
                   initial: (state) => CircularProgressIndicator(),
                   allMessagesLoaded: (state) {
-                    // final messages = state.allMessages
-                    //     .map(
-                    //       (msg) => ChatMessage(
-                    //         text: msg.message,
-                    //         user: ChatUser(
-                    //           uid: msg.fromUserId,
-                    //         ),
-                    //         image: msg.imageUrl,
-                    //       ),
-                    //     )
-                    //     .toList();
-                    // return _CustomDashChat(
-                    //   user: user,
-                    //   chatBloc: chatBloc,
-                    //   messages: messages,
-                    // );
-                    // final messages = state.allMessages
-                    //     .map(
-                    //       (message) {
-                    //         return _MessageWidget(
-                    //           message: message,
-                    //           user: user,
-                    //         );
-                    //       },
-                    //     )
-                    //     .toList()
-                    //     .reversed
-                    //     .toList();
                     final messages = state.allMessages.reversed.toList();
 
                     return Column(
                       children: [
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 0.9.sh,
-                                  // child: ListView(
-                                  //   padding: const EdgeInsets.all(8),
-                                  //   controller: _scrollController,
-                                  //   children: messages,
-                                  // ),
-                                  child: _MessageWidget(
-                                    messages: messages,
-                                    user: user,
-                                    chatListController: _scrollController,
-                                  ),
-                                ),
-                              ],
-                            ),
+                        Flexible(
+                          child: _MessagesListWidget(
+                            messages: messages,
+                            user: user,
+                            chatListController: _scrollController,
                           ),
                         ),
+                        imageUploaderCubit.state == ImageuploaderState.loading()
+                            ? Container(
+                                alignment: Alignment.centerRight,
+                                margin: EdgeInsets.only(right: 15),
+                                child: CircularProgressIndicator(),
+                              )
+                            : Container(),
                         Container(
-                          height: 0.1.sh,
                           child: Align(
                             alignment: FractionalOffset.bottomCenter,
-                            child: Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: _SendMessageTextField(
-                                chatBloc: chatBloc,
-                                user: user,
-                                chatListController: _scrollController,
-                              ),
+                            child: _SendMessageTextField(
+                              chatBloc: chatBloc,
+                              user: user,
+                              chatListController: _scrollController,
                             ),
                           ),
                         ),
-                        if (context.watch<AttachmentCubit>().state) ...[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              _AttachmentSelection(
-                                icon: Entypo.images,
-                                label: 'Image',
-                              ),
-                              _AttachmentSelection(
-                                icon: Icons.file_copy_outlined,
-                                label: 'File',
-                              ),
-                            ],
-                          )
-                        ]
                       ],
                     );
                   },
@@ -173,13 +112,14 @@ class _ChatPageState extends State<ChatPage> {
 }
 
 class _AttachmentSelection extends StatelessWidget {
-  final IconData icon;
-  final String label;
   const _AttachmentSelection({
     Key key,
     @required this.icon,
     @required this.label,
   }) : super(key: key);
+
+  final IconData icon;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -220,17 +160,18 @@ class _AttachmentSelection extends StatelessWidget {
   }
 }
 
-class _MessageWidget extends StatelessWidget {
-  final UserEntity user;
-  final List<Message> messages;
-  final ScrollController chatListController;
-
-  const _MessageWidget({
+class _MessagesListWidget extends StatelessWidget {
+  const _MessagesListWidget({
     Key key,
     @required this.user,
     @required this.messages,
     @required this.chatListController,
   }) : super(key: key);
+
+  final ScrollController chatListController;
+  final List<Message> messages;
+  final UserEntity user;
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -241,10 +182,9 @@ class _MessageWidget extends StatelessWidget {
         final msg = messages[index];
         if (msg is ImageMessage) {
           return Bubble(
-            child: Image.network(
-              msg.imageUrl,
-              // placeholder: (context, url) => CircularProgressIndicator(),
-              // errorWidget: (context, url, error) => Icon(Icons.error),
+            child: OctoImage(
+              image: Image.network(msg.imageUrl).image,
+              placeholderBuilder: (context) => CircularProgressIndicator(),
             ),
             style: BubbleStyle(
               nip: BubbleNip.rightCenter,
@@ -263,39 +203,16 @@ class _MessageWidget extends StatelessWidget {
         }
         return Text('Woah what did you send');
       },
-      // children: messages.map((msg) {
-      //   if (msg is ImageMessage) {
-      //     return Bubble(
-      //       child: Image.network(msg.imageUrl),
-      //       style: BubbleStyle(
-      //         nip: BubbleNip.rightCenter,
-      //         color: Color.fromARGB(255, 225, 255, 199),
-      //         borderColor: Colors.blue,
-      //         borderWidth: 1,
-      //         margin: BubbleEdges.only(top: 8, left: 50),
-      //         alignment: Alignment.topRight,
-      //       ),
-      //     );
-      //   } else if (msg is TextMessage) {
-      //     return _CustomChatBubble(
-      //       textMessage: msg,
-      //       user: user,
-      //     );
-      //   }
-      // }).toList(),
     );
   }
 }
 
 class _CustomChatBubble extends StatelessWidget {
-  static const styleSomebody = BubbleStyle(
-    nip: BubbleNip.leftCenter,
-    color: Colors.white,
-    borderColor: Colors.blue,
-    borderWidth: 1,
-    margin: BubbleEdges.only(top: 8, right: 50),
-    alignment: Alignment.topLeft,
-  );
+  const _CustomChatBubble({
+    Key key,
+    @required this.textMessage,
+    @required this.user,
+  }) : super(key: key);
 
   static const styleMe = BubbleStyle(
     nip: BubbleNip.rightCenter,
@@ -306,11 +223,14 @@ class _CustomChatBubble extends StatelessWidget {
     alignment: Alignment.topRight,
   );
 
-  const _CustomChatBubble({
-    Key key,
-    @required this.textMessage,
-    @required this.user,
-  }) : super(key: key);
+  static const styleSomebody = BubbleStyle(
+    nip: BubbleNip.leftCenter,
+    color: Colors.white,
+    borderColor: Colors.blue,
+    borderWidth: 1,
+    margin: BubbleEdges.only(top: 8, right: 50),
+    alignment: Alignment.topLeft,
+  );
 
   final TextMessage textMessage;
   final UserEntity user;
@@ -340,8 +260,8 @@ class _ChatRowMe extends StatelessWidget {
   }) : super(key: key);
 
   final TextMessage message;
-  final UserEntity user;
   final BubbleStyle styleMe;
+  final UserEntity user;
 
   @override
   Widget build(BuildContext context) {
@@ -374,9 +294,8 @@ class _ChatRowSomebody extends StatelessWidget {
   }) : super(key: key);
 
   final TextMessage message;
-
-  final UserEntity user;
   final BubbleStyle styleSomebody;
+  final UserEntity user;
 
   @override
   Widget build(BuildContext context) {
@@ -403,91 +322,366 @@ class _SendMessageTextField extends StatefulWidget {
   }) : super(key: key);
 
   final ChatBloc chatBloc;
-  final UserEntity user;
   final ScrollController chatListController;
+  final UserEntity user;
 
   @override
   __SendMessageTextFieldState createState() => __SendMessageTextFieldState();
 }
 
 class __SendMessageTextFieldState extends State<_SendMessageTextField> {
+  var msg = '';
+
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
-  var _expandTextField = false;
+  var _isWriting = false;
 
-  var msg = '';
+  void setWritingTo(bool val) {
+    setState(() => _isWriting = val);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final isAttachmentOpen = context.watch<AttachmentCubit>().state;
-    // return Stack(
-    //   alignment: Alignment.centerRight,
-    //   children: <Widget>[
-    //     Align(
-    //       alignment: Alignment.centerLeft,
-    //       child: IconButton(
-    //         alignment: Alignment.centerLeft,
-    //         icon: Icon(Icons.dialpad),
-    //         onPressed: () {
-    //           // do something
-    //         },
-    //       ),
-    //     ),
-    //     TextField(
-    //     ),
-    //   ],
-    // );
-
-    return Row(
-      children: [
-        Expanded(
-          flex: 5,
-          child: TextField(
-            controller: _controller,
-            focusNode: _focusNode,
-            onTap: () => setState(() => _expandTextField = true),
-            onChanged: (val) => msg = val.trim(),
-            decoration: InputDecoration(
-              prefixIcon: IconButton(
-                splashRadius: 19,
-                icon: Icon(isAttachmentOpen ? Icons.close : Ionicons.md_attach),
-                onPressed: () {
-                  context
-                      .read<AttachmentCubit>()
-                      .changeStatus(!isAttachmentOpen);
-                },
+    final imageUploaderCubit = context.read<ImageUploaderCubit>();
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () => addMediaModal(context),
+            child: Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                gradient: UniversalVariables.fabGradient,
+                shape: BoxShape.circle,
               ),
-              filled: true,
-              border: OutlineInputBorder(
-                borderRadius: const BorderRadius.all(
-                  const Radius.circular(20.0),
-                ),
-              ),
-              suffixIcon: IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () {
-                  widget.chatBloc.add(
-                    ChatEvent.sendMessage(
-                      message: msg,
-                      fromUserId: widget.user.id,
-                    ),
-                  );
-                  // to referesh the messages
-                  widget.chatBloc.add(ChatEvent.getAllMessages());
-                  _controller.clear();
-                  // ! maybe use setState
-                  setState(() {
-                    widget.chatListController.animateTo(
-                      widget.chatListController.position.maxScrollExtent,
-                      duration: const Duration(milliseconds: 200),
-                      curve: Curves.easeIn,
-                    );
-                  });
-                },
-              ),
+              child: Icon(Icons.add),
             ),
           ),
+          SizedBox(
+            width: 5,
+          ),
+          Expanded(
+            child: TextField(
+              controller: _controller,
+              focusNode: _focusNode,
+              onChanged: (val) {
+                val.length > 0 ? setWritingTo(true) : setWritingTo(false);
+                msg = val.trim();
+              },
+              decoration: InputDecoration(
+                hintText: "Type a message",
+                hintStyle: TextStyle(
+                  color: UniversalVariables.greyColor,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    const Radius.circular(50.0),
+                  ),
+                  borderSide: BorderSide(color: Colors.green),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    const Radius.circular(50.0),
+                  ),
+                  borderSide: BorderSide(color: APP_PURPlE),
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(
+                    const Radius.circular(50.0),
+                  ),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                filled: true,
+                fillColor: UniversalVariables.separatorColor,
+                suffixIcon: GestureDetector(
+                  onTap: () {},
+                  child: Icon(Icons.face),
+                ),
+              ),
+              // decoration: InputDecoration(
+              //   prefixIcon: IconButton(
+              //     splashRadius: 19,
+              //     icon:
+              //         Icon(isAttachmentOpen ? Icons.close : Ionicons.md_attach),
+              //     onPressed: () {
+              //       context
+              //           .read<AttachmentCubit>()
+              //           .changeStatus(!isAttachmentOpen);
+              //     },
+              //   ),
+              //   filled: true,
+              //   border: OutlineInputBorder(
+              //     borderRadius: const BorderRadius.all(
+              //       const Radius.circular(20.0),
+              //     ),
+              //   ),
+              //   suffixIcon: IconButton(
+              //     icon: Icon(Icons.send),
+              //     onPressed: () {
+              //       widget.chatBloc.add(
+              //         ChatEvent.sendMessage(
+              //           message: msg,
+              //           fromUserId: widget.user.id,
+              //         ),
+              //       );
+              //       // to referesh the messages
+              //       widget.chatBloc.add(ChatEvent.getAllMessages());
+              //       _controller.clear();
+              //       // ! maybe use setState
+              //       setState(() {
+              //         widget.chatListController.animateTo(
+              //           widget.chatListController.position.maxScrollExtent,
+              //           duration: const Duration(milliseconds: 200),
+              //           curve: Curves.easeIn,
+              //         );
+              //       });
+              //     },
+              //   ),
+              // ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 10),
+            decoration: BoxDecoration(
+              gradient: UniversalVariables.fabGradient,
+              shape: BoxShape.circle,
+            ),
+            child: IconButton(
+              icon: Icon(
+                Icons.send,
+                size: 15,
+              ),
+              onPressed: () {
+                widget.chatBloc.add(
+                  ChatEvent.sendImageMessage(
+                    message: msg,
+                    fromUserId: '21',
+                    imageUrl: 'someUrl',
+                    imageUploaderCubit: imageUploaderCubit,
+                  ),
+                );
+                _controller.clear();
+                Timer(
+                  Duration(milliseconds: 100),
+                  () {
+                    super.setState(() {
+                      widget.chatListController.animateTo(
+                        widget.chatListController.position.maxScrollExtent +
+                            600,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeIn,
+                      );
+                    });
+                  },
+                );
+
+                // SchedulerBinding.instance.addPostFrameCallback((_) {
+                //   super.setState(() {
+                //     widget.chatListController.animateTo(
+                //       widget.chatListController.position.maxScrollExtent + 200,
+                //       duration: const Duration(milliseconds: 200),
+                //       curve: Curves.easeIn,
+                //     );
+                //   });
+                //   setState(() {});
+                // });
+              },
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+addMediaModal(context) {
+  showModalBottomSheet(
+      context: context,
+      elevation: 0,
+      backgroundColor: UniversalVariables.blackColor,
+      builder: (context) {
+        return Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              child: Row(
+                children: <Widget>[
+                  TextButton(
+                    child: Icon(
+                      Icons.close,
+                    ),
+                    onPressed: () => Navigator.maybePop(context),
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Content and tools",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Flexible(
+              child: ListView(
+                children: <Widget>[
+                  ModalTile(
+                    title: "Media",
+                    subtitle: "Share Photos and Video",
+                    icon: Icons.image,
+                  ),
+                  ModalTile(
+                      title: "File", subtitle: "Share files", icon: Icons.tab),
+                  ModalTile(
+                      title: "Contact",
+                      subtitle: "Share contacts",
+                      icon: Icons.contacts),
+                  ModalTile(
+                      title: "Location",
+                      subtitle: "Share a location",
+                      icon: Icons.add_location),
+                  ModalTile(
+                      title: "Schedule Call",
+                      subtitle: "Arrange a skype call and get reminders",
+                      icon: Icons.schedule),
+                  ModalTile(
+                      title: "Create Poll",
+                      subtitle: "Share polls",
+                      icon: Icons.poll)
+                ],
+              ),
+            ),
+          ],
+        );
+      });
+}
+
+class ModalTile extends StatelessWidget {
+  const ModalTile({
+    @required this.title,
+    @required this.subtitle,
+    @required this.icon,
+  });
+
+  final IconData icon;
+  final String subtitle;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: CustomTile(
+        mini: false,
+        leading: Container(
+          margin: EdgeInsets.only(right: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: UniversalVariables.receiverColor,
+          ),
+          padding: EdgeInsets.all(10),
+          child: Icon(
+            icon,
+            color: UniversalVariables.greyColor,
+            size: 38,
+          ),
         ),
-      ],
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(
+            color: UniversalVariables.greyColor,
+            fontSize: 14,
+          ),
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 18,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomTile extends StatelessWidget {
+  CustomTile({
+    @required this.leading,
+    @required this.title,
+    this.icon,
+    @required this.subtitle,
+    this.trailing,
+    this.margin = const EdgeInsets.all(0),
+    this.onTap,
+    this.onLongPress,
+    this.mini = true,
+  });
+
+  final Widget icon;
+  final Widget leading;
+  final EdgeInsets margin;
+  final bool mini;
+  final GestureLongPressCallback onLongPress;
+  final GestureTapCallback onTap;
+  final Widget subtitle;
+  final Widget title;
+  final Widget trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      onLongPress: onLongPress,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: mini ? 10 : 0),
+        margin: margin,
+        child: Row(
+          children: <Widget>[
+            leading,
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: mini ? 10 : 15),
+                padding: EdgeInsets.symmetric(vertical: mini ? 3 : 20),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                        width: 1, color: UniversalVariables.separatorColor),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        title,
+                        SizedBox(height: 5),
+                        Row(
+                          children: <Widget>[
+                            icon ?? Container(),
+                            subtitle,
+                          ],
+                        )
+                      ],
+                    ),
+                    trailing ?? Container(),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

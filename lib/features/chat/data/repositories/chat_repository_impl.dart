@@ -5,6 +5,7 @@ import 'package:online_learning/features/chat/data/datasources/chat_remote_data_
 import 'package:online_learning/features/chat/data/models/message_model.dart';
 
 import 'package:online_learning/features/chat/domain/repositories/chat_repository.dart';
+import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
 import 'package:online_learning/features/user/core/errors/exceptions.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
 
@@ -43,11 +44,13 @@ class ChatRepositoryImpl extends ChatRepository {
     String message,
     String fromUserId,
     String imageUrl,
+    @required ImageUploaderCubit imageUploaderCubit,
   }) async {
     try {
       remoteDataSource.sendImageMessage(
         imageUrl: imageUrl,
         fromUserId: fromUserId,
+        imageUploaderCubit: imageUploaderCubit,
       );
       return right(unit);
     } on MessageException {

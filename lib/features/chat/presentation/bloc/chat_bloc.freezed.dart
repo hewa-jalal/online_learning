@@ -31,11 +31,13 @@ class _$ChatEventTearOff {
   _SendImageMessage sendImageMessage(
       {@required String message,
       @required String fromUserId,
-      @required String imageUrl}) {
+      @required String imageUrl,
+      @required ImageUploaderCubit imageUploaderCubit}) {
     return _SendImageMessage(
       message: message,
       fromUserId: fromUserId,
       imageUrl: imageUrl,
+      imageUploaderCubit: imageUploaderCubit,
     );
   }
 
@@ -56,16 +58,16 @@ mixin _$ChatEvent {
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
     @required
-        TResult sendImageMessage(
-            String message, String fromUserId, String imageUrl),
+        TResult sendImageMessage(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit),
     @required TResult getAllMessages(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(
-        String message, String fromUserId, String imageUrl),
+    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
+        ImageUploaderCubit imageUploaderCubit),
     TResult getAllMessages(),
     @required TResult orElse(),
   });
@@ -140,8 +142,8 @@ class _$_Started implements _Started {
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
     @required
-        TResult sendImageMessage(
-            String message, String fromUserId, String imageUrl),
+        TResult sendImageMessage(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit),
     @required TResult getAllMessages(),
   }) {
     assert(started != null);
@@ -156,8 +158,8 @@ class _$_Started implements _Started {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(
-        String message, String fromUserId, String imageUrl),
+    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
+        ImageUploaderCubit imageUploaderCubit),
     TResult getAllMessages(),
     @required TResult orElse(),
   }) {
@@ -280,8 +282,8 @@ class _$_SendMessage implements _SendMessage {
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
     @required
-        TResult sendImageMessage(
-            String message, String fromUserId, String imageUrl),
+        TResult sendImageMessage(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit),
     @required TResult getAllMessages(),
   }) {
     assert(started != null);
@@ -296,8 +298,8 @@ class _$_SendMessage implements _SendMessage {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(
-        String message, String fromUserId, String imageUrl),
+    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
+        ImageUploaderCubit imageUploaderCubit),
     TResult getAllMessages(),
     @required TResult orElse(),
   }) {
@@ -355,7 +357,11 @@ abstract class _$SendImageMessageCopyWith<$Res> {
   factory _$SendImageMessageCopyWith(
           _SendImageMessage value, $Res Function(_SendImageMessage) then) =
       __$SendImageMessageCopyWithImpl<$Res>;
-  $Res call({String message, String fromUserId, String imageUrl});
+  $Res call(
+      {String message,
+      String fromUserId,
+      String imageUrl,
+      ImageUploaderCubit imageUploaderCubit});
 }
 
 /// @nodoc
@@ -374,12 +380,16 @@ class __$SendImageMessageCopyWithImpl<$Res>
     Object message = freezed,
     Object fromUserId = freezed,
     Object imageUrl = freezed,
+    Object imageUploaderCubit = freezed,
   }) {
     return _then(_SendImageMessage(
       message: message == freezed ? _value.message : message as String,
       fromUserId:
           fromUserId == freezed ? _value.fromUserId : fromUserId as String,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      imageUploaderCubit: imageUploaderCubit == freezed
+          ? _value.imageUploaderCubit
+          : imageUploaderCubit as ImageUploaderCubit,
     ));
   }
 }
@@ -389,10 +399,12 @@ class _$_SendImageMessage implements _SendImageMessage {
   const _$_SendImageMessage(
       {@required this.message,
       @required this.fromUserId,
-      @required this.imageUrl})
+      @required this.imageUrl,
+      @required this.imageUploaderCubit})
       : assert(message != null),
         assert(fromUserId != null),
-        assert(imageUrl != null);
+        assert(imageUrl != null),
+        assert(imageUploaderCubit != null);
 
   @override
   final String message;
@@ -400,10 +412,12 @@ class _$_SendImageMessage implements _SendImageMessage {
   final String fromUserId;
   @override
   final String imageUrl;
+  @override
+  final ImageUploaderCubit imageUploaderCubit;
 
   @override
   String toString() {
-    return 'ChatEvent.sendImageMessage(message: $message, fromUserId: $fromUserId, imageUrl: $imageUrl)';
+    return 'ChatEvent.sendImageMessage(message: $message, fromUserId: $fromUserId, imageUrl: $imageUrl, imageUploaderCubit: $imageUploaderCubit)';
   }
 
   @override
@@ -418,7 +432,10 @@ class _$_SendImageMessage implements _SendImageMessage {
                     .equals(other.fromUserId, fromUserId)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)));
+                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.imageUploaderCubit, imageUploaderCubit) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageUploaderCubit, imageUploaderCubit)));
   }
 
   @override
@@ -426,7 +443,8 @@ class _$_SendImageMessage implements _SendImageMessage {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(message) ^
       const DeepCollectionEquality().hash(fromUserId) ^
-      const DeepCollectionEquality().hash(imageUrl);
+      const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(imageUploaderCubit);
 
   @JsonKey(ignore: true)
   @override
@@ -439,15 +457,15 @@ class _$_SendImageMessage implements _SendImageMessage {
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
     @required
-        TResult sendImageMessage(
-            String message, String fromUserId, String imageUrl),
+        TResult sendImageMessage(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit),
     @required TResult getAllMessages(),
   }) {
     assert(started != null);
     assert(sendMessage != null);
     assert(sendImageMessage != null);
     assert(getAllMessages != null);
-    return sendImageMessage(message, fromUserId, imageUrl);
+    return sendImageMessage(message, fromUserId, imageUrl, imageUploaderCubit);
   }
 
   @override
@@ -455,14 +473,15 @@ class _$_SendImageMessage implements _SendImageMessage {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(
-        String message, String fromUserId, String imageUrl),
+    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
+        ImageUploaderCubit imageUploaderCubit),
     TResult getAllMessages(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sendImageMessage != null) {
-      return sendImageMessage(message, fromUserId, imageUrl);
+      return sendImageMessage(
+          message, fromUserId, imageUrl, imageUploaderCubit);
     }
     return orElse();
   }
@@ -503,11 +522,13 @@ abstract class _SendImageMessage implements ChatEvent {
   const factory _SendImageMessage(
       {@required String message,
       @required String fromUserId,
-      @required String imageUrl}) = _$_SendImageMessage;
+      @required String imageUrl,
+      @required ImageUploaderCubit imageUploaderCubit}) = _$_SendImageMessage;
 
   String get message;
   String get fromUserId;
   String get imageUrl;
+  ImageUploaderCubit get imageUploaderCubit;
   @JsonKey(ignore: true)
   _$SendImageMessageCopyWith<_SendImageMessage> get copyWith;
 }
@@ -553,8 +574,8 @@ class _$_GetAllMessages implements _GetAllMessages {
     @required TResult started(),
     @required TResult sendMessage(String message, String fromUserId),
     @required
-        TResult sendImageMessage(
-            String message, String fromUserId, String imageUrl),
+        TResult sendImageMessage(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit),
     @required TResult getAllMessages(),
   }) {
     assert(started != null);
@@ -569,8 +590,8 @@ class _$_GetAllMessages implements _GetAllMessages {
   TResult maybeWhen<TResult extends Object>({
     TResult started(),
     TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(
-        String message, String fromUserId, String imageUrl),
+    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
+        ImageUploaderCubit imageUploaderCubit),
     TResult getAllMessages(),
     @required TResult orElse(),
   }) {

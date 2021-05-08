@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/core/lecture_task.dart';
 import 'package:online_learning/features/chat/data/models/message_model.dart';
+import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
 
 abstract class ChatRemoteDataSource {
   Future<Unit> sendMessage(
@@ -17,6 +18,7 @@ abstract class ChatRemoteDataSource {
   Future<Unit> sendImageMessage({
     @required String imageUrl,
     @required String fromUserId,
+    @required ImageUploaderCubit imageUploaderCubit,
   });
   Future<List<Message>> getAllMessages();
 }
@@ -55,7 +57,10 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
   Future<Unit> sendImageMessage({
     @required String imageUrl,
     @required String fromUserId,
+    @required ImageUploaderCubit imageUploaderCubit,
   }) async {
+    // imageUploaderCubit.setToLoading();
+
     lectureTask.task = storageRef
         .messageImagesStorage(DateTime.now().toIso8601String())
         .putFile(File(imageUrl));
@@ -69,6 +74,8 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
       );
       messagesCollection.add(messageModel.toMap());
     });
+
+    // imageUploaderCubit.setToIdle();
 
     return unit;
   }

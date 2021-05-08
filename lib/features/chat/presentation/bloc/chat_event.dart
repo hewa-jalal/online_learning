@@ -11,6 +11,7 @@ abstract class ChatEvent with _$ChatEvent {
     @required String message,
     @required String fromUserId,
     @required String imageUrl,
+    @required ImageUploaderCubit imageUploaderCubit,
   }) = _SendImageMessage;
   const factory ChatEvent.getAllMessages() = _GetAllMessages;
 }

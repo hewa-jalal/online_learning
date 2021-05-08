@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/chat/data/models/message_model.dart';
 
 import 'package:online_learning/features/chat/domain/repositories/chat_repository.dart';
+import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
@@ -53,12 +54,16 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         final result = await FilePicker.platform.pickFiles(
           type: FileType.image,
         );
+        e.imageUploaderCubit.setToLoading();
 
-        chatRepository.sendImageMessage(
+        await chatRepository.sendImageMessage(
           message: e.message,
           fromUserId: e.fromUserId,
           imageUrl: result.files.single.path,
+          imageUploaderCubit: e.imageUploaderCubit,
         );
+
+        e.imageUploaderCubit.setToIdle();
 
         add(ChatEvent.getAllMessages());
       },

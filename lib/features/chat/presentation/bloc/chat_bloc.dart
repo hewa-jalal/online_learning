@@ -54,7 +54,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         final result = await FilePicker.platform.pickFiles(
           type: FileType.image,
         );
-        e.imageUploaderCubit.setToLoading();
+        // e.imageUploaderCubit.setToLoading();
 
         await chatRepository.sendImageMessage(
           message: e.message,
@@ -63,7 +63,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           imageUploaderCubit: e.imageUploaderCubit,
         );
 
-        e.imageUploaderCubit.setToIdle();
+        // e.imageUploaderCubit.setToIdle();
 
         add(ChatEvent.getAllMessages());
       },

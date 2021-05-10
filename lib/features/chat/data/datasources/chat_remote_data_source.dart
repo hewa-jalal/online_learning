@@ -59,23 +59,36 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
     @required String fromUserId,
     @required ImageUploaderCubit imageUploaderCubit,
   }) async {
-    // imageUploaderCubit.setToLoading();
+    imageUploaderCubit.setToLoading();
 
     lectureTask.task = storageRef
         .messageImagesStorage(DateTime.now().toIso8601String())
         .putFile(File(imageUrl));
 
-    lectureTask.task.then((res) async {
-      final downloadUrl = await res.ref.getDownloadURL();
+    // at first we just need to add an placeholder for the image
+    // until we get the downloadUrl
+    final testModel = ImageMessage(
+      imageUrl: 'placeHolder',
+      senderId: '21',
+      timeStamp: DateTime.now().millisecondsSinceEpoch,
+    );
+
+    final docRef = await messagesCollection.add(testModel.toMap());
+
+    // getting the downloadUrl
+    lectureTask.task.then((taskSnap) async {
+      final downloadUrl = await taskSnap.ref.getDownloadURL();
+
       final messageModel = ImageMessage(
         imageUrl: downloadUrl,
         senderId: fromUserId,
         timeStamp: DateTime.now().millisecondsSinceEpoch,
       );
-      messagesCollection.add(messageModel.toMap());
-    });
 
-    // imageUploaderCubit.setToIdle();
+      messagesCollection.doc(docRef.id).set(messageModel.toMap());
+
+      imageUploaderCubit.setToIdle();
+    });
 
     return unit;
   }

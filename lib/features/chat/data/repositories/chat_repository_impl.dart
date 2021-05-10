@@ -47,7 +47,7 @@ class ChatRepositoryImpl extends ChatRepository {
     @required ImageUploaderCubit imageUploaderCubit,
   }) async {
     try {
-      remoteDataSource.sendImageMessage(
+      await remoteDataSource.sendImageMessage(
         imageUrl: imageUrl,
         fromUserId: fromUserId,
         imageUploaderCubit: imageUploaderCubit,

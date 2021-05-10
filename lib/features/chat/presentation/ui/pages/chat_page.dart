@@ -80,13 +80,16 @@ class _ChatPageState extends State<ChatPage> {
                             chatListController: _scrollController,
                           ),
                         ),
-                        imageUploaderCubit.state == ImageuploaderState.loading()
-                            ? Container(
-                                alignment: Alignment.centerRight,
-                                margin: EdgeInsets.only(right: 15),
-                                child: CircularProgressIndicator(),
-                              )
-                            : Container(),
+                        // imageUploaderCubit.state == ImageuploaderState.loading()
+                        //     ? Bubble(
+                        //         child: AspectRatio(
+                        //           aspectRatio: 4 / 3,
+                        //           child: Center(
+                        //             child: CircularProgressIndicator(),
+                        //           ),
+                        //         ),
+                        //       )
+                        //     : Container(),
                         Container(
                           child: Align(
                             alignment: FractionalOffset.bottomCenter,
@@ -182,9 +185,13 @@ class _MessagesListWidget extends StatelessWidget {
         final msg = messages[index];
         if (msg is ImageMessage) {
           return Bubble(
-            child: OctoImage(
-              image: Image.network(msg.imageUrl).image,
-              placeholderBuilder: (context) => CircularProgressIndicator(),
+            child: AspectRatio(
+              aspectRatio: 4 / 3,
+              child: OctoImage(
+                image: Image.network(msg.imageUrl).image,
+                placeholderBuilder: (context) =>
+                    Center(child: CircularProgressIndicator()),
+              ),
             ),
             style: BubbleStyle(
               nip: BubbleNip.rightCenter,
@@ -342,13 +349,19 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final imageUploaderCubit = context.read<ImageUploaderCubit>();
+    final imageUploaderCubit = context.watch<ImageUploaderCubit>();
+    final chatBloc = context.read<ChatBloc>();
+
     return Container(
       padding: EdgeInsets.all(10),
       child: Row(
         children: [
           GestureDetector(
-            onTap: () => addMediaModal(context),
+            onTap: () => addMediaModal(
+              context,
+              chatBloc: chatBloc,
+              imageUploaderCubit: imageUploaderCubit,
+            ),
             child: Container(
               padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
@@ -401,46 +414,6 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                   child: Icon(Icons.face),
                 ),
               ),
-              // decoration: InputDecoration(
-              //   prefixIcon: IconButton(
-              //     splashRadius: 19,
-              //     icon:
-              //         Icon(isAttachmentOpen ? Icons.close : Ionicons.md_attach),
-              //     onPressed: () {
-              //       context
-              //           .read<AttachmentCubit>()
-              //           .changeStatus(!isAttachmentOpen);
-              //     },
-              //   ),
-              //   filled: true,
-              //   border: OutlineInputBorder(
-              //     borderRadius: const BorderRadius.all(
-              //       const Radius.circular(20.0),
-              //     ),
-              //   ),
-              //   suffixIcon: IconButton(
-              //     icon: Icon(Icons.send),
-              //     onPressed: () {
-              //       widget.chatBloc.add(
-              //         ChatEvent.sendMessage(
-              //           message: msg,
-              //           fromUserId: widget.user.id,
-              //         ),
-              //       );
-              //       // to referesh the messages
-              //       widget.chatBloc.add(ChatEvent.getAllMessages());
-              //       _controller.clear();
-              //       // ! maybe use setState
-              //       setState(() {
-              //         widget.chatListController.animateTo(
-              //           widget.chatListController.position.maxScrollExtent,
-              //           duration: const Duration(milliseconds: 200),
-              //           curve: Curves.easeIn,
-              //         );
-              //       });
-              //     },
-              //   ),
-              // ),
             ),
           ),
           Container(
@@ -456,11 +429,11 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
               ),
               onPressed: () {
                 widget.chatBloc.add(
-                  ChatEvent.sendImageMessage(
+                  ChatEvent.sendMessage(
                     message: msg,
                     fromUserId: '21',
-                    imageUrl: 'someUrl',
-                    imageUploaderCubit: imageUploaderCubit,
+                    // imageUrl: 'someUrl',
+                    // imageUploaderCubit: imageUploaderCubit,
                   ),
                 );
                 _controller.clear();
@@ -497,7 +470,11 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
   }
 }
 
-addMediaModal(context) {
+void addMediaModal(
+  context, {
+  @required ChatBloc chatBloc,
+  @required ImageUploaderCubit imageUploaderCubit,
+}) {
   showModalBottomSheet(
       context: context,
       elevation: 0,
@@ -519,11 +496,12 @@ addMediaModal(context) {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Content and tools",
+                        'Content and tools',
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -537,6 +515,17 @@ addMediaModal(context) {
                     title: "Media",
                     subtitle: "Share Photos and Video",
                     icon: Icons.image,
+                    onTap: () {
+                      chatBloc.add(
+                        ChatEvent.sendImageMessage(
+                          message: 'msgImage',
+                          fromUserId: '21',
+                          imageUrl: 'someUrl',
+                          imageUploaderCubit: imageUploaderCubit,
+                        ),
+                      );
+                      Navigator.pop(context);
+                    },
                   ),
                   ModalTile(
                       title: "File", subtitle: "Share files", icon: Icons.tab),
@@ -569,17 +558,20 @@ class ModalTile extends StatelessWidget {
     @required this.title,
     @required this.subtitle,
     @required this.icon,
+    @required this.onTap,
   });
 
   final IconData icon;
   final String subtitle;
   final String title;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: CustomTile(
+        onTap: onTap,
         mini: false,
         leading: Container(
           margin: EdgeInsets.only(right: 10),
@@ -655,7 +647,9 @@ class CustomTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                        width: 1, color: UniversalVariables.separatorColor),
+                      width: 1,
+                      color: UniversalVariables.separatorColor,
+                    ),
                   ),
                 ),
                 child: Row(

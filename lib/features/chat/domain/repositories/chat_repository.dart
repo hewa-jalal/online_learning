@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:online_learning/features/chat/data/models/message_model.dart';
-import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
-import 'package:online_learning/features/user/core/errors/failures.dart';
+import '../../data/models/message_model.dart';
+import '../../presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
+import '../../../user/core/errors/failures.dart';
 
 abstract class ChatRepository {
   Future<Either<Failure, Unit>> sendMessage({

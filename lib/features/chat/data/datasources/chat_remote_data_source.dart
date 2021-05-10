@@ -5,9 +5,9 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/core/lecture_task.dart';
-import 'package:online_learning/features/chat/data/models/message_model.dart';
-import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
+import '../../../../core/lecture_task.dart';
+import '../models/message_model.dart';
+import '../../presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
 
 abstract class ChatRemoteDataSource {
   Future<Unit> sendMessage(
@@ -84,7 +84,7 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
         senderId: fromUserId,
         timeStamp: DateTime.now().millisecondsSinceEpoch,
       );
-
+      
       messagesCollection.doc(docRef.id).set(messageModel.toMap());
 
       imageUploaderCubit.setToIdle();

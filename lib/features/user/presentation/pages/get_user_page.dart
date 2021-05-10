@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
-import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import '../../domain/entites/user.dart';
+import '../bloc/user_auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_learning/features/user/presentation/forms/user_id_form.dart';
-import 'package:online_learning/features/user/presentation/pages/user_home_page.dart';
+import '../forms/user_id_form.dart';
+import 'user_home_page.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

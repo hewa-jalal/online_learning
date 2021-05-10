@@ -1,13 +1,12 @@
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/course_page.dart';
-import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
-import 'package:online_learning/features/user/presentation/widgets/course_card.dart';
+import '../../../chat/presentation/ui/pages/chat_page.dart';
+import '../../../lectures/presentation/UI/pages/course_page.dart';
+import '../../../lectures/presentation/bloc/lecture_bloc.dart';
+import '../../domain/entites/user.dart';
+import '../widgets/course_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserHomePage extends StatefulWidget {

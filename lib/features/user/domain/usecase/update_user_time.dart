@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/core/params/user_params.dart';
-import 'package:online_learning/features/user/core/usecase/use_case.dart';
-import 'package:online_learning/features/user/domain/repositories/user_repository.dart';
+import '../../core/errors/failures.dart';
+import '../../core/params/user_params.dart';
+import '../../core/usecase/use_case.dart';
+import '../repositories/user_repository.dart';
 
 @lazySingleton
 class UpdateUserTime extends UseCase<Unit, UserParam> {

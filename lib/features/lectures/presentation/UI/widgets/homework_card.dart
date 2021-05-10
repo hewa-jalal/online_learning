@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
+import '../../../../homeworks/domain/entities/homework_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/submit_homework_page.dart';
-import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import '../pages/submit_homework_page.dart';
+import '../../../../user/presentation/bloc/user_auth_bloc.dart';
 
 class HomeworkCard extends StatelessWidget {
   final HomeworkEntity homework;

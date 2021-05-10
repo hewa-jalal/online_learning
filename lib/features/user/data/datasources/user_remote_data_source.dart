@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/user/core/errors/exceptions.dart';
-import 'package:online_learning/features/user/data/models/user_model.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
+import '../../core/errors/exceptions.dart';
+import '../models/user_model.dart';
+import '../../domain/entites/user.dart';
 
 abstract class UserRemoteDataSource {
   Future<UserModel> getUser(int id);

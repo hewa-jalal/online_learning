@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
+import '../../domain/entities/homework_entity.dart';
 
 class HomeworkModel extends HomeworkEntity {
   final String fileUrl;

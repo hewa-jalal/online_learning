@@ -7,11 +7,11 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mime/mime.dart';
-import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
-import 'package:online_learning/features/lectures/presentation/bloc/lecture_bloc.dart';
-import 'package:online_learning/features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
-import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import '../../../../homeworks/presentation/bloc/homework_bloc.dart';
+import '../../bloc/lecture_bloc.dart';
+import '../../bloc/progress_bloc/progress_bloc.dart';
+import '../../../../user/domain/entites/user.dart';
+import '../../../../user/presentation/bloc/user_auth_bloc.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

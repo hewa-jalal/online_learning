@@ -3,9 +3,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/core/usecase/use_case.dart';
-import 'package:online_learning/features/user/domain/repositories/user_repository.dart';
+import '../../core/errors/failures.dart';
+import '../../core/usecase/use_case.dart';
+import '../repositories/user_repository.dart';
 
 @lazySingleton
 class UserOnlineStatus extends UseCase<Unit, OnlineParams> {

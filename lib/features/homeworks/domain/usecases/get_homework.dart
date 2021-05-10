@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/homeworks/domain/entities/homework_submit_entity.dart';
-import 'package:online_learning/features/homeworks/domain/repository/homework_repository.dart';
-import 'package:online_learning/features/homeworks/domain/usecases/submit_homework.dart';
-import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/core/usecase/use_case.dart';
+import '../entities/homework_submit_entity.dart';
+import '../repository/homework_repository.dart';
+import 'submit_homework.dart';
+import '../../../user/core/errors/failures.dart';
+import '../../../user/core/usecase/use_case.dart';
 
 @lazySingleton
 class GetHomework extends UseCase<HomeworkSubmitEntity, SubmitParams> {

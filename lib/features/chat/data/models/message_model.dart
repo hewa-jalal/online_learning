@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:online_learning/features/chat/domain/entities/message_entity.dart';
+import '../../domain/entities/message_entity.dart';
 
 class MessageModel extends MessageEntity {
   final String message;

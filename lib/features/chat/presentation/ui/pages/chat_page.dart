@@ -11,15 +11,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:octo_image/octo_image.dart';
-import 'package:online_learning/core/universal_variables.dart';
+import '../../../../../core/universal_variables.dart';
 
-import 'package:online_learning/features/chat/data/models/message_model.dart';
-import 'package:online_learning/features/chat/presentation/bloc/chat_bloc.dart';
-import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/submit_homework_page.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
-import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../data/models/message_model.dart';
+import '../../bloc/chat_bloc.dart';
+import '../../bloc/cubit/cubit/imageuploader_cubit.dart';
+import '../../../../lectures/presentation/UI/pages/submit_homework_page.dart';
+import '../../../../user/domain/entites/user.dart';
+import '../../../../user/presentation/bloc/user_auth_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ChatPage extends StatefulWidget {
@@ -35,7 +34,6 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  File _image;
   final _innerDrawerKey = GlobalKey<InnerDrawerState>();
   final _scrollController = ScrollController();
 
@@ -47,7 +45,9 @@ class _ChatPageState extends State<ChatPage> {
     print('imageUploaderCubit.state' + imageUploaderCubit.state.toString());
 
     final chatBloc = context.read<ChatBloc>();
-    chatBloc.add(ChatEvent.getAllMessages());
+    if (ModalRoute.of(context).isCurrent) {
+      chatBloc.add(ChatEvent.getAllMessages());
+    }
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
       return SafeArea(
         child: InnerDrawer(
@@ -67,10 +67,10 @@ class _ChatPageState extends State<ChatPage> {
             body: BlocBuilder<ChatBloc, ChatState>(
               builder: (context, state) {
                 return state.map(
-                  initial: (state) => CircularProgressIndicator(),
+                  initial: (state) =>
+                      Center(child: CircularProgressIndicator()),
                   allMessagesLoaded: (state) {
                     final messages = state.allMessages.reversed.toList();
-
                     return Column(
                       children: [
                         Flexible(
@@ -145,14 +145,6 @@ class _AttachmentSelection extends StatelessWidget {
 
                   Image.file(file);
                 }
-
-                // context.read<ChatBloc>().add(
-                //       ChatEvent.sendImageMessage(
-                //         message: 'message',
-                //         fromUserId: '21',
-                //         imageUrl: 'imageUrl',
-                //       ),
-                //     );
               },
             ),
           ),

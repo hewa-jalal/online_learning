@@ -7,9 +7,9 @@ import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:jitsi_meet/jitsi_meeting_listener.dart';
 import 'package:jitsi_meet/room_name_constraint.dart';
 import 'package:jitsi_meet/room_name_constraint_type.dart';
-import 'package:online_learning/features/chat/video/cubit/video_cubit.dart';
+import 'cubit/video_cubit.dart';
 
-import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import '../../user/presentation/bloc/user_auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubit/video_cubit.dart';

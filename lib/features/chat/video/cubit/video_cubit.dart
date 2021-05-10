@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:online_learning/features/chat/video/video_repository.dart';
+import '../video_repository.dart';
 
 part 'video_state.dart';
 part 'video_cubit.freezed.dart';

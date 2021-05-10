@@ -8,10 +8,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/core/lecture_task.dart';
-import 'package:online_learning/features/lectures/data/models/lecture_model.dart';
+import '../../../../core/lecture_task.dart';
+import '../models/lecture_model.dart';
 
-import 'package:online_learning/features/user/data/models/user_model.dart';
+import '../../../user/data/models/user_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:mime/mime.dart' as mime;
 

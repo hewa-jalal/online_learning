@@ -5,10 +5,10 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/homeworks/data/models/homework_model.dart';
-import 'package:online_learning/features/homeworks/data/models/homework_submit_model.dart';
-import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
-import 'package:online_learning/features/homeworks/domain/entities/homework_submit_entity.dart';
+import '../models/homework_model.dart';
+import '../models/homework_submit_model.dart';
+import '../../domain/entities/homework_entity.dart';
+import '../../domain/entities/homework_submit_entity.dart';
 
 import '../../../../core/lecture_task.dart';
 import '../../../user/data/models/user_model.dart';

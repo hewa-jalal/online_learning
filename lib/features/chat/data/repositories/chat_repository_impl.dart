@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
-import 'package:online_learning/features/chat/data/datasources/chat_remote_data_source.dart';
-import 'package:online_learning/features/chat/data/models/message_model.dart';
+import '../datasources/chat_remote_data_source.dart';
+import '../models/message_model.dart';
 
-import 'package:online_learning/features/chat/domain/repositories/chat_repository.dart';
-import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
-import 'package:online_learning/features/user/core/errors/exceptions.dart';
-import 'package:online_learning/features/user/core/errors/failures.dart';
+import '../../domain/repositories/chat_repository.dart';
+import '../../presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
+import '../../../user/core/errors/exceptions.dart';
+import '../../../user/core/errors/failures.dart';
 
 @LazySingleton(as: ChatRepository)
 class ChatRepositoryImpl extends ChatRepository {

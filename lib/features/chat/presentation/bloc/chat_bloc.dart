@@ -4,10 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/chat/data/models/message_model.dart';
+import '../../data/models/message_model.dart';
 
-import 'package:online_learning/features/chat/domain/repositories/chat_repository.dart';
-import 'package:online_learning/features/chat/presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
+import '../../domain/repositories/chat_repository.dart';
+import 'cubit/cubit/imageuploader_cubit.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';

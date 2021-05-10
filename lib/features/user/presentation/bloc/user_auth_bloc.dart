@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/user/core/params/user_params.dart';
-import 'package:online_learning/features/user/core/usecase/use_case.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
+import '../../core/params/user_params.dart';
+import '../../core/usecase/use_case.dart';
+import '../../domain/entites/user.dart';
 
-import 'package:online_learning/features/user/domain/usecase/get_user.dart';
-import 'package:online_learning/features/user/domain/usecase/get_users.dart';
-import 'package:online_learning/features/user/domain/usecase/update_user_time.dart';
-import 'package:online_learning/features/user/domain/usecase/user_online_status.dart';
+import '../../domain/usecase/get_user.dart';
+import '../../domain/usecase/get_users.dart';
+import '../../domain/usecase/update_user_time.dart';
+import '../../domain/usecase/user_online_status.dart';
 
 part 'user_auth_event.dart';
 part 'user_auth_state.dart';

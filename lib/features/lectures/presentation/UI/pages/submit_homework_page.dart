@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:nil/nil.dart';
-import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
+import '../../../../homeworks/domain/entities/homework_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_learning/features/homeworks/presentation/bloc/homework_bloc.dart';
+import '../../../../homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import '../../../../user/presentation/bloc/user_auth_bloc.dart';
 import 'package:path/path.dart' as path;
 import 'package:faker/faker.dart';
 

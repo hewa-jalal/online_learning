@@ -4,11 +4,11 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:online_learning/features/homeworks/domain/entities/homework_entity.dart';
-import 'package:online_learning/features/homeworks/domain/usecases/get_all_homeworks_by_course.dart';
-import 'package:online_learning/features/homeworks/domain/usecases/get_homework.dart';
-import 'package:online_learning/features/homeworks/domain/usecases/submit_homework.dart';
-import 'package:online_learning/features/homeworks/domain/usecases/upload_homework.dart';
+import '../../domain/entities/homework_entity.dart';
+import '../../domain/usecases/get_all_homeworks_by_course.dart';
+import '../../domain/usecases/get_homework.dart';
+import '../../domain/usecases/submit_homework.dart';
+import '../../domain/usecases/upload_homework.dart';
 
 import '../../../user/core/errors/failures.dart';
 import '../../../user/data/models/user_model.dart';

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/lectures/domain/repository/lectures_repository.dart';
-import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/core/usecase/use_case.dart';
+import '../repository/lectures_repository.dart';
+import '../../../user/core/errors/failures.dart';
+import '../../../user/core/usecase/use_case.dart';
 import 'package:equatable/equatable.dart';
 
 @lazySingleton

@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/core/lecture_task.dart';
+import '../../../../../core/lecture_task.dart';
 
 part 'progress_event.dart';
 part 'progress_state.dart';

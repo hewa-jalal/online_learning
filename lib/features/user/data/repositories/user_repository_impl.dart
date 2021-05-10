@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/user/core/errors/exceptions.dart';
-import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/data/datasources/user_remote_data_source.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
-import 'package:online_learning/features/user/domain/repositories/user_repository.dart';
+import '../../core/errors/exceptions.dart';
+import '../../core/errors/failures.dart';
+import '../datasources/user_remote_data_source.dart';
+import '../../domain/entites/user.dart';
+import '../../domain/repositories/user_repository.dart';
 
 @LazySingleton(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {

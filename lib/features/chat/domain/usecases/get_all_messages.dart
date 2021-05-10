@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/chat/data/models/message_model.dart';
-import 'package:online_learning/features/chat/domain/repositories/chat_repository.dart';
-import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/core/usecase/use_case.dart';
+import '../../data/models/message_model.dart';
+import '../repositories/chat_repository.dart';
+import '../../../user/core/errors/failures.dart';
+import '../../../user/core/usecase/use_case.dart';
 
 @lazySingleton
 class GetAllMessages extends UseCase<List<Message>, NoParams> {

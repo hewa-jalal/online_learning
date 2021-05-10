@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/lectures/data/datasources/lectures_remote_data_source.dart';
-import 'package:online_learning/features/lectures/domain/entities/lecture_entity.dart';
+import '../datasources/lectures_remote_data_source.dart';
+import '../../domain/entities/lecture_entity.dart';
 import 'package:dartz/dartz.dart';
-import 'package:online_learning/features/lectures/domain/repository/lectures_repository.dart';
-import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/data/models/user_model.dart';
+import '../../domain/repository/lectures_repository.dart';
+import '../../../user/core/errors/failures.dart';
+import '../../../user/data/models/user_model.dart';
 
 @LazySingleton(as: LecturesRepository)
 class LecturesRepositoryImpl extends LecturesRepository {

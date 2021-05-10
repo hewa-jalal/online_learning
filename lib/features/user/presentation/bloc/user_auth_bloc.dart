@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:online_learning/features/user/core/errors/failures.dart';
 import '../../core/params/user_params.dart';
 import '../../core/usecase/use_case.dart';
 import '../../domain/entites/user.dart';
@@ -75,7 +77,9 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
         );
         final either = await getUser(UserParam(id: e.id));
         yield either.fold(
-          (failure) => UserAuthState.failure(),
+          (failure) => state.copyWith(
+            authFailureOrSuccessOption: some(unit),
+          ),
           (user) => state.copyWith(
             id: e.id,
             fullName: user.fullName,
@@ -84,6 +88,7 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
             stage: user.stage,
             lastSeenInEpoch: user.lastSeenInEpoch,
             userStatus: UserStatus.done,
+            authFailureOrSuccessOption: none(),
           ),
         );
         // TODO: maybe wrong

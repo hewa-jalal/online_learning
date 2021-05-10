@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
-import 'package:nil/nil.dart';
 import '../../../../homeworks/domain/entities/homework_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../homeworks/presentation/bloc/homework_bloc.dart';
@@ -224,7 +223,6 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
         Text('Your submission file:'),
         BlocBuilder<HomeworkBloc, HomeworkState>(
           builder: (context, state) {
-            // TODO: HERE
             if (state.filePath.isEmpty) {
               return Center(
                 child: ElevatedButton(

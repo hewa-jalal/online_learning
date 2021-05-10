@@ -49,6 +49,9 @@ class _UserFormState extends State<UserForm> {
         }
       },
       builder: (context, state) {
+        if (state.authFailureOrSuccessOption.isSome()) {
+          return Text('isSome');
+        }
         return Form(
           key: _formKey,
           child: SafeArea(

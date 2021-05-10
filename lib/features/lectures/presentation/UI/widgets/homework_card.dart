@@ -26,6 +26,7 @@ class HomeworkCard extends StatelessWidget {
         homework.submittedHomeworks.contains(_userAuthState.id.toString());
     final _dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
     final _jifDate = Jiffy(_dueDate);
+
     return Card(
       color: Color(0xff5F36DA),
       child: ListTile(

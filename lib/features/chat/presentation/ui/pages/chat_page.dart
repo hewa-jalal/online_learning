@@ -54,7 +54,8 @@ class _ChatPageState extends State<ChatPage> {
           swipe: false,
           key: _innerDrawerKey,
           rightAnimationType: InnerDrawerAnimation.quadratic,
-          rightChild: _UsersList(),
+          // rightChild: _UsersList(),
+          rightChild: Container(),
           scaffold: Scaffold(
             appBar: AppBar(
               actions: [

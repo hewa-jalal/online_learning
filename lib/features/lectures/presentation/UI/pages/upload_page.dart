@@ -16,16 +16,17 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UploadPage extends StatefulWidget {
-  final UserEntity user;
-  final String courseTitle;
-  final bool isHomeWork;
-
   const UploadPage({
     Key key,
     @required this.user,
     @required this.courseTitle,
     @required this.isHomeWork,
   }) : super(key: key);
+
+  final String courseTitle;
+  final bool isHomeWork;
+  final UserEntity user;
+
   @override
   _UploadPageState createState() => _UploadPageState();
 }
@@ -33,7 +34,7 @@ class UploadPage extends StatefulWidget {
 class _UploadPageState extends State<UploadPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeworkBloc, HomeworkState>(
+    return BlocConsumer<LectureBloc, LectureState>(
       listener: (context, state) {
         if (state.isSubmitting) {
           context.read<ProgressBloc>().add(ProgressEvent.started());
@@ -95,9 +96,6 @@ class ProgressDialog extends StatelessWidget {
 }
 
 class _UploadForm extends StatefulWidget {
-  final UserEntity user;
-  final String courseTitle;
-  final bool isHomework;
   const _UploadForm({
     Key key,
     @required this.user,
@@ -105,14 +103,22 @@ class _UploadForm extends StatefulWidget {
     @required this.isHomework,
   }) : super(key: key);
 
+  final String courseTitle;
+  final bool isHomework;
+  final UserEntity user;
+
   @override
   _UploadFormState createState() => _UploadFormState();
 }
 
 class _UploadFormState extends State<_UploadForm> {
-  UserEntity get user => widget.user;
-  var title = '';
   var description = '';
+  var title = '';
+
+  UserEntity get user => widget.user;
+
+  bool get isHomework => widget.isHomework;
+
   @override
   Widget build(BuildContext context) {
     final _isFileSelected =
@@ -144,7 +150,7 @@ class _UploadFormState extends State<_UploadForm> {
                   onChanged: (val) => setState(() => description = val.trim()),
                 ),
                 SizedBox(height: _isFileSelected ? 0.02.sh : 0.06.sh),
-                widget.isHomework
+                isHomework
                     ? _HomeworkBottomSelection(
                         title: title,
                         description: description,
@@ -175,10 +181,10 @@ class _HomeworkBottomSelection extends StatefulWidget {
     @required this.description,
   }) : super(key: key);
 
-  final UserEntity user;
   final String courseTitle;
-  final String title;
   final String description;
+  final String title;
+  final UserEntity user;
 
   @override
   __HomeworkBottomSelectionState createState() =>
@@ -186,10 +192,12 @@ class _HomeworkBottomSelection extends StatefulWidget {
 }
 
 class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
-  TimeOfDay _time = TimeOfDay.now().replacing(minute: 30);
   DateTime _dueDate;
   String _formattedString;
+  TimeOfDay _time = TimeOfDay.now().replacing(minute: 30);
+
   String get title => widget.title;
+
   void onTimeChanged(TimeOfDay newTime) {
     setState(() {});
     _time = newTime;
@@ -303,12 +311,6 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
 }
 
 class HomeworkUploadButton extends StatelessWidget {
-  final UserEntity user;
-  final String title;
-  final String courseTitle;
-  final String description;
-  final DateTime dueDate;
-
   const HomeworkUploadButton({
     Key key,
     @required this.user,
@@ -317,6 +319,13 @@ class HomeworkUploadButton extends StatelessWidget {
     @required this.description,
     this.dueDate,
   }) : super(key: key);
+
+  final String courseTitle;
+  final String description;
+  final DateTime dueDate;
+  final String title;
+  final UserEntity user;
+
   @override
   Widget build(BuildContext context) {
     final _homeworkBloc = context.watch<HomeworkBloc>();
@@ -355,10 +364,10 @@ class _LecutreBottomSelection extends StatelessWidget {
     @required this.courseTitle,
   }) : super(key: key);
 
-  final UserEntity user;
   final String courseTitle;
-  final String title;
   final String description;
+  final String title;
+  final UserEntity user;
 
   @override
   Widget build(BuildContext context) {

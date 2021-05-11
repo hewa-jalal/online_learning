@@ -1,3 +1,5 @@
+import 'package:flushbar/flushbar.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -28,30 +30,42 @@ class _UserFormState extends State<UserForm> {
     final _formKey = GlobalKey<FormState>();
     return BlocConsumer<UserAuthBloc, UserAuthState>(
       listener: (context, state) {
-        if (state.userStatus == UserStatus.done) {
-          Get.to(
-            () => UserHomePage(
-              user: UserEntity(
-                id: state.id.toString(),
-                fullName: state.fullName,
-                dept: state.dept,
-                role: state.role,
-                stage: state.stage,
-                lastSeenInEpoch: state.lastSeenInEpoch,
-                isOnline: state.isOnline,
+        state.authFailureOrSuccessOption.fold(
+          () {},
+          (either) {
+            either.fold(
+              (left) => FlushbarHelper.createError(
+                  message: 'No user was found with the id of ${state.user.id}')
+                ..show(context),
+              (user) => Get.to(
+                () => UserHomePage(
+                  user: state.user,
+                ),
               ),
-            ),
-          );
-        } else if (state.userStatus == UserStatus.waiting) {
-          Get.dialog(
-            Lottie.asset('assets/lottie/loading_animation.json'),
-          );
-        }
+            );
+          },
+        );
+        // if (state.userStatus == UserStatus.done) {
+        //   Get.to(
+        //     () => UserHomePage(
+        //       user: UserEntity(
+        //         id: state.id.toString(),
+        //         fullName: state.fullName,
+        //         dept: state.dept,
+        //         role: state.role,
+        //         stage: state.stage,
+        //         lastSeenInEpoch: state.lastSeenInEpoch,
+        //         isOnline: state.isOnline,
+        //       ),
+        //     ),
+        //   );
+        // } else if (state.userStatus == UserStatus.waiting) {
+        //   Get.dialog(
+        //     Lottie.asset('assets/lottie/loading_animation.json'),
+        //   );
+        // }
       },
       builder: (context, state) {
-        if (state.authFailureOrSuccessOption.isSome()) {
-          return Text('isSome');
-        }
         return Form(
           key: _formKey,
           child: SafeArea(
@@ -66,7 +80,7 @@ class _UserFormState extends State<UserForm> {
                           text: ['Learn anywhere'],
                           textStyle: TextStyle(
                             fontSize: 30.0,
-                            fontFamily: "Bobbers",
+                            fontFamily: 'Bobbers',
                             color: Colors.white,
                           ),
                           textAlign: TextAlign.center,

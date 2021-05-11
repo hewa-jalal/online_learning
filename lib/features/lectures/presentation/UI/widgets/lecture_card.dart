@@ -28,7 +28,7 @@ class LectureCard extends StatelessWidget {
     final isFileVideo = lecture.fileType.contains('video');
 
     final isSubmitted =
-        lecture.submittedUsers.contains(_userAuthState.id.toString());
+        lecture.submittedUsers.contains(_userAuthState.user.id.toString());
 
     return ExpansionTileCard(
       contentPadding: EdgeInsets.only(left: 8.0, right: 8.0),
@@ -91,7 +91,7 @@ class LectureCard extends StatelessWidget {
             onChanged: (_) {
               _lectureBloc.add(
                 LectureEvent.submitUser(
-                  userId: _userAuthState.id.toString(),
+                  userId: _userAuthState.user.id.toString(),
                   courseTitle: courseTitle,
                   lectureTitle: lecture.title,
                 ),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+
 import '../../domain/entites/user.dart';
 
 enum UserRole {
@@ -68,6 +69,18 @@ class UserModel extends UserEntity {
       stage: json['stage'],
       lastSeenInEpoch: json['lastSeenInEpoch'],
       isOnline: json['isOnline'],
+    );
+  }
+
+  factory UserModel.empty() {
+    return UserModel(
+      id: '0',
+      fullName: '',
+      role: '',
+      dept: '',
+      stage: 0,
+      lastSeenInEpoch: 0,
+      isOnline: false,
     );
   }
 }

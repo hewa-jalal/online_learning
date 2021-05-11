@@ -704,24 +704,16 @@ class _$UserAuthStateTearOff {
 
 // ignore: unused_element
   _UserAuthState call(
-      {@required int id,
-      @required String role,
-      @required int stage,
-      @required String dept,
-      @required String fullName,
-      @required int lastSeenInEpoch,
-      @required bool isOnline,
-      @required List<UserEntity> users,
-      @required UserStatus userStatus,
-      @required Option<Unit> authFailureOrSuccessOption}) {
+      {@required
+          UserEntity user,
+      @required
+          List<UserEntity> users,
+      @required
+          UserStatus userStatus,
+      @required
+          Option<Either<Failure, UserEntity>> authFailureOrSuccessOption}) {
     return _UserAuthState(
-      id: id,
-      role: role,
-      stage: stage,
-      dept: dept,
-      fullName: fullName,
-      lastSeenInEpoch: lastSeenInEpoch,
-      isOnline: isOnline,
+      user: user,
       users: users,
       userStatus: userStatus,
       authFailureOrSuccessOption: authFailureOrSuccessOption,
@@ -735,16 +727,10 @@ const $UserAuthState = _$UserAuthStateTearOff();
 
 /// @nodoc
 mixin _$UserAuthState {
-  int get id;
-  String get role;
-  int get stage;
-  String get dept;
-  String get fullName;
-  int get lastSeenInEpoch;
-  bool get isOnline;
+  UserEntity get user;
   List<UserEntity> get users;
   UserStatus get userStatus;
-  Option<Unit> get authFailureOrSuccessOption;
+  Option<Either<Failure, UserEntity>> get authFailureOrSuccessOption;
 
   @JsonKey(ignore: true)
   $UserAuthStateCopyWith<UserAuthState> get copyWith;
@@ -756,16 +742,10 @@ abstract class $UserAuthStateCopyWith<$Res> {
           UserAuthState value, $Res Function(UserAuthState) then) =
       _$UserAuthStateCopyWithImpl<$Res>;
   $Res call(
-      {int id,
-      String role,
-      int stage,
-      String dept,
-      String fullName,
-      int lastSeenInEpoch,
-      bool isOnline,
+      {UserEntity user,
       List<UserEntity> users,
       UserStatus userStatus,
-      Option<Unit> authFailureOrSuccessOption});
+      Option<Either<Failure, UserEntity>> authFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -779,33 +759,19 @@ class _$UserAuthStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object role = freezed,
-    Object stage = freezed,
-    Object dept = freezed,
-    Object fullName = freezed,
-    Object lastSeenInEpoch = freezed,
-    Object isOnline = freezed,
+    Object user = freezed,
     Object users = freezed,
     Object userStatus = freezed,
     Object authFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as int,
-      role: role == freezed ? _value.role : role as String,
-      stage: stage == freezed ? _value.stage : stage as int,
-      dept: dept == freezed ? _value.dept : dept as String,
-      fullName: fullName == freezed ? _value.fullName : fullName as String,
-      lastSeenInEpoch: lastSeenInEpoch == freezed
-          ? _value.lastSeenInEpoch
-          : lastSeenInEpoch as int,
-      isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool,
+      user: user == freezed ? _value.user : user as UserEntity,
       users: users == freezed ? _value.users : users as List<UserEntity>,
       userStatus:
           userStatus == freezed ? _value.userStatus : userStatus as UserStatus,
       authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
           ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption as Option<Unit>,
+          : authFailureOrSuccessOption as Option<Either<Failure, UserEntity>>,
     ));
   }
 }
@@ -818,16 +784,10 @@ abstract class _$UserAuthStateCopyWith<$Res>
       __$UserAuthStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
-      String role,
-      int stage,
-      String dept,
-      String fullName,
-      int lastSeenInEpoch,
-      bool isOnline,
+      {UserEntity user,
       List<UserEntity> users,
       UserStatus userStatus,
-      Option<Unit> authFailureOrSuccessOption});
+      Option<Either<Failure, UserEntity>> authFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -843,33 +803,19 @@ class __$UserAuthStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object role = freezed,
-    Object stage = freezed,
-    Object dept = freezed,
-    Object fullName = freezed,
-    Object lastSeenInEpoch = freezed,
-    Object isOnline = freezed,
+    Object user = freezed,
     Object users = freezed,
     Object userStatus = freezed,
     Object authFailureOrSuccessOption = freezed,
   }) {
     return _then(_UserAuthState(
-      id: id == freezed ? _value.id : id as int,
-      role: role == freezed ? _value.role : role as String,
-      stage: stage == freezed ? _value.stage : stage as int,
-      dept: dept == freezed ? _value.dept : dept as String,
-      fullName: fullName == freezed ? _value.fullName : fullName as String,
-      lastSeenInEpoch: lastSeenInEpoch == freezed
-          ? _value.lastSeenInEpoch
-          : lastSeenInEpoch as int,
-      isOnline: isOnline == freezed ? _value.isOnline : isOnline as bool,
+      user: user == freezed ? _value.user : user as UserEntity,
       users: users == freezed ? _value.users : users as List<UserEntity>,
       userStatus:
           userStatus == freezed ? _value.userStatus : userStatus as UserStatus,
       authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
           ? _value.authFailureOrSuccessOption
-          : authFailureOrSuccessOption as Option<Unit>,
+          : authFailureOrSuccessOption as Option<Either<Failure, UserEntity>>,
     ));
   }
 }
@@ -877,74 +823,35 @@ class __$UserAuthStateCopyWithImpl<$Res>
 /// @nodoc
 class _$_UserAuthState implements _UserAuthState {
   const _$_UserAuthState(
-      {@required this.id,
-      @required this.role,
-      @required this.stage,
-      @required this.dept,
-      @required this.fullName,
-      @required this.lastSeenInEpoch,
-      @required this.isOnline,
+      {@required this.user,
       @required this.users,
       @required this.userStatus,
       @required this.authFailureOrSuccessOption})
-      : assert(id != null),
-        assert(role != null),
-        assert(stage != null),
-        assert(dept != null),
-        assert(fullName != null),
-        assert(lastSeenInEpoch != null),
-        assert(isOnline != null),
+      : assert(user != null),
         assert(users != null),
         assert(userStatus != null),
         assert(authFailureOrSuccessOption != null);
 
   @override
-  final int id;
-  @override
-  final String role;
-  @override
-  final int stage;
-  @override
-  final String dept;
-  @override
-  final String fullName;
-  @override
-  final int lastSeenInEpoch;
-  @override
-  final bool isOnline;
+  final UserEntity user;
   @override
   final List<UserEntity> users;
   @override
   final UserStatus userStatus;
   @override
-  final Option<Unit> authFailureOrSuccessOption;
+  final Option<Either<Failure, UserEntity>> authFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'UserAuthState(id: $id, role: $role, stage: $stage, dept: $dept, fullName: $fullName, lastSeenInEpoch: $lastSeenInEpoch, isOnline: $isOnline, users: $users, userStatus: $userStatus, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'UserAuthState(user: $user, users: $users, userStatus: $userStatus, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _UserAuthState &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.role, role) ||
-                const DeepCollectionEquality().equals(other.role, role)) &&
-            (identical(other.stage, stage) ||
-                const DeepCollectionEquality().equals(other.stage, stage)) &&
-            (identical(other.dept, dept) ||
-                const DeepCollectionEquality().equals(other.dept, dept)) &&
-            (identical(other.fullName, fullName) ||
-                const DeepCollectionEquality()
-                    .equals(other.fullName, fullName)) &&
-            (identical(other.lastSeenInEpoch, lastSeenInEpoch) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastSeenInEpoch, lastSeenInEpoch)) &&
-            (identical(other.isOnline, isOnline) ||
-                const DeepCollectionEquality()
-                    .equals(other.isOnline, isOnline)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.users, users) ||
                 const DeepCollectionEquality().equals(other.users, users)) &&
             (identical(other.userStatus, userStatus) ||
@@ -960,13 +867,7 @@ class _$_UserAuthState implements _UserAuthState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(role) ^
-      const DeepCollectionEquality().hash(stage) ^
-      const DeepCollectionEquality().hash(dept) ^
-      const DeepCollectionEquality().hash(fullName) ^
-      const DeepCollectionEquality().hash(lastSeenInEpoch) ^
-      const DeepCollectionEquality().hash(isOnline) ^
+      const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(users) ^
       const DeepCollectionEquality().hash(userStatus) ^
       const DeepCollectionEquality().hash(authFailureOrSuccessOption);
@@ -979,37 +880,24 @@ class _$_UserAuthState implements _UserAuthState {
 
 abstract class _UserAuthState implements UserAuthState {
   const factory _UserAuthState(
-      {@required int id,
-      @required String role,
-      @required int stage,
-      @required String dept,
-      @required String fullName,
-      @required int lastSeenInEpoch,
-      @required bool isOnline,
-      @required List<UserEntity> users,
-      @required UserStatus userStatus,
-      @required Option<Unit> authFailureOrSuccessOption}) = _$_UserAuthState;
+          {@required
+              UserEntity user,
+          @required
+              List<UserEntity> users,
+          @required
+              UserStatus userStatus,
+          @required
+              Option<Either<Failure, UserEntity>> authFailureOrSuccessOption}) =
+      _$_UserAuthState;
 
   @override
-  int get id;
-  @override
-  String get role;
-  @override
-  int get stage;
-  @override
-  String get dept;
-  @override
-  String get fullName;
-  @override
-  int get lastSeenInEpoch;
-  @override
-  bool get isOnline;
+  UserEntity get user;
   @override
   List<UserEntity> get users;
   @override
   UserStatus get userStatus;
   @override
-  Option<Unit> get authFailureOrSuccessOption;
+  Option<Either<Failure, UserEntity>> get authFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$UserAuthStateCopyWith<_UserAuthState> get copyWith;

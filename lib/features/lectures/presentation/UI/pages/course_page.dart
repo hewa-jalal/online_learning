@@ -86,7 +86,7 @@ class _CoursePageState extends State<CoursePage>
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: BlocBuilder<VideoCubit, VideoState>(
                 builder: (context, state) {
-                  if (_userAuthState.role == 'teacher') {
+                  if (_userAuthState.user.role == 'teacher') {
                     return _TeacherVideoButton(courseTitle: courseTitle);
                   }
                   return state.map(
@@ -128,7 +128,8 @@ class _CoursePageState extends State<CoursePage>
             );
           },
         ),
-        floatingActionButton: _userAuthState.role == 'teacher' ? _fab() : null,
+        floatingActionButton:
+            _userAuthState.user.role == 'teacher' ? _fab() : null,
       ),
     );
   }

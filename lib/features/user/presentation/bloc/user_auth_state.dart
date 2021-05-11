@@ -10,27 +10,15 @@ enum UserStatus {
 @freezed
 abstract class UserAuthState with _$UserAuthState {
   const factory UserAuthState({
-    @required int id,
-    @required String role,
-    @required int stage,
-    @required String dept,
-    @required String fullName,
-    @required int lastSeenInEpoch,
-    @required bool isOnline,
+    @required UserEntity user,
     @required List<UserEntity> users,
     @required UserStatus userStatus,
-    @required Option<Unit> authFailureOrSuccessOption,
+    @required Option<Either<Failure, UserEntity>> authFailureOrSuccessOption,
   }) = _UserAuthState;
 
   factory UserAuthState.initial() => UserAuthState(
-        id: 0,
-        fullName: '',
-        dept: '',
-        role: '',
-        stage: 0,
-        lastSeenInEpoch: 0,
+        user: UserModel.empty(),
         users: List.empty(),
-        isOnline: false,
         userStatus: UserStatus.initial,
         authFailureOrSuccessOption: none(),
       );

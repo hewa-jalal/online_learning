@@ -12,8 +12,6 @@ import 'cubit/video_cubit.dart';
 import '../../user/presentation/bloc/user_auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'cubit/video_cubit.dart';
-
 class VideoChatPage extends StatefulWidget {
   final String courseTitle;
 
@@ -212,7 +210,7 @@ class _VideoChatPageState extends State<VideoChatPage> {
         ..room = roomText.text
         ..serverURL = serverUrl
         ..subject = subjectText.text
-        ..userDisplayName = _userAuthState.fullName
+        ..userDisplayName = _userAuthState.user.fullName
         ..userEmail = emailText.text
         ..audioOnly = isAudioOnly
         ..audioMuted = isAudioMuted
@@ -223,8 +221,8 @@ class _VideoChatPageState extends State<VideoChatPage> {
       _videoCubit.addVideoRoomUrl(
         roomText: roomText.text,
         courseTitle: courseTitle,
-        dept: _userAuthState.dept,
-        stage: _userAuthState.stage,
+        dept: _userAuthState.user.dept,
+        stage: _userAuthState.user.stage,
       );
 
       debugPrint("JitsiMeetingOptions: $options");

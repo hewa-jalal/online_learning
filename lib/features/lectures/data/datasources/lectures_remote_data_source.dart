@@ -102,9 +102,8 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
       );
       final metaData =
           await storageRef.lecturesStorage(lectureTitle).getMetadata();
-      print('metadata contentType ========>  ' + metaData.contentType);
-      final memeString = mime.lookupMimeType(metaData.contentType);
-      print('MIME: $memeString');
+
+      // final memeString = mime.lookupMimeType(metaData.contentType);
 
       final doc = userCoursesCollection.doc(courseTitle);
       // adding lecture to document
@@ -112,6 +111,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
       doc.collection('lectures').doc(lectureTitle).set({
         'fileType': metaData.contentType,
       }, SetOptions(merge: true));
+
       // adding user id that uploaded the lecture
       doc.set({'uploader_id': user.id}, SetOptions(merge: true));
     });

@@ -23,7 +23,7 @@ class HomeworkCard extends StatelessWidget {
 
     // we need toString() method as it's a list of strings
     final _isSubmitted =
-        homework.submittedHomeworks.contains(_userAuthState.id.toString());
+        homework.submittedHomeworks.contains(_userAuthState.user.id.toString());
     final _dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
     final _jifDate = Jiffy(_dueDate);
 

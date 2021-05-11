@@ -166,7 +166,7 @@ class _NotSubmittedHomeworkState extends State<NotSubmittedHomework> {
             onPressed: () => _isFileSelected
                 ? _homeworkBloc.add(
                     HomeworkEvent.submitHomework(
-                      userId: _userAuthState.id.toString(),
+                      userId: _userAuthState.user.id.toString(),
                       fileUrl: _homeworkBloc.state.filePath,
                       courseTitle: widget.courseTitle,
                       note: note,
@@ -328,7 +328,7 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
             onPressed: () {
               _homeworkBloc.add(
                 HomeworkEvent.submitHomework(
-                  userId: _userAuthState.id.toString(),
+                  userId: _userAuthState.user.id.toString(),
                   fileUrl: _homeworkBloc.state.filePath,
                   courseTitle: widget.courseTitle,
                   note: _note,

@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 import '../../core/params/user_params.dart';
 import '../../core/usecase/use_case.dart';
 import '../../domain/entites/user.dart';
@@ -72,23 +73,22 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
         yield state.copyWith();
       },
       getUserById: (e) async* {
+        state.user;
         yield state.copyWith(
           userStatus: UserStatus.waiting,
+          // to display the id in snackbar
+          user: state.user.copyWith(id: e.id.toString()),
+          authFailureOrSuccessOption: none(),
         );
         final either = await getUser(UserParam(id: e.id));
         yield either.fold(
           (failure) => state.copyWith(
-            authFailureOrSuccessOption: some(unit),
+            authFailureOrSuccessOption: some(either),
           ),
           (user) => state.copyWith(
-            id: e.id,
-            fullName: user.fullName,
-            dept: user.dept,
-            role: user.role,
-            stage: user.stage,
-            lastSeenInEpoch: user.lastSeenInEpoch,
+            user: user,
             userStatus: UserStatus.done,
-            authFailureOrSuccessOption: none(),
+            authFailureOrSuccessOption: some(either),
           ),
         );
         // TODO: maybe wrong
@@ -105,10 +105,11 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
         );
       },
       updateUserTime: (e) async* {
-        updateUserTime(UserParam(id: state.id));
+        updateUserTime(UserParam(id: int.parse(state.user.id)));
       },
       updateUserOnlineStatus: (e) async* {
-        userOnlineStatus(OnlineParams(id: state.id, isOnline: e.isOnline));
+        userOnlineStatus(
+            OnlineParams(id: int.parse(state.user.id), isOnline: e.isOnline));
       },
     );
   }

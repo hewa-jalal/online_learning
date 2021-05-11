@@ -25,4 +25,24 @@ class UserEntity extends Equatable {
 
   @override
   bool get stringify => true;
+
+  UserEntity copyWith({
+    String fullName,
+    String id,
+    String role,
+    String dept,
+    int stage,
+    int lastSeenInEpoch,
+    bool isOnline,
+  }) {
+    return UserEntity(
+      fullName: fullName ?? this.fullName,
+      id: id ?? this.id,
+      role: role ?? this.role,
+      dept: dept ?? this.dept,
+      stage: stage ?? this.stage,
+      lastSeenInEpoch: lastSeenInEpoch ?? this.lastSeenInEpoch,
+      isOnline: isOnline ?? this.isOnline,
+    );
+  }
 }

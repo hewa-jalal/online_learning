@@ -37,11 +37,27 @@ class _ChatPageState extends State<ChatPage> {
   final _innerDrawerKey = GlobalKey<InnerDrawerState>();
   final _scrollController = ScrollController();
 
+  @override
+  void initState() {
+    super.initState();
+
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    // });
+    // Timer.periodic(Duration(milliseconds: 100), (timer) {
+    //   if (mounted ) {
+    //     _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    //   } else {
+    //     timer.cancel();
+    //   }
+    // });
+  }
+
   UserEntity get user => widget.userEntity;
 
   @override
   Widget build(BuildContext context) {
-    final imageUploaderCubit = context.watch<ImageUploaderCubit>();
+    final imageUploaderCubit = context.read<ImageUploaderCubit>();
     print('imageUploaderCubit.state' + imageUploaderCubit.state.toString());
 
     final chatBloc = context.read<ChatBloc>();
@@ -430,30 +446,15 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                   ),
                 );
                 _controller.clear();
-                Timer(
-                  Duration(milliseconds: 100),
-                  () {
-                    super.setState(() {
-                      widget.chatListController.animateTo(
-                        widget.chatListController.position.maxScrollExtent +
-                            600,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.easeIn,
-                      );
-                    });
-                  },
-                );
 
-                // SchedulerBinding.instance.addPostFrameCallback((_) {
-                //   super.setState(() {
-                //     widget.chatListController.animateTo(
-                //       widget.chatListController.position.maxScrollExtent + 200,
-                //       duration: const Duration(milliseconds: 200),
-                //       curve: Curves.easeIn,
-                //     );
-                //   });
-                //   setState(() {});
-                // });
+                Timer.periodic(Duration(milliseconds: 100), (timer) {
+                  if (mounted && widget.chatListController.hasClients) {
+                    widget.chatListController.jumpTo(
+                        widget.chatListController.position.maxScrollExtent);
+                  } else {
+                    timer.cancel();
+                  }
+                });
               },
             ),
           )

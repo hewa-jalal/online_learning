@@ -19,7 +19,6 @@ import '../../../user/data/models/user_model.dart';
 
 import '../../../user/core/errors/failures.dart';
 import '../../data/models/lecture_model.dart';
-import '../../domain/entities/lecture_entity.dart';
 
 part 'lecture_event.dart';
 part 'lecture_state.dart';
@@ -187,17 +186,23 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
           ),
           (lectures) => state.copyWith(
             lectures: lectures,
+            isSubmitting: false,
           ),
         );
       },
       getAllLecturesByCourse: (e) async* {
+        // yield state.copyWith(
+        //   isSubmitting: true,
+        // );
         final either = await getAllLecturesByCourse(e.courseTitle);
         yield either.fold(
           (failure) => state.copyWith(
             lectureFailureOrSuccessOption: none(),
+            isSubmitting: false,
           ),
           (lectures) => state.copyWith(
             lectures: lectures,
+            isSubmitting: false,
           ),
         );
       },

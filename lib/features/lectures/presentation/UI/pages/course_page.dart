@@ -222,22 +222,23 @@ class _LecturesList extends StatelessWidget {
     }
     return BlocBuilder<LectureBloc, LectureState>(
       builder: (context, state) {
+        print('lecutres state => ${state.isSubmitting}');
+
         if (state.isSubmitting) {
           return Center(child: CircularProgressIndicator());
-        } else {
-          final lectures = state.lectures;
-          return lectures.length > 0
-              ? ListView.builder(
-                  itemCount: lectures.length,
-                  itemBuilder: (context, index) {
-                    return LectureCard(
-                      lecture: lectures[index],
-                      courseTitle: courseTitle,
-                    );
-                  },
-                )
-              : _LectureEmptyWidget();
         }
+        final lectures = state.lectures;
+        return lectures.length > 0
+            ? ListView.builder(
+                itemCount: lectures.length,
+                itemBuilder: (context, index) {
+                  return LectureCard(
+                    lecture: lectures[index],
+                    courseTitle: courseTitle,
+                  );
+                },
+              )
+            : _LectureEmptyWidget();
       },
     );
   }
@@ -259,6 +260,9 @@ class _HomeworksList extends StatelessWidget {
     }
     return BlocBuilder<HomeworkBloc, HomeworkState>(
       builder: (context, state) {
+        if (state.isSubmitting) {
+          return Center(child: CircularProgressIndicator());
+        }
         final homeworks = state.homeworks;
         return homeworks.length > 0
             ? ListView.builder(

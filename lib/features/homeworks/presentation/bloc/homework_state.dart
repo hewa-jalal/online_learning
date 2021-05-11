@@ -13,6 +13,7 @@ abstract class HomeworkState with _$HomeworkState {
     bool isSubmitting,
     Option<Either<HomeworkFailure, Unit>> homeworkFailureOrSuccessOption,
   }) = _HomeworkState;
+
   factory HomeworkState.initial() => HomeworkState(
         title: '',
         courseTitle: '',

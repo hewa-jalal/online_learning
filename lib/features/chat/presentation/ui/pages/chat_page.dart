@@ -291,6 +291,7 @@ class _ChatRowMe extends StatelessWidget {
           ),
           style: styleMe,
         ),
+
         //* no need for avatar when it's you
 
         // CircleAvatar(
@@ -392,7 +393,7 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                 msg = val.trim();
               },
               decoration: InputDecoration(
-                hintText: "Type a message",
+                hintText: 'Type a message',
                 hintStyle: TextStyle(
                   color: UniversalVariables.greyColor,
                 ),

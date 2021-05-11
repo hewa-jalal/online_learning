@@ -77,7 +77,11 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
         );
       },
       getAllHomeworksByCourse: (e) async* {
-        yield state.copyWith(isSubmitting: true);
+        // only show loading for the first time
+        if (state.homeworks.isEmpty) {
+          yield state.copyWith(isSubmitting: true);
+        }
+
         final either = await getAllHomeworksByCourse(
           e.courseTitle,
         );

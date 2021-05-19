@@ -84,7 +84,7 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
         senderId: fromUserId,
         timeStamp: DateTime.now().millisecondsSinceEpoch,
       );
-      
+
       messagesCollection.doc(docRef.id).set(messageModel.toMap());
 
       imageUploaderCubit.setToIdle();

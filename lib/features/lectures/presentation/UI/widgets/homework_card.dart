@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../../../../homeworks/domain/entities/homework_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../pages/submit_homework_page.dart';
@@ -41,8 +41,8 @@ class HomeworkCard extends StatelessWidget {
         ),
         trailing: IconButton(
           icon: _isSubmitted
-              ? Icon(Feather.edit_2)
-              : Icon(MaterialIcons.arrow_forward),
+              ? Icon(MdiIcons.fileEdit)
+              : Icon(MdiIcons.arrowRight),
           onPressed: () => Get.to(
             () => SubmitHomeworkPage(
               homework: homework,

@@ -47,7 +47,7 @@ class LectureModel extends LectureEntity {
   }
 
   static LectureModel fromSnapshot(
-    DocumentSnapshot snap, [
+    DocumentSnapshot<Map<String, dynamic>> snap, [
     List<String> submittedUsersList,
   ]) {
     final data = snap.data();

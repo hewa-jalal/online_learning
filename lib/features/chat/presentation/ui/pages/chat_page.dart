@@ -8,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:nil/nil.dart';
 import 'package:octo_image/octo_image.dart';
 import '../../../../../core/universal_variables.dart';
 
@@ -77,7 +79,7 @@ class _ChatPageState extends State<ChatPage> {
               actions: [
                 IconButton(
                   onPressed: () => _innerDrawerKey.currentState.open(),
-                  icon: Icon(Feather.users),
+                  icon: Icon(FontAwesomeIcons.users),
                 ),
               ],
             ),
@@ -193,14 +195,17 @@ class _MessagesListWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         final msg = messages[index];
         if (msg is ImageMessage) {
+          print('ImageUrl ======> ${msg.imageUrl}');
           return Bubble(
             child: AspectRatio(
               aspectRatio: 4 / 3,
+              // child: CachedNetworkImage(
+              //   imageUrl: msg.imageUrl,
+              // ),
               child: OctoImage(
-                image: Image.network(msg.imageUrl).image,
-                placeholderBuilder: (context) =>
-                    Center(child: CircularProgressIndicator()),
-              ),
+                  image: CachedNetworkImageProvider(msg.imageUrl),
+                  progressIndicatorBuilder:
+                      OctoProgressIndicator.circularProgressIndicator()),
             ),
             style: BubbleStyle(
               nip: BubbleNip.rightCenter,
@@ -360,7 +365,7 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
   @override
   Widget build(BuildContext context) {
     final imageUploaderCubit = context.watch<ImageUploaderCubit>();
-    final chatBloc = context.read<ChatBloc>();
+    final chatBloc = context.watch<ChatBloc>();
 
     return Container(
       padding: EdgeInsets.all(10),

@@ -46,7 +46,7 @@ class UserModel extends UserEntity {
     };
   }
 
-  factory UserModel.fromSnapshot(DocumentSnapshot snap) {
+  factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snap) {
     final snapData = snap.data();
 
     return UserModel(

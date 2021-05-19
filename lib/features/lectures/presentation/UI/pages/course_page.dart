@@ -1,8 +1,8 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../../../../chat/video/cubit/video_cubit.dart';
 import '../../../../chat/video/video_chat_page.dart';
 import '../../../../homeworks/presentation/bloc/homework_bloc.dart';
@@ -170,7 +170,7 @@ class _VideoButton extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(MaterialIcons.videocam_off, size: 60),
+                Icon(MdiIcons.videoBox, size: 60),
                 Text(
                   'currently there is no live lecture',
                   style: TextStyle(
@@ -291,7 +291,7 @@ class _LectureEmptyWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
-          Entypo.text_document,
+          MdiIcons.text,
           size: 0.2.sh,
           color: Colors.blueGrey[100],
         ),
@@ -319,7 +319,7 @@ class _HomeworkEmptyWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
-          Entypo.text_document,
+          MdiIcons.text,
           size: 0.2.sh,
           color: Colors.blueGrey[100],
         ),

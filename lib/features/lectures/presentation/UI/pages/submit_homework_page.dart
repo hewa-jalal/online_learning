@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../../../../homeworks/domain/entities/homework_entity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../homeworks/presentation/bloc/homework_bloc.dart';
@@ -150,11 +150,11 @@ class _NotSubmittedHomeworkState extends State<NotSubmittedHomework> {
         if (_isFileSelected) ...[
           ListTile(
             enabled: true,
-            leading: Icon(MaterialCommunityIcons.file_pdf),
+            leading: Icon(MdiIcons.filePdf),
             title: Text(_homeworkBloc.state.filePath.name),
             trailing: IconButton(
               onPressed: () => _homeworkBloc.add(HomeworkEvent.started()),
-              icon: Icon(MaterialCommunityIcons.close_box),
+              icon: Icon(MdiIcons.closeBox),
             ),
           ),
           SizedBox(height: 0.04.sh)
@@ -235,7 +235,7 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
             }
             return ListTile(
               enabled: true,
-              leading: Icon(MaterialCommunityIcons.file_pdf),
+              leading: Icon(MdiIcons.filePdf),
               title: Text(_homeworkBloc.state.filePath.name),
               // title: Text(faker.person.name()),
               trailing: IconButton(
@@ -244,7 +244,7 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
                     _DeleteFileSubmissionDialog(),
                   );
                 },
-                icon: Icon(MaterialCommunityIcons.close_box),
+                icon: Icon(MdiIcons.closeBox),
               ),
             );
           },

@@ -25,10 +25,10 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
     @required this.getHomework,
   }) : super(HomeworkState.initial());
 
-  final UploadHomework uploadHomework;
   final GetAllHomeworksByCourse getAllHomeworksByCourse;
-  final SubmitHomework submitHomework;
   final GetHomework getHomework;
+  final SubmitHomework submitHomework;
+  final UploadHomework uploadHomework;
 
   @override
   Stream<HomeworkState> mapEventToState(

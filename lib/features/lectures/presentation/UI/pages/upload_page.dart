@@ -3,7 +3,8 @@ import 'package:date_picker_timeline/extra/dimen.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mime/mime.dart';
@@ -277,7 +278,7 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
                 tileColor: Color(0xff5F36DA),
                 enabled: true,
                 leading: Icon(
-                  MaterialCommunityIcons.file_pdf,
+                  MdiIcons.filePdf,
                   color: Colors.white,
                 ),
                 title: Text(
@@ -289,7 +290,7 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
                 trailing: IconButton(
                   onPressed: () => _homeworkBloc.add(HomeworkEvent.started()),
                   icon: Icon(
-                    MaterialCommunityIcons.close_box,
+                    MdiIcons.closeBox,
                     color: Colors.white,
                   ),
                 ),
@@ -390,12 +391,12 @@ class _LecutreBottomSelection extends StatelessWidget {
             children: [
               ListTile(
                 enabled: true,
-                leading: Icon(MaterialCommunityIcons.file_pdf),
+                leading: Icon(MdiIcons.filePdf),
                 title: Text(fileName),
                 trailing: IconButton(
                   onPressed: () =>
                       context.read<LectureBloc>().add(LectureEvent.started()),
-                  icon: Icon(MaterialCommunityIcons.close_box),
+                  icon: Icon(MdiIcons.closeBox),
                 ),
               ),
               ElevatedButton(

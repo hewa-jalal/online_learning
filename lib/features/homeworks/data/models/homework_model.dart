@@ -46,7 +46,7 @@ class HomeworkModel extends HomeworkEntity {
   }
 
   static HomeworkModel fromSnapshot(
-    DocumentSnapshot snap, [
+    DocumentSnapshot<Map<String, dynamic>> snap, [
     List<String> submittedUsersList,
   ]) {
     final data = snap.data();

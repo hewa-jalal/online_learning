@@ -29,8 +29,10 @@ class MessageModel extends MessageEntity {
     };
   }
 
-  factory MessageModel.fromSnapshot(DocumentSnapshot snap) {
+  factory MessageModel.fromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> snap) {
     final snapData = snap.data();
+
     return MessageModel(
       message: snapData['message'],
       fromUserId: snapData['fromUserId'],
@@ -48,7 +50,7 @@ abstract class Message {
     @required this.senderId,
   });
 
-  factory Message.fromFirestore(DocumentSnapshot doc) {
+  factory Message.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
     final int type = doc.data()['type'];
     print('type $type');
     Message message;
@@ -82,7 +84,8 @@ class TextMessage extends Message {
           senderId: senderId,
         );
 
-  factory TextMessage.fromFirestore(DocumentSnapshot doc) {
+  factory TextMessage.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data();
     return TextMessage(
       data['text'],
@@ -114,7 +117,8 @@ class ImageMessage extends Message {
           senderId: senderId,
         );
 
-  factory ImageMessage.fromFirestore(DocumentSnapshot doc) {
+  factory ImageMessage.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data();
     return ImageMessage(
       timeStamp: data['timeStamp'],
@@ -143,7 +147,8 @@ class VideoMessage extends Message {
           senderId: senderId,
         );
 
-  factory VideoMessage.fromFirestore(DocumentSnapshot doc) {
+  factory VideoMessage.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data();
     return VideoMessage(
       data['videoUrl'],
@@ -172,7 +177,8 @@ class FileMessage extends Message {
           senderId: senderId,
         );
 
-  factory FileMessage.fromFirestore(DocumentSnapshot doc) {
+  factory FileMessage.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data();
     return FileMessage(
       data['fileUrl'],

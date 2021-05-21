@@ -451,7 +451,7 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                   ),
                 );
                 _controller.clear();
-
+                setState(() {});
                 Timer.periodic(Duration(milliseconds: 100), (timer) {
                   if (mounted && widget.chatListController.hasClients) {
                     widget.chatListController.jumpTo(

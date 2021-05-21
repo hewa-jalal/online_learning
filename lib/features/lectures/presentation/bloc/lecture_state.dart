@@ -20,13 +20,13 @@ part of 'lecture_bloc.dart';
 @freezed
 abstract class LectureState with _$LectureState {
   const factory LectureState({
-    @required LectureEntity lecture,
-    @required String userId,
-    @required String filePath,
-    @required bool isSubmitting,
-    @required List<LectureEntity> lectures,
-    @required List<String> courseIds,
-    @required
+    required LectureEntity lecture,
+    required String userId,
+    required String filePath,
+    required bool isSubmitting,
+    required List<LectureEntity> lectures,
+    required List<String> courseIds,
+    required
         Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption,
   }) = _LectureState;
 

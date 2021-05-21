@@ -11,7 +11,7 @@ class Ticker {
 
 @lazySingleton
 class CustomUploadTask {
-  Task task;
+  late Task task;
 
   Stream<TaskSnapshot> progress() => task.snapshotEvents;
 

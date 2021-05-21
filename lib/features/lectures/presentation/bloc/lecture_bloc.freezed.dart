@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'lecture_bloc.dart';
 
@@ -9,25 +9,25 @@ part of 'lecture_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$LectureEventTearOff {
   const _$LectureEventTearOff();
 
-// ignore: unused_element
   _Started started() {
     return const _Started();
   }
 
-// ignore: unused_element
   _SelectFile selectFile() {
     return const _SelectFile();
   }
 
-// ignore: unused_element
   _DownloadLecture downloadLecture(
-      {@required String fileUrl,
-      @required String courseTitle,
-      @required String lectureTitle}) {
+      {required String fileUrl,
+      required String courseTitle,
+      required String lectureTitle}) {
     return _DownloadLecture(
       fileUrl: fileUrl,
       courseTitle: courseTitle,
@@ -35,13 +35,12 @@ class _$LectureEventTearOff {
     );
   }
 
-// ignore: unused_element
   _UploadLecture uploadLecture(
-      {@required UserModel user,
-      @required String title,
-      @required String courseTitle,
-      @required String filePath,
-      String description}) {
+      {required UserModel user,
+      required String title,
+      required String courseTitle,
+      required String filePath,
+      String? description}) {
     return _UploadLecture(
       user: user,
       title: title,
@@ -51,36 +50,31 @@ class _$LectureEventTearOff {
     );
   }
 
-// ignore: unused_element
   _GetAllLectures getAllLectures() {
     return const _GetAllLectures();
   }
 
-// ignore: unused_element
   _GetAllLecturesByCourse getAllLecturesByCourse(
-      {@required String courseTitle}) {
+      {required String courseTitle}) {
     return _GetAllLecturesByCourse(
       courseTitle: courseTitle,
     );
   }
 
-// ignore: unused_element
   _GetAllCoursesByUserId getAllCoursesByUserId() {
     return const _GetAllCoursesByUserId();
   }
 
-// ignore: unused_element
-  _CreateCourse createCourse({@required String courseTitle}) {
+  _CreateCourse createCourse({required String courseTitle}) {
     return _CreateCourse(
       courseTitle: courseTitle,
     );
   }
 
-// ignore: unused_element
   _SubmitUser submitUser(
-      {@required String userId,
-      @required String courseTitle,
-      @required String lectureTitle}) {
+      {required String userId,
+      required String courseTitle,
+      required String lectureTitle}) {
     return _SubmitUser(
       userId: userId,
       courseTitle: courseTitle,
@@ -90,69 +84,76 @@ class _$LectureEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LectureEvent = _$LectureEventTearOff();
 
 /// @nodoc
 mixin _$LectureEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -188,6 +189,7 @@ class __$StartedCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Started implements _Started {
   const _$_Started();
 
@@ -206,52 +208,44 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return started();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (started != null) {
       return started();
     }
@@ -260,44 +254,36 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return started(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (started != null) {
       return started(this);
     }
@@ -328,6 +314,7 @@ class __$SelectFileCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_SelectFile implements _SelectFile {
   const _$_SelectFile();
 
@@ -346,52 +333,44 @@ class _$_SelectFile implements _SelectFile {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return selectFile();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (selectFile != null) {
       return selectFile();
     }
@@ -400,44 +379,36 @@ class _$_SelectFile implements _SelectFile {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return selectFile(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (selectFile != null) {
       return selectFile(this);
     }
@@ -470,30 +441,34 @@ class __$DownloadLectureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object fileUrl = freezed,
-    Object courseTitle = freezed,
-    Object lectureTitle = freezed,
+    Object? fileUrl = freezed,
+    Object? courseTitle = freezed,
+    Object? lectureTitle = freezed,
   }) {
     return _then(_DownloadLecture(
-      fileUrl: fileUrl == freezed ? _value.fileUrl : fileUrl as String,
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      fileUrl: fileUrl == freezed
+          ? _value.fileUrl
+          : fileUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
       lectureTitle: lectureTitle == freezed
           ? _value.lectureTitle
-          : lectureTitle as String,
+          : lectureTitle // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_DownloadLecture implements _DownloadLecture {
   const _$_DownloadLecture(
-      {@required this.fileUrl,
-      @required this.courseTitle,
-      @required this.lectureTitle})
-      : assert(fileUrl != null),
-        assert(courseTitle != null),
-        assert(lectureTitle != null);
+      {required this.fileUrl,
+      required this.courseTitle,
+      required this.lectureTitle});
 
   @override
   final String fileUrl;
@@ -536,52 +511,44 @@ class _$_DownloadLecture implements _DownloadLecture {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return downloadLecture(fileUrl, courseTitle, lectureTitle);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (downloadLecture != null) {
       return downloadLecture(fileUrl, courseTitle, lectureTitle);
     }
@@ -590,44 +557,36 @@ class _$_DownloadLecture implements _DownloadLecture {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return downloadLecture(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (downloadLecture != null) {
       return downloadLecture(this);
     }
@@ -637,15 +596,16 @@ class _$_DownloadLecture implements _DownloadLecture {
 
 abstract class _DownloadLecture implements LectureEvent {
   const factory _DownloadLecture(
-      {@required String fileUrl,
-      @required String courseTitle,
-      @required String lectureTitle}) = _$_DownloadLecture;
+      {required String fileUrl,
+      required String courseTitle,
+      required String lectureTitle}) = _$_DownloadLecture;
 
-  String get fileUrl;
-  String get courseTitle;
-  String get lectureTitle;
+  String get fileUrl => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
+  String get lectureTitle => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$DownloadLectureCopyWith<_DownloadLecture> get copyWith;
+  _$DownloadLectureCopyWith<_DownloadLecture> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -658,7 +618,7 @@ abstract class _$UploadLectureCopyWith<$Res> {
       String title,
       String courseTitle,
       String filePath,
-      String description});
+      String? description});
 }
 
 /// @nodoc
@@ -674,36 +634,46 @@ class __$UploadLectureCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object user = freezed,
-    Object title = freezed,
-    Object courseTitle = freezed,
-    Object filePath = freezed,
-    Object description = freezed,
+    Object? user = freezed,
+    Object? title = freezed,
+    Object? courseTitle = freezed,
+    Object? filePath = freezed,
+    Object? description = freezed,
   }) {
     return _then(_UploadLecture(
-      user: user == freezed ? _value.user : user as UserModel,
-      title: title == freezed ? _value.title : title as String,
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
-      filePath: filePath == freezed ? _value.filePath : filePath as String,
-      description:
-          description == freezed ? _value.description : description as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: filePath == freezed
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_UploadLecture implements _UploadLecture {
   const _$_UploadLecture(
-      {@required this.user,
-      @required this.title,
-      @required this.courseTitle,
-      @required this.filePath,
-      this.description})
-      : assert(user != null),
-        assert(title != null),
-        assert(courseTitle != null),
-        assert(filePath != null);
+      {required this.user,
+      required this.title,
+      required this.courseTitle,
+      required this.filePath,
+      this.description});
 
   @override
   final UserModel user;
@@ -714,7 +684,7 @@ class _$_UploadLecture implements _UploadLecture {
   @override
   final String filePath;
   @override
-  final String description;
+  final String? description;
 
   @override
   String toString() {
@@ -756,52 +726,44 @@ class _$_UploadLecture implements _UploadLecture {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return uploadLecture(user, title, courseTitle, filePath, description);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (uploadLecture != null) {
       return uploadLecture(user, title, courseTitle, filePath, description);
     }
@@ -810,44 +772,36 @@ class _$_UploadLecture implements _UploadLecture {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return uploadLecture(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (uploadLecture != null) {
       return uploadLecture(this);
     }
@@ -857,19 +811,20 @@ class _$_UploadLecture implements _UploadLecture {
 
 abstract class _UploadLecture implements LectureEvent {
   const factory _UploadLecture(
-      {@required UserModel user,
-      @required String title,
-      @required String courseTitle,
-      @required String filePath,
-      String description}) = _$_UploadLecture;
+      {required UserModel user,
+      required String title,
+      required String courseTitle,
+      required String filePath,
+      String? description}) = _$_UploadLecture;
 
-  UserModel get user;
-  String get title;
-  String get courseTitle;
-  String get filePath;
-  String get description;
+  UserModel get user => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
+  String get filePath => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$UploadLectureCopyWith<_UploadLecture> get copyWith;
+  _$UploadLectureCopyWith<_UploadLecture> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -892,6 +847,7 @@ class __$GetAllLecturesCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_GetAllLectures implements _GetAllLectures {
   const _$_GetAllLectures();
 
@@ -910,52 +866,44 @@ class _$_GetAllLectures implements _GetAllLectures {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return getAllLectures();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllLectures != null) {
       return getAllLectures();
     }
@@ -964,44 +912,36 @@ class _$_GetAllLectures implements _GetAllLectures {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return getAllLectures(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllLectures != null) {
       return getAllLectures(this);
     }
@@ -1034,19 +974,21 @@ class __$GetAllLecturesByCourseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object courseTitle = freezed,
+    Object? courseTitle = freezed,
   }) {
     return _then(_GetAllLecturesByCourse(
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
-  const _$_GetAllLecturesByCourse({@required this.courseTitle})
-      : assert(courseTitle != null);
+  const _$_GetAllLecturesByCourse({required this.courseTitle});
 
   @override
   final String courseTitle;
@@ -1077,52 +1019,44 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return getAllLecturesByCourse(courseTitle);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllLecturesByCourse != null) {
       return getAllLecturesByCourse(courseTitle);
     }
@@ -1131,44 +1065,36 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return getAllLecturesByCourse(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllLecturesByCourse != null) {
       return getAllLecturesByCourse(this);
     }
@@ -1177,12 +1103,13 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
 }
 
 abstract class _GetAllLecturesByCourse implements LectureEvent {
-  const factory _GetAllLecturesByCourse({@required String courseTitle}) =
+  const factory _GetAllLecturesByCourse({required String courseTitle}) =
       _$_GetAllLecturesByCourse;
 
-  String get courseTitle;
+  String get courseTitle => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$GetAllLecturesByCourseCopyWith<_GetAllLecturesByCourse> get copyWith;
+  _$GetAllLecturesByCourseCopyWith<_GetAllLecturesByCourse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1205,6 +1132,7 @@ class __$GetAllCoursesByUserIdCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
   const _$_GetAllCoursesByUserId();
 
@@ -1223,52 +1151,44 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return getAllCoursesByUserId();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllCoursesByUserId != null) {
       return getAllCoursesByUserId();
     }
@@ -1277,44 +1197,36 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return getAllCoursesByUserId(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllCoursesByUserId != null) {
       return getAllCoursesByUserId(this);
     }
@@ -1346,19 +1258,21 @@ class __$CreateCourseCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object courseTitle = freezed,
+    Object? courseTitle = freezed,
   }) {
     return _then(_CreateCourse(
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_CreateCourse implements _CreateCourse {
-  const _$_CreateCourse({@required this.courseTitle})
-      : assert(courseTitle != null);
+  const _$_CreateCourse({required this.courseTitle});
 
   @override
   final String courseTitle;
@@ -1388,52 +1302,44 @@ class _$_CreateCourse implements _CreateCourse {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return createCourse(courseTitle);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (createCourse != null) {
       return createCourse(courseTitle);
     }
@@ -1442,44 +1348,36 @@ class _$_CreateCourse implements _CreateCourse {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return createCourse(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (createCourse != null) {
       return createCourse(this);
     }
@@ -1488,11 +1386,12 @@ class _$_CreateCourse implements _CreateCourse {
 }
 
 abstract class _CreateCourse implements LectureEvent {
-  const factory _CreateCourse({@required String courseTitle}) = _$_CreateCourse;
+  const factory _CreateCourse({required String courseTitle}) = _$_CreateCourse;
 
-  String get courseTitle;
+  String get courseTitle => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$CreateCourseCopyWith<_CreateCourse> get copyWith;
+  _$CreateCourseCopyWith<_CreateCourse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1515,30 +1414,34 @@ class __$SubmitUserCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userId = freezed,
-    Object courseTitle = freezed,
-    Object lectureTitle = freezed,
+    Object? userId = freezed,
+    Object? courseTitle = freezed,
+    Object? lectureTitle = freezed,
   }) {
     return _then(_SubmitUser(
-      userId: userId == freezed ? _value.userId : userId as String,
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
       lectureTitle: lectureTitle == freezed
           ? _value.lectureTitle
-          : lectureTitle as String,
+          : lectureTitle // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_SubmitUser implements _SubmitUser {
   const _$_SubmitUser(
-      {@required this.userId,
-      @required this.courseTitle,
-      @required this.lectureTitle})
-      : assert(userId != null),
-        assert(courseTitle != null),
-        assert(lectureTitle != null);
+      {required this.userId,
+      required this.courseTitle,
+      required this.lectureTitle});
 
   @override
   final String userId;
@@ -1580,52 +1483,44 @@ class _$_SubmitUser implements _SubmitUser {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult selectFile(),
-    @required
-        TResult downloadLecture(
-            String fileUrl, String courseTitle, String lectureTitle),
-    @required
-        TResult uploadLecture(UserModel user, String title, String courseTitle,
-            String filePath, String description),
-    @required TResult getAllLectures(),
-    @required TResult getAllLecturesByCourse(String courseTitle),
-    @required TResult getAllCoursesByUserId(),
-    @required TResult createCourse(String courseTitle),
-    @required
-        TResult submitUser(
-            String userId, String courseTitle, String lectureTitle),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() selectFile,
+    required TResult Function(
+            String fileUrl, String courseTitle, String lectureTitle)
+        downloadLecture,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)
+        uploadLecture,
+    required TResult Function() getAllLectures,
+    required TResult Function(String courseTitle) getAllLecturesByCourse,
+    required TResult Function() getAllCoursesByUserId,
+    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(
+            String userId, String courseTitle, String lectureTitle)
+        submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return submitUser(userId, courseTitle, lectureTitle);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult selectFile(),
-    TResult downloadLecture(
-        String fileUrl, String courseTitle, String lectureTitle),
-    TResult uploadLecture(UserModel user, String title, String courseTitle,
-        String filePath, String description),
-    TResult getAllLectures(),
-    TResult getAllLecturesByCourse(String courseTitle),
-    TResult getAllCoursesByUserId(),
-    TResult createCourse(String courseTitle),
-    TResult submitUser(String userId, String courseTitle, String lectureTitle),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? selectFile,
+    TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, String? description)?
+        uploadLecture,
+    TResult Function()? getAllLectures,
+    TResult Function(String courseTitle)? getAllLecturesByCourse,
+    TResult Function()? getAllCoursesByUserId,
+    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (submitUser != null) {
       return submitUser(userId, courseTitle, lectureTitle);
     }
@@ -1634,44 +1529,36 @@ class _$_SubmitUser implements _SubmitUser {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult downloadLecture(_DownloadLecture value),
-    @required TResult uploadLecture(_UploadLecture value),
-    @required TResult getAllLectures(_GetAllLectures value),
-    @required TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    @required TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    @required TResult createCourse(_CreateCourse value),
-    @required TResult submitUser(_SubmitUser value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_DownloadLecture value) downloadLecture,
+    required TResult Function(_UploadLecture value) uploadLecture,
+    required TResult Function(_GetAllLectures value) getAllLectures,
+    required TResult Function(_GetAllLecturesByCourse value)
+        getAllLecturesByCourse,
+    required TResult Function(_GetAllCoursesByUserId value)
+        getAllCoursesByUserId,
+    required TResult Function(_CreateCourse value) createCourse,
+    required TResult Function(_SubmitUser value) submitUser,
   }) {
-    assert(started != null);
-    assert(selectFile != null);
-    assert(downloadLecture != null);
-    assert(uploadLecture != null);
-    assert(getAllLectures != null);
-    assert(getAllLecturesByCourse != null);
-    assert(getAllCoursesByUserId != null);
-    assert(createCourse != null);
-    assert(submitUser != null);
     return submitUser(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult selectFile(_SelectFile value),
-    TResult downloadLecture(_DownloadLecture value),
-    TResult uploadLecture(_UploadLecture value),
-    TResult getAllLectures(_GetAllLectures value),
-    TResult getAllLecturesByCourse(_GetAllLecturesByCourse value),
-    TResult getAllCoursesByUserId(_GetAllCoursesByUserId value),
-    TResult createCourse(_CreateCourse value),
-    TResult submitUser(_SubmitUser value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_DownloadLecture value)? downloadLecture,
+    TResult Function(_UploadLecture value)? uploadLecture,
+    TResult Function(_GetAllLectures value)? getAllLectures,
+    TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_CreateCourse value)? createCourse,
+    TResult Function(_SubmitUser value)? submitUser,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (submitUser != null) {
       return submitUser(this);
     }
@@ -1681,37 +1568,31 @@ class _$_SubmitUser implements _SubmitUser {
 
 abstract class _SubmitUser implements LectureEvent {
   const factory _SubmitUser(
-      {@required String userId,
-      @required String courseTitle,
-      @required String lectureTitle}) = _$_SubmitUser;
+      {required String userId,
+      required String courseTitle,
+      required String lectureTitle}) = _$_SubmitUser;
 
-  String get userId;
-  String get courseTitle;
-  String get lectureTitle;
+  String get userId => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
+  String get lectureTitle => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SubmitUserCopyWith<_SubmitUser> get copyWith;
+  _$SubmitUserCopyWith<_SubmitUser> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 class _$LectureStateTearOff {
   const _$LectureStateTearOff();
 
-// ignore: unused_element
   _LectureState call(
-      {@required
-          LectureEntity lecture,
-      @required
-          String userId,
-      @required
-          String filePath,
-      @required
-          bool isSubmitting,
-      @required
-          List<LectureEntity> lectures,
-      @required
-          List<String> courseIds,
-      @required
-          Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption}) {
+      {required LectureEntity lecture,
+      required String userId,
+      required String filePath,
+      required bool isSubmitting,
+      required List<LectureEntity> lectures,
+      required List<String> courseIds,
+      required Option<Either<LectureFailure, Unit>>
+          lectureFailureOrSuccessOption}) {
     return _LectureState(
       lecture: lecture,
       userId: userId,
@@ -1725,21 +1606,22 @@ class _$LectureStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LectureState = _$LectureStateTearOff();
 
 /// @nodoc
 mixin _$LectureState {
-  LectureEntity get lecture;
-  String get userId;
-  String get filePath;
-  bool get isSubmitting;
-  List<LectureEntity> get lectures;
-  List<String> get courseIds;
-  Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption;
+  LectureEntity get lecture => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
+  String get filePath => throw _privateConstructorUsedError;
+  bool get isSubmitting => throw _privateConstructorUsedError;
+  List<LectureEntity> get lectures => throw _privateConstructorUsedError;
+  List<String> get courseIds => throw _privateConstructorUsedError;
+  Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LectureStateCopyWith<LectureState> get copyWith;
+  $LectureStateCopyWith<LectureState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1767,28 +1649,42 @@ class _$LectureStateCopyWithImpl<$Res> implements $LectureStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object lecture = freezed,
-    Object userId = freezed,
-    Object filePath = freezed,
-    Object isSubmitting = freezed,
-    Object lectures = freezed,
-    Object courseIds = freezed,
-    Object lectureFailureOrSuccessOption = freezed,
+    Object? lecture = freezed,
+    Object? userId = freezed,
+    Object? filePath = freezed,
+    Object? isSubmitting = freezed,
+    Object? lectures = freezed,
+    Object? courseIds = freezed,
+    Object? lectureFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
-      lecture: lecture == freezed ? _value.lecture : lecture as LectureEntity,
-      userId: userId == freezed ? _value.userId : userId as String,
-      filePath: filePath == freezed ? _value.filePath : filePath as String,
-      isSubmitting:
-          isSubmitting == freezed ? _value.isSubmitting : isSubmitting as bool,
+      lecture: lecture == freezed
+          ? _value.lecture
+          : lecture // ignore: cast_nullable_to_non_nullable
+              as LectureEntity,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: filePath == freezed
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
       lectures: lectures == freezed
           ? _value.lectures
-          : lectures as List<LectureEntity>,
-      courseIds:
-          courseIds == freezed ? _value.courseIds : courseIds as List<String>,
+          : lectures // ignore: cast_nullable_to_non_nullable
+              as List<LectureEntity>,
+      courseIds: courseIds == freezed
+          ? _value.courseIds
+          : courseIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       lectureFailureOrSuccessOption: lectureFailureOrSuccessOption == freezed
           ? _value.lectureFailureOrSuccessOption
-          : lectureFailureOrSuccessOption
+          : lectureFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<LectureFailure, Unit>>,
     ));
   }
@@ -1823,50 +1719,58 @@ class __$LectureStateCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object lecture = freezed,
-    Object userId = freezed,
-    Object filePath = freezed,
-    Object isSubmitting = freezed,
-    Object lectures = freezed,
-    Object courseIds = freezed,
-    Object lectureFailureOrSuccessOption = freezed,
+    Object? lecture = freezed,
+    Object? userId = freezed,
+    Object? filePath = freezed,
+    Object? isSubmitting = freezed,
+    Object? lectures = freezed,
+    Object? courseIds = freezed,
+    Object? lectureFailureOrSuccessOption = freezed,
   }) {
     return _then(_LectureState(
-      lecture: lecture == freezed ? _value.lecture : lecture as LectureEntity,
-      userId: userId == freezed ? _value.userId : userId as String,
-      filePath: filePath == freezed ? _value.filePath : filePath as String,
-      isSubmitting:
-          isSubmitting == freezed ? _value.isSubmitting : isSubmitting as bool,
+      lecture: lecture == freezed
+          ? _value.lecture
+          : lecture // ignore: cast_nullable_to_non_nullable
+              as LectureEntity,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: filePath == freezed
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool,
       lectures: lectures == freezed
           ? _value.lectures
-          : lectures as List<LectureEntity>,
-      courseIds:
-          courseIds == freezed ? _value.courseIds : courseIds as List<String>,
+          : lectures // ignore: cast_nullable_to_non_nullable
+              as List<LectureEntity>,
+      courseIds: courseIds == freezed
+          ? _value.courseIds
+          : courseIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       lectureFailureOrSuccessOption: lectureFailureOrSuccessOption == freezed
           ? _value.lectureFailureOrSuccessOption
-          : lectureFailureOrSuccessOption
+          : lectureFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<LectureFailure, Unit>>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_LectureState implements _LectureState {
   const _$_LectureState(
-      {@required this.lecture,
-      @required this.userId,
-      @required this.filePath,
-      @required this.isSubmitting,
-      @required this.lectures,
-      @required this.courseIds,
-      @required this.lectureFailureOrSuccessOption})
-      : assert(lecture != null),
-        assert(userId != null),
-        assert(filePath != null),
-        assert(isSubmitting != null),
-        assert(lectures != null),
-        assert(courseIds != null),
-        assert(lectureFailureOrSuccessOption != null);
+      {required this.lecture,
+      required this.userId,
+      required this.filePath,
+      required this.isSubmitting,
+      required this.lectures,
+      required this.courseIds,
+      required this.lectureFailureOrSuccessOption});
 
   @override
   final LectureEntity lecture;
@@ -1935,37 +1839,32 @@ class _$_LectureState implements _LectureState {
 
 abstract class _LectureState implements LectureState {
   const factory _LectureState(
-      {@required
-          LectureEntity lecture,
-      @required
-          String userId,
-      @required
-          String filePath,
-      @required
-          bool isSubmitting,
-      @required
-          List<LectureEntity> lectures,
-      @required
-          List<String> courseIds,
-      @required
-          Option<Either<LectureFailure, Unit>>
-              lectureFailureOrSuccessOption}) = _$_LectureState;
+      {required LectureEntity lecture,
+      required String userId,
+      required String filePath,
+      required bool isSubmitting,
+      required List<LectureEntity> lectures,
+      required List<String> courseIds,
+      required Option<Either<LectureFailure, Unit>>
+          lectureFailureOrSuccessOption}) = _$_LectureState;
 
   @override
-  LectureEntity get lecture;
+  LectureEntity get lecture => throw _privateConstructorUsedError;
   @override
-  String get userId;
+  String get userId => throw _privateConstructorUsedError;
   @override
-  String get filePath;
+  String get filePath => throw _privateConstructorUsedError;
   @override
-  bool get isSubmitting;
+  bool get isSubmitting => throw _privateConstructorUsedError;
   @override
-  List<LectureEntity> get lectures;
+  List<LectureEntity> get lectures => throw _privateConstructorUsedError;
   @override
-  List<String> get courseIds;
+  List<String> get courseIds => throw _privateConstructorUsedError;
   @override
-  Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption;
+  Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LectureStateCopyWith<_LectureState> get copyWith;
+  _$LectureStateCopyWith<_LectureState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

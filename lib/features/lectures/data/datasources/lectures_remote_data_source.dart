@@ -5,7 +5,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/lecture_task.dart';
@@ -17,28 +16,28 @@ import 'package:mime/mime.dart' as mime;
 
 abstract class LecturesRemoteDataSource {
   Future<Unit> downloadLecture({
-    @required String fileUrl,
-    @required String courseTitle,
-    @required String lectureTitle,
+    required String fileUrl,
+    required String courseTitle,
+    required String lectureTitle,
   });
   Future<Unit> uploadLecture({
-    @required String filePath,
-    @required UserModel user,
-    @required String courseTitle,
-    String lectureTitle,
-    String description,
+    required String filePath,
+    required UserModel user,
+    required String courseTitle,
+    String? lectureTitle,
+    String? description,
   });
 
   Future<List<LectureModel>> getAllLectures();
   Future<List<LectureModel>> getAllLecturesByCourse({
-    @required String courseTitle,
+    required String courseTitle,
   });
-  Future<List<String>> getAllCoursesByUserId({@required String userId});
-  Future<Unit> createCourse({@required String courseTitle});
+  Future<List<String>> getAllCoursesByUserId({required String userId});
+  Future<Unit> createCourse({required String courseTitle});
   Future<Unit> submitUser({
-    @required String userId,
-    @required String courseTitle,
-    @required String lectureTitle,
+    required String userId,
+    required String courseTitle,
+    required String lectureTitle,
   });
 }
 
@@ -47,25 +46,25 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   final storageRef = FirebaseStorage.instance.ref();
   final userCoursesCollection =
       FirebaseFirestore.instance.collection('userCourses');
-  final Dio dio;
-  final CustomUploadTask lectureTask;
+  final Dio? dio;
+  final CustomUploadTask? lectureTask;
 
   FirebaseLecturesRemoteDataSource({
-    @required this.lectureTask,
-    @required this.dio,
+    required this.lectureTask,
+    required this.dio,
   });
 
   @override
   Future<Unit> downloadLecture({
-    @required String fileUrl,
-    @required String courseTitle,
-    @required String lectureTitle,
+    required String fileUrl,
+    required String courseTitle,
+    required String lectureTitle,
   }) async {
     final doc = userCoursesCollection.doc(courseTitle);
     doc.collection('lectures').doc(lectureTitle).set({
       'downloadedUsers': ['12'],
     }, SetOptions(merge: true));
-    var dir = await getExternalStorageDirectory();
+    var dir = await (getExternalStorageDirectory());
 
     // await dio.download(url, '${dir.path}/lectures.pdf',
     //     onReceiveProgress: (rcv, total) {
@@ -75,7 +74,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
 
     await FlutterDownloader.enqueue(
       url: fileUrl,
-      savedDir: dir.path,
+      savedDir: dir!.path,
       fileName: 'newFile',
     );
 
@@ -84,18 +83,19 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
 
   @override
   Future<Unit> uploadLecture({
-    @required String filePath,
-    @required UserModel user,
-    @required String courseTitle,
-    String lectureTitle,
-    String description,
+    required String filePath,
+    required UserModel user,
+    required String courseTitle,
+    String? lectureTitle,
+    String? description,
   }) async {
-    lectureTask.task =
-        storageRef.lecturesStorage(lectureTitle).putFile(File(filePath));
+    lectureTask!.task =
+        storageRef.lecturesStorage(lectureTitle!).putFile(File(filePath));
 
-    lectureTask.task.then((res) async {
+    lectureTask!.task.then((res) async {
       final downloadUrl = await res.ref.getDownloadURL();
       final lecture = LectureModel(
+        fileType: '',
         fileUrl: downloadUrl,
         title: lectureTitle,
         description: description,
@@ -130,7 +130,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
 
   @override
   Future<List<LectureModel>> getAllLecturesByCourse({
-    @required String courseTitle,
+    required String courseTitle,
   }) async {
     final lectureList = <LectureModel>[];
 
@@ -158,14 +158,14 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   }
 
   @override
-  Future<Unit> createCourse({@required String courseTitle}) async {
+  Future<Unit> createCourse({required String? courseTitle}) async {
     userCoursesCollection.doc(courseTitle).set({});
     return unit;
   }
 
   @override
   Future<List<String>> getAllCoursesByUserId({
-    @required String userId,
+    required String userId,
   }) async {
     // final getQuery = await userCoursesCollection.where('user_id', isEqualTo: userId).get();
     final getQuery = await userCoursesCollection.get();
@@ -174,9 +174,9 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
 
   @override
   Future<Unit> submitUser({
-    @required String userId,
-    @required String courseTitle,
-    @required String lectureTitle,
+    required String userId,
+    required String courseTitle,
+    required String lectureTitle,
   }) async {
     userCoursesCollection
         .doc(courseTitle)

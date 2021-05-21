@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/lecture_task.dart';
 import '../models/message_model.dart';
@@ -16,16 +15,16 @@ abstract class ChatRemoteDataSource {
   );
 
   Future<Unit> sendImageMessage({
-    @required String imageUrl,
-    @required String fromUserId,
-    @required ImageUploaderCubit imageUploaderCubit,
+    required String? imageUrl,
+    required String? fromUserId,
+    required ImageUploaderCubit imageUploaderCubit,
   });
   Future<List<Message>> getAllMessages();
 }
 
 @LazySingleton(as: ChatRemoteDataSource)
 class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
-  final CustomUploadTask lectureTask;
+  final CustomUploadTask? lectureTask;
 
   final messagesCollection = FirebaseFirestore.instance.collection('messages');
   final storageRef = FirebaseStorage.instance.ref();
@@ -55,15 +54,15 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
 
   @override
   Future<Unit> sendImageMessage({
-    @required String imageUrl,
-    @required String fromUserId,
-    @required ImageUploaderCubit imageUploaderCubit,
+    required String? imageUrl,
+    required String? fromUserId,
+    required ImageUploaderCubit imageUploaderCubit,
   }) async {
     imageUploaderCubit.setToLoading();
 
-    lectureTask.task = storageRef
+    lectureTask!.task = storageRef
         .messageImagesStorage(DateTime.now().toIso8601String())
-        .putFile(File(imageUrl));
+        .putFile(File(imageUrl!));
 
     // at first we just need to add an placeholder for the image
     // until we get the downloadUrl
@@ -76,7 +75,7 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
     final docRef = await messagesCollection.add(testModel.toMap());
 
     // getting the downloadUrl
-    lectureTask.task.then((taskSnap) async {
+    lectureTask!.task.then((taskSnap) async {
       final downloadUrl = await taskSnap.ref.getDownloadURL();
 
       final messageModel = ImageMessage(

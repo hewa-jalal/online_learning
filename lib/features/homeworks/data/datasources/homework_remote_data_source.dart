@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import '../models/homework_model.dart';
 import '../models/homework_submit_model.dart';
@@ -15,29 +14,30 @@ import '../../../user/data/models/user_model.dart';
 
 abstract class HomeWorkRemoteDataSource {
   Future<Unit> uploadHomework({
-    @required UserModel user,
-    @required String title,
-    @required String courseTitle,
-    @required int dueDate,
-    String description,
-    String fileUrl,
+    required UserModel user,
+    required String title,
+    required String courseTitle,
+    required int dueDate,
+    String? description,
+    String? fileUrl,
   });
 
   Future<HomeworkSubmitEntity> getHomework({
-    @required String courseTitle,
-    @required String homeworkTitle,
+    required String courseTitle,
+    required String homeworkTitle,
   });
 
   Future<List<HomeworkEntity>> getAllHomeworksByCourse({
-    @required String courseTitle,
+    required String courseTitle,
   });
 
   Future<Unit> submitHomework({
-    @required String userId,
-    @required String fileUrl,
-    @required String courseTitle,
-    @required String note,
-    @required String homeworkTitle,
+    required String userId,
+    required String? fileUrl,
+    required String courseTitle,
+    required String? note,
+    required String homeworkTitle,
+    required int? submitDate,
   });
 }
 
@@ -47,20 +47,20 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
       FirebaseFirestore.instance.collection('userCourses');
   final storageRef = FirebaseStorage.instance.ref();
 
-  final CustomUploadTask lectureTask;
+  final CustomUploadTask? lectureTask;
 
   FirebaseHomeworkRemoteDataSource({
-    @required this.lectureTask,
+    required this.lectureTask,
   });
 
   @override
   Future<Unit> uploadHomework({
-    @required UserModel user,
-    @required String title,
-    @required String courseTitle,
-    @required int dueDate,
-    String description,
-    String fileUrl,
+    required UserModel user,
+    required String title,
+    required String courseTitle,
+    required int dueDate,
+    String? description,
+    String? fileUrl,
   }) async {
     final homeWork = HomeworkModel(
       title: title,
@@ -69,7 +69,8 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
       dueDate: dueDate,
     );
 
-    lectureTask.task = storageRef.homeWorkStorage(title).putFile(File(fileUrl));
+    lectureTask!.task =
+        storageRef.homeWorkStorage(title).putFile(File(fileUrl!));
 
     final doc = userHomeworksCollection.doc(courseTitle);
     doc.collection('homeworks').doc(title).set(homeWork.toDocument());
@@ -79,8 +80,8 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
 
   @override
   Future<HomeworkSubmitEntity> getHomework({
-    @required String courseTitle,
-    @required String homeworkTitle,
+    required String courseTitle,
+    required String homeworkTitle,
   }) async {
     print('remote homework title ====> $homeworkTitle');
     final courseDoc = userHomeworksCollection.doc(courseTitle);
@@ -96,7 +97,7 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
 
   @override
   Future<List<HomeworkEntity>> getAllHomeworksByCourse({
-    @required String courseTitle,
+    required String courseTitle,
   }) async {
     final homeWorksList = <HomeworkModel>[];
     final courseDoc = userHomeworksCollection.doc(courseTitle);
@@ -123,12 +124,12 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
 
   @override
   Future<Unit> submitHomework({
-    @required String userId,
-    @required String fileUrl,
-    @required String courseTitle,
-    @required String note,
-    @required String homeworkTitle,
-    @required int submitDate,
+    required String userId,
+    required String? fileUrl,
+    required String courseTitle,
+    required String? note,
+    required String homeworkTitle,
+    required int? submitDate,
   }) async {
     final submitHomework = HomeworkSubmitModel(
       userId: userId,

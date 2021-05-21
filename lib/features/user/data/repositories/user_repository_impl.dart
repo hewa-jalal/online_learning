@@ -8,13 +8,13 @@ import '../../domain/repositories/user_repository.dart';
 
 @LazySingleton(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
-  final UserRemoteDataSource userRemoteDataSource;
+  final UserRemoteDataSource? userRemoteDataSource;
 
   UserRepositoryImpl(this.userRemoteDataSource);
   @override
   Future<Either<Failure, UserEntity>> getUser(int id) async {
     try {
-      final user = await userRemoteDataSource.getUser(id);
+      final user = await userRemoteDataSource!.getUser(id);
       return right(user);
     } on UserNotFoundException {
       return left(UserNotFoundFailure());
@@ -24,7 +24,7 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, List<UserEntity>>> getAllUsers() async {
     try {
-      final userList = await userRemoteDataSource.getAllUsers();
+      final userList = await userRemoteDataSource!.getAllUsers();
       return right(userList);
     } on UserNotFoundException {
       return left(UserNotFoundFailure());
@@ -34,7 +34,7 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, Unit>> updateUserTime(int id) async {
     try {
-      await userRemoteDataSource.updateUserTime(id);
+      await userRemoteDataSource!.updateUserTime(id);
       return right(unit);
     } on UserNotFoundException {
       return left(UserNotFoundFailure());
@@ -44,7 +44,7 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, Unit>> userOnlineStatus(int id, bool isOnline) async {
     try {
-      await userRemoteDataSource.userOnlineStatus(id, isOnline);
+      await userRemoteDataSource!.userOnlineStatus(id, isOnline);
       return right(unit);
     } on UserNotFoundException {
       return left(UserNotFoundFailure());

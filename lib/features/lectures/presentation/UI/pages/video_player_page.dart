@@ -5,11 +5,11 @@ import 'package:video_player/video_player.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class VideoPlayerPage extends StatefulWidget {
-  final String videoUrl;
+  final String? videoUrl;
 
   const VideoPlayerPage({
-    Key key,
-    @required this.videoUrl,
+    Key? key,
+    required this.videoUrl,
   }) : super(key: key);
 
   @override
@@ -17,7 +17,7 @@ class VideoPlayerPage extends StatefulWidget {
 }
 
 class _VideoPlayerPageState extends State<VideoPlayerPage> {
-  FlickManager flickManager;
+  late FlickManager flickManager;
 
   @override
   void initState() {

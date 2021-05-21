@@ -15,19 +15,19 @@ class LectureCard extends StatelessWidget {
   final LectureEntity lecture;
   final String courseTitle;
   LectureCard({
-    Key key,
-    @required this.lecture,
-    @required this.courseTitle,
+    Key? key,
+    required this.lecture,
+    required this.courseTitle,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _lectureBloc = context.watch<LectureBloc>();
-    final _userAuthState = context.watch<UserAuthBloc>().state;
+    final UserAuthState _userAuthState = context.watch<UserAuthBloc>().state;
 
-    final isFileVideo = lecture.fileType.contains('video');
+    final isFileVideo = lecture.fileType!.contains('video');
 
     final isSubmitted =
-        lecture.submittedUsers.contains(_userAuthState.user.id.toString());
+        lecture.submittedUsers!.contains(_userAuthState.user.id.toString());
 
     return ExpansionTileCard(
       contentPadding: EdgeInsets.only(left: 8.0, right: 8.0),
@@ -36,7 +36,7 @@ class LectureCard extends StatelessWidget {
       expandedColor: Colors.transparent,
       shadowColor: Colors.transparent,
       // childrenPadding: EdgeInsets.only(left: 8.0, right: 8.0),
-      title: Text(lecture.title),
+      title: Text(lecture.title!),
       children: [
         Padding(
           padding: EdgeInsets.only(left: 8.0, right: 8.0),
@@ -58,8 +58,8 @@ class LectureCard extends StatelessWidget {
               InkWell(
                 onTap: () => _lectureBloc.add(
                   LectureEvent.downloadLecture(
-                    fileUrl: lecture.fileUrl,
-                    lectureTitle: lecture.title,
+                    fileUrl: lecture.fileUrl!,
+                    lectureTitle: lecture.title!,
                     courseTitle: courseTitle,
                   ),
                 ),
@@ -92,7 +92,7 @@ class LectureCard extends StatelessWidget {
                 LectureEvent.submitUser(
                   userId: _userAuthState.user.id.toString(),
                   courseTitle: courseTitle,
-                  lectureTitle: lecture.title,
+                  lectureTitle: lecture.title!,
                 ),
               );
               // to refresh the list

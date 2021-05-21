@@ -25,8 +25,8 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
-    Key key,
-    @required this.userEntity,
+    Key? key,
+    required this.userEntity,
   }) : super(key: key);
 
   final UserEntity userEntity;
@@ -63,69 +63,68 @@ class _ChatPageState extends State<ChatPage> {
     print('imageUploaderCubit.state' + imageUploaderCubit.state.toString());
 
     final chatBloc = context.read<ChatBloc>();
-    if (ModalRoute.of(context).isCurrent) {
+    if (ModalRoute.of(context)!.isCurrent) {
       chatBloc.add(ChatEvent.getAllMessages());
     }
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
       return SafeArea(
-        child: InnerDrawer(
-          swipe: false,
-          key: _innerDrawerKey,
-          rightAnimationType: InnerDrawerAnimation.quadratic,
-          // rightChild: _UsersList(),
-          rightChild: Container(),
-          scaffold: Scaffold(
-            appBar: AppBar(
-              actions: [
-                IconButton(
-                  onPressed: () => _innerDrawerKey.currentState.open(),
-                  icon: Icon(FontAwesomeIcons.users),
-                ),
-              ],
-            ),
-            body: BlocBuilder<ChatBloc, ChatState>(
-              builder: (context, state) {
-                return state.map(
-                  initial: (state) =>
-                      Center(child: CircularProgressIndicator()),
-                  allMessagesLoaded: (state) {
-                    final messages = state.allMessages.reversed.toList();
-                    return Column(
-                      children: [
-                        Flexible(
-                          child: _MessagesListWidget(
-                            messages: messages,
+        // child: InnerDrawer(
+        //   swipe: false,
+        //   // key: _innerDrawerKey,
+        //   rightAnimationType: InnerDrawerAnimation.quadratic,
+        //   // rightChild: _UsersList(),
+        //   rightChild: Container(),
+        //   scaffold:
+        child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () => _innerDrawerKey.currentState!.open(),
+                icon: Icon(FontAwesomeIcons.users),
+              ),
+            ],
+          ),
+          body: BlocBuilder<ChatBloc, ChatState>(
+            builder: (context, state) {
+              return state.map(
+                initial: (state) => Center(child: CircularProgressIndicator()),
+                allMessagesLoaded: (state) {
+                  final messages = state.allMessages.reversed.toList();
+                  return Column(
+                    children: [
+                      Flexible(
+                        child: _MessagesListWidget(
+                          messages: messages,
+                          user: user,
+                          chatListController: _scrollController,
+                        ),
+                      ),
+                      // imageUploaderCubit.state == ImageuploaderState.loading()
+                      //     ? Bubble(
+                      //         child: AspectRatio(
+                      //           aspectRatio: 4 / 3,
+                      //           child: Center(
+                      //             child: CircularProgressIndicator(),
+                      //           ),
+                      //         ),
+                      //       )
+                      //     : Container(),
+                      Container(
+                        child: Align(
+                          alignment: FractionalOffset.bottomCenter,
+                          child: _SendMessageTextField(
+                            chatBloc: chatBloc,
                             user: user,
                             chatListController: _scrollController,
                           ),
                         ),
-                        // imageUploaderCubit.state == ImageuploaderState.loading()
-                        //     ? Bubble(
-                        //         child: AspectRatio(
-                        //           aspectRatio: 4 / 3,
-                        //           child: Center(
-                        //             child: CircularProgressIndicator(),
-                        //           ),
-                        //         ),
-                        //       )
-                        //     : Container(),
-                        Container(
-                          child: Align(
-                            alignment: FractionalOffset.bottomCenter,
-                            child: _SendMessageTextField(
-                              chatBloc: chatBloc,
-                              user: user,
-                              chatListController: _scrollController,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                  messageFailure: (state) => Text('Failed to load messages'),
-                );
-              },
-            ),
+                      ),
+                    ],
+                  );
+                },
+                messageFailure: (state) => Text('Failed to load messages'),
+              );
+            },
           ),
         ),
       );
@@ -135,9 +134,9 @@ class _ChatPageState extends State<ChatPage> {
 
 class _AttachmentSelection extends StatelessWidget {
   const _AttachmentSelection({
-    Key key,
-    @required this.icon,
-    @required this.label,
+    Key? key,
+    required this.icon,
+    required this.label,
   }) : super(key: key);
 
   final IconData icon;
@@ -160,7 +159,7 @@ class _AttachmentSelection extends StatelessWidget {
               onTap: () async {
                 final result = await FilePicker.platform.pickFiles();
                 if (result != null) {
-                  final file = File(result.files.single.path);
+                  final file = File(result.files.single.path!);
 
                   Image.file(file);
                 }
@@ -176,24 +175,24 @@ class _AttachmentSelection extends StatelessWidget {
 
 class _MessagesListWidget extends StatelessWidget {
   const _MessagesListWidget({
-    Key key,
-    @required this.user,
-    @required this.messages,
-    @required this.chatListController,
+    Key? key,
+    required this.user,
+    required this.messages,
+    required this.chatListController,
   }) : super(key: key);
 
   final ScrollController chatListController;
-  final List<Message> messages;
+  final List<Message>? messages;
   final UserEntity user;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: messages.length,
+      itemCount: messages?.length,
       shrinkWrap: true,
       controller: chatListController,
       itemBuilder: (context, index) {
-        final msg = messages[index];
+        final msg = messages?[index];
         if (msg is ImageMessage) {
           print('ImageUrl ======> ${msg.imageUrl}');
           return Bubble(
@@ -203,7 +202,7 @@ class _MessagesListWidget extends StatelessWidget {
               //   imageUrl: msg.imageUrl,
               // ),
               child: OctoImage(
-                  image: CachedNetworkImageProvider(msg.imageUrl),
+                  image: CachedNetworkImageProvider(msg.imageUrl!),
                   progressIndicatorBuilder:
                       OctoProgressIndicator.circularProgressIndicator()),
             ),
@@ -230,9 +229,9 @@ class _MessagesListWidget extends StatelessWidget {
 
 class _CustomChatBubble extends StatelessWidget {
   const _CustomChatBubble({
-    Key key,
-    @required this.textMessage,
-    @required this.user,
+    Key? key,
+    required this.textMessage,
+    required this.user,
   }) : super(key: key);
 
   static const styleMe = BubbleStyle(
@@ -274,10 +273,10 @@ class _CustomChatBubble extends StatelessWidget {
 
 class _ChatRowMe extends StatelessWidget {
   const _ChatRowMe({
-    Key key,
-    @required this.message,
-    @required this.user,
-    @required this.styleMe,
+    Key? key,
+    required this.message,
+    required this.user,
+    required this.styleMe,
   }) : super(key: key);
 
   final TextMessage message;
@@ -291,7 +290,7 @@ class _ChatRowMe extends StatelessWidget {
       children: [
         Bubble(
           child: Text(
-            message.text,
+            message.text!,
             style: TextStyle(color: Colors.black),
           ),
           style: styleMe,
@@ -309,10 +308,10 @@ class _ChatRowMe extends StatelessWidget {
 
 class _ChatRowSomebody extends StatelessWidget {
   const _ChatRowSomebody({
-    Key key,
-    @required this.message,
-    @required this.user,
-    @required this.styleSomebody,
+    Key? key,
+    required this.message,
+    required this.user,
+    required this.styleSomebody,
   }) : super(key: key);
 
   final TextMessage message;
@@ -327,7 +326,7 @@ class _ChatRowSomebody extends StatelessWidget {
           child: Text('H'),
         ),
         Bubble(
-          child: Text(message.text),
+          child: Text(message.text!),
           style: styleSomebody,
         ),
       ],
@@ -337,10 +336,10 @@ class _ChatRowSomebody extends StatelessWidget {
 
 class _SendMessageTextField extends StatefulWidget {
   const _SendMessageTextField({
-    Key key,
-    @required this.chatBloc,
-    @required this.user,
-    @required this.chatListController,
+    Key? key,
+    required this.chatBloc,
+    required this.user,
+    required this.chatListController,
   }) : super(key: key);
 
   final ChatBloc chatBloc;
@@ -472,8 +471,8 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
 
 void addMediaModal(
   context, {
-  @required ChatBloc chatBloc,
-  @required ImageUploaderCubit imageUploaderCubit,
+  required ChatBloc chatBloc,
+  required ImageUploaderCubit imageUploaderCubit,
 }) {
   showModalBottomSheet(
       context: context,
@@ -528,20 +527,28 @@ void addMediaModal(
                     },
                   ),
                   ModalTile(
-                      title: "File", subtitle: "Share files", icon: Icons.tab),
+                    onTap: () {},
+                    title: "File",
+                    subtitle: "Share files",
+                    icon: Icons.tab,
+                  ),
                   ModalTile(
+                      onTap: () {},
                       title: "Contact",
                       subtitle: "Share contacts",
                       icon: Icons.contacts),
                   ModalTile(
+                      onTap: () {},
                       title: "Location",
                       subtitle: "Share a location",
                       icon: Icons.add_location),
                   ModalTile(
+                      onTap: () {},
                       title: "Schedule Call",
                       subtitle: "Arrange a skype call and get reminders",
                       icon: Icons.schedule),
                   ModalTile(
+                      onTap: () {},
                       title: "Create Poll",
                       subtitle: "Share polls",
                       icon: Icons.poll)
@@ -555,10 +562,10 @@ void addMediaModal(
 
 class ModalTile extends StatelessWidget {
   const ModalTile({
-    @required this.title,
-    @required this.subtitle,
-    @required this.icon,
-    @required this.onTap,
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.onTap,
   });
 
   final IconData icon;
@@ -608,10 +615,10 @@ class ModalTile extends StatelessWidget {
 
 class CustomTile extends StatelessWidget {
   CustomTile({
-    @required this.leading,
-    @required this.title,
+    required this.leading,
+    required this.title,
     this.icon,
-    @required this.subtitle,
+    required this.subtitle,
     this.trailing,
     this.margin = const EdgeInsets.all(0),
     this.onTap,
@@ -619,15 +626,15 @@ class CustomTile extends StatelessWidget {
     this.mini = true,
   });
 
-  final Widget icon;
+  final Widget? icon;
   final Widget leading;
   final EdgeInsets margin;
   final bool mini;
-  final GestureLongPressCallback onLongPress;
-  final GestureTapCallback onTap;
+  final GestureLongPressCallback? onLongPress;
+  final GestureTapCallback? onTap;
   final Widget subtitle;
   final Widget title;
-  final Widget trailing;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -742,12 +749,12 @@ class CustomTile extends StatelessWidget {
 
 class _UsersList extends StatelessWidget {
   const _UsersList({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (ModalRoute.of(context).isCurrent) {
+    if (ModalRoute.of(context)!.isCurrent) {
       context.read<UserAuthBloc>().add(UserAuthEvent.getAllUsers());
     }
     return BlocBuilder<UserAuthBloc, UserAuthState>(
@@ -765,12 +772,12 @@ class _UsersList extends StatelessWidget {
             itemBuilder: (context, index) {
               final user = _usersList[index];
               final date =
-                  DateTime.fromMillisecondsSinceEpoch(user.lastSeenInEpoch);
+                  DateTime.fromMillisecondsSinceEpoch(user.lastSeenInEpoch!);
               final ago = timeago.format(date);
-              final isOnline = user.isOnline;
+              final isOnline = user.isOnline!;
               return ListTile(
-                leading: CircleAvatar(child: Text(user.fullName[0])),
-                title: Text(user.fullName),
+                leading: CircleAvatar(child: Text(user.fullName![0])),
+                title: Text(user.fullName!),
                 subtitle: isOnline
                     ? Row(
                         children: [

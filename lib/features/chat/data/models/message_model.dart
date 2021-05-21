@@ -1,16 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
-
 import '../../domain/entities/message_entity.dart';
 
 class MessageModel extends MessageEntity {
-  final String message;
-  final String fromUserId;
-  final String timestamp;
-  final String imageUrl;
+  final String? message;
+  final String? fromUserId;
+  final String? timestamp;
+  final String? imageUrl;
   MessageModel({
-    @required this.message,
-    @required this.fromUserId,
+    required this.message,
+    required this.fromUserId,
     this.timestamp,
     this.imageUrl,
   }) : super(
@@ -31,7 +29,7 @@ class MessageModel extends MessageEntity {
 
   factory MessageModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> snap) {
-    final snapData = snap.data();
+    final snapData = snap.data()!;
 
     return MessageModel(
       message: snapData['message'],
@@ -43,17 +41,17 @@ class MessageModel extends MessageEntity {
 }
 
 abstract class Message {
-  final int timeStamp;
-  final String senderId;
+  final int? timeStamp;
+  final String? senderId;
   Message({
-    @required this.timeStamp,
-    @required this.senderId,
+    required this.timeStamp,
+    required this.senderId,
   });
 
   factory Message.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
-    final int type = doc.data()['type'];
+    final int? type = doc.data()!['type'];
     print('type $type');
-    Message message;
+    late Message message;
 
     switch (type) {
       case 0:
@@ -76,7 +74,7 @@ abstract class Message {
 }
 
 class TextMessage extends Message {
-  String text;
+  String? text;
 
   TextMessage(this.text, timeStamp, senderId)
       : super(
@@ -86,7 +84,7 @@ class TextMessage extends Message {
 
   factory TextMessage.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> doc) {
-    final data = doc.data();
+    final data = doc.data()!;
     return TextMessage(
       data['text'],
       data['timeStamp'],
@@ -106,12 +104,12 @@ class TextMessage extends Message {
 }
 
 class ImageMessage extends Message {
-  String imageUrl;
+  String? imageUrl;
 
   ImageMessage({
-    @required this.imageUrl,
-    @required timeStamp,
-    @required senderId,
+    required this.imageUrl,
+    required timeStamp,
+    required senderId,
   }) : super(
           timeStamp: timeStamp,
           senderId: senderId,
@@ -119,7 +117,7 @@ class ImageMessage extends Message {
 
   factory ImageMessage.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> doc) {
-    final data = doc.data();
+    final data = doc.data()!;
     return ImageMessage(
       timeStamp: data['timeStamp'],
       senderId: data['senderId'],
@@ -139,7 +137,7 @@ class ImageMessage extends Message {
 }
 
 class VideoMessage extends Message {
-  String videoUrl;
+  String? videoUrl;
 
   VideoMessage(this.videoUrl, timeStamp, senderId)
       : super(
@@ -149,7 +147,7 @@ class VideoMessage extends Message {
 
   factory VideoMessage.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> doc) {
-    final data = doc.data();
+    final data = doc.data()!;
     return VideoMessage(
       data['videoUrl'],
       data['timeStamp'],
@@ -169,7 +167,7 @@ class VideoMessage extends Message {
 }
 
 class FileMessage extends Message {
-  String fileUrl;
+  String? fileUrl;
 
   FileMessage(this.fileUrl, timeStamp, senderId)
       : super(
@@ -179,7 +177,7 @@ class FileMessage extends Message {
 
   factory FileMessage.fromFirestore(
       DocumentSnapshot<Map<String, dynamic>> doc) {
-    final data = doc.data();
+    final data = doc.data()!;
     return FileMessage(
       data['fileUrl'],
       data['timeStamp'],

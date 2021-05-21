@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'chat_bloc.dart';
 
@@ -9,30 +9,30 @@ part of 'chat_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$ChatEventTearOff {
   const _$ChatEventTearOff();
 
-// ignore: unused_element
   _Started started() {
     return const _Started();
   }
 
-// ignore: unused_element
   _SendMessage sendMessage(
-      {@required String message, @required String fromUserId}) {
+      {required String message, required String fromUserId}) {
     return _SendMessage(
       message: message,
       fromUserId: fromUserId,
     );
   }
 
-// ignore: unused_element
   _SendImageMessage sendImageMessage(
-      {@required String message,
-      @required String fromUserId,
-      @required String imageUrl,
-      @required ImageUploaderCubit imageUploaderCubit}) {
+      {required String message,
+      required String fromUserId,
+      required String imageUrl,
+      required ImageUploaderCubit imageUploaderCubit}) {
     return _SendImageMessage(
       message: message,
       fromUserId: fromUserId,
@@ -41,51 +41,54 @@ class _$ChatEventTearOff {
     );
   }
 
-// ignore: unused_element
   _GetAllMessages getAllMessages() {
     return const _GetAllMessages();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ChatEvent = _$ChatEventTearOff();
 
 /// @nodoc
 mixin _$ChatEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult sendMessage(String message, String fromUserId),
-    @required
-        TResult sendImageMessage(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit),
-    @required TResult getAllMessages(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String message, String fromUserId) sendMessage,
+    required TResult Function(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+        sendImageMessage,
+    required TResult Function() getAllMessages,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
-        ImageUploaderCubit imageUploaderCubit),
-    TResult getAllMessages(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String message, String fromUserId)? sendMessage,
+    TResult Function(String message, String fromUserId, String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult Function()? getAllMessages,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult sendMessage(_SendMessage value),
-    @required TResult sendImageMessage(_SendImageMessage value),
-    @required TResult getAllMessages(_GetAllMessages value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_SendImageMessage value) sendImageMessage,
+    required TResult Function(_GetAllMessages value) getAllMessages,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult sendMessage(_SendMessage value),
-    TResult sendImageMessage(_SendImageMessage value),
-    TResult getAllMessages(_GetAllMessages value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_SendImageMessage value)? sendImageMessage,
+    TResult Function(_GetAllMessages value)? getAllMessages,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -120,6 +123,7 @@ class __$StartedCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Started implements _Started {
   const _$_Started();
 
@@ -138,32 +142,28 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult sendMessage(String message, String fromUserId),
-    @required
-        TResult sendImageMessage(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit),
-    @required TResult getAllMessages(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String message, String fromUserId) sendMessage,
+    required TResult Function(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+        sendImageMessage,
+    required TResult Function() getAllMessages,
   }) {
-    assert(started != null);
-    assert(sendMessage != null);
-    assert(sendImageMessage != null);
-    assert(getAllMessages != null);
     return started();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
-        ImageUploaderCubit imageUploaderCubit),
-    TResult getAllMessages(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String message, String fromUserId)? sendMessage,
+    TResult Function(String message, String fromUserId, String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult Function()? getAllMessages,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (started != null) {
       return started();
     }
@@ -172,29 +172,24 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult sendMessage(_SendMessage value),
-    @required TResult sendImageMessage(_SendImageMessage value),
-    @required TResult getAllMessages(_GetAllMessages value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_SendImageMessage value) sendImageMessage,
+    required TResult Function(_GetAllMessages value) getAllMessages,
   }) {
-    assert(started != null);
-    assert(sendMessage != null);
-    assert(sendImageMessage != null);
-    assert(getAllMessages != null);
     return started(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult sendMessage(_SendMessage value),
-    TResult sendImageMessage(_SendImageMessage value),
-    TResult getAllMessages(_GetAllMessages value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_SendImageMessage value)? sendImageMessage,
+    TResult Function(_GetAllMessages value)? getAllMessages,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (started != null) {
       return started(this);
     }
@@ -226,22 +221,26 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object message = freezed,
-    Object fromUserId = freezed,
+    Object? message = freezed,
+    Object? fromUserId = freezed,
   }) {
     return _then(_SendMessage(
-      message: message == freezed ? _value.message : message as String,
-      fromUserId:
-          fromUserId == freezed ? _value.fromUserId : fromUserId as String,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      fromUserId: fromUserId == freezed
+          ? _value.fromUserId
+          : fromUserId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_SendMessage implements _SendMessage {
-  const _$_SendMessage({@required this.message, @required this.fromUserId})
-      : assert(message != null),
-        assert(fromUserId != null);
+  const _$_SendMessage({required this.message, required this.fromUserId});
 
   @override
   final String message;
@@ -278,32 +277,28 @@ class _$_SendMessage implements _SendMessage {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult sendMessage(String message, String fromUserId),
-    @required
-        TResult sendImageMessage(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit),
-    @required TResult getAllMessages(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String message, String fromUserId) sendMessage,
+    required TResult Function(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+        sendImageMessage,
+    required TResult Function() getAllMessages,
   }) {
-    assert(started != null);
-    assert(sendMessage != null);
-    assert(sendImageMessage != null);
-    assert(getAllMessages != null);
     return sendMessage(message, fromUserId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
-        ImageUploaderCubit imageUploaderCubit),
-    TResult getAllMessages(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String message, String fromUserId)? sendMessage,
+    TResult Function(String message, String fromUserId, String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult Function()? getAllMessages,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sendMessage != null) {
       return sendMessage(message, fromUserId);
     }
@@ -312,29 +307,24 @@ class _$_SendMessage implements _SendMessage {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult sendMessage(_SendMessage value),
-    @required TResult sendImageMessage(_SendImageMessage value),
-    @required TResult getAllMessages(_GetAllMessages value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_SendImageMessage value) sendImageMessage,
+    required TResult Function(_GetAllMessages value) getAllMessages,
   }) {
-    assert(started != null);
-    assert(sendMessage != null);
-    assert(sendImageMessage != null);
-    assert(getAllMessages != null);
     return sendMessage(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult sendMessage(_SendMessage value),
-    TResult sendImageMessage(_SendImageMessage value),
-    TResult getAllMessages(_GetAllMessages value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_SendImageMessage value)? sendImageMessage,
+    TResult Function(_GetAllMessages value)? getAllMessages,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sendMessage != null) {
       return sendMessage(this);
     }
@@ -344,12 +334,13 @@ class _$_SendMessage implements _SendMessage {
 
 abstract class _SendMessage implements ChatEvent {
   const factory _SendMessage(
-      {@required String message, @required String fromUserId}) = _$_SendMessage;
+      {required String message, required String fromUserId}) = _$_SendMessage;
 
-  String get message;
-  String get fromUserId;
+  String get message => throw _privateConstructorUsedError;
+  String get fromUserId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SendMessageCopyWith<_SendMessage> get copyWith;
+  _$SendMessageCopyWith<_SendMessage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -377,34 +368,40 @@ class __$SendImageMessageCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object message = freezed,
-    Object fromUserId = freezed,
-    Object imageUrl = freezed,
-    Object imageUploaderCubit = freezed,
+    Object? message = freezed,
+    Object? fromUserId = freezed,
+    Object? imageUrl = freezed,
+    Object? imageUploaderCubit = freezed,
   }) {
     return _then(_SendImageMessage(
-      message: message == freezed ? _value.message : message as String,
-      fromUserId:
-          fromUserId == freezed ? _value.fromUserId : fromUserId as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      fromUserId: fromUserId == freezed
+          ? _value.fromUserId
+          : fromUserId // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       imageUploaderCubit: imageUploaderCubit == freezed
           ? _value.imageUploaderCubit
-          : imageUploaderCubit as ImageUploaderCubit,
+          : imageUploaderCubit // ignore: cast_nullable_to_non_nullable
+              as ImageUploaderCubit,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_SendImageMessage implements _SendImageMessage {
   const _$_SendImageMessage(
-      {@required this.message,
-      @required this.fromUserId,
-      @required this.imageUrl,
-      @required this.imageUploaderCubit})
-      : assert(message != null),
-        assert(fromUserId != null),
-        assert(imageUrl != null),
-        assert(imageUploaderCubit != null);
+      {required this.message,
+      required this.fromUserId,
+      required this.imageUrl,
+      required this.imageUploaderCubit});
 
   @override
   final String message;
@@ -453,32 +450,28 @@ class _$_SendImageMessage implements _SendImageMessage {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult sendMessage(String message, String fromUserId),
-    @required
-        TResult sendImageMessage(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit),
-    @required TResult getAllMessages(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String message, String fromUserId) sendMessage,
+    required TResult Function(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+        sendImageMessage,
+    required TResult Function() getAllMessages,
   }) {
-    assert(started != null);
-    assert(sendMessage != null);
-    assert(sendImageMessage != null);
-    assert(getAllMessages != null);
     return sendImageMessage(message, fromUserId, imageUrl, imageUploaderCubit);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
-        ImageUploaderCubit imageUploaderCubit),
-    TResult getAllMessages(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String message, String fromUserId)? sendMessage,
+    TResult Function(String message, String fromUserId, String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult Function()? getAllMessages,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sendImageMessage != null) {
       return sendImageMessage(
           message, fromUserId, imageUrl, imageUploaderCubit);
@@ -488,29 +481,24 @@ class _$_SendImageMessage implements _SendImageMessage {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult sendMessage(_SendMessage value),
-    @required TResult sendImageMessage(_SendImageMessage value),
-    @required TResult getAllMessages(_GetAllMessages value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_SendImageMessage value) sendImageMessage,
+    required TResult Function(_GetAllMessages value) getAllMessages,
   }) {
-    assert(started != null);
-    assert(sendMessage != null);
-    assert(sendImageMessage != null);
-    assert(getAllMessages != null);
     return sendImageMessage(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult sendMessage(_SendMessage value),
-    TResult sendImageMessage(_SendImageMessage value),
-    TResult getAllMessages(_GetAllMessages value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_SendImageMessage value)? sendImageMessage,
+    TResult Function(_GetAllMessages value)? getAllMessages,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sendImageMessage != null) {
       return sendImageMessage(this);
     }
@@ -520,17 +508,19 @@ class _$_SendImageMessage implements _SendImageMessage {
 
 abstract class _SendImageMessage implements ChatEvent {
   const factory _SendImageMessage(
-      {@required String message,
-      @required String fromUserId,
-      @required String imageUrl,
-      @required ImageUploaderCubit imageUploaderCubit}) = _$_SendImageMessage;
+      {required String message,
+      required String fromUserId,
+      required String imageUrl,
+      required ImageUploaderCubit imageUploaderCubit}) = _$_SendImageMessage;
 
-  String get message;
-  String get fromUserId;
-  String get imageUrl;
-  ImageUploaderCubit get imageUploaderCubit;
+  String get message => throw _privateConstructorUsedError;
+  String get fromUserId => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  ImageUploaderCubit get imageUploaderCubit =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SendImageMessageCopyWith<_SendImageMessage> get copyWith;
+  _$SendImageMessageCopyWith<_SendImageMessage> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -552,6 +542,7 @@ class __$GetAllMessagesCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_GetAllMessages implements _GetAllMessages {
   const _$_GetAllMessages();
 
@@ -570,32 +561,28 @@ class _$_GetAllMessages implements _GetAllMessages {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult sendMessage(String message, String fromUserId),
-    @required
-        TResult sendImageMessage(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit),
-    @required TResult getAllMessages(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(String message, String fromUserId) sendMessage,
+    required TResult Function(String message, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+        sendImageMessage,
+    required TResult Function() getAllMessages,
   }) {
-    assert(started != null);
-    assert(sendMessage != null);
-    assert(sendImageMessage != null);
-    assert(getAllMessages != null);
     return getAllMessages();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult sendMessage(String message, String fromUserId),
-    TResult sendImageMessage(String message, String fromUserId, String imageUrl,
-        ImageUploaderCubit imageUploaderCubit),
-    TResult getAllMessages(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String message, String fromUserId)? sendMessage,
+    TResult Function(String message, String fromUserId, String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult Function()? getAllMessages,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllMessages != null) {
       return getAllMessages();
     }
@@ -604,29 +591,24 @@ class _$_GetAllMessages implements _GetAllMessages {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult sendMessage(_SendMessage value),
-    @required TResult sendImageMessage(_SendImageMessage value),
-    @required TResult getAllMessages(_GetAllMessages value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_SendImageMessage value) sendImageMessage,
+    required TResult Function(_GetAllMessages value) getAllMessages,
   }) {
-    assert(started != null);
-    assert(sendMessage != null);
-    assert(sendImageMessage != null);
-    assert(getAllMessages != null);
     return getAllMessages(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult sendMessage(_SendMessage value),
-    TResult sendImageMessage(_SendImageMessage value),
-    TResult getAllMessages(_GetAllMessages value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_SendImageMessage value)? sendImageMessage,
+    TResult Function(_GetAllMessages value)? getAllMessages,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllMessages != null) {
       return getAllMessages(this);
     }
@@ -642,56 +624,56 @@ abstract class _GetAllMessages implements ChatEvent {
 class _$ChatStateTearOff {
   const _$ChatStateTearOff();
 
-// ignore: unused_element
   _Initial initial() {
     return const _Initial();
   }
 
-// ignore: unused_element
-  _AllMessagesLoaded allMessagesLoaded({@required List<Message> allMessages}) {
+  _AllMessagesLoaded allMessagesLoaded({required List<Message> allMessages}) {
     return _AllMessagesLoaded(
       allMessages: allMessages,
     );
   }
 
-// ignore: unused_element
   _MessageFailure messageFailure() {
     return const _MessageFailure();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ChatState = _$ChatStateTearOff();
 
 /// @nodoc
 mixin _$ChatState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult allMessagesLoaded(List<Message> allMessages),
-    @required TResult messageFailure(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(List<Message> allMessages) allMessagesLoaded,
+    required TResult Function() messageFailure,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult allMessagesLoaded(List<Message> allMessages),
-    TResult messageFailure(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(List<Message> allMessages)? allMessagesLoaded,
+    TResult Function()? messageFailure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult allMessagesLoaded(_AllMessagesLoaded value),
-    @required TResult messageFailure(_MessageFailure value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_AllMessagesLoaded value) allMessagesLoaded,
+    required TResult Function(_MessageFailure value) messageFailure,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult allMessagesLoaded(_AllMessagesLoaded value),
-    TResult messageFailure(_MessageFailure value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_AllMessagesLoaded value)? allMessagesLoaded,
+    TResult Function(_MessageFailure value)? messageFailure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -726,6 +708,7 @@ class __$InitialCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -744,26 +727,22 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult allMessagesLoaded(List<Message> allMessages),
-    @required TResult messageFailure(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(List<Message> allMessages) allMessagesLoaded,
+    required TResult Function() messageFailure,
   }) {
-    assert(initial != null);
-    assert(allMessagesLoaded != null);
-    assert(messageFailure != null);
     return initial();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult allMessagesLoaded(List<Message> allMessages),
-    TResult messageFailure(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(List<Message> allMessages)? allMessagesLoaded,
+    TResult Function()? messageFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initial != null) {
       return initial();
     }
@@ -772,26 +751,22 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult allMessagesLoaded(_AllMessagesLoaded value),
-    @required TResult messageFailure(_MessageFailure value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_AllMessagesLoaded value) allMessagesLoaded,
+    required TResult Function(_MessageFailure value) messageFailure,
   }) {
-    assert(initial != null);
-    assert(allMessagesLoaded != null);
-    assert(messageFailure != null);
     return initial(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult allMessagesLoaded(_AllMessagesLoaded value),
-    TResult messageFailure(_MessageFailure value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_AllMessagesLoaded value)? allMessagesLoaded,
+    TResult Function(_MessageFailure value)? messageFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initial != null) {
       return initial(this);
     }
@@ -824,20 +799,21 @@ class __$AllMessagesLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object allMessages = freezed,
+    Object? allMessages = freezed,
   }) {
     return _then(_AllMessagesLoaded(
       allMessages: allMessages == freezed
           ? _value.allMessages
-          : allMessages as List<Message>,
+          : allMessages // ignore: cast_nullable_to_non_nullable
+              as List<Message>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_AllMessagesLoaded implements _AllMessagesLoaded {
-  const _$_AllMessagesLoaded({@required this.allMessages})
-      : assert(allMessages != null);
+  const _$_AllMessagesLoaded({required this.allMessages});
 
   @override
   final List<Message> allMessages;
@@ -867,26 +843,22 @@ class _$_AllMessagesLoaded implements _AllMessagesLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult allMessagesLoaded(List<Message> allMessages),
-    @required TResult messageFailure(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(List<Message> allMessages) allMessagesLoaded,
+    required TResult Function() messageFailure,
   }) {
-    assert(initial != null);
-    assert(allMessagesLoaded != null);
-    assert(messageFailure != null);
     return allMessagesLoaded(allMessages);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult allMessagesLoaded(List<Message> allMessages),
-    TResult messageFailure(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(List<Message> allMessages)? allMessagesLoaded,
+    TResult Function()? messageFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (allMessagesLoaded != null) {
       return allMessagesLoaded(allMessages);
     }
@@ -895,26 +867,22 @@ class _$_AllMessagesLoaded implements _AllMessagesLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult allMessagesLoaded(_AllMessagesLoaded value),
-    @required TResult messageFailure(_MessageFailure value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_AllMessagesLoaded value) allMessagesLoaded,
+    required TResult Function(_MessageFailure value) messageFailure,
   }) {
-    assert(initial != null);
-    assert(allMessagesLoaded != null);
-    assert(messageFailure != null);
     return allMessagesLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult allMessagesLoaded(_AllMessagesLoaded value),
-    TResult messageFailure(_MessageFailure value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_AllMessagesLoaded value)? allMessagesLoaded,
+    TResult Function(_MessageFailure value)? messageFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (allMessagesLoaded != null) {
       return allMessagesLoaded(this);
     }
@@ -923,12 +891,13 @@ class _$_AllMessagesLoaded implements _AllMessagesLoaded {
 }
 
 abstract class _AllMessagesLoaded implements ChatState {
-  const factory _AllMessagesLoaded({@required List<Message> allMessages}) =
+  const factory _AllMessagesLoaded({required List<Message> allMessages}) =
       _$_AllMessagesLoaded;
 
-  List<Message> get allMessages;
+  List<Message> get allMessages => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$AllMessagesLoadedCopyWith<_AllMessagesLoaded> get copyWith;
+  _$AllMessagesLoadedCopyWith<_AllMessagesLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -950,6 +919,7 @@ class __$MessageFailureCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_MessageFailure implements _MessageFailure {
   const _$_MessageFailure();
 
@@ -968,26 +938,22 @@ class _$_MessageFailure implements _MessageFailure {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult allMessagesLoaded(List<Message> allMessages),
-    @required TResult messageFailure(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(List<Message> allMessages) allMessagesLoaded,
+    required TResult Function() messageFailure,
   }) {
-    assert(initial != null);
-    assert(allMessagesLoaded != null);
-    assert(messageFailure != null);
     return messageFailure();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult allMessagesLoaded(List<Message> allMessages),
-    TResult messageFailure(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(List<Message> allMessages)? allMessagesLoaded,
+    TResult Function()? messageFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (messageFailure != null) {
       return messageFailure();
     }
@@ -996,26 +962,22 @@ class _$_MessageFailure implements _MessageFailure {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult allMessagesLoaded(_AllMessagesLoaded value),
-    @required TResult messageFailure(_MessageFailure value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_AllMessagesLoaded value) allMessagesLoaded,
+    required TResult Function(_MessageFailure value) messageFailure,
   }) {
-    assert(initial != null);
-    assert(allMessagesLoaded != null);
-    assert(messageFailure != null);
     return messageFailure(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult allMessagesLoaded(_AllMessagesLoaded value),
-    TResult messageFailure(_MessageFailure value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_AllMessagesLoaded value)? allMessagesLoaded,
+    TResult Function(_MessageFailure value)? messageFailure,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (messageFailure != null) {
       return messageFailure(this);
     }

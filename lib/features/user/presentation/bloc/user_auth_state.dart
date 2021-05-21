@@ -10,10 +10,10 @@ enum UserStatus {
 @freezed
 abstract class UserAuthState with _$UserAuthState {
   const factory UserAuthState({
-    @required UserEntity user,
-    @required List<UserEntity> users,
-    @required UserStatus userStatus,
-    @required Option<Either<Failure, UserEntity>> authFailureOrSuccessOption,
+    required UserEntity user,
+    required List<UserEntity> users,
+    required UserStatus userStatus,
+    required Option<Either<Failure, UserEntity>> authFailureOrSuccessOption,
   }) = _UserAuthState;
 
   factory UserAuthState.initial() => UserAuthState(

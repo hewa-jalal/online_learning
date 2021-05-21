@@ -12,25 +12,25 @@ class HomeworkCard extends StatelessWidget {
   final String courseTitle;
 
   HomeworkCard({
-    Key key,
-    @required this.homework,
-    @required this.courseTitle,
+    Key? key,
+    required this.homework,
+    required this.courseTitle,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // can be used later, don't delete!
-    final _userAuthState = context.watch<UserAuthBloc>().state;
+    final UserAuthState _userAuthState = context.watch<UserAuthBloc>().state;
 
     // we need toString() method as it's a list of strings
     final _isSubmitted =
-        homework.submittedHomeworks.contains(_userAuthState.user.id.toString());
-    final _dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate);
+        homework.submittedHomeworks!.contains(_userAuthState.user.id.toString());
+    final _dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate!);
     final _jifDate = Jiffy(_dueDate);
 
     return Card(
       color: Color(0xff5F36DA),
       child: ListTile(
-        leading: Text(homework.title),
+        leading: Text(homework.title!),
         title: Column(
           children: [
             SizedBox(height: 4),

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/entities/lecture_entity.dart';
@@ -113,21 +114,21 @@ part 'lecture_bloc.freezed.dart';
 
 @injectable
 class LectureBloc extends Bloc<LectureEvent, LectureState> {
-  final DownloadLecture downloadLecture;
-  final UploadLecture uploadLecture;
-  final GetAllLectures getAllLectures;
-  final GetAllLecturesByCourse getAllLecturesByCourse;
-  final GetAllCoursesByUserId getAllCoursesByUserId;
-  final CreateCourse createCourse;
-  final SubmitUser submitUser;
+  final DownloadLecture? downloadLecture;
+  final UploadLecture? uploadLecture;
+  final GetAllLectures? getAllLectures;
+  final GetAllLecturesByCourse? getAllLecturesByCourse;
+  final GetAllCoursesByUserId? getAllCoursesByUserId;
+  final CreateCourse? createCourse;
+  final SubmitUser? submitUser;
   LectureBloc({
-    @required this.downloadLecture,
-    @required this.uploadLecture,
-    @required this.getAllLectures,
-    @required this.getAllLecturesByCourse,
-    @required this.getAllCoursesByUserId,
-    @required this.createCourse,
-    @required this.submitUser,
+    required this.downloadLecture,
+    required this.uploadLecture,
+    required this.getAllLectures,
+    required this.getAllLecturesByCourse,
+    required this.getAllCoursesByUserId,
+    required this.createCourse,
+    required this.submitUser,
   }) : super(LectureState.initial());
 
   @override
@@ -143,7 +144,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
           isSubmitting: true,
         );
 
-        final either = await uploadLecture(
+        final either = await uploadLecture!(
           LectureParams(
             fileUrl: e.filePath,
             lectureTitle: e.title,
@@ -154,86 +155,87 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         );
 
         yield either.fold(
-          (failure) => state.copyWith(
-            lectureFailureOrSuccessOption: none(),
-          ),
-          (lectureEntity) => state.copyWith(
-            isSubmitting: false,
-          ),
+          ((failure) => state.copyWith(
+                lectureFailureOrSuccessOption: none(),
+              )),
+          ((lectureEntity) => state.copyWith(
+                isSubmitting: false,
+              )),
         );
       },
       downloadLecture: (e) async* {
-        final either = await downloadLecture(
+        final either = await downloadLecture!(
           LectureParams(
+            user: UserModel.empty(),
             fileUrl: e.fileUrl,
             lectureTitle: e.lectureTitle,
             courseTitle: e.courseTitle,
           ),
         );
         yield either.fold(
-          (failure) => state.copyWith(
-            lectureFailureOrSuccessOption: none(),
-          ),
+          ((failure) => state.copyWith(
+                lectureFailureOrSuccessOption: none(),
+              )),
           // we don't want anything to happen when a file is downloading
           (lecture) => state,
         );
       },
       getAllLectures: (e) async* {
-        final either = await getAllLectures(NoParams());
+        final either = await getAllLectures!(NoParams());
         yield either.fold(
-          (failure) => state.copyWith(
-            lectureFailureOrSuccessOption: none(),
-          ),
-          (lectures) => state.copyWith(
-            lectures: lectures,
-            isSubmitting: false,
-          ),
+          ((failure) => state.copyWith(
+                lectureFailureOrSuccessOption: none(),
+              )),
+          ((lectures) => state.copyWith(
+                lectures: lectures,
+                isSubmitting: false,
+              )) as LectureState Function(List<LectureEntity>),
         );
       },
       getAllLecturesByCourse: (e) async* {
         // yield state.copyWith(
         //   isSubmitting: true,
         // );
-        final either = await getAllLecturesByCourse(e.courseTitle);
+        final either = await getAllLecturesByCourse!(e.courseTitle);
         yield either.fold(
-          (failure) => state.copyWith(
-            lectureFailureOrSuccessOption: none(),
-            isSubmitting: false,
-          ),
-          (lectures) => state.copyWith(
-            lectures: lectures,
-            isSubmitting: false,
-          ),
+          ((failure) => state.copyWith(
+                lectureFailureOrSuccessOption: none(),
+                isSubmitting: false,
+              )),
+          ((lectures) => state.copyWith(
+                lectures: lectures,
+                isSubmitting: false,
+              )),
         );
       },
       createCourse: (e) async* {
-        await createCourse(e.courseTitle);
+        await createCourse!(e.courseTitle);
       },
       getAllCoursesByUserId: (e) async* {
         yield state.copyWith(
           isSubmitting: true,
         );
-        final either = await getAllCoursesByUserId(state.userId);
+        final either = await getAllCoursesByUserId!(state.userId);
         yield either.fold(
-          (failure) => state.copyWith(
-            lectureFailureOrSuccessOption: none(),
-          ),
-          (courseIds) => state.copyWith(
-            courseIds: courseIds,
-            isSubmitting: false,
-          ),
+          ((failure) => state.copyWith(
+                lectureFailureOrSuccessOption: none(),
+              )),
+          ((courseIds) => state.copyWith(
+                courseIds: courseIds,
+                isSubmitting: false,
+              )),
         );
       },
       selectFile: (e) async* {
-        final result = await FilePicker.platform.pickFiles();
-        final hash = result.files.single.bytes;
+        final result = await (FilePicker.platform.pickFiles());
+        final hash = result!.files.single.bytes;
         print('hash $hash');
-        yield state.copyWith(
-          filePath: result.files.single.path,
-        );
+        // yield state.copyWith(
+        //   filePath: result.files.single.path,
+        // );
       },
       submitUser: (e) async* {
-        submitUser(
+        submitUser!(
           SubmitParams(
             lectureTitle: e.lectureTitle,
             userId: e.userId,

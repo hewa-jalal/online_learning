@@ -7,12 +7,12 @@ import '../repositories/user_repository.dart';
 
 @lazySingleton
 class GetAllUsers extends UseCase<List<UserEntity>, NoParams> {
-  final UserRepository userRepository;
+  final UserRepository? userRepository;
 
   GetAllUsers(this.userRepository);
 
   @override
   Future<Either<Failure, List<UserEntity>>> call(NoParams noParams) {
-    return userRepository.getAllUsers();
+    return userRepository!.getAllUsers();
   }
 }

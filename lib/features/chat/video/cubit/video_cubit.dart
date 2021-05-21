@@ -10,10 +10,10 @@ class VideoCubit extends Cubit<VideoState> {
   final VideoRepositoy _videoRepositoy;
 
   void addVideoRoomUrl({
-    @required String roomText,
-    @required String courseTitle,
-    @required String dept,
-    @required int stage,
+    required String roomText,
+    required String courseTitle,
+    required String? dept,
+    required int? stage,
   }) =>
       _videoRepositoy.addVideoUrl(
         roomText: roomText,
@@ -23,8 +23,8 @@ class VideoCubit extends Cubit<VideoState> {
       );
 
   void getVideoUrl() async {
-    final videoUrl = await _videoRepositoy.getVideoUrl(roomText: '2');
-    if (videoUrl.isNotEmpty) {
+    final videoUrl = await (_videoRepositoy.getVideoUrl(roomText: '2'));
+    if (videoUrl!.isNotEmpty) {
       emit(VideoState.chatRoomLoaded(chatRoomUrl: videoUrl));
     }
   }

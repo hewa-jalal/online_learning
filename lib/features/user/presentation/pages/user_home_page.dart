@@ -12,8 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class UserHomePage extends StatefulWidget {
   final UserEntity user;
   const UserHomePage({
-    Key key,
-    @required this.user,
+    Key? key,
+    required this.user,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
   @override
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
-    if (ModalRoute.of(context).isCurrent) {
+    if (ModalRoute.of(context)!.isCurrent) {
       lectureBloc.add(LectureEvent.getAllCoursesByUserId());
     }
 
@@ -87,7 +87,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                             itemCount: courseIds.length,
                             itemBuilder: (context, index) => CourseCard(
                               onTap: () => Get.to(() =>
-                                      CoursePage(courseTitle: courseIds[index]))
+                                      CoursePage(courseTitle: courseIds[index]))!
                                   .then((value) => setState(() {})),
                               courseTitle: courseIds[index],
                             ),
@@ -176,7 +176,7 @@ class __CreateCourseFabState extends State<_CreateCourseFab> {
 
 class _EmptyCourseWidget extends StatelessWidget {
   const _EmptyCourseWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

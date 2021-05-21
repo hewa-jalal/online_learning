@@ -17,11 +17,11 @@ part 'chat_bloc.freezed.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   // final SendMessage sendMessage;
   // final GetAllMessages getAllMessages;
-  final ChatRepository chatRepository;
+  final ChatRepository? chatRepository;
   ChatBloc({
     // @required this.sendMessage,
     // @required this.getAllMessages,
-    @required this.chatRepository,
+    required this.chatRepository,
   }) : super(_Initial());
 
   @override
@@ -31,7 +31,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     yield* event.map(
       started: (e) async* {},
       sendMessage: (e) async* {
-        chatRepository.sendMessage(
+        chatRepository!.sendMessage(
           message: e.message,
           fromUserId: e.fromUserId,
         );
@@ -44,22 +44,22 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         add(ChatEvent.getAllMessages());
       },
       getAllMessages: (e) async* {
-        final messages = await chatRepository.getAllMessages();
+        final messages = await chatRepository!.getAllMessages();
         yield messages.fold(
           (failure) => ChatState.messageFailure(),
           (messages) => ChatState.allMessagesLoaded(allMessages: messages),
         );
       },
       sendImageMessage: (e) async* {
-        final result = await FilePicker.platform.pickFiles(
+        final result = await (FilePicker.platform.pickFiles(
           type: FileType.image,
-        );
+        ));
         // e.imageUploaderCubit.setToLoading();
 
-        await chatRepository.sendImageMessage(
+        await chatRepository!.sendImageMessage(
           message: e.message,
           fromUserId: e.fromUserId,
-          imageUrl: result.files.single.path,
+          imageUrl: result!.files.single.path,
           imageUploaderCubit: e.imageUploaderCubit,
         );
 

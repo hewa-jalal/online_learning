@@ -53,15 +53,15 @@ part 'user_auth_bloc.freezed.dart';
 
 @injectable
 class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
-  final GetUser getUser;
-  final GetAllUsers getAllUsers;
-  final UpdateUserTime updateUserTime;
-  final UserOnlineStatus userOnlineStatus;
+  final GetUser? getUser;
+  final GetAllUsers? getAllUsers;
+  final UpdateUserTime? updateUserTime;
+  final UserOnlineStatus? userOnlineStatus;
   UserAuthBloc({
-    @required this.getUser,
-    @required this.getAllUsers,
-    @required this.updateUserTime,
-    @required this.userOnlineStatus,
+    required this.getUser,
+    required this.getAllUsers,
+    required this.updateUserTime,
+    required this.userOnlineStatus,
   }) : super(UserAuthState.initial());
 
   @override
@@ -80,36 +80,36 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
           user: state.user.copyWith(id: e.id.toString()),
           authFailureOrSuccessOption: none(),
         );
-        final either = await getUser(UserParam(id: e.id));
+        final either = await getUser!(UserParam(id: e.id));
         yield either.fold(
-          (failure) => state.copyWith(
-            authFailureOrSuccessOption: some(either),
-          ),
-          (user) => state.copyWith(
-            user: user,
-            userStatus: UserStatus.done,
-            authFailureOrSuccessOption: some(either),
-          ),
+          ((failure) => state.copyWith(
+                authFailureOrSuccessOption: some(either),
+              )),
+          ((user) => state.copyWith(
+                user: user,
+                userStatus: UserStatus.done,
+                authFailureOrSuccessOption: some(either),
+              )),
         );
         // TODO: maybe wrong
         add(UserAuthEvent.updateUserTime());
         add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
       },
       getAllUsers: (e) async* {
-        final either = await getAllUsers(NoParams());
+        final either = await getAllUsers!(NoParams());
         yield either.fold(
-          (failure) => null,
-          (users) => state.copyWith(
-            users: users,
-          ),
+          ((failure) => null) as UserAuthState Function(Failure),
+          ((users) => state.copyWith(
+                users: users,
+              )),
         );
       },
       updateUserTime: (e) async* {
-        updateUserTime(UserParam(id: int.parse(state.user.id)));
+        updateUserTime!(UserParam(id: int.parse(state.user.id!)));
       },
       updateUserOnlineStatus: (e) async* {
-        userOnlineStatus(
-            OnlineParams(id: int.parse(state.user.id), isOnline: e.isOnline));
+        userOnlineStatus!(
+            OnlineParams(id: int.parse(state.user.id!), isOnline: e.isOnline));
       },
     );
   }

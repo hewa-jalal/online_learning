@@ -8,6 +8,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mime/mime.dart';
+import 'package:online_learning/features/user/data/models/user_model.dart';
 import '../../../../homeworks/presentation/bloc/homework_bloc.dart';
 import '../../bloc/lecture_bloc.dart';
 import '../../bloc/progress_bloc/progress_bloc.dart';
@@ -18,10 +19,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UploadPage extends StatefulWidget {
   const UploadPage({
-    Key key,
-    @required this.user,
-    @required this.courseTitle,
-    @required this.isHomeWork,
+    Key? key,
+    required this.user,
+    required this.courseTitle,
+    required this.isHomeWork,
   }) : super(key: key);
 
   final String courseTitle;
@@ -98,10 +99,10 @@ class ProgressDialog extends StatelessWidget {
 
 class _UploadForm extends StatefulWidget {
   const _UploadForm({
-    Key key,
-    @required this.user,
-    @required this.courseTitle,
-    @required this.isHomework,
+    Key? key,
+    required this.user,
+    required this.courseTitle,
+    required this.isHomework,
   }) : super(key: key);
 
   final String courseTitle;
@@ -123,7 +124,7 @@ class _UploadFormState extends State<_UploadForm> {
   @override
   Widget build(BuildContext context) {
     final _isFileSelected =
-        context.watch<HomeworkBloc>().state.filePath.isNotEmpty;
+        context.watch<HomeworkBloc>().state.filePath!.isNotEmpty;
     return BlocBuilder<UserAuthBloc, UserAuthState>(
       builder: (context, state) {
         return Padding(
@@ -175,11 +176,11 @@ class _UploadFormState extends State<_UploadForm> {
 
 class _HomeworkBottomSelection extends StatefulWidget {
   const _HomeworkBottomSelection({
-    Key key,
-    @required this.user,
-    @required this.courseTitle,
-    @required this.title,
-    @required this.description,
+    Key? key,
+    required this.user,
+    required this.courseTitle,
+    required this.title,
+    required this.description,
   }) : super(key: key);
 
   final String courseTitle;
@@ -193,8 +194,8 @@ class _HomeworkBottomSelection extends StatefulWidget {
 }
 
 class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
-  DateTime _dueDate;
-  String _formattedString;
+  DateTime? _dueDate;
+  late String _formattedString;
   TimeOfDay _time = TimeOfDay.now().replacing(minute: 30);
 
   String get title => widget.title;
@@ -214,7 +215,7 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
 
     return BlocBuilder<HomeworkBloc, HomeworkState>(
       builder: (context, state) {
-        if (state.filePath.isEmpty) {
+        if (state.filePath!.isEmpty) {
           return HomeworkUploadButton(
             user: widget.user,
             title: widget.title,
@@ -222,7 +223,7 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
             description: widget.description,
           );
         } else {
-          final fileName = state.filePath.split('/').last;
+          final fileName = state.filePath!.split('/').last;
           final fileType = lookupMimeType(fileName);
           // print('endsWith --> ' + fileType.endsWith('pdf').toString());
           // print('mime -----> ' + lookupMimeType(fileName));
@@ -313,24 +314,24 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
 
 class HomeworkUploadButton extends StatelessWidget {
   const HomeworkUploadButton({
-    Key key,
-    @required this.user,
-    @required this.title,
-    @required this.courseTitle,
-    @required this.description,
+    Key? key,
+    required this.user,
+    required this.title,
+    required this.courseTitle,
+    required this.description,
     this.dueDate,
   }) : super(key: key);
 
   final String courseTitle;
   final String description;
-  final DateTime dueDate;
+  final DateTime? dueDate;
   final String title;
   final UserEntity user;
 
   @override
   Widget build(BuildContext context) {
     final _homeworkBloc = context.watch<HomeworkBloc>();
-    final _isFileSelected = _homeworkBloc.state.filePath.isNotEmpty;
+    final _isFileSelected = _homeworkBloc.state.filePath!.isNotEmpty;
     return SizedBox(
       height: 0.072.sh,
       width: 0.8.sw,
@@ -338,12 +339,12 @@ class HomeworkUploadButton extends StatelessWidget {
         onPressed: () => _isFileSelected
             ? _homeworkBloc.add(
                 HomeworkEvent.uploadHomework(
-                  user: user,
+                  user: user as UserModel,
                   title: title,
                   courseTitle: courseTitle,
                   description: description,
-                  filePath: _homeworkBloc.state.filePath,
-                  dueDate: dueDate.millisecondsSinceEpoch,
+                  filePath: _homeworkBloc.state.filePath!,
+                  dueDate: dueDate!.millisecondsSinceEpoch,
                 ),
               )
             : _homeworkBloc.add(HomeworkEvent.selectFile()),
@@ -358,11 +359,11 @@ class HomeworkUploadButton extends StatelessWidget {
 
 class _LecutreBottomSelection extends StatelessWidget {
   const _LecutreBottomSelection({
-    Key key,
-    @required this.user,
-    @required this.title,
-    @required this.description,
-    @required this.courseTitle,
+    Key? key,
+    required this.user,
+    required this.title,
+    required this.description,
+    required this.courseTitle,
   }) : super(key: key);
 
   final String courseTitle;
@@ -403,7 +404,7 @@ class _LecutreBottomSelection extends StatelessWidget {
                 onPressed: () => lectureBloc.add(
                   LectureEvent.uploadLecture(
                     filePath: state.filePath,
-                    user: user,
+                    user: user as UserModel,
                     courseTitle: courseTitle,
                     title: title,
                     description: description,

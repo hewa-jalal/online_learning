@@ -41,15 +41,15 @@ class MessageModel extends MessageEntity {
 }
 
 abstract class Message {
-  final int? timeStamp;
-  final String? senderId;
+  final int timeStamp;
+  final String senderId;
   Message({
     required this.timeStamp,
     required this.senderId,
   });
 
   factory Message.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
-    final int? type = doc.data()!['type'];
+    final int type = doc.data()!['type'];
     print('type $type');
     late Message message;
 
@@ -74,7 +74,7 @@ abstract class Message {
 }
 
 class TextMessage extends Message {
-  String? text;
+  String text;
 
   TextMessage(this.text, timeStamp, senderId)
       : super(
@@ -104,7 +104,7 @@ class TextMessage extends Message {
 }
 
 class ImageMessage extends Message {
-  String? imageUrl;
+  String imageUrl;
 
   ImageMessage({
     required this.imageUrl,

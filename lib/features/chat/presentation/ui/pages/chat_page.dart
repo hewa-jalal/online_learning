@@ -1,27 +1,54 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bubble/bubble.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_chat_ui/flutter_chat_ui.dart' as chatUi;
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:nil/nil.dart';
 import 'package:octo_image/octo_image.dart';
-import '../../../../../core/universal_variables.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
-import '../../../data/models/message_model.dart';
-import '../../bloc/chat_bloc.dart';
-import '../../bloc/cubit/cubit/imageuploader_cubit.dart';
+import '../../../../../core/universal_variables.dart';
 import '../../../../lectures/presentation/UI/pages/submit_homework_page.dart';
 import '../../../../user/domain/entites/user.dart';
 import '../../../../user/presentation/bloc/user_auth_bloc.dart';
-import 'package:timeago/timeago.dart' as timeago;
+import '../../../data/models/message_model.dart';
+import '../../bloc/chat_bloc.dart';
+import '../../bloc/cubit/cubit/imageuploader_cubit.dart';
+
+class UsersPage extends StatelessWidget {
+  const UsersPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: StreamBuilder<List<types.User>>(
+        stream: FirebaseChatCore.instance.users(),
+        initialData: const [],
+        builder: (context, snapshot) {
+          return Text(snapshot.data![0].firstName!);
+        },
+      ),
+    );
+  }
+}
+
+String randomString() {
+  var random = Random.secure();
+  var values = List<int>.generate(16, (i) => random.nextInt(255));
+  return base64UrlEncode(values);
+}
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
@@ -36,6 +63,33 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  List<types.Message> _messages = [];
+
+  String randomString() {
+    var random = Random.secure();
+    var values = List<int>.generate(16, (i) => random.nextInt(255));
+    return base64UrlEncode(values);
+  }
+
+  void _handleSendPressed(types.PartialText message, ChatBloc chatBloc) {
+    // final textMessage = types.TextMessage(
+    //   authorId: '12',
+    //   id: randomString(),
+    //   text: message.text,
+    //   timestamp: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
+    // );
+
+    chatBloc.add(
+      ChatEvent.sendMessage(message: message.text, fromUserId: '200'),
+    );
+  }
+
+  void _addMessage(types.Message message) {
+    setState(() {
+      _messages.insert(0, message);
+    });
+  }
+
   final _innerDrawerKey = GlobalKey<InnerDrawerState>();
   final _scrollController = ScrollController();
 
@@ -61,6 +115,76 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     final imageUploaderCubit = context.read<ImageUploaderCubit>();
     print('imageUploaderCubit.state' + imageUploaderCubit.state.toString());
+
+    void _handleImageSelection() async {
+      final result = await ImagePicker().getImage(
+        imageQuality: 70,
+        maxWidth: 1440,
+        source: ImageSource.gallery,
+      );
+
+      if (result != null) {
+        final bytes = await result.readAsBytes();
+        final image = await decodeImageFromList(bytes);
+        final imageName = result.path.split('/').last;
+
+        final message = types.ImageMessage(
+          authorId: '21',
+          height: image.height.toDouble(),
+          id: randomString(),
+          imageName: imageName,
+          size: bytes.length,
+          timestamp: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
+          uri: result.path,
+          width: image.width.toDouble(),
+        );
+
+        _addMessage(message);
+      }
+    }
+
+    void _handleAtachmentPressed() {
+      showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 144,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _handleImageSelection();
+                  },
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Photo'),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    // _handleFileSelection();
+                  },
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('File'),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Cancel'),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
 
     final chatBloc = context.read<ChatBloc>();
     if (ModalRoute.of(context)!.isCurrent) {
@@ -89,12 +213,49 @@ class _ChatPageState extends State<ChatPage> {
               return state.map(
                 initial: (state) => Center(child: CircularProgressIndicator()),
                 allMessagesLoaded: (state) {
-                  final messages = state.allMessages.reversed.toList();
+                  // final messages = state.allMessages.reversed.toList();
+                  List<types.Message> messages = state.allMessages.map((msg) {
+                    if (msg is ImageMessage) {
+                      return types.ImageMessage(
+                        size: 200,
+                        imageName: 'imageName',
+                        uri: msg.imageUrl,
+                        authorId: user.id!,
+                        id: user.id!,
+                        timestamp: msg.timeStamp,
+                      );
+                    } else if (msg is TextMessage) {
+                      return types.TextMessage(
+                        text: msg.text,
+                        id: '29',
+                        authorId: user.id!,
+                        timestamp: msg.timeStamp,
+                      );
+                    } else {
+                      return types.TextMessage(
+                        text: 'msg.text',
+                        id: user.id!,
+                        authorId: '44',
+                      );
+                    }
+                  }).toList();
+
+                  return chatUi.Chat(
+                    messages: messages,
+                    onSendPressed: (msg) => _handleSendPressed(msg, chatBloc),
+                    user: types.User(id: user.id!),
+                    onAttachmentPressed: () => addMediaModal(
+                      context,
+                      chatBloc: chatBloc,
+                      imageUploaderCubit: imageUploaderCubit,
+                    ),
+                    theme: chatUi.DarkChatTheme(),
+                  );
                   return Column(
                     children: [
                       Flexible(
                         child: _MessagesListWidget(
-                          messages: messages,
+                          messages: [],
                           user: user,
                           chatListController: _scrollController,
                         ),
@@ -132,47 +293,6 @@ class _ChatPageState extends State<ChatPage> {
   }
 }
 
-class _AttachmentSelection extends StatelessWidget {
-  const _AttachmentSelection({
-    Key? key,
-    required this.icon,
-    required this.label,
-  }) : super(key: key);
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ClipOval(
-          child: Material(
-            color: Colors.blue,
-            child: InkWell(
-              splashColor: Colors.red,
-              child: SizedBox(
-                width: 56,
-                height: 56,
-                child: Icon(icon),
-              ),
-              onTap: () async {
-                final result = await FilePicker.platform.pickFiles();
-                if (result != null) {
-                  final file = File(result.files.single.path!);
-
-                  Image.file(file);
-                }
-              },
-            ),
-          ),
-        ),
-        Text(label),
-      ],
-    );
-  }
-}
-
 class _MessagesListWidget extends StatelessWidget {
   const _MessagesListWidget({
     Key? key,
@@ -202,7 +322,7 @@ class _MessagesListWidget extends StatelessWidget {
               //   imageUrl: msg.imageUrl,
               // ),
               child: OctoImage(
-                  image: CachedNetworkImageProvider(msg.imageUrl!),
+                  image: CachedNetworkImageProvider(msg.imageUrl),
                   progressIndicatorBuilder:
                       OctoProgressIndicator.circularProgressIndicator()),
             ),
@@ -290,7 +410,7 @@ class _ChatRowMe extends StatelessWidget {
       children: [
         Bubble(
           child: Text(
-            message.text!,
+            message.text,
             style: TextStyle(color: Colors.black),
           ),
           style: styleMe,
@@ -326,7 +446,7 @@ class _ChatRowSomebody extends StatelessWidget {
           child: Text('H'),
         ),
         Bubble(
-          child: Text(message.text!),
+          child: Text(message.text),
           style: styleSomebody,
         ),
       ],
@@ -451,7 +571,6 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                   ),
                 );
                 _controller.clear();
-                setState(() {});
                 Timer.periodic(Duration(milliseconds: 100), (timer) {
                   if (mounted && widget.chatListController.hasClients) {
                     widget.chatListController.jumpTo(

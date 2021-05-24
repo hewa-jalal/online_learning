@@ -12,6 +12,7 @@ abstract class UserAuthState with _$UserAuthState {
   const factory UserAuthState({
     required UserEntity user,
     required List<UserEntity> users,
+    required List<UserEntity> submittedUsers,
     required UserStatus userStatus,
     required Option<Either<Failure, UserEntity>> authFailureOrSuccessOption,
   }) = _UserAuthState;
@@ -21,6 +22,7 @@ abstract class UserAuthState with _$UserAuthState {
         users: List.empty(),
         userStatus: UserStatus.initial,
         authFailureOrSuccessOption: none(),
+        submittedUsers: List.empty(),
       );
 
   // factory UserAuthState.failure() => UserAuthState(

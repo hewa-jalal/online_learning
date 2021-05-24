@@ -28,7 +28,7 @@ class VideoRepositoy {
     final list = await videosQuery.docs
         .map((doc) => doc.data()['serverUrl'] as String?)
         .toList();
-    print('list videoUrl ====> $list');
+    // print('list videoUrl ====> $list');
 
     if (list.length > 0) {
       return list[0];

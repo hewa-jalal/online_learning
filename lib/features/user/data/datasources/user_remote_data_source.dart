@@ -13,11 +13,11 @@ abstract class UserRemoteDataSource {
 
 @LazySingleton(as: UserRemoteDataSource)
 class FirebaseUserRemoteDataSource extends UserRemoteDataSource {
-  final users = FirebaseFirestore.instance.collection('users');
+  final usersCollection = FirebaseFirestore.instance.collection('users');
 
   @override
   Future<UserModel> getUser(int id) async {
-    final userDoc = await users.doc(id.toString()).get();
+    final userDoc = await usersCollection.doc(id.toString()).get();
     if (userDoc.exists) {
       return UserModel.fromSnapshot(userDoc);
     } else {
@@ -27,7 +27,7 @@ class FirebaseUserRemoteDataSource extends UserRemoteDataSource {
 
   @override
   Future<List<UserEntity>> getAllUsers() async {
-    final querySnapshot = await users.get();
+    final querySnapshot = await usersCollection.get();
     return querySnapshot.docs
         .map((doc) => UserModel.fromSnapshot(doc))
         .toList();
@@ -35,7 +35,7 @@ class FirebaseUserRemoteDataSource extends UserRemoteDataSource {
 
   @override
   Future<void> updateUserTime(int id) async {
-    await users.doc(id.toString()).set(
+    await usersCollection.doc(id.toString()).set(
       {
         'lastSeenInEpoch': DateTime.now().millisecondsSinceEpoch,
       },
@@ -45,7 +45,7 @@ class FirebaseUserRemoteDataSource extends UserRemoteDataSource {
 
   @override
   Future<void> userOnlineStatus(int id, bool isOnline) async {
-    await users.doc(id.toString()).set(
+    await usersCollection.doc(id.toString()).set(
       {
         'isOnline': isOnline,
       },

@@ -45,15 +45,15 @@ import 'features/lectures/domain/usecases/upload_lecture.dart' as _i27;
 import 'features/lectures/presentation/bloc/lecture_bloc.dart' as _i26;
 import 'features/lectures/presentation/bloc/progress_bloc/progress_bloc.dart'
     as _i31;
-import 'features/user/data/datasources/user_remote_data_source.dart' as _i38;
-import 'features/user/data/repositories/user_repository_impl.dart' as _i39;
+import 'features/user/data/datasources/user_remote_data_source.dart' as _i37;
+import 'features/user/data/repositories/user_repository_impl.dart' as _i38;
 import 'features/user/domain/repositories/user_repository.dart' as _i21;
 import 'features/user/domain/usecase/get_user.dart' as _i23;
 import 'features/user/domain/usecase/get_users.dart' as _i20;
 import 'features/user/domain/usecase/update_user_time.dart' as _i34;
-import 'features/user/domain/usecase/user_online_status.dart' as _i37;
+import 'features/user/domain/usecase/user_online_status.dart' as _i36;
 import 'features/user/presentation/bloc/user_auth_bloc.dart'
-    as _i36; // ignore_for_file: unnecessary_lambdas
+    as _i39; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -128,17 +128,18 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i35.UploadHomework(get<_i16.HomeworkRepository>()));
   gh.lazySingleton<_i27.UploadLecture>(
       () => _i27.UploadLecture(get<_i9.LecturesRepository>()));
-  gh.factory<_i36.UserAuthBloc>(() => _i36.UserAuthBloc(
+  gh.lazySingleton<_i36.UserOnlineStatus>(
+      () => _i36.UserOnlineStatus(get<_i21.UserRepository>()));
+  gh.lazySingleton<_i37.UserRemoteDataSource>(
+      () => _i37.FirebaseUserRemoteDataSource());
+  gh.lazySingleton<_i21.UserRepository>(
+      () => _i38.UserRepositoryImpl(get<_i37.UserRemoteDataSource>()));
+  gh.factory<_i39.UserAuthBloc>(() => _i39.UserAuthBloc(
       getUser: get<_i23.GetUser>(),
       getAllUsers: get<_i20.GetAllUsers>(),
       updateUserTime: get<_i34.UpdateUserTime>(),
-      userOnlineStatus: get<_i37.UserOnlineStatus>()));
-  gh.lazySingleton<_i37.UserOnlineStatus>(
-      () => _i37.UserOnlineStatus(get<_i21.UserRepository>()));
-  gh.lazySingleton<_i38.UserRemoteDataSource>(
-      () => _i38.FirebaseUserRemoteDataSource());
-  gh.lazySingleton<_i21.UserRepository>(
-      () => _i39.UserRepositoryImpl(get<_i38.UserRemoteDataSource>()));
+      userOnlineStatus: get<_i36.UserOnlineStatus>(),
+      userRepository: get<_i21.UserRepository>()));
   return get;
 }
 

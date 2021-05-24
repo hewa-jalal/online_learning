@@ -1,6 +1,7 @@
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/attendance_page.dart';
 import '../pages/submit_homework_page.dart';
 import '../pages/video_player_page.dart';
 import '../../../../user/presentation/bloc/user_auth_bloc.dart';
@@ -55,6 +56,16 @@ class LectureCard extends StatelessWidget {
             children: [
               Text('file'),
               Spacer(),
+              InkWell(
+                onTap: () => Get.to(
+                  () => AttendancePage(submittedUsers: lecture.submittedUsers!),
+                ),
+                child: Icon(
+                  MdiIcons.accountMultipleCheckOutline,
+                  color: Color(0xff5F36DA),
+                ),
+              ),
+              SizedBox(width: 0.05.sw),
               InkWell(
                 onTap: () => _lectureBloc.add(
                   LectureEvent.downloadLecture(

@@ -119,14 +119,14 @@ class _ChatPageState extends State<ChatPage> {
                         uri: msg.imageUrl,
                         authorId: user.id!,
                         id: user.id!,
-                        timestamp: msg.timeStamp,
+                        timestamp: (msg.timeStamp / 1000).round(),
                       );
                     } else if (msg is TextMessage) {
                       return types.TextMessage(
                         text: msg.text,
                         id: '29',
                         authorId: user.id!,
-                        timestamp: msg.timeStamp,
+                        timestamp: (msg.timeStamp / 1000).round(),
                       );
                     } else if (msg is FileMessage) {
                       return types.FileMessage(
@@ -135,7 +135,7 @@ class _ChatPageState extends State<ChatPage> {
                         authorId: user.id!,
                         uri: msg.fileUrl!,
                         size: msg.fileSize ?? 10000,
-                        timestamp: msg.timeStamp,
+                        timestamp: (msg.timeStamp / 1000).round(),
                         status: types.Status.read,
                       );
                     } else {

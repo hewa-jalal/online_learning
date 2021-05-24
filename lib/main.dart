@@ -19,9 +19,6 @@ void main() async {
   await FlutterDownloader.initialize();
   Bloc.observer = AppBlocObserver();
   // await di.init();
-  // final observer = RemoteDevToolsObserver('192.168.1.7:8000');
-  // await observer.connect();
-  // Bloc.observer = observer;
 
   await Firebase.initializeApp();
   di.configureInjection();
@@ -29,6 +26,7 @@ void main() async {
   runApp(
     BlocProvider(
       create: (_) => UserAuthBloc(
+        userRepository: UserRepositoryImpl(FirebaseUserRemoteDataSource()),
         getUser: GetUser(UserRepositoryImpl(FirebaseUserRemoteDataSource())),
         getAllUsers:
             GetAllUsers(UserRepositoryImpl(FirebaseUserRemoteDataSource())),

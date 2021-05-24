@@ -146,7 +146,7 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
             .doc(doc.data()['title'])
             .collection('submittedUsers')
             .get()
-            .then((value) => value.docs.map((e) => e.id).toList());
+            .then((value) => value.docs.map((doc) => doc.id).toList());
 
         lectureList.add(
           LectureModel.fromSnapshot(doc, listOfSubmittedUsers),

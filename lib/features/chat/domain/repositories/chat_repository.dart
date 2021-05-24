@@ -16,5 +16,14 @@ abstract class ChatRepository {
     required ImageUploaderCubit imageUploaderCubit,
   });
 
+  Future<Either<Failure, Unit>> sendFileMessage({
+    required String message,
+    required String fromUserId,
+    required String fileUrl,
+    required String fileName,
+    required int fileSize,
+    required ImageUploaderCubit imageUploaderCubit,
+  });
+
   Future<Either<Failure, List<Message>>> getAllMessages();
 }

@@ -1,16 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:bubble/bubble.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart' as chatUi;
@@ -18,6 +15,7 @@ import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:octo_image/octo_image.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 import '../../../../../core/universal_variables.dart';
 import '../../../../lectures/presentation/UI/pages/submit_homework_page.dart';
@@ -26,29 +24,6 @@ import '../../../../user/presentation/bloc/user_auth_bloc.dart';
 import '../../../data/models/message_model.dart';
 import '../../bloc/chat_bloc.dart';
 import '../../bloc/cubit/cubit/imageuploader_cubit.dart';
-
-class UsersPage extends StatelessWidget {
-  const UsersPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamBuilder<List<types.User>>(
-        stream: FirebaseChatCore.instance.users(),
-        initialData: const [],
-        builder: (context, snapshot) {
-          return Text(snapshot.data![0].firstName!);
-        },
-      ),
-    );
-  }
-}
-
-String randomString() {
-  var random = Random.secure();
-  var values = List<int>.generate(16, (i) => random.nextInt(255));
-  return base64UrlEncode(values);
-}
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
@@ -63,33 +38,6 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  List<types.Message> _messages = [];
-
-  String randomString() {
-    var random = Random.secure();
-    var values = List<int>.generate(16, (i) => random.nextInt(255));
-    return base64UrlEncode(values);
-  }
-
-  void _handleSendPressed(types.PartialText message, ChatBloc chatBloc) {
-    // final textMessage = types.TextMessage(
-    //   authorId: '12',
-    //   id: randomString(),
-    //   text: message.text,
-    //   timestamp: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
-    // );
-
-    chatBloc.add(
-      ChatEvent.sendMessage(message: message.text, fromUserId: '200'),
-    );
-  }
-
-  void _addMessage(types.Message message) {
-    setState(() {
-      _messages.insert(0, message);
-    });
-  }
-
   final _innerDrawerKey = GlobalKey<InnerDrawerState>();
   final _scrollController = ScrollController();
 
@@ -109,6 +57,20 @@ class _ChatPageState extends State<ChatPage> {
     // });
   }
 
+  void _handleSendPressed(types.PartialText message, ChatBloc chatBloc) {
+    // final textMessage = types.TextMessage(
+    //   authorId: '12',
+    //   id: randomString(),
+    //   text: message.text,
+    //   timestamp: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
+    // );
+
+    // TODO: get correct fromUserId
+    chatBloc.add(
+      ChatEvent.sendMessage(message: message.text, fromUserId: '200'),
+    );
+  }
+
   UserEntity get user => widget.userEntity;
 
   @override
@@ -116,74 +78,10 @@ class _ChatPageState extends State<ChatPage> {
     final imageUploaderCubit = context.read<ImageUploaderCubit>();
     print('imageUploaderCubit.state' + imageUploaderCubit.state.toString());
 
-    void _handleImageSelection() async {
-      final result = await ImagePicker().getImage(
-        imageQuality: 70,
-        maxWidth: 1440,
-        source: ImageSource.gallery,
-      );
-
-      if (result != null) {
-        final bytes = await result.readAsBytes();
-        final image = await decodeImageFromList(bytes);
-        final imageName = result.path.split('/').last;
-
-        final message = types.ImageMessage(
-          authorId: '21',
-          height: image.height.toDouble(),
-          id: randomString(),
-          imageName: imageName,
-          size: bytes.length,
-          timestamp: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
-          uri: result.path,
-          width: image.width.toDouble(),
-        );
-
-        _addMessage(message);
+    void _handleMessageTap(types.Message message) async {
+      if (message is types.FileMessage) {
+        url_launcher.launch(message.uri);
       }
-    }
-
-    void _handleAtachmentPressed() {
-      showModalBottomSheet<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return SizedBox(
-            height: 144,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    _handleImageSelection();
-                  },
-                  child: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('Photo'),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    // _handleFileSelection();
-                  },
-                  child: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('File'),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text('Cancel'),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      );
     }
 
     final chatBloc = context.read<ChatBloc>();
@@ -213,7 +111,6 @@ class _ChatPageState extends State<ChatPage> {
               return state.map(
                 initial: (state) => Center(child: CircularProgressIndicator()),
                 allMessagesLoaded: (state) {
-                  // final messages = state.allMessages.reversed.toList();
                   List<types.Message> messages = state.allMessages.map((msg) {
                     if (msg is ImageMessage) {
                       return types.ImageMessage(
@@ -231,9 +128,19 @@ class _ChatPageState extends State<ChatPage> {
                         authorId: user.id!,
                         timestamp: msg.timeStamp,
                       );
+                    } else if (msg is FileMessage) {
+                      return types.FileMessage(
+                        id: msg.senderId,
+                        fileName: msg.fileName!,
+                        authorId: user.id!,
+                        uri: msg.fileUrl!,
+                        size: msg.fileSize ?? 10000,
+                        timestamp: msg.timeStamp,
+                        status: types.Status.read,
+                      );
                     } else {
                       return types.TextMessage(
-                        text: 'msg.text',
+                        text: 'msg.text else',
                         id: user.id!,
                         authorId: '44',
                       );
@@ -250,6 +157,7 @@ class _ChatPageState extends State<ChatPage> {
                       imageUploaderCubit: imageUploaderCubit,
                     ),
                     theme: chatUi.DarkChatTheme(),
+                    onMessageTap: _handleMessageTap,
                   );
                   return Column(
                     children: [
@@ -646,7 +554,16 @@ void addMediaModal(
                     },
                   ),
                   ModalTile(
-                    onTap: () {},
+                    onTap: () {
+                      chatBloc.add(
+                        ChatEvent.sendFileMessage(
+                          message: 'msgFile',
+                          fromUserId: '21',
+                          imageUploaderCubit: imageUploaderCubit,
+                        ),
+                      );
+                      Navigator.pop(context);
+                    },
                     title: "File",
                     subtitle: "Share files",
                     icon: Icons.tab,
@@ -688,9 +605,9 @@ class ModalTile extends StatelessWidget {
   });
 
   final IconData icon;
+  final VoidCallback onTap;
   final String subtitle;
   final String title;
-  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -805,66 +722,6 @@ class CustomTile extends StatelessWidget {
     );
   }
 }
-
-// class _CustomDashChat extends StatefulWidget {
-//   const _CustomDashChat({
-//     Key key,
-//     @required this.user,
-//     @required this.chatBloc,
-//     @required this.messages,
-//   }) : super(key: key);
-
-//   final UserEntity user;
-//   final ChatBloc chatBloc;
-//   final List<ChatMessage> messages;
-
-//   @override
-//   __CustomDashChatState createState() => __CustomDashChatState();
-// }
-
-// class __CustomDashChatState extends State<_CustomDashChat> {
-//   File _image;
-//   Future getNewImage() async {
-//     final result = await FilePicker.platform.pickFiles(type: FileType.image);
-//     if (result != null) {
-//       _image = File(result.files.single.path);
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return DashChat(
-//       messageImageBuilder: (url, [_]) {
-//         return CachedNetworkImage(
-//           imageUrl: url,
-//           placeholder: (context, str) => CircularProgressIndicator(),
-//           fit: BoxFit.fill,
-//         );
-//       },
-//       chatFooterBuilder: () => IconButton(
-//         icon: Icon(Icons.image),
-//         onPressed: getNewImage,
-//       ),
-//       inverted: true,
-//       user: ChatUser(
-//         uid: widget.user.id,
-//         firstName: widget.user.fullName,
-//         color: Colors.yellow,
-//       ),
-//       onSend: (msg) {
-//         widget.chatBloc.add(
-//           ChatEvent.sendMessage(
-//             message: msg.text,
-//             fromUserId: msg.user.uid,
-//           ),
-//         );
-//         // to referesh the messages
-//         widget.chatBloc.add(ChatEvent.getAllMessages());
-//       },
-//       messages: widget.messages,
-//     );
-//   }
-// }
 
 class _UsersList extends StatelessWidget {
   const _UsersList({

@@ -67,6 +67,18 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
         add(ChatEvent.getAllMessages());
       },
+      sendFileMessage: (e) async* {
+        final result = await (FilePicker.platform.pickFiles());
+
+        await chatRepository!.sendFileMessage(
+          message: e.message,
+          fromUserId: e.fromUserId,
+          fileUrl: result!.files.single.path!,
+          fileSize: result.files.single.size!,
+          fileName: result.files.single.name!,
+          imageUploaderCubit: e.imageUploaderCubit,
+        );
+      },
     );
   }
 }

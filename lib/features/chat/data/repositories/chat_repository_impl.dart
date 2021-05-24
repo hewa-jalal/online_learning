@@ -56,4 +56,27 @@ class ChatRepositoryImpl extends ChatRepository {
       return left(MessageFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> sendFileMessage({
+    required String message,
+    required String fromUserId,
+    required String? fileUrl,
+    required String fileName,
+    required int fileSize,
+    required ImageUploaderCubit imageUploaderCubit,
+  }) async {
+    try {
+      await remoteDataSource!.sendFileMessage(
+        fileUrl: fileUrl,
+        fromUserId: fromUserId,
+        imageUploaderCubit: imageUploaderCubit,
+        fileSize: fileSize,
+        fileName: fileName,
+      );
+      return right(unit);
+    } on MessageException {
+      return left(MessageFailure());
+    }
+  }
 }

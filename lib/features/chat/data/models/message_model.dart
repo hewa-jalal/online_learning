@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../domain/entities/message_entity.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
 class MessageModel extends MessageEntity {
   final String? message;
@@ -168,9 +169,16 @@ class VideoMessage extends Message {
 
 class FileMessage extends Message {
   String? fileUrl;
+  int? fileSize;
+  String? fileName;
 
-  FileMessage(this.fileUrl, timeStamp, senderId)
-      : super(
+  FileMessage({
+    required this.fileUrl,
+    required this.fileSize,
+    required this.fileName,
+    timeStamp,
+    senderId,
+  }) : super(
           timeStamp: timeStamp,
           senderId: senderId,
         );
@@ -179,9 +187,11 @@ class FileMessage extends Message {
       DocumentSnapshot<Map<String, dynamic>> doc) {
     final data = doc.data()!;
     return FileMessage(
-      data['fileUrl'],
-      data['timeStamp'],
-      data['senderId'],
+      fileUrl: data['fileUrl'],
+      timeStamp: data['timeStamp'],
+      senderId: data['senderId'],
+      fileSize: data['fileSize'],
+      fileName: data['fileName'],
     );
   }
 
@@ -191,6 +201,8 @@ class FileMessage extends Message {
     map['fileUrl'] = fileUrl;
     map['timeStamp'] = timeStamp;
     map['senderId'] = senderId;
+    map['fileSize'] = fileSize;
+    map['fileName'] = fileName;
     map['type'] = 3;
     return map;
   }

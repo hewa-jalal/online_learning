@@ -19,7 +19,15 @@ abstract class ChatRemoteDataSource {
     required String? fromUserId,
     required ImageUploaderCubit imageUploaderCubit,
   });
+
   Future<List<Message>> getAllMessages();
+  sendFileMessage({
+    required String? fileUrl,
+    required String fileName,
+    required String? fromUserId,
+    required int fileSize,
+    required ImageUploaderCubit imageUploaderCubit,
+  });
 }
 
 @LazySingleton(as: ChatRemoteDataSource)
@@ -66,13 +74,13 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
 
     // at first we just need to add an placeholder for the image
     // until we get the downloadUrl
-    final testModel = ImageMessage(
+    final tempModel = ImageMessage(
       imageUrl: 'placeHolder',
-      senderId: '21',
+      senderId: fromUserId,
       timeStamp: DateTime.now().millisecondsSinceEpoch,
     );
 
-    final docRef = await messagesCollection.add(testModel.toMap());
+    final docRef = await messagesCollection.add(tempModel.toMap());
 
     // getting the downloadUrl
     lectureTask!.task.then((taskSnap) async {
@@ -91,9 +99,59 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
 
     return unit;
   }
+
+  @override
+  Future<Unit> sendFileMessage({
+    required String? fileUrl,
+    required String fileName,
+    required String? fromUserId,
+    required int? fileSize,
+    required ImageUploaderCubit imageUploaderCubit,
+  }) async {
+    imageUploaderCubit.setToLoading();
+
+    lectureTask!.task = storageRef
+        // DateTime.now().toIso8601String() = document name in FirebaseStorage
+        .messageFilesStorage(DateTime.now().toIso8601String())
+        .putFile(File(fileUrl!));
+
+    // at first we just need to add an placeholder for the file
+    // until we get the downloadUrl
+    final tempModel = FileMessage(
+      fileUrl: 'placeHolder',
+      fileName: fileName,
+      senderId: fromUserId,
+      timeStamp: DateTime.now().millisecondsSinceEpoch,
+      fileSize: fileSize,
+    );
+
+    final docRef = await messagesCollection.add(tempModel.toMap());
+
+    // getting the downloadUrl
+    lectureTask!.task.then((taskSnap) async {
+      final downloadUrl = await taskSnap.ref.getDownloadURL();
+
+      final fileModel = FileMessage(
+        fileUrl: downloadUrl,
+        senderId: fromUserId,
+        fileSize: fileSize,
+        fileName: fileName,
+        timeStamp: DateTime.now().millisecondsSinceEpoch,
+      );
+
+      messagesCollection.doc(docRef.id).set(fileModel.toMap());
+
+      imageUploaderCubit.setToIdle();
+    });
+
+    return unit;
+  }
 }
 
 extension StorageReferenceX on Reference {
   Reference messageImagesStorage(String title) =>
       child('messageImages').child(title);
+
+  Reference messageFilesStorage(String title) =>
+      child('messageFiles').child(title);
 }

@@ -8,12 +8,12 @@ import 'download_lecture.dart';
 
 @lazySingleton
 class UploadLecture extends UseCase<Unit, LectureParams> {
-  final LecturesRepository lecturesRepository;
+  final LecturesRepository? lecturesRepository;
 
   UploadLecture(this.lecturesRepository);
   @override
   Future<Either<Failure, Unit>> call(LectureParams params) {
-    return lecturesRepository.uploadLecture(
+    return lecturesRepository!.uploadLecture(
       fileUrl: params.fileUrl,
       user: params.user,
       title: params.lectureTitle,

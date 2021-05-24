@@ -19,7 +19,7 @@ import '../widgets/lecture_card.dart';
 class CoursePage extends StatefulWidget {
   final String courseTitle;
 
-  const CoursePage({Key key, @required this.courseTitle}) : super(key: key);
+  const CoursePage({Key? key, required this.courseTitle}) : super(key: key);
   @override
   _CoursePageState createState() => _CoursePageState();
 }
@@ -27,19 +27,19 @@ class CoursePage extends StatefulWidget {
 class _CoursePageState extends State<CoursePage>
     with SingleTickerProviderStateMixin {
   String get courseTitle => widget.courseTitle;
-  TabController _tabController;
+  TabController? _tabController;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this, initialIndex: 0);
-    _tabController.addListener(_handleTabIndex);
+    _tabController!.addListener(_handleTabIndex);
   }
 
   @override
   void dispose() {
-    _tabController.removeListener(_handleTabIndex);
-    _tabController.dispose();
+    _tabController!.removeListener(_handleTabIndex);
+    _tabController!.dispose();
     super.dispose();
   }
 
@@ -47,35 +47,39 @@ class _CoursePageState extends State<CoursePage>
     setState(() {});
   }
 
-  Widget _fab() => _tabController.index == 0
+  Widget _fab() => _tabController!.index == 0
       ? FloatingActionButton(
           child: Icon(Icons.picture_as_pdf),
           onPressed: () => Get.to(
             () => UploadPage(
               isHomeWork: false,
-              user: UserModel(
-                id: '12',
-              ),
+              // user: UserModel(
+              //   id: '12',
+              // ),
+              user: UserModel.empty(),
               courseTitle: courseTitle,
             ),
-          ).then((value) => setState(() {})),
+          )!
+              .then((value) => setState(() {})),
         )
       : FloatingActionButton(
           child: Icon(Icons.home_work),
           onPressed: () => Get.to(
             () => UploadPage(
               isHomeWork: true,
-              user: UserModel(
-                id: '12',
-              ),
+              // user: UserModel(
+              //   id: '12',
+              // ),
+              user: UserModel.empty(),
               courseTitle: courseTitle,
             ),
-          ).then((value) => setState(() {})),
+          )!
+              .then((value) => setState(() {})),
         );
 
   @override
   Widget build(BuildContext context) {
-    final _userAuthState = context.read<UserAuthBloc>().state;
+    final UserAuthState _userAuthState = context.read<UserAuthBloc>().state;
     context.read<VideoCubit>().getVideoUrl();
     return SafeArea(
       child: Scaffold(
@@ -137,8 +141,8 @@ class _CoursePageState extends State<CoursePage>
 
 class _GlowVideoButton extends StatelessWidget {
   const _GlowVideoButton({
-    Key key,
-    @required this.courseTitle,
+    Key? key,
+    required this.courseTitle,
   }) : super(key: key);
 
   final String courseTitle;
@@ -189,8 +193,8 @@ class _VideoButton extends StatelessWidget {
 
 class _TeacherVideoButton extends StatelessWidget {
   const _TeacherVideoButton({
-    Key key,
-    @required this.courseTitle,
+    Key? key,
+    required this.courseTitle,
   }) : super(key: key);
 
   final String courseTitle;
@@ -207,15 +211,15 @@ class _TeacherVideoButton extends StatelessWidget {
 
 class _LecturesList extends StatelessWidget {
   const _LecturesList({
-    Key key,
-    @required this.courseTitle,
+    Key? key,
+    required this.courseTitle,
   }) : super(key: key);
 
   final String courseTitle;
 
   @override
   Widget build(BuildContext context) {
-    if (ModalRoute.of(context).isCurrent) {
+    if (ModalRoute.of(context)!.isCurrent) {
       context
           .read<LectureBloc>()
           .add(LectureEvent.getAllLecturesByCourse(courseTitle: courseTitle));
@@ -246,21 +250,21 @@ class _LecturesList extends StatelessWidget {
 
 class _HomeworksList extends StatelessWidget {
   const _HomeworksList({
-    Key key,
-    @required this.courseTitle,
+    Key? key,
+    required this.courseTitle,
   }) : super(key: key);
   final String courseTitle;
 
   @override
   Widget build(BuildContext context) {
-    if (ModalRoute.of(context).isCurrent) {
+    if (ModalRoute.of(context)!.isCurrent) {
       context
           .read<HomeworkBloc>()
           .add(HomeworkEvent.getAllHomeworksByCourse(courseTitle: courseTitle));
     }
     return BlocBuilder<HomeworkBloc, HomeworkState>(
       builder: (context, state) {
-        if (state.isSubmitting) {
+        if (state.isSubmitting!) {
           return Center(child: CircularProgressIndicator());
         }
         final homeworks = state.homeworks;
@@ -282,7 +286,7 @@ class _HomeworksList extends StatelessWidget {
 
 class _LectureEmptyWidget extends StatelessWidget {
   const _LectureEmptyWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -310,7 +314,7 @@ class _LectureEmptyWidget extends StatelessWidget {
 
 class _HomeworkEmptyWidget extends StatelessWidget {
   const _HomeworkEmptyWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

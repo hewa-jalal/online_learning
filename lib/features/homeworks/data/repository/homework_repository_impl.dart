@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import '../datasources/homework_remote_data_source.dart';
 import '../../domain/entities/homework_entity.dart';
@@ -10,21 +9,21 @@ import '../../../user/core/errors/failures.dart';
 
 @LazySingleton(as: HomeworkRepository)
 class HomeworkRepositoryImpl extends HomeworkRepository {
-  final FirebaseHomeworkRemoteDataSource remoteDataSource;
+  final FirebaseHomeworkRemoteDataSource? remoteDataSource;
 
   HomeworkRepositoryImpl(this.remoteDataSource);
 
   @override
   Future<Either<Failure, Unit>> uploadHomework({
-    @required UserModel user,
-    @required String title,
-    @required String courseTitle,
-    @required int dueDate,
-    String description,
-    String fileUrl,
+    required UserModel user,
+    required String title,
+    required String courseTitle,
+    required int dueDate,
+    String? description,
+    String? fileUrl,
   }) async {
     try {
-      final lecture = await remoteDataSource.uploadHomework(
+      final lecture = await remoteDataSource!.uploadHomework(
         user: user,
         title: title,
         courseTitle: courseTitle,
@@ -41,10 +40,10 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
 
   @override
   Future<Either<Failure, List<HomeworkEntity>>> getAllHomeworksByCourse({
-    @required String courseTitle,
+    required String courseTitle,
   }) async {
     try {
-      final homeworks = await remoteDataSource.getAllHomeworksByCourse(
+      final homeworks = await remoteDataSource!.getAllHomeworksByCourse(
         courseTitle: courseTitle,
       );
       return right(homeworks);
@@ -56,15 +55,15 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
 
   @override
   Future<Either<Failure, Unit>> submitHomework({
-    @required String userId,
-    @required String fileUrl,
-    @required String note,
-    @required String homeworkTitle,
-    @required String courseTitle,
-    @required int submitDate,
+    required String userId,
+    required String? fileUrl,
+    required String? note,
+    required String homeworkTitle,
+    required String courseTitle,
+    required int? submitDate,
   }) async {
     try {
-      final submitUnit = await remoteDataSource.submitHomework(
+      final submitUnit = await remoteDataSource!.submitHomework(
         userId: userId,
         fileUrl: fileUrl,
         note: note,
@@ -81,11 +80,11 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
 
   @override
   Future<Either<Failure, HomeworkSubmitEntity>> getHomework({
-    @required String courseTitle,
-    @required String homeworkTitle,
+    required String courseTitle,
+    required String homeworkTitle,
   }) async {
     try {
-      final homework = await remoteDataSource.getHomework(
+      final homework = await remoteDataSource!.getHomework(
         courseTitle: courseTitle,
         homeworkTitle: homeworkTitle,
       );

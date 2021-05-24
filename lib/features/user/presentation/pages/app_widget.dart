@@ -30,13 +30,10 @@ import '../../../lectures/presentation/bloc/progress_bloc/progress_bloc.dart';
 
 import '../bloc/user_auth_bloc.dart';
 import '../../../../injection.dart';
-import '../../../chat/video/video_chat_page.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../domain/entites/user.dart';
 import 'get_user_page.dart';
-import 'user_home_page.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -48,7 +45,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     getPermission();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   void getPermission() async {
@@ -258,8 +255,8 @@ class NewAnimTest extends StatefulWidget {
 
 class NewAnimTestState extends State<NewAnimTest>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<Offset> _offsetAnimation;
+  late AnimationController _controller;
+  late Animation<Offset> _offsetAnimation;
   @override
   void initState() {
     super.initState();

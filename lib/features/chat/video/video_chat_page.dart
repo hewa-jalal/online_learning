@@ -15,8 +15,8 @@ class VideoChatPage extends StatefulWidget {
   final String courseTitle;
 
   const VideoChatPage({
-    Key key,
-    @required this.courseTitle,
+    Key? key,
+    required this.courseTitle,
   }) : super(key: key);
   @override
   _VideoChatPageState createState() => _VideoChatPageState();
@@ -31,9 +31,9 @@ class _VideoChatPageState extends State<VideoChatPage> {
   final nameText = TextEditingController(text: "Plugin Test User");
   final emailText = TextEditingController(text: "fake@email.com");
 
-  var isAudioOnly = true;
-  var isAudioMuted = true;
-  var isVideoMuted = true;
+  bool? isAudioOnly = true;
+  bool? isAudioMuted = true;
+  bool? isVideoMuted = true;
 
   @override
   void initState() {
@@ -155,34 +155,33 @@ class _VideoChatPageState extends State<VideoChatPage> {
     );
   }
 
-  _onAudioOnlyChanged(bool value) {
+  _onAudioOnlyChanged(bool? value) {
     setState(() {
       isAudioOnly = value;
     });
   }
 
-  _onAudioMutedChanged(bool value) {
+  _onAudioMutedChanged(bool? value) {
     setState(() {
       isAudioMuted = value;
     });
   }
 
-  _onVideoMutedChanged(bool value) {
+  _onVideoMutedChanged(bool? value) {
     setState(() {
       isVideoMuted = value;
     });
   }
 
   _joinMeeting([String videoUrl = '']) async {
-    final _userAuthState = context.read<UserAuthBloc>().state;
+    final UserAuthState _userAuthState = context.read<UserAuthBloc>().state;
     final _videoCubit = context.read<VideoCubit>();
 
-    String serverUrl =
-        serverText.text?.trim()?.isEmpty ?? "" ? null : serverText.text;
-
+    // String? serverUrl =
+    //     serverText.text?.trim()?.isEmpty ?? "" ? null : serverText.text;
+    String? serverUrl;
     if (videoUrl.isNotEmpty) {
       serverUrl = videoUrl;
-      print('inside => videoUrl.isNotEmpty <= if statment');
     }
     try {
       // Enable or disable any feature flag here

@@ -1,17 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import '../../domain/entities/homework_entity.dart';
 
 class HomeworkModel extends HomeworkEntity {
-  final String fileUrl;
-  final String title;
-  final String description;
-  final int dueDate;
-  final List<String> submittedHomeworks;
+  final String? fileUrl;
+  final String? title;
+  final String? description;
+  final int? dueDate;
+  final List<String>? submittedHomeworks;
 
   HomeworkModel({
-    @required this.title,
-    @required this.dueDate,
+    required this.title,
+    required this.dueDate,
     this.description,
     this.fileUrl,
     this.submittedHomeworks,
@@ -47,15 +46,15 @@ class HomeworkModel extends HomeworkEntity {
 
   static HomeworkModel fromSnapshot(
     DocumentSnapshot<Map<String, dynamic>> snap, [
-    List<String> submittedUsersList,
+    List<String>? submittedUsersList,
   ]) {
-    final data = snap.data();
+    final data = snap.data()!;
 
     return HomeworkModel(
-      fileUrl: data['fileUrl'] as String,
-      title: data['title'] as String,
-      description: data['description'] as String,
-      dueDate: data['dueDate'] as int,
+      fileUrl: data['fileUrl'] as String?,
+      title: data['title'] as String?,
+      description: data['description'] as String?,
+      dueDate: data['dueDate'] as int?,
       submittedHomeworks: submittedUsersList,
     );
   }

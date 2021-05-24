@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_learning/features/user/core/errors/failures.dart';
 import 'package:online_learning/features/user/data/models/user_model.dart';
+import 'package:online_learning/features/user/domain/repositories/user_repository.dart';
 import '../../core/params/user_params.dart';
 import '../../core/usecase/use_case.dart';
 import '../../domain/entites/user.dart';
@@ -53,15 +55,17 @@ part 'user_auth_bloc.freezed.dart';
 
 @injectable
 class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
-  final GetUser getUser;
-  final GetAllUsers getAllUsers;
-  final UpdateUserTime updateUserTime;
-  final UserOnlineStatus userOnlineStatus;
+  final GetUser? getUser;
+  final GetAllUsers? getAllUsers;
+  final UpdateUserTime? updateUserTime;
+  final UserOnlineStatus? userOnlineStatus;
+  final UserRepository userRepository;
   UserAuthBloc({
-    @required this.getUser,
-    @required this.getAllUsers,
-    @required this.updateUserTime,
-    @required this.userOnlineStatus,
+    required this.getUser,
+    required this.getAllUsers,
+    required this.updateUserTime,
+    required this.userOnlineStatus,
+    required this.userRepository,
   }) : super(UserAuthState.initial());
 
   @override
@@ -73,14 +77,15 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
         yield state.copyWith();
       },
       getUserById: (e) async* {
-        state.user;
-        yield state.copyWith(
-          userStatus: UserStatus.waiting,
-          // to display the id in snackbar
-          user: state.user.copyWith(id: e.id.toString()),
-          authFailureOrSuccessOption: none(),
-        );
-        final either = await getUser(UserParam(id: e.id));
+        // TODO: uncomment this for snackbar
+        // yield state.copyWith(
+        //   userStatus: UserStatus.waiting,
+        //   // to display the id in snackbar
+        //   user: state.user.copyWith(id: e.id.toString()),
+        //   authFailureOrSuccessOption: none(),
+        // );
+
+        final either = await getUser!(UserParam(id: e.id));
         yield either.fold(
           (failure) => state.copyWith(
             authFailureOrSuccessOption: some(either),
@@ -92,24 +97,27 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
           ),
         );
         // TODO: maybe wrong
-        add(UserAuthEvent.updateUserTime());
-        add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
+        // add(UserAuthEvent.updateUserTime());
+        // add(UserAuthEvent.updateUserOnlineStatus(isOnline: true));
       },
       getAllUsers: (e) async* {
-        final either = await getAllUsers(NoParams());
+        final either = await getAllUsers!(NoParams());
         yield either.fold(
-          (failure) => null,
+          ((failure) => state.copyWith(authFailureOrSuccessOption: none())),
           (users) => state.copyWith(
             users: users,
           ),
         );
       },
       updateUserTime: (e) async* {
-        updateUserTime(UserParam(id: int.parse(state.user.id)));
+        updateUserTime!(UserParam(id: int.parse(state.user.id!)));
       },
       updateUserOnlineStatus: (e) async* {
-        userOnlineStatus(
-            OnlineParams(id: int.parse(state.user.id), isOnline: e.isOnline));
+        userOnlineStatus!(
+            OnlineParams(id: int.parse(state.user.id!), isOnline: e.isOnline));
+      },
+      getAllSubmittedUsers: (e) async* {
+        // userRepository.getAllSubmittedUsers(userId: '21');
       },
     );
   }

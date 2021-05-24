@@ -1,32 +1,59 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bubble/bubble.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_chat_ui/flutter_chat_ui.dart' as chatUi;
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:nil/nil.dart';
 import 'package:octo_image/octo_image.dart';
-import '../../../../../core/universal_variables.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
-import '../../../data/models/message_model.dart';
-import '../../bloc/chat_bloc.dart';
-import '../../bloc/cubit/cubit/imageuploader_cubit.dart';
+import '../../../../../core/universal_variables.dart';
 import '../../../../lectures/presentation/UI/pages/submit_homework_page.dart';
 import '../../../../user/domain/entites/user.dart';
 import '../../../../user/presentation/bloc/user_auth_bloc.dart';
-import 'package:timeago/timeago.dart' as timeago;
+import '../../../data/models/message_model.dart';
+import '../../bloc/chat_bloc.dart';
+import '../../bloc/cubit/cubit/imageuploader_cubit.dart';
+
+class UsersPage extends StatelessWidget {
+  const UsersPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: StreamBuilder<List<types.User>>(
+        stream: FirebaseChatCore.instance.users(),
+        initialData: const [],
+        builder: (context, snapshot) {
+          return Text(snapshot.data![0].firstName!);
+        },
+      ),
+    );
+  }
+}
+
+String randomString() {
+  var random = Random.secure();
+  var values = List<int>.generate(16, (i) => random.nextInt(255));
+  return base64UrlEncode(values);
+}
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
-    Key key,
-    @required this.userEntity,
+    Key? key,
+    required this.userEntity,
   }) : super(key: key);
 
   final UserEntity userEntity;
@@ -36,6 +63,33 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  List<types.Message> _messages = [];
+
+  String randomString() {
+    var random = Random.secure();
+    var values = List<int>.generate(16, (i) => random.nextInt(255));
+    return base64UrlEncode(values);
+  }
+
+  void _handleSendPressed(types.PartialText message, ChatBloc chatBloc) {
+    // final textMessage = types.TextMessage(
+    //   authorId: '12',
+    //   id: randomString(),
+    //   text: message.text,
+    //   timestamp: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
+    // );
+
+    chatBloc.add(
+      ChatEvent.sendMessage(message: message.text, fromUserId: '200'),
+    );
+  }
+
+  void _addMessage(types.Message message) {
+    setState(() {
+      _messages.insert(0, message);
+    });
+  }
+
   final _innerDrawerKey = GlobalKey<InnerDrawerState>();
   final _scrollController = ScrollController();
 
@@ -62,70 +116,176 @@ class _ChatPageState extends State<ChatPage> {
     final imageUploaderCubit = context.read<ImageUploaderCubit>();
     print('imageUploaderCubit.state' + imageUploaderCubit.state.toString());
 
+    void _handleImageSelection() async {
+      final result = await ImagePicker().getImage(
+        imageQuality: 70,
+        maxWidth: 1440,
+        source: ImageSource.gallery,
+      );
+
+      if (result != null) {
+        final bytes = await result.readAsBytes();
+        final image = await decodeImageFromList(bytes);
+        final imageName = result.path.split('/').last;
+
+        final message = types.ImageMessage(
+          authorId: '21',
+          height: image.height.toDouble(),
+          id: randomString(),
+          imageName: imageName,
+          size: bytes.length,
+          timestamp: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
+          uri: result.path,
+          width: image.width.toDouble(),
+        );
+
+        _addMessage(message);
+      }
+    }
+
+    void _handleAtachmentPressed() {
+      showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 144,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _handleImageSelection();
+                  },
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Photo'),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    // _handleFileSelection();
+                  },
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('File'),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('Cancel'),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
+
     final chatBloc = context.read<ChatBloc>();
-    if (ModalRoute.of(context).isCurrent) {
+    if (ModalRoute.of(context)!.isCurrent) {
       chatBloc.add(ChatEvent.getAllMessages());
     }
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
       return SafeArea(
-        child: InnerDrawer(
-          swipe: false,
-          key: _innerDrawerKey,
-          rightAnimationType: InnerDrawerAnimation.quadratic,
-          // rightChild: _UsersList(),
-          rightChild: Container(),
-          scaffold: Scaffold(
-            appBar: AppBar(
-              actions: [
-                IconButton(
-                  onPressed: () => _innerDrawerKey.currentState.open(),
-                  icon: Icon(FontAwesomeIcons.users),
-                ),
-              ],
-            ),
-            body: BlocBuilder<ChatBloc, ChatState>(
-              builder: (context, state) {
-                return state.map(
-                  initial: (state) =>
-                      Center(child: CircularProgressIndicator()),
-                  allMessagesLoaded: (state) {
-                    final messages = state.allMessages.reversed.toList();
-                    return Column(
-                      children: [
-                        Flexible(
-                          child: _MessagesListWidget(
-                            messages: messages,
+        // child: InnerDrawer(
+        //   swipe: false,
+        //   // key: _innerDrawerKey,
+        //   rightAnimationType: InnerDrawerAnimation.quadratic,
+        //   // rightChild: _UsersList(),
+        //   rightChild: Container(),
+        //   scaffold:
+        child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () => _innerDrawerKey.currentState!.open(),
+                icon: Icon(FontAwesomeIcons.users),
+              ),
+            ],
+          ),
+          body: BlocBuilder<ChatBloc, ChatState>(
+            builder: (context, state) {
+              return state.map(
+                initial: (state) => Center(child: CircularProgressIndicator()),
+                allMessagesLoaded: (state) {
+                  // final messages = state.allMessages.reversed.toList();
+                  List<types.Message> messages = state.allMessages.map((msg) {
+                    if (msg is ImageMessage) {
+                      return types.ImageMessage(
+                        size: 200,
+                        imageName: 'imageName',
+                        uri: msg.imageUrl,
+                        authorId: user.id!,
+                        id: user.id!,
+                        timestamp: msg.timeStamp,
+                      );
+                    } else if (msg is TextMessage) {
+                      return types.TextMessage(
+                        text: msg.text,
+                        id: '29',
+                        authorId: user.id!,
+                        timestamp: msg.timeStamp,
+                      );
+                    } else {
+                      return types.TextMessage(
+                        text: 'msg.text',
+                        id: user.id!,
+                        authorId: '44',
+                      );
+                    }
+                  }).toList();
+
+                  return chatUi.Chat(
+                    messages: messages,
+                    onSendPressed: (msg) => _handleSendPressed(msg, chatBloc),
+                    user: types.User(id: user.id!),
+                    onAttachmentPressed: () => addMediaModal(
+                      context,
+                      chatBloc: chatBloc,
+                      imageUploaderCubit: imageUploaderCubit,
+                    ),
+                    theme: chatUi.DarkChatTheme(),
+                  );
+                  return Column(
+                    children: [
+                      Flexible(
+                        child: _MessagesListWidget(
+                          messages: [],
+                          user: user,
+                          chatListController: _scrollController,
+                        ),
+                      ),
+                      // imageUploaderCubit.state == ImageuploaderState.loading()
+                      //     ? Bubble(
+                      //         child: AspectRatio(
+                      //           aspectRatio: 4 / 3,
+                      //           child: Center(
+                      //             child: CircularProgressIndicator(),
+                      //           ),
+                      //         ),
+                      //       )
+                      //     : Container(),
+                      Container(
+                        child: Align(
+                          alignment: FractionalOffset.bottomCenter,
+                          child: _SendMessageTextField(
+                            chatBloc: chatBloc,
                             user: user,
                             chatListController: _scrollController,
                           ),
                         ),
-                        // imageUploaderCubit.state == ImageuploaderState.loading()
-                        //     ? Bubble(
-                        //         child: AspectRatio(
-                        //           aspectRatio: 4 / 3,
-                        //           child: Center(
-                        //             child: CircularProgressIndicator(),
-                        //           ),
-                        //         ),
-                        //       )
-                        //     : Container(),
-                        Container(
-                          child: Align(
-                            alignment: FractionalOffset.bottomCenter,
-                            child: _SendMessageTextField(
-                              chatBloc: chatBloc,
-                              user: user,
-                              chatListController: _scrollController,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                  messageFailure: (state) => Text('Failed to load messages'),
-                );
-              },
-            ),
+                      ),
+                    ],
+                  );
+                },
+                messageFailure: (state) => Text('Failed to load messages'),
+              );
+            },
           ),
         ),
       );
@@ -133,67 +293,26 @@ class _ChatPageState extends State<ChatPage> {
   }
 }
 
-class _AttachmentSelection extends StatelessWidget {
-  const _AttachmentSelection({
-    Key key,
-    @required this.icon,
-    @required this.label,
-  }) : super(key: key);
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ClipOval(
-          child: Material(
-            color: Colors.blue,
-            child: InkWell(
-              splashColor: Colors.red,
-              child: SizedBox(
-                width: 56,
-                height: 56,
-                child: Icon(icon),
-              ),
-              onTap: () async {
-                final result = await FilePicker.platform.pickFiles();
-                if (result != null) {
-                  final file = File(result.files.single.path);
-
-                  Image.file(file);
-                }
-              },
-            ),
-          ),
-        ),
-        Text(label),
-      ],
-    );
-  }
-}
-
 class _MessagesListWidget extends StatelessWidget {
   const _MessagesListWidget({
-    Key key,
-    @required this.user,
-    @required this.messages,
-    @required this.chatListController,
+    Key? key,
+    required this.user,
+    required this.messages,
+    required this.chatListController,
   }) : super(key: key);
 
   final ScrollController chatListController;
-  final List<Message> messages;
+  final List<Message>? messages;
   final UserEntity user;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: messages.length,
+      itemCount: messages?.length,
       shrinkWrap: true,
       controller: chatListController,
       itemBuilder: (context, index) {
-        final msg = messages[index];
+        final msg = messages?[index];
         if (msg is ImageMessage) {
           print('ImageUrl ======> ${msg.imageUrl}');
           return Bubble(
@@ -230,9 +349,9 @@ class _MessagesListWidget extends StatelessWidget {
 
 class _CustomChatBubble extends StatelessWidget {
   const _CustomChatBubble({
-    Key key,
-    @required this.textMessage,
-    @required this.user,
+    Key? key,
+    required this.textMessage,
+    required this.user,
   }) : super(key: key);
 
   static const styleMe = BubbleStyle(
@@ -274,10 +393,10 @@ class _CustomChatBubble extends StatelessWidget {
 
 class _ChatRowMe extends StatelessWidget {
   const _ChatRowMe({
-    Key key,
-    @required this.message,
-    @required this.user,
-    @required this.styleMe,
+    Key? key,
+    required this.message,
+    required this.user,
+    required this.styleMe,
   }) : super(key: key);
 
   final TextMessage message;
@@ -309,10 +428,10 @@ class _ChatRowMe extends StatelessWidget {
 
 class _ChatRowSomebody extends StatelessWidget {
   const _ChatRowSomebody({
-    Key key,
-    @required this.message,
-    @required this.user,
-    @required this.styleSomebody,
+    Key? key,
+    required this.message,
+    required this.user,
+    required this.styleSomebody,
   }) : super(key: key);
 
   final TextMessage message;
@@ -337,10 +456,10 @@ class _ChatRowSomebody extends StatelessWidget {
 
 class _SendMessageTextField extends StatefulWidget {
   const _SendMessageTextField({
-    Key key,
-    @required this.chatBloc,
-    @required this.user,
-    @required this.chatListController,
+    Key? key,
+    required this.chatBloc,
+    required this.user,
+    required this.chatListController,
   }) : super(key: key);
 
   final ChatBloc chatBloc;
@@ -452,7 +571,6 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                   ),
                 );
                 _controller.clear();
-
                 Timer.periodic(Duration(milliseconds: 100), (timer) {
                   if (mounted && widget.chatListController.hasClients) {
                     widget.chatListController.jumpTo(
@@ -472,8 +590,8 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
 
 void addMediaModal(
   context, {
-  @required ChatBloc chatBloc,
-  @required ImageUploaderCubit imageUploaderCubit,
+  required ChatBloc chatBloc,
+  required ImageUploaderCubit imageUploaderCubit,
 }) {
   showModalBottomSheet(
       context: context,
@@ -528,20 +646,28 @@ void addMediaModal(
                     },
                   ),
                   ModalTile(
-                      title: "File", subtitle: "Share files", icon: Icons.tab),
+                    onTap: () {},
+                    title: "File",
+                    subtitle: "Share files",
+                    icon: Icons.tab,
+                  ),
                   ModalTile(
+                      onTap: () {},
                       title: "Contact",
                       subtitle: "Share contacts",
                       icon: Icons.contacts),
                   ModalTile(
+                      onTap: () {},
                       title: "Location",
                       subtitle: "Share a location",
                       icon: Icons.add_location),
                   ModalTile(
+                      onTap: () {},
                       title: "Schedule Call",
                       subtitle: "Arrange a skype call and get reminders",
                       icon: Icons.schedule),
                   ModalTile(
+                      onTap: () {},
                       title: "Create Poll",
                       subtitle: "Share polls",
                       icon: Icons.poll)
@@ -555,10 +681,10 @@ void addMediaModal(
 
 class ModalTile extends StatelessWidget {
   const ModalTile({
-    @required this.title,
-    @required this.subtitle,
-    @required this.icon,
-    @required this.onTap,
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.onTap,
   });
 
   final IconData icon;
@@ -608,10 +734,10 @@ class ModalTile extends StatelessWidget {
 
 class CustomTile extends StatelessWidget {
   CustomTile({
-    @required this.leading,
-    @required this.title,
+    required this.leading,
+    required this.title,
     this.icon,
-    @required this.subtitle,
+    required this.subtitle,
     this.trailing,
     this.margin = const EdgeInsets.all(0),
     this.onTap,
@@ -619,15 +745,15 @@ class CustomTile extends StatelessWidget {
     this.mini = true,
   });
 
-  final Widget icon;
+  final Widget? icon;
   final Widget leading;
   final EdgeInsets margin;
   final bool mini;
-  final GestureLongPressCallback onLongPress;
-  final GestureTapCallback onTap;
+  final GestureLongPressCallback? onLongPress;
+  final GestureTapCallback? onTap;
   final Widget subtitle;
   final Widget title;
-  final Widget trailing;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -742,12 +868,12 @@ class CustomTile extends StatelessWidget {
 
 class _UsersList extends StatelessWidget {
   const _UsersList({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (ModalRoute.of(context).isCurrent) {
+    if (ModalRoute.of(context)!.isCurrent) {
       context.read<UserAuthBloc>().add(UserAuthEvent.getAllUsers());
     }
     return BlocBuilder<UserAuthBloc, UserAuthState>(
@@ -765,12 +891,12 @@ class _UsersList extends StatelessWidget {
             itemBuilder: (context, index) {
               final user = _usersList[index];
               final date =
-                  DateTime.fromMillisecondsSinceEpoch(user.lastSeenInEpoch);
+                  DateTime.fromMillisecondsSinceEpoch(user.lastSeenInEpoch!);
               final ago = timeago.format(date);
-              final isOnline = user.isOnline;
+              final isOnline = user.isOnline!;
               return ListTile(
-                leading: CircleAvatar(child: Text(user.fullName[0])),
-                title: Text(user.fullName),
+                leading: CircleAvatar(child: Text(user.fullName![0])),
+                title: Text(user.fullName!),
                 subtitle: isOnline
                     ? Row(
                         children: [

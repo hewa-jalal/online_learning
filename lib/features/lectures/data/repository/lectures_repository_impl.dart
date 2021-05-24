@@ -9,17 +9,17 @@ import '../../../user/data/models/user_model.dart';
 
 @LazySingleton(as: LecturesRepository)
 class LecturesRepositoryImpl extends LecturesRepository {
-  final FirebaseLecturesRemoteDataSource remoteDataSource;
+  final FirebaseLecturesRemoteDataSource? remoteDataSource;
 
   LecturesRepositoryImpl(this.remoteDataSource);
   @override
   Future<Either<Failure, Unit>> downloadLecture({
-    @required String fileUrl,
-    @required String courseTitle,
-    @required String lectureTitle,
+    required String fileUrl,
+    required String courseTitle,
+    required String lectureTitle,
   }) async {
     try {
-      final lecture = await remoteDataSource.downloadLecture(
+      final lecture = await remoteDataSource!.downloadLecture(
         fileUrl: fileUrl,
         courseTitle: courseTitle,
         lectureTitle: lectureTitle,
@@ -33,14 +33,14 @@ class LecturesRepositoryImpl extends LecturesRepository {
 
   @override
   Future<Either<Failure, Unit>> uploadLecture({
-    @required String fileUrl,
-    @required UserModel user,
-    @required String courseTitle,
-    String title,
-    String description,
+    required String fileUrl,
+    required UserModel user,
+    required String courseTitle,
+    String? title,
+    String? description,
   }) async {
     try {
-      final lecture = await remoteDataSource.uploadLecture(
+      final lecture = await remoteDataSource!.uploadLecture(
         filePath: fileUrl,
         user: user,
         lectureTitle: title,
@@ -57,7 +57,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
   @override
   Future<Either<Failure, List<LectureEntity>>> getAllLectures() async {
     try {
-      final lectures = await remoteDataSource.getAllLectures();
+      final lectures = await remoteDataSource!.getAllLectures();
       return right(lectures);
     } catch (e) {
       print(e.toString());
@@ -67,10 +67,10 @@ class LecturesRepositoryImpl extends LecturesRepository {
 
   @override
   Future<Either<Failure, List<LectureEntity>>> getAllLecturesByCourse({
-    @required String courseTitle,
+    required String courseTitle,
   }) async {
     try {
-      final lectures = await remoteDataSource.getAllLecturesByCourse(
+      final lectures = await remoteDataSource!.getAllLecturesByCourse(
           courseTitle: courseTitle);
       return right(lectures);
     } catch (e) {
@@ -80,9 +80,9 @@ class LecturesRepositoryImpl extends LecturesRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> createCourse({String courseTitle}) async {
+  Future<Either<Failure, Unit>> createCourse({String? courseTitle}) async {
     try {
-      remoteDataSource.createCourse(courseTitle: courseTitle);
+      remoteDataSource!.createCourse(courseTitle: courseTitle);
       return right(unit);
     } catch (e) {
       print(e.toString());
@@ -92,11 +92,11 @@ class LecturesRepositoryImpl extends LecturesRepository {
 
   @override
   Future<Either<Failure, List<String>>> getAllCoursesByUserId({
-    @required String userId,
+    required String userId,
   }) async {
     try {
       final courseIds =
-          await remoteDataSource.getAllCoursesByUserId(userId: userId);
+          await remoteDataSource!.getAllCoursesByUserId(userId: userId);
       return right(courseIds);
     } catch (e) {
       print(e.toString());
@@ -106,12 +106,12 @@ class LecturesRepositoryImpl extends LecturesRepository {
 
   @override
   Future<Either<Failure, Unit>> submitUser({
-    @required String userId,
-    @required String courseTitle,
-    @required String lectureTitle,
+    required String userId,
+    required String courseTitle,
+    required String lectureTitle,
   }) async {
     try {
-      final submittedUser = await remoteDataSource.submitUser(
+      final submittedUser = await remoteDataSource!.submitUser(
         userId: userId,
         courseTitle: courseTitle,
         lectureTitle: lectureTitle,

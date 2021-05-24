@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'homework_bloc.dart';
 
@@ -9,23 +9,24 @@ part of 'homework_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$HomeworkEventTearOff {
   const _$HomeworkEventTearOff();
 
-// ignore: unused_element
   _Started started() {
     return const _Started();
   }
 
-// ignore: unused_element
   _UploadHomework uploadHomework(
-      {@required UserModel user,
-      @required String title,
-      @required String courseTitle,
-      @required String filePath,
-      @required int dueDate,
-      String description}) {
+      {required UserModel user,
+      required String title,
+      required String courseTitle,
+      required String filePath,
+      required int dueDate,
+      String? description}) {
     return _UploadHomework(
       user: user,
       title: title,
@@ -36,36 +37,32 @@ class _$HomeworkEventTearOff {
     );
   }
 
-// ignore: unused_element
   _SelectFile selectFile() {
     return const _SelectFile();
   }
 
-// ignore: unused_element
   _GetAllHomeworksByCourse getAllHomeworksByCourse(
-      {@required String courseTitle}) {
+      {required String courseTitle}) {
     return _GetAllHomeworksByCourse(
       courseTitle: courseTitle,
     );
   }
 
-// ignore: unused_element
   _GetHomework getHomework(
-      {@required String courseTitle, @required String homeworkTitle}) {
+      {required String courseTitle, required String homeworkTitle}) {
     return _GetHomework(
       courseTitle: courseTitle,
       homeworkTitle: homeworkTitle,
     );
   }
 
-// ignore: unused_element
   _SubmitHomework submitHomework(
-      {@required String userId,
-      @required String fileUrl,
-      @required String courseTitle,
-      @required String homeworkTitle,
-      String note,
-      int submitDate}) {
+      {required String userId,
+      required String fileUrl,
+      required String courseTitle,
+      required String homeworkTitle,
+      String? note,
+      int? submitDate}) {
     return _SubmitHomework(
       userId: userId,
       fileUrl: fileUrl,
@@ -78,60 +75,62 @@ class _$HomeworkEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $HomeworkEvent = _$HomeworkEventTearOff();
 
 /// @nodoc
 mixin _$HomeworkEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required
-        TResult uploadHomework(UserModel user, String title, String courseTitle,
-            String filePath, int dueDate, String description),
-    @required TResult selectFile(),
-    @required TResult getAllHomeworksByCourse(String courseTitle),
-    @required TResult getHomework(String courseTitle, String homeworkTitle),
-    @required
-        TResult submitHomework(
-            String userId,
-            String fileUrl,
-            String courseTitle,
-            String homeworkTitle,
-            String note,
-            int submitDate),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)
+        uploadHomework,
+    required TResult Function() selectFile,
+    required TResult Function(String courseTitle) getAllHomeworksByCourse,
+    required TResult Function(String courseTitle, String homeworkTitle)
+        getHomework,
+    required TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)
+        submitHomework,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult uploadHomework(UserModel user, String title, String courseTitle,
-        String filePath, int dueDate, String description),
-    TResult selectFile(),
-    TResult getAllHomeworksByCourse(String courseTitle),
-    TResult getHomework(String courseTitle, String homeworkTitle),
-    TResult submitHomework(String userId, String fileUrl, String courseTitle,
-        String homeworkTitle, String note, int submitDate),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult Function()? selectFile,
+    TResult Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult Function(String courseTitle, String homeworkTitle)? getHomework,
+    TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)?
+        submitHomework,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult uploadHomework(_UploadHomework value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    @required TResult getHomework(_GetHomework value),
-    @required TResult submitHomework(_SubmitHomework value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UploadHomework value) uploadHomework,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_GetAllHomeworksByCourse value)
+        getAllHomeworksByCourse,
+    required TResult Function(_GetHomework value) getHomework,
+    required TResult Function(_SubmitHomework value) submitHomework,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult uploadHomework(_UploadHomework value),
-    TResult selectFile(_SelectFile value),
-    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    TResult getHomework(_GetHomework value),
-    TResult submitHomework(_SubmitHomework value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UploadHomework value)? uploadHomework,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult Function(_GetHomework value)? getHomework,
+    TResult Function(_SubmitHomework value)? submitHomework,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -168,6 +167,7 @@ class __$StartedCopyWithImpl<$Res> extends _$HomeworkEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Started implements _Started {
   const _$_Started();
 
@@ -186,46 +186,37 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required
-        TResult uploadHomework(UserModel user, String title, String courseTitle,
-            String filePath, int dueDate, String description),
-    @required TResult selectFile(),
-    @required TResult getAllHomeworksByCourse(String courseTitle),
-    @required TResult getHomework(String courseTitle, String homeworkTitle),
-    @required
-        TResult submitHomework(
-            String userId,
-            String fileUrl,
-            String courseTitle,
-            String homeworkTitle,
-            String note,
-            int submitDate),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)
+        uploadHomework,
+    required TResult Function() selectFile,
+    required TResult Function(String courseTitle) getAllHomeworksByCourse,
+    required TResult Function(String courseTitle, String homeworkTitle)
+        getHomework,
+    required TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)
+        submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return started();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult uploadHomework(UserModel user, String title, String courseTitle,
-        String filePath, int dueDate, String description),
-    TResult selectFile(),
-    TResult getAllHomeworksByCourse(String courseTitle),
-    TResult getHomework(String courseTitle, String homeworkTitle),
-    TResult submitHomework(String userId, String fileUrl, String courseTitle,
-        String homeworkTitle, String note, int submitDate),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult Function()? selectFile,
+    TResult Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult Function(String courseTitle, String homeworkTitle)? getHomework,
+    TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)?
+        submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (started != null) {
       return started();
     }
@@ -234,35 +225,29 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult uploadHomework(_UploadHomework value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    @required TResult getHomework(_GetHomework value),
-    @required TResult submitHomework(_SubmitHomework value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UploadHomework value) uploadHomework,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_GetAllHomeworksByCourse value)
+        getAllHomeworksByCourse,
+    required TResult Function(_GetHomework value) getHomework,
+    required TResult Function(_SubmitHomework value) submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return started(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult uploadHomework(_UploadHomework value),
-    TResult selectFile(_SelectFile value),
-    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    TResult getHomework(_GetHomework value),
-    TResult submitHomework(_SubmitHomework value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UploadHomework value)? uploadHomework,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult Function(_GetHomework value)? getHomework,
+    TResult Function(_SubmitHomework value)? submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (started != null) {
       return started(this);
     }
@@ -285,7 +270,7 @@ abstract class _$UploadHomeworkCopyWith<$Res> {
       String courseTitle,
       String filePath,
       int dueDate,
-      String description});
+      String? description});
 }
 
 /// @nodoc
@@ -301,40 +286,52 @@ class __$UploadHomeworkCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object user = freezed,
-    Object title = freezed,
-    Object courseTitle = freezed,
-    Object filePath = freezed,
-    Object dueDate = freezed,
-    Object description = freezed,
+    Object? user = freezed,
+    Object? title = freezed,
+    Object? courseTitle = freezed,
+    Object? filePath = freezed,
+    Object? dueDate = freezed,
+    Object? description = freezed,
   }) {
     return _then(_UploadHomework(
-      user: user == freezed ? _value.user : user as UserModel,
-      title: title == freezed ? _value.title : title as String,
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
-      filePath: filePath == freezed ? _value.filePath : filePath as String,
-      dueDate: dueDate == freezed ? _value.dueDate : dueDate as int,
-      description:
-          description == freezed ? _value.description : description as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: filePath == freezed
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      dueDate: dueDate == freezed
+          ? _value.dueDate
+          : dueDate // ignore: cast_nullable_to_non_nullable
+              as int,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_UploadHomework implements _UploadHomework {
   const _$_UploadHomework(
-      {@required this.user,
-      @required this.title,
-      @required this.courseTitle,
-      @required this.filePath,
-      @required this.dueDate,
-      this.description})
-      : assert(user != null),
-        assert(title != null),
-        assert(courseTitle != null),
-        assert(filePath != null),
-        assert(dueDate != null);
+      {required this.user,
+      required this.title,
+      required this.courseTitle,
+      required this.filePath,
+      required this.dueDate,
+      this.description});
 
   @override
   final UserModel user;
@@ -347,7 +344,7 @@ class _$_UploadHomework implements _UploadHomework {
   @override
   final int dueDate;
   @override
-  final String description;
+  final String? description;
 
   @override
   String toString() {
@@ -393,47 +390,38 @@ class _$_UploadHomework implements _UploadHomework {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required
-        TResult uploadHomework(UserModel user, String title, String courseTitle,
-            String filePath, int dueDate, String description),
-    @required TResult selectFile(),
-    @required TResult getAllHomeworksByCourse(String courseTitle),
-    @required TResult getHomework(String courseTitle, String homeworkTitle),
-    @required
-        TResult submitHomework(
-            String userId,
-            String fileUrl,
-            String courseTitle,
-            String homeworkTitle,
-            String note,
-            int submitDate),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)
+        uploadHomework,
+    required TResult Function() selectFile,
+    required TResult Function(String courseTitle) getAllHomeworksByCourse,
+    required TResult Function(String courseTitle, String homeworkTitle)
+        getHomework,
+    required TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)
+        submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return uploadHomework(
         user, title, courseTitle, filePath, dueDate, description);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult uploadHomework(UserModel user, String title, String courseTitle,
-        String filePath, int dueDate, String description),
-    TResult selectFile(),
-    TResult getAllHomeworksByCourse(String courseTitle),
-    TResult getHomework(String courseTitle, String homeworkTitle),
-    TResult submitHomework(String userId, String fileUrl, String courseTitle,
-        String homeworkTitle, String note, int submitDate),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult Function()? selectFile,
+    TResult Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult Function(String courseTitle, String homeworkTitle)? getHomework,
+    TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)?
+        submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (uploadHomework != null) {
       return uploadHomework(
           user, title, courseTitle, filePath, dueDate, description);
@@ -443,35 +431,29 @@ class _$_UploadHomework implements _UploadHomework {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult uploadHomework(_UploadHomework value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    @required TResult getHomework(_GetHomework value),
-    @required TResult submitHomework(_SubmitHomework value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UploadHomework value) uploadHomework,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_GetAllHomeworksByCourse value)
+        getAllHomeworksByCourse,
+    required TResult Function(_GetHomework value) getHomework,
+    required TResult Function(_SubmitHomework value) submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return uploadHomework(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult uploadHomework(_UploadHomework value),
-    TResult selectFile(_SelectFile value),
-    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    TResult getHomework(_GetHomework value),
-    TResult submitHomework(_SubmitHomework value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UploadHomework value)? uploadHomework,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult Function(_GetHomework value)? getHomework,
+    TResult Function(_SubmitHomework value)? submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (uploadHomework != null) {
       return uploadHomework(this);
     }
@@ -481,21 +463,22 @@ class _$_UploadHomework implements _UploadHomework {
 
 abstract class _UploadHomework implements HomeworkEvent {
   const factory _UploadHomework(
-      {@required UserModel user,
-      @required String title,
-      @required String courseTitle,
-      @required String filePath,
-      @required int dueDate,
-      String description}) = _$_UploadHomework;
+      {required UserModel user,
+      required String title,
+      required String courseTitle,
+      required String filePath,
+      required int dueDate,
+      String? description}) = _$_UploadHomework;
 
-  UserModel get user;
-  String get title;
-  String get courseTitle;
-  String get filePath;
-  int get dueDate;
-  String get description;
+  UserModel get user => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
+  String get filePath => throw _privateConstructorUsedError;
+  int get dueDate => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$UploadHomeworkCopyWith<_UploadHomework> get copyWith;
+  _$UploadHomeworkCopyWith<_UploadHomework> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -517,6 +500,7 @@ class __$SelectFileCopyWithImpl<$Res> extends _$HomeworkEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_SelectFile implements _SelectFile {
   const _$_SelectFile();
 
@@ -535,46 +519,37 @@ class _$_SelectFile implements _SelectFile {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required
-        TResult uploadHomework(UserModel user, String title, String courseTitle,
-            String filePath, int dueDate, String description),
-    @required TResult selectFile(),
-    @required TResult getAllHomeworksByCourse(String courseTitle),
-    @required TResult getHomework(String courseTitle, String homeworkTitle),
-    @required
-        TResult submitHomework(
-            String userId,
-            String fileUrl,
-            String courseTitle,
-            String homeworkTitle,
-            String note,
-            int submitDate),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)
+        uploadHomework,
+    required TResult Function() selectFile,
+    required TResult Function(String courseTitle) getAllHomeworksByCourse,
+    required TResult Function(String courseTitle, String homeworkTitle)
+        getHomework,
+    required TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)
+        submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return selectFile();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult uploadHomework(UserModel user, String title, String courseTitle,
-        String filePath, int dueDate, String description),
-    TResult selectFile(),
-    TResult getAllHomeworksByCourse(String courseTitle),
-    TResult getHomework(String courseTitle, String homeworkTitle),
-    TResult submitHomework(String userId, String fileUrl, String courseTitle,
-        String homeworkTitle, String note, int submitDate),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult Function()? selectFile,
+    TResult Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult Function(String courseTitle, String homeworkTitle)? getHomework,
+    TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)?
+        submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (selectFile != null) {
       return selectFile();
     }
@@ -583,35 +558,29 @@ class _$_SelectFile implements _SelectFile {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult uploadHomework(_UploadHomework value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    @required TResult getHomework(_GetHomework value),
-    @required TResult submitHomework(_SubmitHomework value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UploadHomework value) uploadHomework,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_GetAllHomeworksByCourse value)
+        getAllHomeworksByCourse,
+    required TResult Function(_GetHomework value) getHomework,
+    required TResult Function(_SubmitHomework value) submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return selectFile(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult uploadHomework(_UploadHomework value),
-    TResult selectFile(_SelectFile value),
-    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    TResult getHomework(_GetHomework value),
-    TResult submitHomework(_SubmitHomework value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UploadHomework value)? uploadHomework,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult Function(_GetHomework value)? getHomework,
+    TResult Function(_SubmitHomework value)? submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (selectFile != null) {
       return selectFile(this);
     }
@@ -645,19 +614,21 @@ class __$GetAllHomeworksByCourseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object courseTitle = freezed,
+    Object? courseTitle = freezed,
   }) {
     return _then(_GetAllHomeworksByCourse(
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
-  const _$_GetAllHomeworksByCourse({@required this.courseTitle})
-      : assert(courseTitle != null);
+  const _$_GetAllHomeworksByCourse({required this.courseTitle});
 
   @override
   final String courseTitle;
@@ -688,46 +659,37 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required
-        TResult uploadHomework(UserModel user, String title, String courseTitle,
-            String filePath, int dueDate, String description),
-    @required TResult selectFile(),
-    @required TResult getAllHomeworksByCourse(String courseTitle),
-    @required TResult getHomework(String courseTitle, String homeworkTitle),
-    @required
-        TResult submitHomework(
-            String userId,
-            String fileUrl,
-            String courseTitle,
-            String homeworkTitle,
-            String note,
-            int submitDate),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)
+        uploadHomework,
+    required TResult Function() selectFile,
+    required TResult Function(String courseTitle) getAllHomeworksByCourse,
+    required TResult Function(String courseTitle, String homeworkTitle)
+        getHomework,
+    required TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)
+        submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return getAllHomeworksByCourse(courseTitle);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult uploadHomework(UserModel user, String title, String courseTitle,
-        String filePath, int dueDate, String description),
-    TResult selectFile(),
-    TResult getAllHomeworksByCourse(String courseTitle),
-    TResult getHomework(String courseTitle, String homeworkTitle),
-    TResult submitHomework(String userId, String fileUrl, String courseTitle,
-        String homeworkTitle, String note, int submitDate),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult Function()? selectFile,
+    TResult Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult Function(String courseTitle, String homeworkTitle)? getHomework,
+    TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)?
+        submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllHomeworksByCourse != null) {
       return getAllHomeworksByCourse(courseTitle);
     }
@@ -736,35 +698,29 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult uploadHomework(_UploadHomework value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    @required TResult getHomework(_GetHomework value),
-    @required TResult submitHomework(_SubmitHomework value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UploadHomework value) uploadHomework,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_GetAllHomeworksByCourse value)
+        getAllHomeworksByCourse,
+    required TResult Function(_GetHomework value) getHomework,
+    required TResult Function(_SubmitHomework value) submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return getAllHomeworksByCourse(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult uploadHomework(_UploadHomework value),
-    TResult selectFile(_SelectFile value),
-    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    TResult getHomework(_GetHomework value),
-    TResult submitHomework(_SubmitHomework value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UploadHomework value)? uploadHomework,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult Function(_GetHomework value)? getHomework,
+    TResult Function(_SubmitHomework value)? submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getAllHomeworksByCourse != null) {
       return getAllHomeworksByCourse(this);
     }
@@ -773,12 +729,13 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
 }
 
 abstract class _GetAllHomeworksByCourse implements HomeworkEvent {
-  const factory _GetAllHomeworksByCourse({@required String courseTitle}) =
+  const factory _GetAllHomeworksByCourse({required String courseTitle}) =
       _$_GetAllHomeworksByCourse;
 
-  String get courseTitle;
+  String get courseTitle => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$GetAllHomeworksByCourseCopyWith<_GetAllHomeworksByCourse> get copyWith;
+  _$GetAllHomeworksByCourseCopyWith<_GetAllHomeworksByCourse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -801,25 +758,27 @@ class __$GetHomeworkCopyWithImpl<$Res> extends _$HomeworkEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object courseTitle = freezed,
-    Object homeworkTitle = freezed,
+    Object? courseTitle = freezed,
+    Object? homeworkTitle = freezed,
   }) {
     return _then(_GetHomework(
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
       homeworkTitle: homeworkTitle == freezed
           ? _value.homeworkTitle
-          : homeworkTitle as String,
+          : homeworkTitle // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_GetHomework implements _GetHomework {
   const _$_GetHomework(
-      {@required this.courseTitle, @required this.homeworkTitle})
-      : assert(courseTitle != null),
-        assert(homeworkTitle != null);
+      {required this.courseTitle, required this.homeworkTitle});
 
   @override
   final String courseTitle;
@@ -856,46 +815,37 @@ class _$_GetHomework implements _GetHomework {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required
-        TResult uploadHomework(UserModel user, String title, String courseTitle,
-            String filePath, int dueDate, String description),
-    @required TResult selectFile(),
-    @required TResult getAllHomeworksByCourse(String courseTitle),
-    @required TResult getHomework(String courseTitle, String homeworkTitle),
-    @required
-        TResult submitHomework(
-            String userId,
-            String fileUrl,
-            String courseTitle,
-            String homeworkTitle,
-            String note,
-            int submitDate),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)
+        uploadHomework,
+    required TResult Function() selectFile,
+    required TResult Function(String courseTitle) getAllHomeworksByCourse,
+    required TResult Function(String courseTitle, String homeworkTitle)
+        getHomework,
+    required TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)
+        submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return getHomework(courseTitle, homeworkTitle);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult uploadHomework(UserModel user, String title, String courseTitle,
-        String filePath, int dueDate, String description),
-    TResult selectFile(),
-    TResult getAllHomeworksByCourse(String courseTitle),
-    TResult getHomework(String courseTitle, String homeworkTitle),
-    TResult submitHomework(String userId, String fileUrl, String courseTitle,
-        String homeworkTitle, String note, int submitDate),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult Function()? selectFile,
+    TResult Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult Function(String courseTitle, String homeworkTitle)? getHomework,
+    TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)?
+        submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getHomework != null) {
       return getHomework(courseTitle, homeworkTitle);
     }
@@ -904,35 +854,29 @@ class _$_GetHomework implements _GetHomework {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult uploadHomework(_UploadHomework value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    @required TResult getHomework(_GetHomework value),
-    @required TResult submitHomework(_SubmitHomework value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UploadHomework value) uploadHomework,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_GetAllHomeworksByCourse value)
+        getAllHomeworksByCourse,
+    required TResult Function(_GetHomework value) getHomework,
+    required TResult Function(_SubmitHomework value) submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return getHomework(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult uploadHomework(_UploadHomework value),
-    TResult selectFile(_SelectFile value),
-    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    TResult getHomework(_GetHomework value),
-    TResult submitHomework(_SubmitHomework value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UploadHomework value)? uploadHomework,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult Function(_GetHomework value)? getHomework,
+    TResult Function(_SubmitHomework value)? submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (getHomework != null) {
       return getHomework(this);
     }
@@ -942,13 +886,14 @@ class _$_GetHomework implements _GetHomework {
 
 abstract class _GetHomework implements HomeworkEvent {
   const factory _GetHomework(
-      {@required String courseTitle,
-      @required String homeworkTitle}) = _$_GetHomework;
+      {required String courseTitle,
+      required String homeworkTitle}) = _$_GetHomework;
 
-  String get courseTitle;
-  String get homeworkTitle;
+  String get courseTitle => throw _privateConstructorUsedError;
+  String get homeworkTitle => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$GetHomeworkCopyWith<_GetHomework> get copyWith;
+  _$GetHomeworkCopyWith<_GetHomework> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -961,8 +906,8 @@ abstract class _$SubmitHomeworkCopyWith<$Res> {
       String fileUrl,
       String courseTitle,
       String homeworkTitle,
-      String note,
-      int submitDate});
+      String? note,
+      int? submitDate});
 }
 
 /// @nodoc
@@ -978,40 +923,52 @@ class __$SubmitHomeworkCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userId = freezed,
-    Object fileUrl = freezed,
-    Object courseTitle = freezed,
-    Object homeworkTitle = freezed,
-    Object note = freezed,
-    Object submitDate = freezed,
+    Object? userId = freezed,
+    Object? fileUrl = freezed,
+    Object? courseTitle = freezed,
+    Object? homeworkTitle = freezed,
+    Object? note = freezed,
+    Object? submitDate = freezed,
   }) {
     return _then(_SubmitHomework(
-      userId: userId == freezed ? _value.userId : userId as String,
-      fileUrl: fileUrl == freezed ? _value.fileUrl : fileUrl as String,
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileUrl: fileUrl == freezed
+          ? _value.fileUrl
+          : fileUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
       homeworkTitle: homeworkTitle == freezed
           ? _value.homeworkTitle
-          : homeworkTitle as String,
-      note: note == freezed ? _value.note : note as String,
-      submitDate: submitDate == freezed ? _value.submitDate : submitDate as int,
+          : homeworkTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      submitDate: submitDate == freezed
+          ? _value.submitDate
+          : submitDate // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_SubmitHomework implements _SubmitHomework {
   const _$_SubmitHomework(
-      {@required this.userId,
-      @required this.fileUrl,
-      @required this.courseTitle,
-      @required this.homeworkTitle,
+      {required this.userId,
+      required this.fileUrl,
+      required this.courseTitle,
+      required this.homeworkTitle,
       this.note,
-      this.submitDate})
-      : assert(userId != null),
-        assert(fileUrl != null),
-        assert(courseTitle != null),
-        assert(homeworkTitle != null);
+      this.submitDate});
 
   @override
   final String userId;
@@ -1022,9 +979,9 @@ class _$_SubmitHomework implements _SubmitHomework {
   @override
   final String homeworkTitle;
   @override
-  final String note;
+  final String? note;
   @override
-  final int submitDate;
+  final int? submitDate;
 
   @override
   String toString() {
@@ -1070,47 +1027,38 @@ class _$_SubmitHomework implements _SubmitHomework {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required
-        TResult uploadHomework(UserModel user, String title, String courseTitle,
-            String filePath, int dueDate, String description),
-    @required TResult selectFile(),
-    @required TResult getAllHomeworksByCourse(String courseTitle),
-    @required TResult getHomework(String courseTitle, String homeworkTitle),
-    @required
-        TResult submitHomework(
-            String userId,
-            String fileUrl,
-            String courseTitle,
-            String homeworkTitle,
-            String note,
-            int submitDate),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)
+        uploadHomework,
+    required TResult Function() selectFile,
+    required TResult Function(String courseTitle) getAllHomeworksByCourse,
+    required TResult Function(String courseTitle, String homeworkTitle)
+        getHomework,
+    required TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)
+        submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return submitHomework(
         userId, fileUrl, courseTitle, homeworkTitle, note, submitDate);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult uploadHomework(UserModel user, String title, String courseTitle,
-        String filePath, int dueDate, String description),
-    TResult selectFile(),
-    TResult getAllHomeworksByCourse(String courseTitle),
-    TResult getHomework(String courseTitle, String homeworkTitle),
-    TResult submitHomework(String userId, String fileUrl, String courseTitle,
-        String homeworkTitle, String note, int submitDate),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult Function()? selectFile,
+    TResult Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult Function(String courseTitle, String homeworkTitle)? getHomework,
+    TResult Function(String userId, String fileUrl, String courseTitle,
+            String homeworkTitle, String? note, int? submitDate)?
+        submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (submitHomework != null) {
       return submitHomework(
           userId, fileUrl, courseTitle, homeworkTitle, note, submitDate);
@@ -1120,35 +1068,29 @@ class _$_SubmitHomework implements _SubmitHomework {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult uploadHomework(_UploadHomework value),
-    @required TResult selectFile(_SelectFile value),
-    @required TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    @required TResult getHomework(_GetHomework value),
-    @required TResult submitHomework(_SubmitHomework value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_UploadHomework value) uploadHomework,
+    required TResult Function(_SelectFile value) selectFile,
+    required TResult Function(_GetAllHomeworksByCourse value)
+        getAllHomeworksByCourse,
+    required TResult Function(_GetHomework value) getHomework,
+    required TResult Function(_SubmitHomework value) submitHomework,
   }) {
-    assert(started != null);
-    assert(uploadHomework != null);
-    assert(selectFile != null);
-    assert(getAllHomeworksByCourse != null);
-    assert(getHomework != null);
-    assert(submitHomework != null);
     return submitHomework(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult uploadHomework(_UploadHomework value),
-    TResult selectFile(_SelectFile value),
-    TResult getAllHomeworksByCourse(_GetAllHomeworksByCourse value),
-    TResult getHomework(_GetHomework value),
-    TResult submitHomework(_SubmitHomework value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_UploadHomework value)? uploadHomework,
+    TResult Function(_SelectFile value)? selectFile,
+    TResult Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult Function(_GetHomework value)? getHomework,
+    TResult Function(_SubmitHomework value)? submitHomework,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (submitHomework != null) {
       return submitHomework(this);
     }
@@ -1158,38 +1100,38 @@ class _$_SubmitHomework implements _SubmitHomework {
 
 abstract class _SubmitHomework implements HomeworkEvent {
   const factory _SubmitHomework(
-      {@required String userId,
-      @required String fileUrl,
-      @required String courseTitle,
-      @required String homeworkTitle,
-      String note,
-      int submitDate}) = _$_SubmitHomework;
+      {required String userId,
+      required String fileUrl,
+      required String courseTitle,
+      required String homeworkTitle,
+      String? note,
+      int? submitDate}) = _$_SubmitHomework;
 
-  String get userId;
-  String get fileUrl;
-  String get courseTitle;
-  String get homeworkTitle;
-  String get note;
-  int get submitDate;
+  String get userId => throw _privateConstructorUsedError;
+  String get fileUrl => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
+  String get homeworkTitle => throw _privateConstructorUsedError;
+  String? get note => throw _privateConstructorUsedError;
+  int? get submitDate => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SubmitHomeworkCopyWith<_SubmitHomework> get copyWith;
+  _$SubmitHomeworkCopyWith<_SubmitHomework> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 class _$HomeworkStateTearOff {
   const _$HomeworkStateTearOff();
 
-// ignore: unused_element
   _HomeworkState call(
-      {@required String title,
-      @required String courseTitle,
-      @required String userId,
-      @required List<HomeworkEntity> homeworks,
-      String note,
-      String description,
-      String filePath,
-      bool isSubmitting,
-      Option<Either<HomeworkFailure, Unit>> homeworkFailureOrSuccessOption}) {
+      {required String title,
+      required String courseTitle,
+      required String userId,
+      required List<HomeworkEntity> homeworks,
+      String? note,
+      String? description,
+      String? filePath,
+      bool? isSubmitting,
+      Option<Either<HomeworkFailure, Unit>>? homeworkFailureOrSuccessOption}) {
     return _HomeworkState(
       title: title,
       courseTitle: courseTitle,
@@ -1205,23 +1147,24 @@ class _$HomeworkStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $HomeworkState = _$HomeworkStateTearOff();
 
 /// @nodoc
 mixin _$HomeworkState {
-  String get title;
-  String get courseTitle;
-  String get userId;
-  List<HomeworkEntity> get homeworks;
-  String get note;
-  String get description;
-  String get filePath;
-  bool get isSubmitting;
-  Option<Either<HomeworkFailure, Unit>> get homeworkFailureOrSuccessOption;
+  String get title => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
+  List<HomeworkEntity> get homeworks => throw _privateConstructorUsedError;
+  String? get note => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get filePath => throw _privateConstructorUsedError;
+  bool? get isSubmitting => throw _privateConstructorUsedError;
+  Option<Either<HomeworkFailure, Unit>>? get homeworkFailureOrSuccessOption =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeworkStateCopyWith<HomeworkState> get copyWith;
+  $HomeworkStateCopyWith<HomeworkState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1234,11 +1177,11 @@ abstract class $HomeworkStateCopyWith<$Res> {
       String courseTitle,
       String userId,
       List<HomeworkEntity> homeworks,
-      String note,
-      String description,
-      String filePath,
-      bool isSubmitting,
-      Option<Either<HomeworkFailure, Unit>> homeworkFailureOrSuccessOption});
+      String? note,
+      String? description,
+      String? filePath,
+      bool? isSubmitting,
+      Option<Either<HomeworkFailure, Unit>>? homeworkFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -1252,34 +1195,53 @@ class _$HomeworkStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object title = freezed,
-    Object courseTitle = freezed,
-    Object userId = freezed,
-    Object homeworks = freezed,
-    Object note = freezed,
-    Object description = freezed,
-    Object filePath = freezed,
-    Object isSubmitting = freezed,
-    Object homeworkFailureOrSuccessOption = freezed,
+    Object? title = freezed,
+    Object? courseTitle = freezed,
+    Object? userId = freezed,
+    Object? homeworks = freezed,
+    Object? note = freezed,
+    Object? description = freezed,
+    Object? filePath = freezed,
+    Object? isSubmitting = freezed,
+    Object? homeworkFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
-      title: title == freezed ? _value.title : title as String,
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
-      userId: userId == freezed ? _value.userId : userId as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       homeworks: homeworks == freezed
           ? _value.homeworks
-          : homeworks as List<HomeworkEntity>,
-      note: note == freezed ? _value.note : note as String,
-      description:
-          description == freezed ? _value.description : description as String,
-      filePath: filePath == freezed ? _value.filePath : filePath as String,
-      isSubmitting:
-          isSubmitting == freezed ? _value.isSubmitting : isSubmitting as bool,
+          : homeworks // ignore: cast_nullable_to_non_nullable
+              as List<HomeworkEntity>,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: filePath == freezed
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool?,
       homeworkFailureOrSuccessOption: homeworkFailureOrSuccessOption == freezed
           ? _value.homeworkFailureOrSuccessOption
-          : homeworkFailureOrSuccessOption
-              as Option<Either<HomeworkFailure, Unit>>,
+          : homeworkFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<HomeworkFailure, Unit>>?,
     ));
   }
 }
@@ -1296,11 +1258,11 @@ abstract class _$HomeworkStateCopyWith<$Res>
       String courseTitle,
       String userId,
       List<HomeworkEntity> homeworks,
-      String note,
-      String description,
-      String filePath,
-      bool isSubmitting,
-      Option<Either<HomeworkFailure, Unit>> homeworkFailureOrSuccessOption});
+      String? note,
+      String? description,
+      String? filePath,
+      bool? isSubmitting,
+      Option<Either<HomeworkFailure, Unit>>? homeworkFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -1316,54 +1278,70 @@ class __$HomeworkStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object title = freezed,
-    Object courseTitle = freezed,
-    Object userId = freezed,
-    Object homeworks = freezed,
-    Object note = freezed,
-    Object description = freezed,
-    Object filePath = freezed,
-    Object isSubmitting = freezed,
-    Object homeworkFailureOrSuccessOption = freezed,
+    Object? title = freezed,
+    Object? courseTitle = freezed,
+    Object? userId = freezed,
+    Object? homeworks = freezed,
+    Object? note = freezed,
+    Object? description = freezed,
+    Object? filePath = freezed,
+    Object? isSubmitting = freezed,
+    Object? homeworkFailureOrSuccessOption = freezed,
   }) {
     return _then(_HomeworkState(
-      title: title == freezed ? _value.title : title as String,
-      courseTitle:
-          courseTitle == freezed ? _value.courseTitle : courseTitle as String,
-      userId: userId == freezed ? _value.userId : userId as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       homeworks: homeworks == freezed
           ? _value.homeworks
-          : homeworks as List<HomeworkEntity>,
-      note: note == freezed ? _value.note : note as String,
-      description:
-          description == freezed ? _value.description : description as String,
-      filePath: filePath == freezed ? _value.filePath : filePath as String,
-      isSubmitting:
-          isSubmitting == freezed ? _value.isSubmitting : isSubmitting as bool,
+          : homeworks // ignore: cast_nullable_to_non_nullable
+              as List<HomeworkEntity>,
+      note: note == freezed
+          ? _value.note
+          : note // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      filePath: filePath == freezed
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isSubmitting: isSubmitting == freezed
+          ? _value.isSubmitting
+          : isSubmitting // ignore: cast_nullable_to_non_nullable
+              as bool?,
       homeworkFailureOrSuccessOption: homeworkFailureOrSuccessOption == freezed
           ? _value.homeworkFailureOrSuccessOption
-          : homeworkFailureOrSuccessOption
-              as Option<Either<HomeworkFailure, Unit>>,
+          : homeworkFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
+              as Option<Either<HomeworkFailure, Unit>>?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_HomeworkState implements _HomeworkState {
   const _$_HomeworkState(
-      {@required this.title,
-      @required this.courseTitle,
-      @required this.userId,
-      @required this.homeworks,
+      {required this.title,
+      required this.courseTitle,
+      required this.userId,
+      required this.homeworks,
       this.note,
       this.description,
       this.filePath,
       this.isSubmitting,
-      this.homeworkFailureOrSuccessOption})
-      : assert(title != null),
-        assert(courseTitle != null),
-        assert(userId != null),
-        assert(homeworks != null);
+      this.homeworkFailureOrSuccessOption});
 
   @override
   final String title;
@@ -1374,15 +1352,15 @@ class _$_HomeworkState implements _HomeworkState {
   @override
   final List<HomeworkEntity> homeworks;
   @override
-  final String note;
+  final String? note;
   @override
-  final String description;
+  final String? description;
   @override
-  final String filePath;
+  final String? filePath;
   @override
-  final bool isSubmitting;
+  final bool? isSubmitting;
   @override
-  final Option<Either<HomeworkFailure, Unit>> homeworkFailureOrSuccessOption;
+  final Option<Either<HomeworkFailure, Unit>>? homeworkFailureOrSuccessOption;
 
   @override
   String toString() {
@@ -1442,36 +1420,38 @@ class _$_HomeworkState implements _HomeworkState {
 
 abstract class _HomeworkState implements HomeworkState {
   const factory _HomeworkState(
-      {@required String title,
-      @required String courseTitle,
-      @required String userId,
-      @required List<HomeworkEntity> homeworks,
-      String note,
-      String description,
-      String filePath,
-      bool isSubmitting,
-      Option<Either<HomeworkFailure, Unit>>
+      {required String title,
+      required String courseTitle,
+      required String userId,
+      required List<HomeworkEntity> homeworks,
+      String? note,
+      String? description,
+      String? filePath,
+      bool? isSubmitting,
+      Option<Either<HomeworkFailure, Unit>>?
           homeworkFailureOrSuccessOption}) = _$_HomeworkState;
 
   @override
-  String get title;
+  String get title => throw _privateConstructorUsedError;
   @override
-  String get courseTitle;
+  String get courseTitle => throw _privateConstructorUsedError;
   @override
-  String get userId;
+  String get userId => throw _privateConstructorUsedError;
   @override
-  List<HomeworkEntity> get homeworks;
+  List<HomeworkEntity> get homeworks => throw _privateConstructorUsedError;
   @override
-  String get note;
+  String? get note => throw _privateConstructorUsedError;
   @override
-  String get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
-  String get filePath;
+  String? get filePath => throw _privateConstructorUsedError;
   @override
-  bool get isSubmitting;
+  bool? get isSubmitting => throw _privateConstructorUsedError;
   @override
-  Option<Either<HomeworkFailure, Unit>> get homeworkFailureOrSuccessOption;
+  Option<Either<HomeworkFailure, Unit>>? get homeworkFailureOrSuccessOption =>
+      throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$HomeworkStateCopyWith<_HomeworkState> get copyWith;
+  _$HomeworkStateCopyWith<_HomeworkState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

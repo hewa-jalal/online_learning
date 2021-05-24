@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'imageuploader_cubit.dart';
 
@@ -9,49 +9,53 @@ part of 'imageuploader_cubit.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$ImageuploaderStateTearOff {
   const _$ImageuploaderStateTearOff();
 
-// ignore: unused_element
   _Idle idle() {
     return const _Idle();
   }
 
-// ignore: unused_element
   _Loading loading() {
     return const _Loading();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ImageuploaderState = _$ImageuploaderStateTearOff();
 
 /// @nodoc
 mixin _$ImageuploaderState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult idle(),
-    @required TResult loading(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult idle(),
-    TResult loading(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult idle(_Idle value),
-    @required TResult loading(_Loading value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
+    required TResult Function(_Loading value) loading,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult idle(_Idle value),
-    TResult loading(_Loading value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
+    TResult Function(_Loading value)? loading,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -88,6 +92,7 @@ class __$IdleCopyWithImpl<$Res> extends _$ImageuploaderStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Idle implements _Idle {
   const _$_Idle();
 
@@ -106,23 +111,20 @@ class _$_Idle implements _Idle {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult idle(),
-    @required TResult loading(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
   }) {
-    assert(idle != null);
-    assert(loading != null);
     return idle();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult idle(),
-    TResult loading(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (idle != null) {
       return idle();
     }
@@ -131,23 +133,20 @@ class _$_Idle implements _Idle {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult idle(_Idle value),
-    @required TResult loading(_Loading value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
+    required TResult Function(_Loading value) loading,
   }) {
-    assert(idle != null);
-    assert(loading != null);
     return idle(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult idle(_Idle value),
-    TResult loading(_Loading value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
+    TResult Function(_Loading value)? loading,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (idle != null) {
       return idle(this);
     }
@@ -177,6 +176,7 @@ class __$LoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Loading implements _Loading {
   const _$_Loading();
 
@@ -195,23 +195,20 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult idle(),
-    @required TResult loading(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
   }) {
-    assert(idle != null);
-    assert(loading != null);
     return loading();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult idle(),
-    TResult loading(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loading != null) {
       return loading();
     }
@@ -220,23 +217,20 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult idle(_Idle value),
-    @required TResult loading(_Loading value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
+    required TResult Function(_Loading value) loading,
   }) {
-    assert(idle != null);
-    assert(loading != null);
     return loading(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult idle(_Idle value),
-    TResult loading(_Loading value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
+    TResult Function(_Loading value)? loading,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loading != null) {
       return loading(this);
     }

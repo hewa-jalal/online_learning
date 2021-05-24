@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'progress_bloc.dart';
 
@@ -9,31 +9,29 @@ part of 'progress_bloc.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$ProgressEventTearOff {
   const _$ProgressEventTearOff();
 
-// ignore: unused_element
   _Started started() {
     return const _Started();
   }
 
-// ignore: unused_element
   _Resume resume() {
     return const _Resume();
   }
 
-// ignore: unused_element
   _Pause pause() {
     return const _Pause();
   }
 
-// ignore: unused_element
   _Cancel cancel() {
     return const _Cancel();
   }
 
-// ignore: unused_element
   _Updated updated(TaskSnapshot task) {
     return _Updated(
       task,
@@ -42,45 +40,48 @@ class _$ProgressEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ProgressEvent = _$ProgressEventTearOff();
 
 /// @nodoc
 mixin _$ProgressEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult resume(),
-    @required TResult pause(),
-    @required TResult cancel(),
-    @required TResult updated(TaskSnapshot task),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resume,
+    required TResult Function() pause,
+    required TResult Function() cancel,
+    required TResult Function(TaskSnapshot task) updated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult resume(),
-    TResult pause(),
-    TResult cancel(),
-    TResult updated(TaskSnapshot task),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resume,
+    TResult Function()? pause,
+    TResult Function()? cancel,
+    TResult Function(TaskSnapshot task)? updated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult resume(_Resume value),
-    @required TResult pause(_Pause value),
-    @required TResult cancel(_Cancel value),
-    @required TResult updated(_Updated value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Resume value) resume,
+    required TResult Function(_Pause value) pause,
+    required TResult Function(_Cancel value) cancel,
+    required TResult Function(_Updated value) updated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult resume(_Resume value),
-    TResult pause(_Pause value),
-    TResult cancel(_Cancel value),
-    TResult updated(_Updated value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Resume value)? resume,
+    TResult Function(_Pause value)? pause,
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Updated value)? updated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -117,6 +118,7 @@ class __$StartedCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Started implements _Started {
   const _$_Started();
 
@@ -135,32 +137,26 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult resume(),
-    @required TResult pause(),
-    @required TResult cancel(),
-    @required TResult updated(TaskSnapshot task),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resume,
+    required TResult Function() pause,
+    required TResult Function() cancel,
+    required TResult Function(TaskSnapshot task) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return started();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult resume(),
-    TResult pause(),
-    TResult cancel(),
-    TResult updated(TaskSnapshot task),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resume,
+    TResult Function()? pause,
+    TResult Function()? cancel,
+    TResult Function(TaskSnapshot task)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (started != null) {
       return started();
     }
@@ -169,32 +165,26 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult resume(_Resume value),
-    @required TResult pause(_Pause value),
-    @required TResult cancel(_Cancel value),
-    @required TResult updated(_Updated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Resume value) resume,
+    required TResult Function(_Pause value) pause,
+    required TResult Function(_Cancel value) cancel,
+    required TResult Function(_Updated value) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return started(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult resume(_Resume value),
-    TResult pause(_Pause value),
-    TResult cancel(_Cancel value),
-    TResult updated(_Updated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Resume value)? resume,
+    TResult Function(_Pause value)? pause,
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Updated value)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (started != null) {
       return started(this);
     }
@@ -223,6 +213,7 @@ class __$ResumeCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Resume implements _Resume {
   const _$_Resume();
 
@@ -241,32 +232,26 @@ class _$_Resume implements _Resume {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult resume(),
-    @required TResult pause(),
-    @required TResult cancel(),
-    @required TResult updated(TaskSnapshot task),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resume,
+    required TResult Function() pause,
+    required TResult Function() cancel,
+    required TResult Function(TaskSnapshot task) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return resume();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult resume(),
-    TResult pause(),
-    TResult cancel(),
-    TResult updated(TaskSnapshot task),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resume,
+    TResult Function()? pause,
+    TResult Function()? cancel,
+    TResult Function(TaskSnapshot task)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (resume != null) {
       return resume();
     }
@@ -275,32 +260,26 @@ class _$_Resume implements _Resume {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult resume(_Resume value),
-    @required TResult pause(_Pause value),
-    @required TResult cancel(_Cancel value),
-    @required TResult updated(_Updated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Resume value) resume,
+    required TResult Function(_Pause value) pause,
+    required TResult Function(_Cancel value) cancel,
+    required TResult Function(_Updated value) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return resume(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult resume(_Resume value),
-    TResult pause(_Pause value),
-    TResult cancel(_Cancel value),
-    TResult updated(_Updated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Resume value)? resume,
+    TResult Function(_Pause value)? pause,
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Updated value)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (resume != null) {
       return resume(this);
     }
@@ -329,6 +308,7 @@ class __$PauseCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Pause implements _Pause {
   const _$_Pause();
 
@@ -347,32 +327,26 @@ class _$_Pause implements _Pause {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult resume(),
-    @required TResult pause(),
-    @required TResult cancel(),
-    @required TResult updated(TaskSnapshot task),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resume,
+    required TResult Function() pause,
+    required TResult Function() cancel,
+    required TResult Function(TaskSnapshot task) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return pause();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult resume(),
-    TResult pause(),
-    TResult cancel(),
-    TResult updated(TaskSnapshot task),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resume,
+    TResult Function()? pause,
+    TResult Function()? cancel,
+    TResult Function(TaskSnapshot task)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (pause != null) {
       return pause();
     }
@@ -381,32 +355,26 @@ class _$_Pause implements _Pause {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult resume(_Resume value),
-    @required TResult pause(_Pause value),
-    @required TResult cancel(_Cancel value),
-    @required TResult updated(_Updated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Resume value) resume,
+    required TResult Function(_Pause value) pause,
+    required TResult Function(_Cancel value) cancel,
+    required TResult Function(_Updated value) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return pause(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult resume(_Resume value),
-    TResult pause(_Pause value),
-    TResult cancel(_Cancel value),
-    TResult updated(_Updated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Resume value)? resume,
+    TResult Function(_Pause value)? pause,
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Updated value)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (pause != null) {
       return pause(this);
     }
@@ -435,6 +403,7 @@ class __$CancelCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Cancel implements _Cancel {
   const _$_Cancel();
 
@@ -453,32 +422,26 @@ class _$_Cancel implements _Cancel {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult resume(),
-    @required TResult pause(),
-    @required TResult cancel(),
-    @required TResult updated(TaskSnapshot task),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resume,
+    required TResult Function() pause,
+    required TResult Function() cancel,
+    required TResult Function(TaskSnapshot task) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return cancel();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult resume(),
-    TResult pause(),
-    TResult cancel(),
-    TResult updated(TaskSnapshot task),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resume,
+    TResult Function()? pause,
+    TResult Function()? cancel,
+    TResult Function(TaskSnapshot task)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (cancel != null) {
       return cancel();
     }
@@ -487,32 +450,26 @@ class _$_Cancel implements _Cancel {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult resume(_Resume value),
-    @required TResult pause(_Pause value),
-    @required TResult cancel(_Cancel value),
-    @required TResult updated(_Updated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Resume value) resume,
+    required TResult Function(_Pause value) pause,
+    required TResult Function(_Cancel value) cancel,
+    required TResult Function(_Updated value) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return cancel(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult resume(_Resume value),
-    TResult pause(_Pause value),
-    TResult cancel(_Cancel value),
-    TResult updated(_Updated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Resume value)? resume,
+    TResult Function(_Pause value)? pause,
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Updated value)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (cancel != null) {
       return cancel(this);
     }
@@ -542,17 +499,21 @@ class __$UpdatedCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object task = freezed,
+    Object? task = freezed,
   }) {
     return _then(_Updated(
-      task == freezed ? _value.task : task as TaskSnapshot,
+      task == freezed
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as TaskSnapshot,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_Updated implements _Updated {
-  const _$_Updated(this.task) : assert(task != null);
+  const _$_Updated(this.task);
 
   @override
   final TaskSnapshot task;
@@ -581,32 +542,26 @@ class _$_Updated implements _Updated {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult started(),
-    @required TResult resume(),
-    @required TResult pause(),
-    @required TResult cancel(),
-    @required TResult updated(TaskSnapshot task),
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() resume,
+    required TResult Function() pause,
+    required TResult Function() cancel,
+    required TResult Function(TaskSnapshot task) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return updated(task);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult started(),
-    TResult resume(),
-    TResult pause(),
-    TResult cancel(),
-    TResult updated(TaskSnapshot task),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? resume,
+    TResult Function()? pause,
+    TResult Function()? cancel,
+    TResult Function(TaskSnapshot task)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updated != null) {
       return updated(task);
     }
@@ -615,32 +570,26 @@ class _$_Updated implements _Updated {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult started(_Started value),
-    @required TResult resume(_Resume value),
-    @required TResult pause(_Pause value),
-    @required TResult cancel(_Cancel value),
-    @required TResult updated(_Updated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Resume value) resume,
+    required TResult Function(_Pause value) pause,
+    required TResult Function(_Cancel value) cancel,
+    required TResult Function(_Updated value) updated,
   }) {
-    assert(started != null);
-    assert(resume != null);
-    assert(pause != null);
-    assert(cancel != null);
-    assert(updated != null);
     return updated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult started(_Started value),
-    TResult resume(_Resume value),
-    TResult pause(_Pause value),
-    TResult cancel(_Cancel value),
-    TResult updated(_Updated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Resume value)? resume,
+    TResult Function(_Pause value)? pause,
+    TResult Function(_Cancel value)? cancel,
+    TResult Function(_Updated value)? updated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updated != null) {
       return updated(this);
     }
@@ -651,83 +600,82 @@ class _$_Updated implements _Updated {
 abstract class _Updated implements ProgressEvent {
   const factory _Updated(TaskSnapshot task) = _$_Updated;
 
-  TaskSnapshot get task;
+  TaskSnapshot get task => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$UpdatedCopyWith<_Updated> get copyWith;
+  _$UpdatedCopyWith<_Updated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 class _$ProgressStateTearOff {
   const _$ProgressStateTearOff();
 
-// ignore: unused_element
   _Initial initial() {
     return const _Initial();
   }
 
-// ignore: unused_element
-  _Loading loading({@required double percentage}) {
+  _Loading loading({required double percentage}) {
     return _Loading(
       percentage: percentage,
     );
   }
 
-// ignore: unused_element
   _Paused paused() {
     return const _Paused();
   }
 
-// ignore: unused_element
   _Resumed resumed() {
     return const _Resumed();
   }
 
-// ignore: unused_element
   _Loaded loaded() {
     return const _Loaded();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ProgressState = _$ProgressStateTearOff();
 
 /// @nodoc
 mixin _$ProgressState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(double percentage),
-    @required TResult paused(),
-    @required TResult resumed(),
-    @required TResult loaded(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(double percentage) loading,
+    required TResult Function() paused,
+    required TResult Function() resumed,
+    required TResult Function() loaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(double percentage),
-    TResult paused(),
-    TResult resumed(),
-    TResult loaded(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(double percentage)? loading,
+    TResult Function()? paused,
+    TResult Function()? resumed,
+    TResult Function()? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult paused(_Paused value),
-    @required TResult resumed(_Resumed value),
-    @required TResult loaded(_Loaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Paused value) paused,
+    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_Loaded value) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult paused(_Paused value),
-    TResult resumed(_Resumed value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Resumed value)? resumed,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -764,6 +712,7 @@ class __$InitialCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -782,32 +731,26 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(double percentage),
-    @required TResult paused(),
-    @required TResult resumed(),
-    @required TResult loaded(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(double percentage) loading,
+    required TResult Function() paused,
+    required TResult Function() resumed,
+    required TResult Function() loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return initial();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(double percentage),
-    TResult paused(),
-    TResult resumed(),
-    TResult loaded(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(double percentage)? loading,
+    TResult Function()? paused,
+    TResult Function()? resumed,
+    TResult Function()? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initial != null) {
       return initial();
     }
@@ -816,32 +759,26 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult paused(_Paused value),
-    @required TResult resumed(_Resumed value),
-    @required TResult loaded(_Loaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Paused value) paused,
+    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_Loaded value) loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return initial(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult paused(_Paused value),
-    TResult resumed(_Resumed value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Resumed value)? resumed,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initial != null) {
       return initial(this);
     }
@@ -871,18 +808,21 @@ class __$LoadingCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object percentage = freezed,
+    Object? percentage = freezed,
   }) {
     return _then(_Loading(
-      percentage:
-          percentage == freezed ? _value.percentage : percentage as double,
+      percentage: percentage == freezed
+          ? _value.percentage
+          : percentage // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_Loading implements _Loading {
-  const _$_Loading({@required this.percentage}) : assert(percentage != null);
+  const _$_Loading({required this.percentage});
 
   @override
   final double percentage;
@@ -912,32 +852,26 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(double percentage),
-    @required TResult paused(),
-    @required TResult resumed(),
-    @required TResult loaded(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(double percentage) loading,
+    required TResult Function() paused,
+    required TResult Function() resumed,
+    required TResult Function() loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return loading(percentage);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(double percentage),
-    TResult paused(),
-    TResult resumed(),
-    TResult loaded(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(double percentage)? loading,
+    TResult Function()? paused,
+    TResult Function()? resumed,
+    TResult Function()? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loading != null) {
       return loading(percentage);
     }
@@ -946,32 +880,26 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult paused(_Paused value),
-    @required TResult resumed(_Resumed value),
-    @required TResult loaded(_Loaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Paused value) paused,
+    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_Loaded value) loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return loading(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult paused(_Paused value),
-    TResult resumed(_Resumed value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Resumed value)? resumed,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loading != null) {
       return loading(this);
     }
@@ -980,11 +908,12 @@ class _$_Loading implements _Loading {
 }
 
 abstract class _Loading implements ProgressState {
-  const factory _Loading({@required double percentage}) = _$_Loading;
+  const factory _Loading({required double percentage}) = _$_Loading;
 
-  double get percentage;
+  double get percentage => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$LoadingCopyWith<_Loading> get copyWith;
+  _$LoadingCopyWith<_Loading> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1004,6 +933,7 @@ class __$PausedCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Paused implements _Paused {
   const _$_Paused();
 
@@ -1022,32 +952,26 @@ class _$_Paused implements _Paused {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(double percentage),
-    @required TResult paused(),
-    @required TResult resumed(),
-    @required TResult loaded(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(double percentage) loading,
+    required TResult Function() paused,
+    required TResult Function() resumed,
+    required TResult Function() loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return paused();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(double percentage),
-    TResult paused(),
-    TResult resumed(),
-    TResult loaded(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(double percentage)? loading,
+    TResult Function()? paused,
+    TResult Function()? resumed,
+    TResult Function()? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (paused != null) {
       return paused();
     }
@@ -1056,32 +980,26 @@ class _$_Paused implements _Paused {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult paused(_Paused value),
-    @required TResult resumed(_Resumed value),
-    @required TResult loaded(_Loaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Paused value) paused,
+    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_Loaded value) loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return paused(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult paused(_Paused value),
-    TResult resumed(_Resumed value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Resumed value)? resumed,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (paused != null) {
       return paused(this);
     }
@@ -1110,6 +1028,7 @@ class __$ResumedCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Resumed implements _Resumed {
   const _$_Resumed();
 
@@ -1128,32 +1047,26 @@ class _$_Resumed implements _Resumed {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(double percentage),
-    @required TResult paused(),
-    @required TResult resumed(),
-    @required TResult loaded(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(double percentage) loading,
+    required TResult Function() paused,
+    required TResult Function() resumed,
+    required TResult Function() loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return resumed();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(double percentage),
-    TResult paused(),
-    TResult resumed(),
-    TResult loaded(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(double percentage)? loading,
+    TResult Function()? paused,
+    TResult Function()? resumed,
+    TResult Function()? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (resumed != null) {
       return resumed();
     }
@@ -1162,32 +1075,26 @@ class _$_Resumed implements _Resumed {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult paused(_Paused value),
-    @required TResult resumed(_Resumed value),
-    @required TResult loaded(_Loaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Paused value) paused,
+    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_Loaded value) loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return resumed(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult paused(_Paused value),
-    TResult resumed(_Resumed value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Resumed value)? resumed,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (resumed != null) {
       return resumed(this);
     }
@@ -1216,6 +1123,7 @@ class __$LoadedCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Loaded implements _Loaded {
   const _$_Loaded();
 
@@ -1234,32 +1142,26 @@ class _$_Loaded implements _Loaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult loading(double percentage),
-    @required TResult paused(),
-    @required TResult resumed(),
-    @required TResult loaded(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(double percentage) loading,
+    required TResult Function() paused,
+    required TResult Function() resumed,
+    required TResult Function() loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return loaded();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult loading(double percentage),
-    TResult paused(),
-    TResult resumed(),
-    TResult loaded(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(double percentage)? loading,
+    TResult Function()? paused,
+    TResult Function()? resumed,
+    TResult Function()? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loaded != null) {
       return loaded();
     }
@@ -1268,32 +1170,26 @@ class _$_Loaded implements _Loaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult loading(_Loading value),
-    @required TResult paused(_Paused value),
-    @required TResult resumed(_Resumed value),
-    @required TResult loaded(_Loaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Paused value) paused,
+    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_Loaded value) loaded,
   }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(paused != null);
-    assert(resumed != null);
-    assert(loaded != null);
     return loaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult loading(_Loading value),
-    TResult paused(_Paused value),
-    TResult resumed(_Resumed value),
-    TResult loaded(_Loaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Resumed value)? resumed,
+    TResult Function(_Loaded value)? loaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loaded != null) {
       return loaded(this);
     }

@@ -1,14 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 class VideoRepositoy {
   final _videosCollection = FirebaseFirestore.instance.collection('videos');
 
   void addVideoUrl({
-    @required String roomText,
-    @required String courseTitle,
-    @required String dept,
-    @required int stage,
+    required String roomText,
+    required String courseTitle,
+    required String? dept,
+    required int? stage,
   }) {
     _videosCollection.add(
       {
@@ -20,16 +19,16 @@ class VideoRepositoy {
     );
   }
 
-  Future<String> getVideoUrl({@required String roomText}) async {
+  Future<String?> getVideoUrl({required String roomText}) async {
     final videosQuery = await _videosCollection
         .where('courseTitle', isEqualTo: 'IT')
         .where('dept', isEqualTo: 'ITM')
         .where('stage', isEqualTo: 4)
         .get();
     final list = await videosQuery.docs
-        .map((doc) => doc.data()['serverUrl'] as String)
+        .map((doc) => doc.data()['serverUrl'] as String?)
         .toList();
-    print('list videoUrl ====> $list');
+    // print('list videoUrl ====> $list');
 
     if (list.length > 0) {
       return list[0];

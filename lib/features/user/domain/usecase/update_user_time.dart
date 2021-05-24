@@ -8,12 +8,12 @@ import '../repositories/user_repository.dart';
 
 @lazySingleton
 class UpdateUserTime extends UseCase<Unit, UserParam> {
-  final UserRepository userRepository;
+  final UserRepository? userRepository;
 
   UpdateUserTime(this.userRepository);
 
   @override
   Future<Either<Failure, Unit>> call(UserParam params) {
-    return userRepository.updateUserTime(params.id);
+    return userRepository!.updateUserTime(params.id);
   }
 }

@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
-
 import '../../domain/entites/user.dart';
 
 enum UserRole {
@@ -9,22 +7,22 @@ enum UserRole {
 }
 
 class UserModel extends UserEntity {
-  final String fullName;
-  final String id;
-  final String role;
-  final String dept;
-  final int stage;
-  final int lastSeenInEpoch;
-  final bool isOnline;
+  final String? fullName;
+  final String? id;
+  final String? role;
+  final String? dept;
+  final int? stage;
+  final int? lastSeenInEpoch;
+  final bool? isOnline;
 
   const UserModel({
-    @required this.id,
-    @required this.role,
-    @required this.stage,
-    @required this.dept,
-    @required this.fullName,
-    @required this.lastSeenInEpoch,
-    @required this.isOnline,
+    required this.id,
+    required this.role,
+    required this.stage,
+    required this.dept,
+    required this.fullName,
+    required this.lastSeenInEpoch,
+    required this.isOnline,
   }) : super(
           fullName: fullName,
           id: id,
@@ -47,7 +45,7 @@ class UserModel extends UserEntity {
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snap) {
-    final snapData = snap.data();
+    final snapData = snap.data()!;
 
     return UserModel(
       id: snap.id,

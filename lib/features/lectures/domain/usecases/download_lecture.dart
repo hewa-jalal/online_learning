@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import '../repository/lectures_repository.dart';
 import '../../../user/core/errors/failures.dart';
@@ -9,12 +8,12 @@ import '../../../user/data/models/user_model.dart';
 
 @lazySingleton
 class DownloadLecture extends UseCase<Unit, LectureParams> {
-  final LecturesRepository lecturesRepository;
+  final LecturesRepository? lecturesRepository;
 
   DownloadLecture(this.lecturesRepository);
   @override
   Future<Either<Failure, Unit>> call(LectureParams params) {
-    return lecturesRepository.downloadLecture(
+    return lecturesRepository!.downloadLecture(
       courseTitle: params.courseTitle,
       fileUrl: params.fileUrl,
       lectureTitle: params.lectureTitle,
@@ -25,19 +24,19 @@ class DownloadLecture extends UseCase<Unit, LectureParams> {
 class LectureParams extends Equatable {
   final String fileUrl;
   final String lectureTitle;
-  final String description;
+  final String? description;
   final String courseTitle;
   final UserModel user;
 
   LectureParams({
-    @required this.fileUrl,
-    @required this.lectureTitle,
-    @required this.courseTitle,
+    required this.fileUrl,
+    required this.lectureTitle,
+    required this.courseTitle,
     this.description,
-    @required this.user,
+    required this.user,
   });
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         fileUrl,
         lectureTitle,
         courseTitle,

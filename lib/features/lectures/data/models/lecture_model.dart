@@ -1,19 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import '../../domain/entities/lecture_entity.dart';
 
 class LectureModel extends LectureEntity {
-  final String fileUrl;
-  final String title;
-  final String description;
-  final String fileType;
-  final List<String> submittedUsers;
+  final String? fileUrl;
+  final String? title;
+  final String? description;
+  final String? fileType;
+  final List<String>? submittedUsers;
 
   LectureModel({
-    @required this.fileUrl,
-    @required this.title,
-    @required this.description,
-    @required this.fileType,
+    required this.fileUrl,
+    required this.title,
+    required this.description,
+    required this.fileType,
     this.submittedUsers,
   }) : super(
           fileUrl: fileUrl,
@@ -48,15 +47,15 @@ class LectureModel extends LectureEntity {
 
   static LectureModel fromSnapshot(
     DocumentSnapshot<Map<String, dynamic>> snap, [
-    List<String> submittedUsersList,
+    List<String>? submittedUsersList,
   ]) {
-    final data = snap.data();
+    final data = snap.data()!;
 
     return LectureModel(
-      fileUrl: data['fileUrl'] as String,
-      title: data['title'] as String,
-      description: data['description'] as String,
-      fileType: data['fileType'] as String,
+      fileUrl: data['fileUrl'] as String?,
+      title: data['title'] as String?,
+      description: data['description'] as String?,
+      fileType: data['fileType'] as String?,
       submittedUsers: submittedUsersList,
     );
   }

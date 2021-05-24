@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'video_cubit.dart';
 
@@ -9,17 +9,18 @@ part of 'video_cubit.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$VideoStateTearOff {
   const _$VideoStateTearOff();
 
-// ignore: unused_element
   _Initial initial() {
     return const _Initial();
   }
 
-// ignore: unused_element
-  _ChatRoomLoaded chatRoomLoaded({@required String chatRoomUrl}) {
+  _ChatRoomLoaded chatRoomLoaded({required String chatRoomUrl}) {
     return _ChatRoomLoaded(
       chatRoomUrl: chatRoomUrl,
     );
@@ -27,33 +28,36 @@ class _$VideoStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $VideoState = _$VideoStateTearOff();
 
 /// @nodoc
 mixin _$VideoState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult chatRoomLoaded(String chatRoomUrl),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String chatRoomUrl) chatRoomLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult chatRoomLoaded(String chatRoomUrl),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String chatRoomUrl)? chatRoomLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult chatRoomLoaded(_ChatRoomLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ChatRoomLoaded value) chatRoomLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult chatRoomLoaded(_ChatRoomLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ChatRoomLoaded value)? chatRoomLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -89,6 +93,7 @@ class __$InitialCopyWithImpl<$Res> extends _$VideoStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -107,23 +112,20 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult chatRoomLoaded(String chatRoomUrl),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String chatRoomUrl) chatRoomLoaded,
   }) {
-    assert(initial != null);
-    assert(chatRoomLoaded != null);
     return initial();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult chatRoomLoaded(String chatRoomUrl),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String chatRoomUrl)? chatRoomLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initial != null) {
       return initial();
     }
@@ -132,23 +134,20 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult chatRoomLoaded(_ChatRoomLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ChatRoomLoaded value) chatRoomLoaded,
   }) {
-    assert(initial != null);
-    assert(chatRoomLoaded != null);
     return initial(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult chatRoomLoaded(_ChatRoomLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ChatRoomLoaded value)? chatRoomLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initial != null) {
       return initial(this);
     }
@@ -180,19 +179,21 @@ class __$ChatRoomLoadedCopyWithImpl<$Res> extends _$VideoStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object chatRoomUrl = freezed,
+    Object? chatRoomUrl = freezed,
   }) {
     return _then(_ChatRoomLoaded(
-      chatRoomUrl:
-          chatRoomUrl == freezed ? _value.chatRoomUrl : chatRoomUrl as String,
+      chatRoomUrl: chatRoomUrl == freezed
+          ? _value.chatRoomUrl
+          : chatRoomUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_ChatRoomLoaded implements _ChatRoomLoaded {
-  const _$_ChatRoomLoaded({@required this.chatRoomUrl})
-      : assert(chatRoomUrl != null);
+  const _$_ChatRoomLoaded({required this.chatRoomUrl});
 
   @override
   final String chatRoomUrl;
@@ -222,23 +223,20 @@ class _$_ChatRoomLoaded implements _ChatRoomLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initial(),
-    @required TResult chatRoomLoaded(String chatRoomUrl),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String chatRoomUrl) chatRoomLoaded,
   }) {
-    assert(initial != null);
-    assert(chatRoomLoaded != null);
     return chatRoomLoaded(chatRoomUrl);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initial(),
-    TResult chatRoomLoaded(String chatRoomUrl),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String chatRoomUrl)? chatRoomLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (chatRoomLoaded != null) {
       return chatRoomLoaded(chatRoomUrl);
     }
@@ -247,23 +245,20 @@ class _$_ChatRoomLoaded implements _ChatRoomLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initial(_Initial value),
-    @required TResult chatRoomLoaded(_ChatRoomLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_ChatRoomLoaded value) chatRoomLoaded,
   }) {
-    assert(initial != null);
-    assert(chatRoomLoaded != null);
     return chatRoomLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initial(_Initial value),
-    TResult chatRoomLoaded(_ChatRoomLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_ChatRoomLoaded value)? chatRoomLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (chatRoomLoaded != null) {
       return chatRoomLoaded(this);
     }
@@ -272,10 +267,11 @@ class _$_ChatRoomLoaded implements _ChatRoomLoaded {
 }
 
 abstract class _ChatRoomLoaded implements VideoState {
-  const factory _ChatRoomLoaded({@required String chatRoomUrl}) =
+  const factory _ChatRoomLoaded({required String chatRoomUrl}) =
       _$_ChatRoomLoaded;
 
-  String get chatRoomUrl;
+  String get chatRoomUrl => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$ChatRoomLoadedCopyWith<_ChatRoomLoaded> get copyWith;
+  _$ChatRoomLoadedCopyWith<_ChatRoomLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -12,11 +12,11 @@ part 'progress_bloc.freezed.dart';
 
 @injectable
 class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
-  final CustomUploadTask lectureTask;
-  StreamSubscription _subscription;
+  final CustomUploadTask? lectureTask;
+  StreamSubscription? _subscription;
 
   ProgressBloc({
-    @required this.lectureTask,
+    required this.lectureTask,
   }) : super(_Initial());
 
   @override
@@ -26,7 +26,7 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
     yield* event.map(
       started: (e) async* {
         await _subscription?.cancel();
-        _subscription = lectureTask
+        _subscription = lectureTask!
             .progress()
             .listen((task) => add(ProgressEvent.updated(task)));
 
@@ -42,13 +42,13 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
         );
       },
       pause: (e) async* {
-        lectureTask.pause();
+        lectureTask!.pause();
       },
       resume: (e) async* {
-        lectureTask.resume();
+        lectureTask!.resume();
       },
       cancel: (e) async* {
-        lectureTask.cancel();
+        lectureTask!.cancel();
       },
     );
   }

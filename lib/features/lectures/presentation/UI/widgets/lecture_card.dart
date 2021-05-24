@@ -1,6 +1,7 @@
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/attendance_page.dart';
 import '../pages/submit_homework_page.dart';
 import '../pages/video_player_page.dart';
 import '../../../../user/presentation/bloc/user_auth_bloc.dart';
@@ -15,19 +16,19 @@ class LectureCard extends StatelessWidget {
   final LectureEntity lecture;
   final String courseTitle;
   LectureCard({
-    Key key,
-    @required this.lecture,
-    @required this.courseTitle,
+    Key? key,
+    required this.lecture,
+    required this.courseTitle,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final _lectureBloc = context.watch<LectureBloc>();
-    final _userAuthState = context.watch<UserAuthBloc>().state;
+    final UserAuthState _userAuthState = context.watch<UserAuthBloc>().state;
 
-    final isFileVideo = lecture.fileType.contains('video');
+    final isFileVideo = lecture.fileType!.contains('video');
 
     final isSubmitted =
-        lecture.submittedUsers.contains(_userAuthState.user.id.toString());
+        lecture.submittedUsers!.contains(_userAuthState.user.id.toString());
 
     return ExpansionTileCard(
       contentPadding: EdgeInsets.only(left: 8.0, right: 8.0),
@@ -36,7 +37,7 @@ class LectureCard extends StatelessWidget {
       expandedColor: Colors.transparent,
       shadowColor: Colors.transparent,
       // childrenPadding: EdgeInsets.only(left: 8.0, right: 8.0),
-      title: Text(lecture.title),
+      title: Text(lecture.title!),
       children: [
         Padding(
           padding: EdgeInsets.only(left: 8.0, right: 8.0),
@@ -56,10 +57,20 @@ class LectureCard extends StatelessWidget {
               Text('file'),
               Spacer(),
               InkWell(
+                onTap: () => Get.to(
+                  () => AttendancePage(submittedUsers: lecture.submittedUsers!),
+                ),
+                child: Icon(
+                  MdiIcons.accountMultipleCheckOutline,
+                  color: Color(0xff5F36DA),
+                ),
+              ),
+              SizedBox(width: 0.05.sw),
+              InkWell(
                 onTap: () => _lectureBloc.add(
                   LectureEvent.downloadLecture(
-                    fileUrl: lecture.fileUrl,
-                    lectureTitle: lecture.title,
+                    fileUrl: lecture.fileUrl!,
+                    lectureTitle: lecture.title!,
                     courseTitle: courseTitle,
                   ),
                 ),
@@ -92,7 +103,7 @@ class LectureCard extends StatelessWidget {
                 LectureEvent.submitUser(
                   userId: _userAuthState.user.id.toString(),
                   courseTitle: courseTitle,
-                  lectureTitle: lecture.title,
+                  lectureTitle: lecture.title!,
                 ),
               );
               // to refresh the list

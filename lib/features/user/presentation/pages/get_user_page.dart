@@ -11,7 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserForm extends StatefulWidget {
   const UserForm({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -20,7 +20,7 @@ class UserForm extends StatefulWidget {
 
 class _UserFormState extends State<UserForm> {
   String userId = '';
-  NameInput name;
+  late NameInput name;
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,7 @@ class _UserFormState extends State<UserForm> {
                               name = NameInput.dirty(value: val);
                             },
                             onFieldSubmitted: (val) =>
-                                _formKey.currentState.validate(),
+                                _formKey.currentState!.validate(),
                             validator: (val) {
                               print('validator => ${name.valid}');
                               return name.valid ? 'ok' : 'please enter an id';

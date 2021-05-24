@@ -6,11 +6,11 @@ import '../../../user/core/usecase/use_case.dart';
 
 @lazySingleton
 class CreateCourse extends UseCase<Unit, String> {
-  final LecturesRepository lecturesRepository;
+  final LecturesRepository? lecturesRepository;
 
   CreateCourse(this.lecturesRepository);
   @override
   Future<Either<Failure, Unit>> call(String courseTitle) {
-    return lecturesRepository.createCourse(courseTitle: courseTitle);
+    return lecturesRepository!.createCourse(courseTitle: courseTitle);
   }
 }

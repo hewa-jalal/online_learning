@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({
-    Key key,
-    @required this.courseTitle,
-    @required this.onTap,
+    Key? key,
+    required this.courseTitle,
+    required this.onTap,
   }) : super(key: key);
 
   final String courseTitle;

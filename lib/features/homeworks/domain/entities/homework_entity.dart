@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 class HomeworkEntity extends Equatable {
-  final String? fileUrl;
+  final String? filePath;
+  final String? fileName;
   final String? title;
   final String? description;
   final int? dueDate;
@@ -10,7 +11,8 @@ class HomeworkEntity extends Equatable {
   HomeworkEntity({
     required this.title,
     required this.dueDate,
-    this.fileUrl,
+    required this.filePath,
+    required this.fileName,
     this.description,
     this.submittedHomeworks,
   });
@@ -18,10 +20,11 @@ class HomeworkEntity extends Equatable {
   @override
   List<Object?> get props => [
         title,
-        fileUrl,
+        filePath,
         description,
         dueDate,
         submittedHomeworks,
+        fileName,
       ];
 
   @override

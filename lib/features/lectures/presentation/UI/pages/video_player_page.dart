@@ -2,8 +2,6 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-import 'package:url_launcher/url_launcher.dart' as url_launcher;
-
 class VideoPlayerPage extends StatefulWidget {
   final String? videoUrl;
 

@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 class HomeworkSubmitEntity extends Equatable {
-  final String? fileUrl;
+  final String? filePath;
+  final String? fileName;
   final String? userId;
   final String? note;
   final int? submitDate;
@@ -9,12 +10,19 @@ class HomeworkSubmitEntity extends Equatable {
   HomeworkSubmitEntity({
     required this.userId,
     required this.submitDate,
-    this.fileUrl,
+    required this.filePath,
+    required this.fileName,
     this.note,
   });
 
   @override
-  List<Object?> get props => [userId, fileUrl, note, submitDate];
+  List<Object?> get props => [
+        userId,
+        filePath,
+        note,
+        submitDate,
+        fileName,
+      ];
 
   @override
   bool get stringify => true;

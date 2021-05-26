@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -8,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../homeworks/presentation/bloc/homework_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../user/presentation/bloc/user_auth_bloc.dart';
-import 'package:path/path.dart' as path;
 import 'package:faker/faker.dart';
 
 const APP_PURPlE = Color(0xff5F36DA);
@@ -80,7 +77,7 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8.0, vertical: 10),
                                 child: Text(
-                                  faker.lorem.sentences(18).toString(),
+                                  homework.description!,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16.sp,
@@ -134,7 +131,7 @@ class _NotSubmittedHomeworkState extends State<NotSubmittedHomework> {
   Widget build(BuildContext context) {
     final _homeworkBloc = context.watch<HomeworkBloc>();
     final _isFileSelected = _homeworkBloc.state.filePath!.isNotEmpty;
-    final UserAuthState _userAuthState = context.read<UserAuthBloc>().state;
+    final _userAuthState = context.read<UserAuthBloc>().state;
 
     return Column(
       children: <Widget>[
@@ -151,7 +148,7 @@ class _NotSubmittedHomeworkState extends State<NotSubmittedHomework> {
           ListTile(
             enabled: true,
             leading: Icon(MdiIcons.filePdf),
-            title: Text(_homeworkBloc.state.filePath.name!),
+            title: Text(_homeworkBloc.state.filePath!.name!),
             trailing: IconButton(
               onPressed: () => _homeworkBloc.add(HomeworkEvent.started()),
               icon: Icon(MdiIcons.closeBox),
@@ -167,7 +164,6 @@ class _NotSubmittedHomeworkState extends State<NotSubmittedHomework> {
                 ? _homeworkBloc.add(
                     HomeworkEvent.submitHomework(
                       userId: _userAuthState.user.id.toString(),
-                      fileUrl: _homeworkBloc.state.filePath!,
                       courseTitle: widget.courseTitle,
                       note: note,
                       homeworkTitle: widget.homeworkTitle!,
@@ -203,19 +199,18 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
   var _note = '';
 
   @override
-  void initState() {
-    super.initState();
-    context.read<HomeworkBloc>().add(HomeworkEvent.getHomework(
-          courseTitle: widget.courseTitle,
-          homeworkTitle: widget.homeworkTitle!,
-        ));
-  }
-
-  @override
   Widget build(BuildContext context) {
     final _homeworkBloc = context.read<HomeworkBloc>();
-    final UserAuthState _userAuthState = context.read<UserAuthBloc>().state;
-
+    final _userAuthState = context.read<UserAuthBloc>().state;
+    if (ModalRoute.of(context)!.isCurrent) {
+      context.read<HomeworkBloc>().add(
+            HomeworkEvent.getSubmittedHomework(
+              courseTitle: widget.courseTitle,
+              homeworkTitle: widget.homeworkTitle!,
+              userId: _userAuthState.user.id!,
+            ),
+          );
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -223,7 +218,7 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
         Text('Your submission file:'),
         BlocBuilder<HomeworkBloc, HomeworkState>(
           builder: (context, state) {
-            if (state.filePath!.isEmpty) {
+            if (state.homeworkSubmitEntity.filePath!.isEmpty) {
               return Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -236,7 +231,7 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
             return ListTile(
               enabled: true,
               leading: Icon(MdiIcons.filePdf),
-              title: Text(_homeworkBloc.state.filePath.name!),
+              title: Text(_homeworkBloc.state.homeworkSubmitEntity.fileName!),
               // title: Text(faker.person.name()),
               trailing: IconButton(
                 onPressed: () {
@@ -300,7 +295,8 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
                           enableInteractiveSelection: true,
                           maxLines: null,
                           controller: TextEditingController()
-                            ..text = _homeworkBloc.state.note!,
+                            ..text =
+                                _homeworkBloc.state.homeworkSubmitEntity.note!,
                           onChanged: (val) => _note = val,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -329,7 +325,6 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
               _homeworkBloc.add(
                 HomeworkEvent.submitHomework(
                   userId: _userAuthState.user.id.toString(),
-                  fileUrl: _homeworkBloc.state.filePath!,
                   courseTitle: widget.courseTitle,
                   note: _note,
                   homeworkTitle: widget.homeworkTitle!,
@@ -394,8 +389,8 @@ class _DeleteFileSubmissionDialog extends StatelessWidget {
   }
 }
 
-extension FileExtention on String? {
-  String? get name {
-    return this?.split(Platform.pathSeparator).last;
-  }
-}
+// extension FileExtention on String? {
+//   String? get name {
+//     return this?.split(Platform.pathSeparator).last;
+//   }
+// }

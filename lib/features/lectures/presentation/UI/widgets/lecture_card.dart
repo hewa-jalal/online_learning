@@ -33,9 +33,9 @@ class LectureCard extends StatelessWidget {
 
     return ExpansionTileCard(
       contentPadding: EdgeInsets.only(left: 8.0, right: 8.0),
-      baseColor: Colors.transparent,
+      baseColor: Colors.grey.withOpacity(0.2),
       expandedTextColor: Color(0xff5F36DA),
-      expandedColor: Colors.transparent,
+      expandedColor: Colors.grey.withOpacity(0.2),
       shadowColor: Colors.transparent,
       // childrenPadding: EdgeInsets.only(left: 8.0, right: 8.0),
       title: Text(lecture.title!),

@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:online_learning/features/homeworks/data/models/homework_submit_model.dart';
+import 'package:online_learning/features/homeworks/domain/entities/homework_submit_entity.dart';
 import '../../domain/entities/homework_entity.dart';
 import '../../domain/usecases/get_all_homeworks_by_course.dart';
 import '../../domain/usecases/get_homework.dart';
@@ -63,22 +66,24 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
           ),
         );
       },
-      getHomework: (e) async* {
-        final either = await getHomework(SubmitParams(
-          note: '',
-          submitDate: 0,
-          homeworkTitle: e.homeworkTitle,
-          fileUrl: state.filePath,
-          courseTitle: e.courseTitle,
-          userId: state.userId,
-        ));
+      getSubmittedHomework: (e) async* {
+        final either = await getHomework(
+          SubmitParams(
+            note: '',
+            submitDate: 0,
+            homeworkTitle: e.homeworkTitle,
+            fileUrl: state.filePath,
+            fileName: state.filePath.name,
+            courseTitle: e.courseTitle,
+            userId: e.userId,
+          ),
+        );
         yield either.fold(
           (failure) => state.copyWith(
             homeworkFailureOrSuccessOption: none(),
           ),
           (homeworkSubmit) => state.copyWith(
-            filePath: homeworkSubmit.fileUrl,
-            note: homeworkSubmit.note,
+            homeworkSubmitEntity: homeworkSubmit,
           ),
         );
       },
@@ -105,7 +110,8 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
         final either = await submitHomework(
           SubmitParams(
             userId: e.userId,
-            fileUrl: e.fileUrl,
+            fileUrl: state.filePath,
+            fileName: state.filePath.name,
             note: e.note,
             homeworkTitle: e.homeworkTitle,
             submitDate: e.submitDate,
@@ -119,10 +125,18 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
           ),
         );
         // to referesh the UI
-        add(HomeworkEvent.getAllHomeworksByCourse(
-          courseTitle: state.courseTitle,
-        ));
+        add(
+          HomeworkEvent.getAllHomeworksByCourse(
+            courseTitle: state.courseTitle,
+          ),
+        );
       },
     );
+  }
+}
+
+extension FileExtention on String? {
+  String? get name {
+    return this?.split(Platform.pathSeparator).last;
   }
 }

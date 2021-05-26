@@ -3,7 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../domain/entities/homework_entity.dart';
 
 class HomeworkModel extends HomeworkEntity {
-  final String? fileUrl;
+  final String? filePath;
+  final String? fileName;
   final String? title;
   final String? description;
   final int? dueDate;
@@ -11,26 +12,30 @@ class HomeworkModel extends HomeworkEntity {
 
   HomeworkModel({
     required this.title,
+    required this.filePath,
+    required this.fileName,
     required this.dueDate,
     this.description,
-    this.fileUrl,
     this.submittedHomeworks,
   }) : super(
-          fileUrl: fileUrl,
           title: title,
+          filePath: filePath,
+          fileName: fileName,
           description: description,
           dueDate: dueDate,
         );
 
   HomeworkModel.empty({
-    this.fileUrl = '',
+    this.filePath = '',
     this.title = '',
     this.description = '',
     this.dueDate = 0,
+    this.fileName = '',
     this.submittedHomeworks = const [],
   }) : super(
-          fileUrl: '',
           title: '',
+          filePath: '',
+          fileName: '',
           description: '',
           dueDate: 0,
           submittedHomeworks: const [],
@@ -38,10 +43,11 @@ class HomeworkModel extends HomeworkEntity {
 
   Map<String, dynamic> toDocument() {
     return {
-      'fileUrl': fileUrl,
+      'fileUrl': filePath,
       'title': title,
       'description': description,
       'dueDate': dueDate,
+      'fileName': fileName,
     };
   }
 
@@ -52,10 +58,11 @@ class HomeworkModel extends HomeworkEntity {
     final data = snap.data()!;
 
     return HomeworkModel(
-      fileUrl: data['fileUrl'] as String?,
+      filePath: data['fileUrl'] as String?,
       title: data['title'] as String?,
       description: data['description'] as String?,
       dueDate: data['dueDate'] as int?,
+      fileName: data['fileName'] as String?,
       submittedHomeworks: submittedUsersList,
     );
   }

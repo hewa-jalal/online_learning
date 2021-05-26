@@ -16,6 +16,7 @@ class SubmitHomework extends UseCase<Unit, SubmitParams> {
     return homeworkRepository!.submitHomework(
       userId: params.userId,
       fileUrl: params.fileUrl,
+      fileName: params.fileName,
       note: params.note,
       homeworkTitle: params.homeworkTitle,
       submitDate: params.submitDate,
@@ -27,6 +28,7 @@ class SubmitHomework extends UseCase<Unit, SubmitParams> {
 class SubmitParams extends Equatable {
   final String userId;
   final String? fileUrl;
+  final String? fileName;
   final String? note;
   final String homeworkTitle;
   final String courseTitle;
@@ -36,6 +38,7 @@ class SubmitParams extends Equatable {
   SubmitParams({
     required this.userId,
     required this.fileUrl,
+    required this.fileName,
     required this.note,
     required this.homeworkTitle,
     required this.submitDate,
@@ -50,5 +53,6 @@ class SubmitParams extends Equatable {
         homeworkTitle,
         submitDate,
         courseTitle,
+        fileName,
       ];
 }

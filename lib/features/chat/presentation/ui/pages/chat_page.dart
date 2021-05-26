@@ -10,6 +10,7 @@ import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart' as chatUi;
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:octo_image/octo_image.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
@@ -38,6 +39,8 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   final _innerDrawerKey = GlobalKey<InnerDrawerState>();
+  GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
   final _scrollController = ScrollController();
 
   @override
@@ -94,18 +97,21 @@ class _ChatPageState extends State<ChatPage> {
     }
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
       return SafeArea(
-        // child: InnerDrawer(
-        //   swipe: false,
-        //   // key: _innerDrawerKey,
-        //   rightAnimationType: InnerDrawerAnimation.quadratic,
-        //   // rightChild: _UsersList(),
-        //   rightChild: Container(),
-        //   scaffold:
-        child: Scaffold(
+        child:
+            // InnerDrawer(
+            // swipe: false,
+            // key: _innerDrawerKey,
+            // rightAnimationType: InnerDrawerAnimation.quadratic,
+            // // rightChild: _UsersList(),
+            // rightChild: Container(),
+            // scaffold:
+            Scaffold(
+          key: _drawerKey,
+          endDrawer: Drawer(child: _UsersList()),
           appBar: AppBar(
             actions: [
               IconButton(
-                onPressed: () => _innerDrawerKey.currentState!.open(),
+                onPressed: () => _drawerKey.currentState!.openEndDrawer(),
                 icon: Icon(FontAwesomeIcons.users),
               ),
             ],
@@ -124,6 +130,7 @@ class _ChatPageState extends State<ChatPage> {
                         authorId: user.id!,
                         id: user.id!,
                         timestamp: (msg.timeStamp / 1000).round(),
+                        status: types.Status.read,
                       );
                     } else if (msg is TextMessage) {
                       return types.TextMessage(
@@ -131,6 +138,7 @@ class _ChatPageState extends State<ChatPage> {
                         id: '29',
                         authorId: user.id!,
                         timestamp: (msg.timeStamp / 1000).round(),
+                        status: types.Status.read,
                       );
                     } else if (msg is FileMessage) {
                       return types.FileMessage(
@@ -762,7 +770,7 @@ class _UsersList extends StatelessWidget {
                 subtitle: isOnline
                     ? Row(
                         children: [
-                          Icon(Icons.circle, color: Colors.green),
+                          Icon(MdiIcons.circleMedium, color: Colors.green),
                           Text('Online'),
                         ],
                       )

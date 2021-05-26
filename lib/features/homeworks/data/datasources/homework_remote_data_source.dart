@@ -18,13 +18,15 @@ abstract class HomeWorkRemoteDataSource {
     required String title,
     required String courseTitle,
     required int dueDate,
+    required String? fileUrl,
+    required String? fileName,
     String? description,
-    String? fileUrl,
   });
 
-  Future<HomeworkSubmitEntity> getHomework({
+  Future<HomeworkSubmitEntity> getSubmittedHomework({
     required String courseTitle,
     required String homeworkTitle,
+    required String userId,
   });
 
   Future<List<HomeworkEntity>> getAllHomeworksByCourse({
@@ -33,7 +35,8 @@ abstract class HomeWorkRemoteDataSource {
 
   Future<Unit> submitHomework({
     required String userId,
-    required String? fileUrl,
+    required String? filePath,
+    required String? fileName,
     required String courseTitle,
     required String? note,
     required String homeworkTitle,
@@ -59,18 +62,27 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
     required String title,
     required String courseTitle,
     required int dueDate,
+    required String? fileUrl,
+    required String? fileName,
     String? description,
-    String? fileUrl,
   }) async {
+    String? newFileUrl = '';
+
+    if (fileUrl!.isEmpty || fileUrl == null) {
+      fileUrl = newFileUrl;
+    }
     final homeWork = HomeworkModel(
       title: title,
       description: description,
-      fileUrl: fileUrl,
+      filePath: fileUrl,
       dueDate: dueDate,
+      fileName: fileName,
     );
 
-    lectureTask!.task =
-        storageRef.homeWorkStorage(title).putFile(File(fileUrl!));
+    if (fileUrl.isNotEmpty) {
+      lectureTask!.task =
+          storageRef.homeWorkStorage(title).putFile(File(fileUrl));
+    }
 
     final doc = userHomeworksCollection.doc(courseTitle);
     doc.collection('homeworks').doc(title).set(homeWork.toDocument());
@@ -79,20 +91,20 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
   }
 
   @override
-  Future<HomeworkSubmitEntity> getHomework({
+  Future<HomeworkSubmitEntity> getSubmittedHomework({
     required String courseTitle,
     required String homeworkTitle,
+    required String userId,
   }) async {
-    print('remote homework title ====> $homeworkTitle');
+    print('remote submit userId => $userId');
     final courseDoc = userHomeworksCollection.doc(courseTitle);
     final homeworkSnap = await courseDoc
         .collection('homeworks')
         .doc(homeworkTitle)
         .collection('submittedUsers')
-        .doc('21')
+        .doc(userId)
         .get();
-    final homeworkSubmitModel = HomeworkSubmitModel.fromSnapshot(homeworkSnap);
-    return homeworkSubmitModel;
+    return HomeworkSubmitModel.fromSnapshot(homeworkSnap);
   }
 
   @override
@@ -125,26 +137,36 @@ class FirebaseHomeworkRemoteDataSource extends HomeWorkRemoteDataSource {
   @override
   Future<Unit> submitHomework({
     required String userId,
-    required String? fileUrl,
+    required String? filePath,
+    required String? fileName,
     required String courseTitle,
     required String? note,
     required String homeworkTitle,
     required int? submitDate,
   }) async {
-    final submitHomework = HomeworkSubmitModel(
-      userId: userId,
-      fileUrl: fileUrl,
-      note: note,
-      submitDate: submitDate,
-    );
+    lectureTask!.task =
+        storageRef.homeWorkStorage(homeworkTitle).putFile(File(filePath!));
 
-    userHomeworksCollection
-        .doc(courseTitle)
-        .collection('homeworks')
-        .doc(homeworkTitle)
-        .collection('submittedUsers')
-        .doc(userId)
-        .set(submitHomework.toDocument());
+    lectureTask!.task.then((res) async {
+      final downloadUrl = await res.ref.getDownloadURL();
+      final homework = HomeworkSubmitModel(
+        userId: userId,
+        filePath: downloadUrl,
+        fileName: fileName,
+        submitDate: submitDate,
+        note: note,
+      );
+
+      final doc = userHomeworksCollection
+          .doc(courseTitle)
+          .collection('homeworks')
+          .doc(homeworkTitle)
+          .collection('submittedUsers')
+          .doc(userId);
+      // adding homework to document
+      doc.set(homework.toDocument());
+    });
+
     return unit;
   }
 }

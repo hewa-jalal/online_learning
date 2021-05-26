@@ -249,9 +249,12 @@ class _LecturesList extends StatelessWidget {
             ? ListView.builder(
                 itemCount: lectures.length,
                 itemBuilder: (context, index) {
-                  return LectureCard(
-                    lecture: lectures[index],
-                    courseTitle: courseTitle,
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: LectureCard(
+                      lecture: lectures[index],
+                      courseTitle: courseTitle,
+                    ),
                   );
                 },
               )
@@ -285,9 +288,12 @@ class _HomeworksList extends StatelessWidget {
             ? ListView.builder(
                 itemCount: homeworks.length,
                 itemBuilder: (context, index) {
-                  return HomeworkCard(
-                    homework: homeworks[index],
-                    courseTitle: courseTitle,
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: HomeworkCard(
+                      homework: homeworks[index],
+                      courseTitle: courseTitle,
+                    ),
                   );
                 },
               )

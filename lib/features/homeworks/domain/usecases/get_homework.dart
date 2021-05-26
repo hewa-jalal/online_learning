@@ -17,6 +17,7 @@ class GetHomework extends UseCase<HomeworkSubmitEntity, SubmitParams> {
     return homeworkRepository!.getHomework(
       courseTitle: params.courseTitle,
       homeworkTitle: params.homeworkTitle,
+      userId: params.userId,
     );
   }
 }

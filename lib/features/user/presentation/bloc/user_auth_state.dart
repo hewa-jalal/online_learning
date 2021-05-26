@@ -6,7 +6,6 @@ enum UserStatus {
   done,
 }
 
-// TODO: create a userEntity parameter
 @freezed
 abstract class UserAuthState with _$UserAuthState {
   const factory UserAuthState({

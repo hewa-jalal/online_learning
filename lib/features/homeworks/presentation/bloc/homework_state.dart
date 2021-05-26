@@ -7,6 +7,7 @@ abstract class HomeworkState with _$HomeworkState {
     required String courseTitle,
     required String userId,
     required List<HomeworkEntity> homeworks,
+    required HomeworkSubmitEntity homeworkSubmitEntity,
     String? note,
     String? description,
     String? filePath,
@@ -24,5 +25,6 @@ abstract class HomeworkState with _$HomeworkState {
         note: '',
         isSubmitting: false,
         homeworkFailureOrSuccessOption: none(),
+        homeworkSubmitEntity: HomeworkSubmitModel.empty(),
       );
 }

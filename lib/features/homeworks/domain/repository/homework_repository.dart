@@ -22,11 +22,13 @@ abstract class HomeworkRepository {
   Future<Either<Failure, HomeworkSubmitEntity>> getHomework({
     required String courseTitle,
     required String homeworkTitle,
+    required String userId,
   });
 
   Future<Either<Failure, Unit>> submitHomework({
     required String userId,
     required String? fileUrl,
+    required String? fileName,
     required String? note,
     required String homeworkTitle,
     required String courseTitle,

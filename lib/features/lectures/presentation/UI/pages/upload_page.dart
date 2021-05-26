@@ -157,7 +157,7 @@ class _UploadFormState extends State<_UploadForm> {
                   ),
                   onChanged: (val) => setState(() => description = val.trim()),
                 ),
-                SizedBox(height: _isFileSelected ? 0.02.sh : 0.06.sh),
+                SizedBox(height: 0.03.sh),
                 isHomework
                     ? _HomeworkBottomSelection(
                         title: title,
@@ -221,71 +221,72 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
 
     return BlocBuilder<HomeworkBloc, HomeworkState>(
       builder: (context, state) {
-        if (state.filePath!.isEmpty) {
-          return HomeworkUploadButton(
-            user: widget.user,
-            title: widget.title,
-            courseTitle: widget.courseTitle,
-            description: widget.description,
-          );
-        } else {
-          final fileName = state.filePath!.split('/').last;
-          final fileType = lookupMimeType(fileName);
-          // print('endsWith --> ' + fileType.endsWith('pdf').toString());
-          // print('mime -----> ' + lookupMimeType(fileName));
-          return Column(
-            children: [
-              SizedBox(height: 0.01.sh),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    'Select a due date:',
-                    style: TextStyle(color: Colors.white),
-                  ),
+        final fileName = state.filePath!.split('/').last;
+        final fileType = lookupMimeType(fileName);
+        // print('endsWith --> ' + fileType.endsWith('pdf').toString());
+        // print('mime -----> ' + lookupMimeType(fileName));
+        return Column(
+          children: [
+            // SizedBox(height: 0.01.sh),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  'Select a due date:',
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
-              Container(
-                child: DatePicker(
-                  DateTime.now(),
-                  dayTextStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: Dimen.dayTextSize,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  monthTextStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: Dimen.dayTextSize,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  dateTextStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: Dimen.dayTextSize,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  selectionColor: Color(0xff5F36DA),
-                  onDateChange: (date) {
-                    _formattedString =
-                        '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
-                    _dueDate = DateTime.parse(_formattedString);
+            ),
+            Container(
+              child: DatePicker(
+                DateTime.now(),
+                dayTextStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: Dimen.dayTextSize,
+                  fontWeight: FontWeight.w500,
+                ),
+                monthTextStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: Dimen.dayTextSize,
+                  fontWeight: FontWeight.w500,
+                ),
+                dateTextStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: Dimen.dayTextSize,
+                  fontWeight: FontWeight.w500,
+                ),
+                selectionColor: Color(0xff5F36DA),
+                onDateChange: (date) {
+                  _formattedString =
+                      '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+                  _dueDate = DateTime.parse(_formattedString);
+                  Navigator.of(context).push(
+                    showPicker(
+                      context: context,
+                      value: _time,
+                      onChange: onTimeChanged,
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 0.03.sh),
 
-                    Navigator.of(context).push(
-                      showPicker(
-                        context: context,
-                        value: _time,
-                        onChange: onTimeChanged,
-                      ),
-                    );
-                  },
-                ),
-              ),
-              SizedBox(height: 0.02.sh),
+            HomeworkSelectFileButton(
+              user: widget.user,
+              title: widget.title,
+              courseTitle: widget.courseTitle,
+              description: widget.description,
+              dueDate: _dueDate,
+            ),
+            SizedBox(height: 0.03.sh),
+            if (state.filePath!.isNotEmpty) ...[
               ListTile(
                 tileColor: Color(0xff5F36DA),
                 enabled: true,
                 leading: Icon(
-                  MdiIcons.filePdf,
+                  MdiIcons.file,
                   color: Colors.white,
                 ),
                 title: Text(
@@ -302,18 +303,56 @@ class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
                   ),
                 ),
               ),
-              SizedBox(height: 0.03.sh),
-              HomeworkUploadButton(
-                user: widget.user,
-                title: widget.title,
-                courseTitle: widget.courseTitle,
-                description: widget.description,
-                dueDate: _dueDate,
-              ),
+              // SizedBox(height: 0.03.sh),
             ],
-          );
-        }
+            SizedBox(height: 0.02.sh),
+            HomeworkUploadButton(
+              user: widget.user,
+              title: widget.title,
+              courseTitle: widget.courseTitle,
+              description: widget.description,
+              dueDate: _dueDate,
+            ),
+            SizedBox(height: 0.02.sh),
+          ],
+        );
       },
+    );
+  }
+}
+
+class HomeworkSelectFileButton extends StatelessWidget {
+  const HomeworkSelectFileButton({
+    Key? key,
+    required this.user,
+    required this.title,
+    required this.courseTitle,
+    required this.description,
+    this.dueDate,
+  }) : super(key: key);
+
+  final String courseTitle;
+  final String description;
+  final DateTime? dueDate;
+  final String title;
+  final UserEntity user;
+
+  @override
+  Widget build(BuildContext context) {
+    final homeworkBloc = context.watch<HomeworkBloc>();
+    // final _isFileSelected = _homeworkBloc.state.filePath!.isNotEmpty;
+    return SizedBox(
+      height: 0.06.sh,
+      width: 0.7.sw,
+      child: ElevatedButton(
+        onPressed: () {
+          homeworkBloc.add(HomeworkEvent.selectFile());
+        },
+        child: Text(
+          'select homework file',
+          style: TextStyle(fontSize: 20.sp),
+        ),
+      ),
     );
   }
 }
@@ -339,23 +378,23 @@ class HomeworkUploadButton extends StatelessWidget {
     final _homeworkBloc = context.watch<HomeworkBloc>();
     final _isFileSelected = _homeworkBloc.state.filePath!.isNotEmpty;
     return SizedBox(
-      height: 0.072.sh,
-      width: 0.8.sw,
+      height: 0.06.sh,
+      width: 0.7.sw,
       child: ElevatedButton(
-        onPressed: () => _isFileSelected
-            ? _homeworkBloc.add(
-                HomeworkEvent.uploadHomework(
+        onPressed: title.isEmpty
+            ? null
+            : () {
+                _homeworkBloc.add(HomeworkEvent.uploadHomework(
                   user: user as UserModel,
                   title: title,
                   courseTitle: courseTitle,
                   description: description,
                   filePath: _homeworkBloc.state.filePath!,
                   dueDate: dueDate!.millisecondsSinceEpoch,
-                ),
-              )
-            : _homeworkBloc.add(HomeworkEvent.selectFile()),
+                ));
+              },
         child: Text(
-          _isFileSelected ? 'upload homework' : 'select homework',
+          'upload homework',
           style: TextStyle(fontSize: 20.sp),
         ),
       ),
@@ -380,12 +419,12 @@ class _LecutreBottomSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
-    print('title $title');
     return BlocBuilder<LectureBloc, LectureState>(
       builder: (context, state) {
         if (state.filePath.isEmpty) {
           return SizedBox(
-            width: 160.w,
+            height: 0.06.sh,
+            width: 0.7.sw,
             child: ElevatedButton(
               onPressed: () {
                 lectureBloc.add(LectureEvent.selectFile());
@@ -412,7 +451,8 @@ class _LecutreBottomSelection extends StatelessWidget {
               ),
               SizedBox(height: 24.h),
               SizedBox(
-                width: 160.w,
+                height: 0.06.sh,
+                width: 0.7.sw,
                 child: ElevatedButton(
                   onPressed: title.isEmpty
                       ? null

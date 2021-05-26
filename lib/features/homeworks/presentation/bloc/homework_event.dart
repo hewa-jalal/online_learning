@@ -19,14 +19,14 @@ abstract class HomeworkEvent with _$HomeworkEvent {
     required String courseTitle,
   }) = _GetAllHomeworksByCourse;
 
-  const factory HomeworkEvent.getHomework({
+  const factory HomeworkEvent.getSubmittedHomework({
     required String courseTitle,
     required String homeworkTitle,
-  }) = _GetHomework;
+    required String userId,
+  }) = _GetSubmittedHomework;
 
   const factory HomeworkEvent.submitHomework({
     required String userId,
-    required String fileUrl,
     required String courseTitle,
     required String homeworkTitle,
     String? note,

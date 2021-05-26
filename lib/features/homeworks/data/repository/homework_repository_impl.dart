@@ -25,13 +25,13 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
   }) async {
     try {
       final lecture = await remoteDataSource!.uploadHomework(
-        user: user,
-        title: title,
-        courseTitle: courseTitle,
-        description: description,
-        fileUrl: fileUrl,
-        dueDate: dueDate,
-      );
+          user: user,
+          title: title,
+          courseTitle: courseTitle,
+          description: description,
+          fileUrl: fileUrl,
+          dueDate: dueDate,
+          fileName: '//TODO');
       return right(lecture);
     } on Exception catch (e) {
       print('exceptions ${e.toString()}');
@@ -58,6 +58,7 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
   Future<Either<Failure, Unit>> submitHomework({
     required String userId,
     required String? fileUrl,
+    required String? fileName,
     required String? note,
     required String homeworkTitle,
     required String courseTitle,
@@ -66,11 +67,12 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
     try {
       final submitUnit = await remoteDataSource!.submitHomework(
         userId: userId,
-        fileUrl: fileUrl,
+        filePath: fileUrl,
         note: note,
         homeworkTitle: homeworkTitle,
         submitDate: submitDate,
         courseTitle: courseTitle,
+        fileName: fileName,
       );
       return right(submitUnit);
     } on Exception catch (e) {
@@ -83,11 +85,13 @@ class HomeworkRepositoryImpl extends HomeworkRepository {
   Future<Either<Failure, HomeworkSubmitEntity>> getHomework({
     required String courseTitle,
     required String homeworkTitle,
+    required String userId,
   }) async {
     try {
-      final homework = await remoteDataSource!.getHomework(
+      final homework = await remoteDataSource!.getSubmittedHomework(
         courseTitle: courseTitle,
         homeworkTitle: homeworkTitle,
+        userId: userId,
       );
       return right(homework);
     } on Exception catch (e) {

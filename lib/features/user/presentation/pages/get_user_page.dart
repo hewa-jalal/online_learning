@@ -90,7 +90,7 @@ class _UserFormState extends State<UserForm> {
                           speed: Duration(milliseconds: 40),
                         ),
                       ),
-                      Lottie.asset('assets/lottie/intro.json'),
+                      // Lottie.asset('assets/lottie/intro.json'),
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),

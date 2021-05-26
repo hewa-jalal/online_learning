@@ -39,13 +39,11 @@ class _$LectureEventTearOff {
       {required UserModel user,
       required String title,
       required String courseTitle,
-      required String filePath,
       String? description}) {
     return _UploadLecture(
       user: user,
       title: title,
       courseTitle: courseTitle,
-      filePath: filePath,
       description: description,
     );
   }
@@ -96,7 +94,7 @@ mixin _$LectureEvent {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -114,7 +112,7 @@ mixin _$LectureEvent {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -215,7 +213,7 @@ class _$_Started implements _Started {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -236,7 +234,7 @@ class _$_Started implements _Started {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -340,7 +338,7 @@ class _$_SelectFile implements _SelectFile {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -361,7 +359,7 @@ class _$_SelectFile implements _SelectFile {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -518,7 +516,7 @@ class _$_DownloadLecture implements _DownloadLecture {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -539,7 +537,7 @@ class _$_DownloadLecture implements _DownloadLecture {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -614,11 +612,7 @@ abstract class _$UploadLectureCopyWith<$Res> {
           _UploadLecture value, $Res Function(_UploadLecture) then) =
       __$UploadLectureCopyWithImpl<$Res>;
   $Res call(
-      {UserModel user,
-      String title,
-      String courseTitle,
-      String filePath,
-      String? description});
+      {UserModel user, String title, String courseTitle, String? description});
 }
 
 /// @nodoc
@@ -637,7 +631,6 @@ class __$UploadLectureCopyWithImpl<$Res>
     Object? user = freezed,
     Object? title = freezed,
     Object? courseTitle = freezed,
-    Object? filePath = freezed,
     Object? description = freezed,
   }) {
     return _then(_UploadLecture(
@@ -652,10 +645,6 @@ class __$UploadLectureCopyWithImpl<$Res>
       courseTitle: courseTitle == freezed
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
-              as String,
-      filePath: filePath == freezed
-          ? _value.filePath
-          : filePath // ignore: cast_nullable_to_non_nullable
               as String,
       description: description == freezed
           ? _value.description
@@ -672,7 +661,6 @@ class _$_UploadLecture implements _UploadLecture {
       {required this.user,
       required this.title,
       required this.courseTitle,
-      required this.filePath,
       this.description});
 
   @override
@@ -682,13 +670,11 @@ class _$_UploadLecture implements _UploadLecture {
   @override
   final String courseTitle;
   @override
-  final String filePath;
-  @override
   final String? description;
 
   @override
   String toString() {
-    return 'LectureEvent.uploadLecture(user: $user, title: $title, courseTitle: $courseTitle, filePath: $filePath, description: $description)';
+    return 'LectureEvent.uploadLecture(user: $user, title: $title, courseTitle: $courseTitle, description: $description)';
   }
 
   @override
@@ -702,9 +688,6 @@ class _$_UploadLecture implements _UploadLecture {
             (identical(other.courseTitle, courseTitle) ||
                 const DeepCollectionEquality()
                     .equals(other.courseTitle, courseTitle)) &&
-            (identical(other.filePath, filePath) ||
-                const DeepCollectionEquality()
-                    .equals(other.filePath, filePath)) &&
             (identical(other.description, description) ||
                 const DeepCollectionEquality()
                     .equals(other.description, description)));
@@ -716,7 +699,6 @@ class _$_UploadLecture implements _UploadLecture {
       const DeepCollectionEquality().hash(user) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(filePath) ^
       const DeepCollectionEquality().hash(description);
 
   @JsonKey(ignore: true)
@@ -733,7 +715,7 @@ class _$_UploadLecture implements _UploadLecture {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -743,7 +725,7 @@ class _$_UploadLecture implements _UploadLecture {
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
-    return uploadLecture(user, title, courseTitle, filePath, description);
+    return uploadLecture(user, title, courseTitle, description);
   }
 
   @override
@@ -754,7 +736,7 @@ class _$_UploadLecture implements _UploadLecture {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -765,7 +747,7 @@ class _$_UploadLecture implements _UploadLecture {
     required TResult orElse(),
   }) {
     if (uploadLecture != null) {
-      return uploadLecture(user, title, courseTitle, filePath, description);
+      return uploadLecture(user, title, courseTitle, description);
     }
     return orElse();
   }
@@ -814,13 +796,11 @@ abstract class _UploadLecture implements LectureEvent {
       {required UserModel user,
       required String title,
       required String courseTitle,
-      required String filePath,
       String? description}) = _$_UploadLecture;
 
   UserModel get user => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get courseTitle => throw _privateConstructorUsedError;
-  String get filePath => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$UploadLectureCopyWith<_UploadLecture> get copyWith =>
@@ -873,7 +853,7 @@ class _$_GetAllLectures implements _GetAllLectures {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -894,7 +874,7 @@ class _$_GetAllLectures implements _GetAllLectures {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -1026,7 +1006,7 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -1047,7 +1027,7 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -1158,7 +1138,7 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -1179,7 +1159,7 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -1309,7 +1289,7 @@ class _$_CreateCourse implements _CreateCourse {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -1330,7 +1310,7 @@ class _$_CreateCourse implements _CreateCourse {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -1490,7 +1470,7 @@ class _$_SubmitUser implements _SubmitUser {
             String fileUrl, String courseTitle, String lectureTitle)
         downloadLecture,
     required TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)
+            String? description)
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
@@ -1511,7 +1491,7 @@ class _$_SubmitUser implements _SubmitUser {
     TResult Function(String fileUrl, String courseTitle, String lectureTitle)?
         downloadLecture,
     TResult Function(UserModel user, String title, String courseTitle,
-            String filePath, String? description)?
+            String? description)?
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
@@ -1588,6 +1568,7 @@ class _$LectureStateTearOff {
       {required LectureEntity lecture,
       required String userId,
       required String filePath,
+      required String fileName,
       required bool? isSubmitting,
       required List<LectureEntity> lectures,
       required List<String> courseIds,
@@ -1597,6 +1578,7 @@ class _$LectureStateTearOff {
       lecture: lecture,
       userId: userId,
       filePath: filePath,
+      fileName: fileName,
       isSubmitting: isSubmitting,
       lectures: lectures,
       courseIds: courseIds,
@@ -1613,6 +1595,7 @@ mixin _$LectureState {
   LectureEntity get lecture => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get filePath => throw _privateConstructorUsedError;
+  String get fileName => throw _privateConstructorUsedError;
   bool? get isSubmitting => throw _privateConstructorUsedError;
   List<LectureEntity> get lectures => throw _privateConstructorUsedError;
   List<String> get courseIds => throw _privateConstructorUsedError;
@@ -1633,6 +1616,7 @@ abstract class $LectureStateCopyWith<$Res> {
       {LectureEntity lecture,
       String userId,
       String filePath,
+      String fileName,
       bool? isSubmitting,
       List<LectureEntity> lectures,
       List<String> courseIds,
@@ -1652,6 +1636,7 @@ class _$LectureStateCopyWithImpl<$Res> implements $LectureStateCopyWith<$Res> {
     Object? lecture = freezed,
     Object? userId = freezed,
     Object? filePath = freezed,
+    Object? fileName = freezed,
     Object? isSubmitting = freezed,
     Object? lectures = freezed,
     Object? courseIds = freezed,
@@ -1669,6 +1654,10 @@ class _$LectureStateCopyWithImpl<$Res> implements $LectureStateCopyWith<$Res> {
       filePath: filePath == freezed
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileName: fileName == freezed
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
               as String,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
@@ -1701,6 +1690,7 @@ abstract class _$LectureStateCopyWith<$Res>
       {LectureEntity lecture,
       String userId,
       String filePath,
+      String fileName,
       bool? isSubmitting,
       List<LectureEntity> lectures,
       List<String> courseIds,
@@ -1722,6 +1712,7 @@ class __$LectureStateCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
     Object? lecture = freezed,
     Object? userId = freezed,
     Object? filePath = freezed,
+    Object? fileName = freezed,
     Object? isSubmitting = freezed,
     Object? lectures = freezed,
     Object? courseIds = freezed,
@@ -1739,6 +1730,10 @@ class __$LectureStateCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
       filePath: filePath == freezed
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      fileName: fileName == freezed
+          ? _value.fileName
+          : fileName // ignore: cast_nullable_to_non_nullable
               as String,
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
@@ -1767,6 +1762,7 @@ class _$_LectureState implements _LectureState {
       {required this.lecture,
       required this.userId,
       required this.filePath,
+      required this.fileName,
       required this.isSubmitting,
       required this.lectures,
       required this.courseIds,
@@ -1779,6 +1775,8 @@ class _$_LectureState implements _LectureState {
   @override
   final String filePath;
   @override
+  final String fileName;
+  @override
   final bool? isSubmitting;
   @override
   final List<LectureEntity> lectures;
@@ -1789,7 +1787,7 @@ class _$_LectureState implements _LectureState {
 
   @override
   String toString() {
-    return 'LectureState(lecture: $lecture, userId: $userId, filePath: $filePath, isSubmitting: $isSubmitting, lectures: $lectures, courseIds: $courseIds, lectureFailureOrSuccessOption: $lectureFailureOrSuccessOption)';
+    return 'LectureState(lecture: $lecture, userId: $userId, filePath: $filePath, fileName: $fileName, isSubmitting: $isSubmitting, lectures: $lectures, courseIds: $courseIds, lectureFailureOrSuccessOption: $lectureFailureOrSuccessOption)';
   }
 
   @override
@@ -1804,6 +1802,9 @@ class _$_LectureState implements _LectureState {
             (identical(other.filePath, filePath) ||
                 const DeepCollectionEquality()
                     .equals(other.filePath, filePath)) &&
+            (identical(other.fileName, fileName) ||
+                const DeepCollectionEquality()
+                    .equals(other.fileName, fileName)) &&
             (identical(other.isSubmitting, isSubmitting) ||
                 const DeepCollectionEquality()
                     .equals(other.isSubmitting, isSubmitting)) &&
@@ -1826,6 +1827,7 @@ class _$_LectureState implements _LectureState {
       const DeepCollectionEquality().hash(lecture) ^
       const DeepCollectionEquality().hash(userId) ^
       const DeepCollectionEquality().hash(filePath) ^
+      const DeepCollectionEquality().hash(fileName) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
       const DeepCollectionEquality().hash(lectures) ^
       const DeepCollectionEquality().hash(courseIds) ^
@@ -1842,6 +1844,7 @@ abstract class _LectureState implements LectureState {
       {required LectureEntity lecture,
       required String userId,
       required String filePath,
+      required String fileName,
       required bool? isSubmitting,
       required List<LectureEntity> lectures,
       required List<String> courseIds,
@@ -1854,6 +1857,8 @@ abstract class _LectureState implements LectureState {
   String get userId => throw _privateConstructorUsedError;
   @override
   String get filePath => throw _privateConstructorUsedError;
+  @override
+  String get fileName => throw _privateConstructorUsedError;
   @override
   bool? get isSubmitting => throw _privateConstructorUsedError;
   @override

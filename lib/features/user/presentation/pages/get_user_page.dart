@@ -74,23 +74,23 @@ class _UserFormState extends State<UserForm> {
                   child: Column(
                     children: [
                       SizedBox(
-                          width: 250.0,
-                          child: Text(
-                            'Learn anywhere',
-                            style: TextStyle(fontSize: 30.0),
-                          )
-                          // child: TyperAnimatedTextKit(
-                          //   text: ['Learn anywhere'],
-                          //   textStyle: TextStyle(
-                          //     fontSize: 30.0,
-                          //     fontFamily: 'Bobbers',
-                          //     color: Colors.white,
-                          //   ),
-                          //   textAlign: TextAlign.center,
-                          //   speed: Duration(milliseconds: 40),
-                          // ),
+                        width: 250.0,
+                        // child: Text(
+                        //   'Learn anywhere',
+                        //   style: TextStyle(fontSize: 30.0),
+                        // )
+                        child: TyperAnimatedTextKit(
+                          text: ['Learn anywhere'],
+                          textStyle: TextStyle(
+                            fontSize: 30.0,
+                            fontFamily: 'Bobbers',
+                            color: Colors.white,
                           ),
-                      // Lottie.asset('assets/lottie/intro.json'),
+                          textAlign: TextAlign.center,
+                          speed: Duration(milliseconds: 40),
+                        ),
+                      ),
+                      Lottie.asset('assets/lottie/intro.json'),
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),

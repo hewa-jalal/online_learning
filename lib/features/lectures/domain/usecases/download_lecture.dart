@@ -24,17 +24,19 @@ class DownloadLecture extends UseCase<Unit, LectureParams> {
 
 class LectureParams extends Equatable {
   final String fileUrl;
+  final String fileName;
   final String lectureTitle;
   final String? description;
   final String courseTitle;
   final UserModel user;
 
   LectureParams({
-    required this.fileUrl,
     required this.lectureTitle,
+    required this.fileName,
+    required this.fileUrl,
     required this.courseTitle,
-    this.description,
     required this.user,
+    this.description,
   });
   @override
   List<Object?> get props => [
@@ -43,5 +45,6 @@ class LectureParams extends Equatable {
         courseTitle,
         description,
         user,
+        fileName,
       ];
 }

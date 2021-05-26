@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:nil/nil.dart';
 
 import '../../../../user/presentation/bloc/user_auth_bloc.dart';
 import '../../../domain/entities/lecture_entity.dart';
@@ -23,7 +24,7 @@ class LectureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _lectureBloc = context.watch<LectureBloc>();
-    final UserAuthState _userAuthState = context.watch<UserAuthBloc>().state;
+    final _userAuthState = context.watch<UserAuthBloc>().state;
 
     final isFileVideo = lecture.fileType!.contains('video');
 
@@ -42,9 +43,12 @@ class LectureCard extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 8.0, right: 8.0),
           child: SelectableText(
-            lecture.description!,
+            lecture.description!.isEmpty
+                ? 'this lecture has no description'
+                : lecture.description!,
           ),
         ),
+        SizedBox(height: 10.h),
         ListTile(
           hoverColor: Colors.red,
           leading: Icon(
@@ -54,17 +58,20 @@ class LectureCard extends StatelessWidget {
           ),
           title: Row(
             children: [
-              Text('lecture2'),
+              Text(lecture.fileName!),
               Spacer(),
-              InkWell(
-                onTap: () => Get.to(
-                  () => AttendancePage(submittedUsers: lecture.submittedUsers!),
+              if (_userAuthState.user.role == 'teacher') ...[
+                InkWell(
+                  onTap: () => Get.to(
+                    () =>
+                        AttendancePage(submittedUsers: lecture.submittedUsers!),
+                  ),
+                  child: Icon(
+                    MdiIcons.accountMultipleCheckOutline,
+                    color: Color(0xff5F36DA),
+                  ),
                 ),
-                child: Icon(
-                  MdiIcons.accountMultipleCheckOutline,
-                  color: Color(0xff5F36DA),
-                ),
-              ),
+              ],
               SizedBox(width: 0.05.sw),
               InkWell(
                 onTap: () => _lectureBloc.add(
@@ -83,9 +90,11 @@ class LectureCard extends StatelessWidget {
                 SizedBox(width: 0.05.sw),
                 InkWell(
                   onTap: () {
-                    Get.to(() => VideoPlayerPage(
-                          videoUrl: lecture.fileUrl,
-                        ));
+                    Get.to(
+                      () => VideoPlayerPage(
+                        videoUrl: lecture.fileUrl,
+                      ),
+                    );
                   },
                   child: Icon(
                     Icons.play_circle_filled_outlined,
@@ -95,23 +104,27 @@ class LectureCard extends StatelessWidget {
               ]
             ],
           ),
-          trailing: Checkbox(
-            activeColor: Color(0xff5F36DA),
-            value: isSubmitted,
-            onChanged: (_) {
-              _lectureBloc.add(
-                LectureEvent.submitUser(
-                  userId: _userAuthState.user.id.toString(),
-                  courseTitle: courseTitle,
-                  lectureTitle: lecture.title!,
-                ),
-              );
-              // to refresh the list
-              _lectureBloc.add(
-                LectureEvent.getAllLecturesByCourse(courseTitle: courseTitle),
-              );
-            },
-          ),
+          trailing: _userAuthState.user.role == 'student'
+              ? Checkbox(
+                  activeColor: Color(0xff5F36DA),
+                  value: isSubmitted,
+                  onChanged: (_) {
+                    _lectureBloc.add(
+                      LectureEvent.submitUser(
+                        userId: _userAuthState.user.id.toString(),
+                        courseTitle: courseTitle,
+                        lectureTitle: lecture.title!,
+                      ),
+                    );
+                    // to refresh the list
+                    _lectureBloc.add(
+                      LectureEvent.getAllLecturesByCourse(
+                        courseTitle: courseTitle,
+                      ),
+                    );
+                  },
+                )
+              : nil,
         ),
       ],
     );

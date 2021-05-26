@@ -144,11 +144,12 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
 
         final either = await uploadLecture!(
           LectureParams(
-            fileUrl: e.filePath,
+            fileUrl: state.filePath,
             lectureTitle: e.title,
             description: e.description,
             user: e.user,
             courseTitle: e.courseTitle,
+            fileName: state.fileName,
           ),
         );
 
@@ -168,6 +169,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
             fileUrl: e.fileUrl,
             lectureTitle: e.lectureTitle,
             courseTitle: e.courseTitle,
+            fileName: 'fileNameDownload',
           ),
         );
         yield either.fold(
@@ -234,6 +236,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         final result = await (FilePicker.platform.pickFiles());
         yield state.copyWith(
           filePath: result!.files.single.path!,
+          fileName: result.files.single.name!,
         );
       },
       submitUser: (e) async* {

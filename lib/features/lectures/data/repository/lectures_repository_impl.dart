@@ -32,10 +32,11 @@ class LecturesRepositoryImpl extends LecturesRepository {
 
   @override
   Future<Either<Failure, Unit>> uploadLecture({
+    required String? title,
+    required String? fileName,
     required String fileUrl,
     required UserModel user,
     required String courseTitle,
-    String? title,
     String? description,
   }) async {
     try {
@@ -45,6 +46,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
         lectureTitle: title,
         description: description,
         courseTitle: courseTitle,
+        fileName: fileName!,
       );
       return right(lecture);
     } on Exception catch (e) {

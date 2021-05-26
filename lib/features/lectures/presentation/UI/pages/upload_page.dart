@@ -151,6 +151,7 @@ class _UploadFormState extends State<_UploadForm> {
                 ),
                 SizedBox(height: 0.03.sh),
                 TextField(
+                  maxLines: null,
                   decoration: InputDecoration(
                     labelText: 'description',
                   ),
@@ -379,14 +380,18 @@ class _LecutreBottomSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lectureBloc = context.read<LectureBloc>();
+    print('title $title');
     return BlocBuilder<LectureBloc, LectureState>(
       builder: (context, state) {
         if (state.filePath.isEmpty) {
-          return ElevatedButton(
-            onPressed: () {
-              lectureBloc.add(LectureEvent.selectFile());
-            },
-            child: Text('Select Lecture'),
+          return SizedBox(
+            width: 160.w,
+            child: ElevatedButton(
+              onPressed: () {
+                lectureBloc.add(LectureEvent.selectFile());
+              },
+              child: Text('Select Lecture'),
+            ),
           );
         } else {
           final fileName = state.filePath.split('/').last;
@@ -406,17 +411,23 @@ class _LecutreBottomSelection extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24.h),
-              ElevatedButton(
-                onPressed: () => lectureBloc.add(
-                  LectureEvent.uploadLecture(
-                    filePath: state.filePath,
-                    user: user as UserModel,
-                    courseTitle: courseTitle,
-                    title: title,
-                    description: description,
-                  ),
+              SizedBox(
+                width: 160.w,
+                child: ElevatedButton(
+                  onPressed: title.isEmpty
+                      ? null
+                      : () {
+                          lectureBloc.add(
+                            LectureEvent.uploadLecture(
+                              user: user as UserModel,
+                              courseTitle: courseTitle,
+                              title: title,
+                              description: description,
+                            ),
+                          );
+                        },
+                  child: Text('Upload Lecture'),
                 ),
-                child: Text('Upload Lecture'),
               ),
             ],
           );

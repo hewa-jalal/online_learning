@@ -13,7 +13,6 @@ abstract class LectureEvent with _$LectureEvent {
     required UserModel user,
     required String title,
     required String courseTitle,
-    required String filePath,
     String? description,
   }) = _UploadLecture;
   const factory LectureEvent.getAllLectures() = _GetAllLectures;

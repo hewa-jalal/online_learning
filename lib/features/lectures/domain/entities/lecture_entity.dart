@@ -5,6 +5,8 @@ class LectureEntity extends Equatable {
   final String? title;
   final String? description;
   final String? fileType;
+  final String? fileName;
+  final int? uploadDate;
   final List<String>? submittedUsers;
 
   LectureEntity({
@@ -13,6 +15,8 @@ class LectureEntity extends Equatable {
     required this.description,
     required this.submittedUsers,
     required this.fileType,
+    required this.fileName,
+    required this.uploadDate,
   });
 
   @override
@@ -22,6 +26,8 @@ class LectureEntity extends Equatable {
         description,
         submittedUsers,
         fileType,
+        fileName,
+        uploadDate,
       ];
 
   @override

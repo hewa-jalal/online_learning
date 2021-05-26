@@ -19,10 +19,11 @@ abstract class LecturesRemoteDataSource {
     required String lectureTitle,
   });
   Future<Unit> uploadLecture({
+    required String? lectureTitle,
+    required String fileName,
     required String filePath,
     required UserModel user,
     required String courseTitle,
-    String? lectureTitle,
     String? description,
   });
 
@@ -81,10 +82,11 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
 
   @override
   Future<Unit> uploadLecture({
+    required String? lectureTitle,
+    required String fileName,
     required String filePath,
     required UserModel user,
     required String courseTitle,
-    String? lectureTitle,
     String? description,
   }) async {
     lectureTask!.task =
@@ -97,6 +99,8 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
         fileUrl: downloadUrl,
         title: lectureTitle,
         description: description,
+        fileName: fileName,
+        uploadDate: DateTime.now().millisecondsSinceEpoch,
       );
       final metaData =
           await storageRef.lecturesStorage(lectureTitle).getMetadata();
@@ -133,7 +137,10 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
     final lectureList = <LectureModel>[];
 
     final courseDoc = userCoursesCollection.doc(courseTitle);
-    final lecturesQuery = await courseDoc.collection('lectures').get();
+    final lecturesQuery = await courseDoc
+        .collection('lectures')
+        .orderBy('uploadDate', descending: true)
+        .get();
 
     if (lecturesQuery.docs.isNotEmpty) {
       for (var doc in lecturesQuery.docs) {

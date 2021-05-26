@@ -62,7 +62,7 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello,',
+                            'Welcome,',
                             style: TextStyle(
                               color: Colors.grey,
                               fontSize: 18.sp,

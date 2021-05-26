@@ -19,6 +19,7 @@ class UploadLecture extends UseCase<Unit, LectureParams> {
       title: params.lectureTitle,
       description: params.description,
       courseTitle: params.courseTitle,
+      fileName: params.fileName,
     );
   }
 }

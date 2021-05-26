@@ -11,10 +11,11 @@ abstract class LecturesRepository {
     required String lectureTitle,
   });
   Future<Either<Failure, Unit>> uploadLecture({
+    required String? title,
+    required String? fileName,
     required String fileUrl,
     required UserModel user,
     required String courseTitle,
-    String? title,
     String? description,
   });
   Future<Either<Failure, List<LectureEntity>>> getAllLectures();

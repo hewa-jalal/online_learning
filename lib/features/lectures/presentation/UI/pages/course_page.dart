@@ -2,6 +2,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:online_learning/features/chat/presentation/ui/pages/chat_page.dart';
@@ -306,11 +307,15 @@ class _LectureEmptyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          MdiIcons.fileDocument,
-          size: 0.2.sh,
-          color: Colors.blueGrey[100],
+        SvgPicture.asset(
+          'assets/svg/lecture_no_data.svg',
+          height: 0.3.sh,
         ),
+        // Icon(
+        //   MdiIcons.fileDocument,
+        //   size: 0.2.sh,
+        //   color: Colors.blueGrey[100],
+        // ),
         SizedBox(height: 0.05.sh),
         Text(
           'you haven\'t uploaded any lectures yet',
@@ -334,10 +339,14 @@ class _HomeworkEmptyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
-          MdiIcons.bookOpenBlankVariant,
-          size: 0.2.sh,
-          color: Colors.blueGrey[100],
+        // Icon(
+        //   MdiIcons.bookOpenBlankVariant,
+        //   size: 0.2.sh,
+        //   color: Colors.blueGrey[100],
+        // ),
+        SvgPicture.asset(
+          'assets/svg/lecture_no_data.svg',
+          height: 0.3.sh,
         ),
         SizedBox(height: 0.05.sh),
         Text(

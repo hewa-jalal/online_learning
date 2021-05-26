@@ -21,20 +21,25 @@ class _$ChatEventTearOff {
   }
 
   _SendMessage sendMessage(
-      {required String message, required String fromUserId}) {
+      {required String message,
+      required String fromUserId,
+      required String courseTitle}) {
     return _SendMessage(
       message: message,
       fromUserId: fromUserId,
+      courseTitle: courseTitle,
     );
   }
 
   _SendImageMessage sendImageMessage(
       {required String message,
+      required String courseTitle,
       required String fromUserId,
       required String imageUrl,
       required ImageUploaderCubit imageUploaderCubit}) {
     return _SendImageMessage(
       message: message,
+      courseTitle: courseTitle,
       fromUserId: fromUserId,
       imageUrl: imageUrl,
       imageUploaderCubit: imageUploaderCubit,
@@ -44,16 +49,24 @@ class _$ChatEventTearOff {
   _SendFileMessage sendFileMessage(
       {required String message,
       required String fromUserId,
+      required String courseTitle,
       required ImageUploaderCubit imageUploaderCubit}) {
     return _SendFileMessage(
       message: message,
       fromUserId: fromUserId,
+      courseTitle: courseTitle,
       imageUploaderCubit: imageUploaderCubit,
     );
   }
 
   _GetAllMessages getAllMessages() {
     return const _GetAllMessages();
+  }
+
+  _GetAllMessagesByCourse getAllMessagesByCourse(String courseTitle) {
+    return _GetAllMessagesByCourse(
+      courseTitle,
+    );
   }
 }
 
@@ -65,27 +78,36 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String message, String fromUserId) sendMessage,
-    required TResult Function(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+    required TResult Function(
+            String message, String fromUserId, String courseTitle)
+        sendMessage,
+    required TResult Function(
+            String message,
+            String courseTitle,
+            String fromUserId,
+            String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)
         sendImageMessage,
     required TResult Function(String message, String fromUserId,
-            ImageUploaderCubit imageUploaderCubit)
+            String courseTitle, ImageUploaderCubit imageUploaderCubit)
         sendFileMessage,
     required TResult Function() getAllMessages,
+    required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String message, String fromUserId)? sendMessage,
-    TResult Function(String message, String fromUserId, String imageUrl,
-            ImageUploaderCubit imageUploaderCubit)?
+    TResult Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
         sendImageMessage,
-    TResult Function(String message, String fromUserId,
+    TResult Function(String message, String fromUserId, String courseTitle,
             ImageUploaderCubit imageUploaderCubit)?
         sendFileMessage,
     TResult Function()? getAllMessages,
+    TResult Function(String courseTitle)? getAllMessagesByCourse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -96,6 +118,8 @@ mixin _$ChatEvent {
     required TResult Function(_SendImageMessage value) sendImageMessage,
     required TResult Function(_SendFileMessage value) sendFileMessage,
     required TResult Function(_GetAllMessages value) getAllMessages,
+    required TResult Function(_GetAllMessagesByCourse value)
+        getAllMessagesByCourse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,6 +129,7 @@ mixin _$ChatEvent {
     TResult Function(_SendImageMessage value)? sendImageMessage,
     TResult Function(_SendFileMessage value)? sendFileMessage,
     TResult Function(_GetAllMessages value)? getAllMessages,
+    TResult Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,14 +188,21 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String message, String fromUserId) sendMessage,
-    required TResult Function(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+    required TResult Function(
+            String message, String fromUserId, String courseTitle)
+        sendMessage,
+    required TResult Function(
+            String message,
+            String courseTitle,
+            String fromUserId,
+            String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)
         sendImageMessage,
     required TResult Function(String message, String fromUserId,
-            ImageUploaderCubit imageUploaderCubit)
+            String courseTitle, ImageUploaderCubit imageUploaderCubit)
         sendFileMessage,
     required TResult Function() getAllMessages,
+    required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
     return started();
   }
@@ -179,14 +211,16 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String message, String fromUserId)? sendMessage,
-    TResult Function(String message, String fromUserId, String imageUrl,
-            ImageUploaderCubit imageUploaderCubit)?
+    TResult Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
         sendImageMessage,
-    TResult Function(String message, String fromUserId,
+    TResult Function(String message, String fromUserId, String courseTitle,
             ImageUploaderCubit imageUploaderCubit)?
         sendFileMessage,
     TResult Function()? getAllMessages,
+    TResult Function(String courseTitle)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -203,6 +237,8 @@ class _$_Started implements _Started {
     required TResult Function(_SendImageMessage value) sendImageMessage,
     required TResult Function(_SendFileMessage value) sendFileMessage,
     required TResult Function(_GetAllMessages value) getAllMessages,
+    required TResult Function(_GetAllMessagesByCourse value)
+        getAllMessagesByCourse,
   }) {
     return started(this);
   }
@@ -215,6 +251,7 @@ class _$_Started implements _Started {
     TResult Function(_SendImageMessage value)? sendImageMessage,
     TResult Function(_SendFileMessage value)? sendFileMessage,
     TResult Function(_GetAllMessages value)? getAllMessages,
+    TResult Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -233,7 +270,7 @@ abstract class _$SendMessageCopyWith<$Res> {
   factory _$SendMessageCopyWith(
           _SendMessage value, $Res Function(_SendMessage) then) =
       __$SendMessageCopyWithImpl<$Res>;
-  $Res call({String message, String fromUserId});
+  $Res call({String message, String fromUserId, String courseTitle});
 }
 
 /// @nodoc
@@ -250,6 +287,7 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
   $Res call({
     Object? message = freezed,
     Object? fromUserId = freezed,
+    Object? courseTitle = freezed,
   }) {
     return _then(_SendMessage(
       message: message == freezed
@@ -260,6 +298,10 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
           ? _value.fromUserId
           : fromUserId // ignore: cast_nullable_to_non_nullable
               as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -267,16 +309,21 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SendMessage implements _SendMessage {
-  const _$_SendMessage({required this.message, required this.fromUserId});
+  const _$_SendMessage(
+      {required this.message,
+      required this.fromUserId,
+      required this.courseTitle});
 
   @override
   final String message;
   @override
   final String fromUserId;
+  @override
+  final String courseTitle;
 
   @override
   String toString() {
-    return 'ChatEvent.sendMessage(message: $message, fromUserId: $fromUserId)';
+    return 'ChatEvent.sendMessage(message: $message, fromUserId: $fromUserId, courseTitle: $courseTitle)';
   }
 
   @override
@@ -288,14 +335,18 @@ class _$_SendMessage implements _SendMessage {
                     .equals(other.message, message)) &&
             (identical(other.fromUserId, fromUserId) ||
                 const DeepCollectionEquality()
-                    .equals(other.fromUserId, fromUserId)));
+                    .equals(other.fromUserId, fromUserId)) &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(fromUserId);
+      const DeepCollectionEquality().hash(fromUserId) ^
+      const DeepCollectionEquality().hash(courseTitle);
 
   @JsonKey(ignore: true)
   @override
@@ -306,34 +357,43 @@ class _$_SendMessage implements _SendMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String message, String fromUserId) sendMessage,
-    required TResult Function(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+    required TResult Function(
+            String message, String fromUserId, String courseTitle)
+        sendMessage,
+    required TResult Function(
+            String message,
+            String courseTitle,
+            String fromUserId,
+            String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)
         sendImageMessage,
     required TResult Function(String message, String fromUserId,
-            ImageUploaderCubit imageUploaderCubit)
+            String courseTitle, ImageUploaderCubit imageUploaderCubit)
         sendFileMessage,
     required TResult Function() getAllMessages,
+    required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
-    return sendMessage(message, fromUserId);
+    return sendMessage(message, fromUserId, courseTitle);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String message, String fromUserId)? sendMessage,
-    TResult Function(String message, String fromUserId, String imageUrl,
-            ImageUploaderCubit imageUploaderCubit)?
+    TResult Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
         sendImageMessage,
-    TResult Function(String message, String fromUserId,
+    TResult Function(String message, String fromUserId, String courseTitle,
             ImageUploaderCubit imageUploaderCubit)?
         sendFileMessage,
     TResult Function()? getAllMessages,
+    TResult Function(String courseTitle)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
-      return sendMessage(message, fromUserId);
+      return sendMessage(message, fromUserId, courseTitle);
     }
     return orElse();
   }
@@ -346,6 +406,8 @@ class _$_SendMessage implements _SendMessage {
     required TResult Function(_SendImageMessage value) sendImageMessage,
     required TResult Function(_SendFileMessage value) sendFileMessage,
     required TResult Function(_GetAllMessages value) getAllMessages,
+    required TResult Function(_GetAllMessagesByCourse value)
+        getAllMessagesByCourse,
   }) {
     return sendMessage(this);
   }
@@ -358,6 +420,7 @@ class _$_SendMessage implements _SendMessage {
     TResult Function(_SendImageMessage value)? sendImageMessage,
     TResult Function(_SendFileMessage value)? sendFileMessage,
     TResult Function(_GetAllMessages value)? getAllMessages,
+    TResult Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
@@ -369,10 +432,13 @@ class _$_SendMessage implements _SendMessage {
 
 abstract class _SendMessage implements ChatEvent {
   const factory _SendMessage(
-      {required String message, required String fromUserId}) = _$_SendMessage;
+      {required String message,
+      required String fromUserId,
+      required String courseTitle}) = _$_SendMessage;
 
   String get message => throw _privateConstructorUsedError;
   String get fromUserId => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$SendMessageCopyWith<_SendMessage> get copyWith =>
       throw _privateConstructorUsedError;
@@ -385,6 +451,7 @@ abstract class _$SendImageMessageCopyWith<$Res> {
       __$SendImageMessageCopyWithImpl<$Res>;
   $Res call(
       {String message,
+      String courseTitle,
       String fromUserId,
       String imageUrl,
       ImageUploaderCubit imageUploaderCubit});
@@ -404,6 +471,7 @@ class __$SendImageMessageCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = freezed,
+    Object? courseTitle = freezed,
     Object? fromUserId = freezed,
     Object? imageUrl = freezed,
     Object? imageUploaderCubit = freezed,
@@ -412,6 +480,10 @@ class __$SendImageMessageCopyWithImpl<$Res>
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
       fromUserId: fromUserId == freezed
           ? _value.fromUserId
@@ -434,12 +506,15 @@ class __$SendImageMessageCopyWithImpl<$Res>
 class _$_SendImageMessage implements _SendImageMessage {
   const _$_SendImageMessage(
       {required this.message,
+      required this.courseTitle,
       required this.fromUserId,
       required this.imageUrl,
       required this.imageUploaderCubit});
 
   @override
   final String message;
+  @override
+  final String courseTitle;
   @override
   final String fromUserId;
   @override
@@ -449,7 +524,7 @@ class _$_SendImageMessage implements _SendImageMessage {
 
   @override
   String toString() {
-    return 'ChatEvent.sendImageMessage(message: $message, fromUserId: $fromUserId, imageUrl: $imageUrl, imageUploaderCubit: $imageUploaderCubit)';
+    return 'ChatEvent.sendImageMessage(message: $message, courseTitle: $courseTitle, fromUserId: $fromUserId, imageUrl: $imageUrl, imageUploaderCubit: $imageUploaderCubit)';
   }
 
   @override
@@ -459,6 +534,9 @@ class _$_SendImageMessage implements _SendImageMessage {
             (identical(other.message, message) ||
                 const DeepCollectionEquality()
                     .equals(other.message, message)) &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)) &&
             (identical(other.fromUserId, fromUserId) ||
                 const DeepCollectionEquality()
                     .equals(other.fromUserId, fromUserId)) &&
@@ -474,6 +552,7 @@ class _$_SendImageMessage implements _SendImageMessage {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(message) ^
+      const DeepCollectionEquality().hash(courseTitle) ^
       const DeepCollectionEquality().hash(fromUserId) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(imageUploaderCubit);
@@ -487,35 +566,45 @@ class _$_SendImageMessage implements _SendImageMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String message, String fromUserId) sendMessage,
-    required TResult Function(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+    required TResult Function(
+            String message, String fromUserId, String courseTitle)
+        sendMessage,
+    required TResult Function(
+            String message,
+            String courseTitle,
+            String fromUserId,
+            String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)
         sendImageMessage,
     required TResult Function(String message, String fromUserId,
-            ImageUploaderCubit imageUploaderCubit)
+            String courseTitle, ImageUploaderCubit imageUploaderCubit)
         sendFileMessage,
     required TResult Function() getAllMessages,
+    required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
-    return sendImageMessage(message, fromUserId, imageUrl, imageUploaderCubit);
+    return sendImageMessage(
+        message, courseTitle, fromUserId, imageUrl, imageUploaderCubit);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String message, String fromUserId)? sendMessage,
-    TResult Function(String message, String fromUserId, String imageUrl,
-            ImageUploaderCubit imageUploaderCubit)?
+    TResult Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
         sendImageMessage,
-    TResult Function(String message, String fromUserId,
+    TResult Function(String message, String fromUserId, String courseTitle,
             ImageUploaderCubit imageUploaderCubit)?
         sendFileMessage,
     TResult Function()? getAllMessages,
+    TResult Function(String courseTitle)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (sendImageMessage != null) {
       return sendImageMessage(
-          message, fromUserId, imageUrl, imageUploaderCubit);
+          message, courseTitle, fromUserId, imageUrl, imageUploaderCubit);
     }
     return orElse();
   }
@@ -528,6 +617,8 @@ class _$_SendImageMessage implements _SendImageMessage {
     required TResult Function(_SendImageMessage value) sendImageMessage,
     required TResult Function(_SendFileMessage value) sendFileMessage,
     required TResult Function(_GetAllMessages value) getAllMessages,
+    required TResult Function(_GetAllMessagesByCourse value)
+        getAllMessagesByCourse,
   }) {
     return sendImageMessage(this);
   }
@@ -540,6 +631,7 @@ class _$_SendImageMessage implements _SendImageMessage {
     TResult Function(_SendImageMessage value)? sendImageMessage,
     TResult Function(_SendFileMessage value)? sendFileMessage,
     TResult Function(_GetAllMessages value)? getAllMessages,
+    TResult Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (sendImageMessage != null) {
@@ -552,11 +644,13 @@ class _$_SendImageMessage implements _SendImageMessage {
 abstract class _SendImageMessage implements ChatEvent {
   const factory _SendImageMessage(
       {required String message,
+      required String courseTitle,
       required String fromUserId,
       required String imageUrl,
       required ImageUploaderCubit imageUploaderCubit}) = _$_SendImageMessage;
 
   String get message => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
   String get fromUserId => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   ImageUploaderCubit get imageUploaderCubit =>
@@ -574,6 +668,7 @@ abstract class _$SendFileMessageCopyWith<$Res> {
   $Res call(
       {String message,
       String fromUserId,
+      String courseTitle,
       ImageUploaderCubit imageUploaderCubit});
 }
 
@@ -591,6 +686,7 @@ class __$SendFileMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
   $Res call({
     Object? message = freezed,
     Object? fromUserId = freezed,
+    Object? courseTitle = freezed,
     Object? imageUploaderCubit = freezed,
   }) {
     return _then(_SendFileMessage(
@@ -601,6 +697,10 @@ class __$SendFileMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
       fromUserId: fromUserId == freezed
           ? _value.fromUserId
           : fromUserId // ignore: cast_nullable_to_non_nullable
+              as String,
+      courseTitle: courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
       imageUploaderCubit: imageUploaderCubit == freezed
           ? _value.imageUploaderCubit
@@ -616,6 +716,7 @@ class _$_SendFileMessage implements _SendFileMessage {
   const _$_SendFileMessage(
       {required this.message,
       required this.fromUserId,
+      required this.courseTitle,
       required this.imageUploaderCubit});
 
   @override
@@ -623,11 +724,13 @@ class _$_SendFileMessage implements _SendFileMessage {
   @override
   final String fromUserId;
   @override
+  final String courseTitle;
+  @override
   final ImageUploaderCubit imageUploaderCubit;
 
   @override
   String toString() {
-    return 'ChatEvent.sendFileMessage(message: $message, fromUserId: $fromUserId, imageUploaderCubit: $imageUploaderCubit)';
+    return 'ChatEvent.sendFileMessage(message: $message, fromUserId: $fromUserId, courseTitle: $courseTitle, imageUploaderCubit: $imageUploaderCubit)';
   }
 
   @override
@@ -640,6 +743,9 @@ class _$_SendFileMessage implements _SendFileMessage {
             (identical(other.fromUserId, fromUserId) ||
                 const DeepCollectionEquality()
                     .equals(other.fromUserId, fromUserId)) &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)) &&
             (identical(other.imageUploaderCubit, imageUploaderCubit) ||
                 const DeepCollectionEquality()
                     .equals(other.imageUploaderCubit, imageUploaderCubit)));
@@ -650,6 +756,7 @@ class _$_SendFileMessage implements _SendFileMessage {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(message) ^
       const DeepCollectionEquality().hash(fromUserId) ^
+      const DeepCollectionEquality().hash(courseTitle) ^
       const DeepCollectionEquality().hash(imageUploaderCubit);
 
   @JsonKey(ignore: true)
@@ -661,34 +768,45 @@ class _$_SendFileMessage implements _SendFileMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String message, String fromUserId) sendMessage,
-    required TResult Function(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+    required TResult Function(
+            String message, String fromUserId, String courseTitle)
+        sendMessage,
+    required TResult Function(
+            String message,
+            String courseTitle,
+            String fromUserId,
+            String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)
         sendImageMessage,
     required TResult Function(String message, String fromUserId,
-            ImageUploaderCubit imageUploaderCubit)
+            String courseTitle, ImageUploaderCubit imageUploaderCubit)
         sendFileMessage,
     required TResult Function() getAllMessages,
+    required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
-    return sendFileMessage(message, fromUserId, imageUploaderCubit);
+    return sendFileMessage(
+        message, fromUserId, courseTitle, imageUploaderCubit);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String message, String fromUserId)? sendMessage,
-    TResult Function(String message, String fromUserId, String imageUrl,
-            ImageUploaderCubit imageUploaderCubit)?
+    TResult Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
         sendImageMessage,
-    TResult Function(String message, String fromUserId,
+    TResult Function(String message, String fromUserId, String courseTitle,
             ImageUploaderCubit imageUploaderCubit)?
         sendFileMessage,
     TResult Function()? getAllMessages,
+    TResult Function(String courseTitle)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (sendFileMessage != null) {
-      return sendFileMessage(message, fromUserId, imageUploaderCubit);
+      return sendFileMessage(
+          message, fromUserId, courseTitle, imageUploaderCubit);
     }
     return orElse();
   }
@@ -701,6 +819,8 @@ class _$_SendFileMessage implements _SendFileMessage {
     required TResult Function(_SendImageMessage value) sendImageMessage,
     required TResult Function(_SendFileMessage value) sendFileMessage,
     required TResult Function(_GetAllMessages value) getAllMessages,
+    required TResult Function(_GetAllMessagesByCourse value)
+        getAllMessagesByCourse,
   }) {
     return sendFileMessage(this);
   }
@@ -713,6 +833,7 @@ class _$_SendFileMessage implements _SendFileMessage {
     TResult Function(_SendImageMessage value)? sendImageMessage,
     TResult Function(_SendFileMessage value)? sendFileMessage,
     TResult Function(_GetAllMessages value)? getAllMessages,
+    TResult Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (sendFileMessage != null) {
@@ -726,10 +847,12 @@ abstract class _SendFileMessage implements ChatEvent {
   const factory _SendFileMessage(
       {required String message,
       required String fromUserId,
+      required String courseTitle,
       required ImageUploaderCubit imageUploaderCubit}) = _$_SendFileMessage;
 
   String get message => throw _privateConstructorUsedError;
   String get fromUserId => throw _privateConstructorUsedError;
+  String get courseTitle => throw _privateConstructorUsedError;
   ImageUploaderCubit get imageUploaderCubit =>
       throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -777,14 +900,21 @@ class _$_GetAllMessages implements _GetAllMessages {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(String message, String fromUserId) sendMessage,
-    required TResult Function(String message, String fromUserId,
-            String imageUrl, ImageUploaderCubit imageUploaderCubit)
+    required TResult Function(
+            String message, String fromUserId, String courseTitle)
+        sendMessage,
+    required TResult Function(
+            String message,
+            String courseTitle,
+            String fromUserId,
+            String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)
         sendImageMessage,
     required TResult Function(String message, String fromUserId,
-            ImageUploaderCubit imageUploaderCubit)
+            String courseTitle, ImageUploaderCubit imageUploaderCubit)
         sendFileMessage,
     required TResult Function() getAllMessages,
+    required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
     return getAllMessages();
   }
@@ -793,14 +923,16 @@ class _$_GetAllMessages implements _GetAllMessages {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(String message, String fromUserId)? sendMessage,
-    TResult Function(String message, String fromUserId, String imageUrl,
-            ImageUploaderCubit imageUploaderCubit)?
+    TResult Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
         sendImageMessage,
-    TResult Function(String message, String fromUserId,
+    TResult Function(String message, String fromUserId, String courseTitle,
             ImageUploaderCubit imageUploaderCubit)?
         sendFileMessage,
     TResult Function()? getAllMessages,
+    TResult Function(String courseTitle)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (getAllMessages != null) {
@@ -817,6 +949,8 @@ class _$_GetAllMessages implements _GetAllMessages {
     required TResult Function(_SendImageMessage value) sendImageMessage,
     required TResult Function(_SendFileMessage value) sendFileMessage,
     required TResult Function(_GetAllMessages value) getAllMessages,
+    required TResult Function(_GetAllMessagesByCourse value)
+        getAllMessagesByCourse,
   }) {
     return getAllMessages(this);
   }
@@ -829,6 +963,7 @@ class _$_GetAllMessages implements _GetAllMessages {
     TResult Function(_SendImageMessage value)? sendImageMessage,
     TResult Function(_SendFileMessage value)? sendFileMessage,
     TResult Function(_GetAllMessages value)? getAllMessages,
+    TResult Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
     required TResult orElse(),
   }) {
     if (getAllMessages != null) {
@@ -840,6 +975,157 @@ class _$_GetAllMessages implements _GetAllMessages {
 
 abstract class _GetAllMessages implements ChatEvent {
   const factory _GetAllMessages() = _$_GetAllMessages;
+}
+
+/// @nodoc
+abstract class _$GetAllMessagesByCourseCopyWith<$Res> {
+  factory _$GetAllMessagesByCourseCopyWith(_GetAllMessagesByCourse value,
+          $Res Function(_GetAllMessagesByCourse) then) =
+      __$GetAllMessagesByCourseCopyWithImpl<$Res>;
+  $Res call({String courseTitle});
+}
+
+/// @nodoc
+class __$GetAllMessagesByCourseCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res>
+    implements _$GetAllMessagesByCourseCopyWith<$Res> {
+  __$GetAllMessagesByCourseCopyWithImpl(_GetAllMessagesByCourse _value,
+      $Res Function(_GetAllMessagesByCourse) _then)
+      : super(_value, (v) => _then(v as _GetAllMessagesByCourse));
+
+  @override
+  _GetAllMessagesByCourse get _value => super._value as _GetAllMessagesByCourse;
+
+  @override
+  $Res call({
+    Object? courseTitle = freezed,
+  }) {
+    return _then(_GetAllMessagesByCourse(
+      courseTitle == freezed
+          ? _value.courseTitle
+          : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetAllMessagesByCourse implements _GetAllMessagesByCourse {
+  const _$_GetAllMessagesByCourse(this.courseTitle);
+
+  @override
+  final String courseTitle;
+
+  @override
+  String toString() {
+    return 'ChatEvent.getAllMessagesByCourse(courseTitle: $courseTitle)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _GetAllMessagesByCourse &&
+            (identical(other.courseTitle, courseTitle) ||
+                const DeepCollectionEquality()
+                    .equals(other.courseTitle, courseTitle)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetAllMessagesByCourseCopyWith<_GetAllMessagesByCourse> get copyWith =>
+      __$GetAllMessagesByCourseCopyWithImpl<_GetAllMessagesByCourse>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(
+            String message, String fromUserId, String courseTitle)
+        sendMessage,
+    required TResult Function(
+            String message,
+            String courseTitle,
+            String fromUserId,
+            String imageUrl,
+            ImageUploaderCubit imageUploaderCubit)
+        sendImageMessage,
+    required TResult Function(String message, String fromUserId,
+            String courseTitle, ImageUploaderCubit imageUploaderCubit)
+        sendFileMessage,
+    required TResult Function() getAllMessages,
+    required TResult Function(String courseTitle) getAllMessagesByCourse,
+  }) {
+    return getAllMessagesByCourse(courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult Function(String message, String fromUserId, String courseTitle,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendFileMessage,
+    TResult Function()? getAllMessages,
+    TResult Function(String courseTitle)? getAllMessagesByCourse,
+    required TResult orElse(),
+  }) {
+    if (getAllMessagesByCourse != null) {
+      return getAllMessagesByCourse(courseTitle);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SendMessage value) sendMessage,
+    required TResult Function(_SendImageMessage value) sendImageMessage,
+    required TResult Function(_SendFileMessage value) sendFileMessage,
+    required TResult Function(_GetAllMessages value) getAllMessages,
+    required TResult Function(_GetAllMessagesByCourse value)
+        getAllMessagesByCourse,
+  }) {
+    return getAllMessagesByCourse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SendMessage value)? sendMessage,
+    TResult Function(_SendImageMessage value)? sendImageMessage,
+    TResult Function(_SendFileMessage value)? sendFileMessage,
+    TResult Function(_GetAllMessages value)? getAllMessages,
+    TResult Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
+    required TResult orElse(),
+  }) {
+    if (getAllMessagesByCourse != null) {
+      return getAllMessagesByCourse(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAllMessagesByCourse implements ChatEvent {
+  const factory _GetAllMessagesByCourse(String courseTitle) =
+      _$_GetAllMessagesByCourse;
+
+  String get courseTitle => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$GetAllMessagesByCourseCopyWith<_GetAllMessagesByCourse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

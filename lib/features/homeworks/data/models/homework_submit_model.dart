@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/entities/homework_submit_entity.dart';
 
 class HomeworkSubmitModel extends HomeworkSubmitEntity {

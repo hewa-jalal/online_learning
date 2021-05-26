@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
 
 import 'package:bubble/bubble.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart' as chatUi;
@@ -29,9 +26,11 @@ class ChatPage extends StatefulWidget {
   const ChatPage({
     Key? key,
     required this.userEntity,
+    required this.courseTitle,
   }) : super(key: key);
 
   final UserEntity userEntity;
+  final String courseTitle;
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -67,11 +66,16 @@ class _ChatPageState extends State<ChatPage> {
 
     // TODO: get correct fromUserId
     chatBloc.add(
-      ChatEvent.sendMessage(message: message.text, fromUserId: '200'),
+      ChatEvent.sendMessage(
+        message: message.text,
+        fromUserId: '200',
+        courseTitle: courseTitle,
+      ),
     );
   }
 
   UserEntity get user => widget.userEntity;
+  String get courseTitle => widget.courseTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +90,7 @@ class _ChatPageState extends State<ChatPage> {
 
     final chatBloc = context.read<ChatBloc>();
     if (ModalRoute.of(context)!.isCurrent) {
-      chatBloc.add(ChatEvent.getAllMessages());
+      chatBloc.add(ChatEvent.getAllMessagesByCourse(courseTitle));
     }
     return BlocBuilder<UserAuthBloc, UserAuthState>(builder: (context, state) {
       return SafeArea(
@@ -155,6 +159,7 @@ class _ChatPageState extends State<ChatPage> {
                       context,
                       chatBloc: chatBloc,
                       imageUploaderCubit: imageUploaderCubit,
+                      courseTitle: courseTitle,
                     ),
                     theme: chatUi.DarkChatTheme(),
                     onMessageTap: _handleMessageTap,
@@ -399,11 +404,7 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () => addMediaModal(
-              context,
-              chatBloc: chatBloc,
-              imageUploaderCubit: imageUploaderCubit,
-            ),
+            onTap: () {},
             child: Container(
               padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
@@ -470,14 +471,15 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                 size: 15,
               ),
               onPressed: () {
-                widget.chatBloc.add(
-                  ChatEvent.sendMessage(
-                    message: msg,
-                    fromUserId: '21',
-                    // imageUrl: 'someUrl',
-                    // imageUploaderCubit: imageUploaderCubit,
-                  ),
-                );
+                // widget.chatBloc.add(
+                //   ChatEvent.sendMessage(
+                //     message: msg,
+                //     fromUserId: '21',
+                //     courseTitle: courseTitle,
+                //     // imageUrl: 'someUrl',
+                //     // imageUploaderCubit: imageUploaderCubit,
+                //   ),
+                // );
                 _controller.clear();
                 Timer.periodic(Duration(milliseconds: 100), (timer) {
                   if (mounted && widget.chatListController.hasClients) {
@@ -500,6 +502,7 @@ void addMediaModal(
   context, {
   required ChatBloc chatBloc,
   required ImageUploaderCubit imageUploaderCubit,
+  required String courseTitle,
 }) {
   showModalBottomSheet(
       context: context,
@@ -548,6 +551,7 @@ void addMediaModal(
                           fromUserId: '21',
                           imageUrl: 'someUrl',
                           imageUploaderCubit: imageUploaderCubit,
+                          courseTitle: courseTitle,
                         ),
                       );
                       Navigator.pop(context);
@@ -560,6 +564,7 @@ void addMediaModal(
                           message: 'msgFile',
                           fromUserId: '21',
                           imageUploaderCubit: imageUploaderCubit,
+                          courseTitle: courseTitle,
                         ),
                       );
                       Navigator.pop(context);
@@ -568,26 +573,26 @@ void addMediaModal(
                     subtitle: "Share files",
                     icon: Icons.tab,
                   ),
-                  ModalTile(
-                      onTap: () {},
-                      title: "Contact",
-                      subtitle: "Share contacts",
-                      icon: Icons.contacts),
-                  ModalTile(
-                      onTap: () {},
-                      title: "Location",
-                      subtitle: "Share a location",
-                      icon: Icons.add_location),
-                  ModalTile(
-                      onTap: () {},
-                      title: "Schedule Call",
-                      subtitle: "Arrange a skype call and get reminders",
-                      icon: Icons.schedule),
-                  ModalTile(
-                      onTap: () {},
-                      title: "Create Poll",
-                      subtitle: "Share polls",
-                      icon: Icons.poll)
+                  // ModalTile(
+                  //     onTap: () {},
+                  //     title: "Contact",
+                  //     subtitle: "Share contacts",
+                  //     icon: Icons.contacts),
+                  // ModalTile(
+                  //     onTap: () {},
+                  //     title: "Location",
+                  //     subtitle: "Share a location",
+                  //     icon: Icons.add_location),
+                  // ModalTile(
+                  //     onTap: () {},
+                  //     title: "Schedule Call",
+                  //     subtitle: "Arrange a skype call and get reminders",
+                  //     icon: Icons.schedule),
+                  // ModalTile(
+                  //     onTap: () {},
+                  //     title: "Create Poll",
+                  //     subtitle: "Share polls",
+                  //     icon: Icons.poll)
                 ],
               ),
             ),

@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
 import '../video_repository.dart';
 
-part 'video_state.dart';
 part 'video_cubit.freezed.dart';
+part 'video_state.dart';
 
 class VideoCubit extends Cubit<VideoState> {
   VideoCubit(this._videoRepositoy) : super(VideoState.initial());

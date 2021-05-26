@@ -30,9 +30,10 @@ class _$UserAuthEventTearOff {
     );
   }
 
-  _GetUserById getUserById({required int id}) {
+  _GetUserById getUserById({required int id, required String password}) {
     return _GetUserById(
       id: id,
+      password: password,
     );
   }
 
@@ -57,7 +58,7 @@ mixin _$UserAuthEvent {
     required TResult Function() started,
     required TResult Function() updateUserTime,
     required TResult Function(bool isOnline) updateUserOnlineStatus,
-    required TResult Function(int id) getUserById,
+    required TResult Function(int id, String password) getUserById,
     required TResult Function() getAllUsers,
     required TResult Function(String id) getAllSubmittedUsers,
   }) =>
@@ -67,7 +68,7 @@ mixin _$UserAuthEvent {
     TResult Function()? started,
     TResult Function()? updateUserTime,
     TResult Function(bool isOnline)? updateUserOnlineStatus,
-    TResult Function(int id)? getUserById,
+    TResult Function(int id, String password)? getUserById,
     TResult Function()? getAllUsers,
     TResult Function(String id)? getAllSubmittedUsers,
     required TResult orElse(),
@@ -154,7 +155,7 @@ class _$_Started implements _Started {
     required TResult Function() started,
     required TResult Function() updateUserTime,
     required TResult Function(bool isOnline) updateUserOnlineStatus,
-    required TResult Function(int id) getUserById,
+    required TResult Function(int id, String password) getUserById,
     required TResult Function() getAllUsers,
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
@@ -167,7 +168,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function()? updateUserTime,
     TResult Function(bool isOnline)? updateUserOnlineStatus,
-    TResult Function(int id)? getUserById,
+    TResult Function(int id, String password)? getUserById,
     TResult Function()? getAllUsers,
     TResult Function(String id)? getAllSubmittedUsers,
     required TResult orElse(),
@@ -257,7 +258,7 @@ class _$_UpdateUserTime implements _UpdateUserTime {
     required TResult Function() started,
     required TResult Function() updateUserTime,
     required TResult Function(bool isOnline) updateUserOnlineStatus,
-    required TResult Function(int id) getUserById,
+    required TResult Function(int id, String password) getUserById,
     required TResult Function() getAllUsers,
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
@@ -270,7 +271,7 @@ class _$_UpdateUserTime implements _UpdateUserTime {
     TResult Function()? started,
     TResult Function()? updateUserTime,
     TResult Function(bool isOnline)? updateUserOnlineStatus,
-    TResult Function(int id)? getUserById,
+    TResult Function(int id, String password)? getUserById,
     TResult Function()? getAllUsers,
     TResult Function(String id)? getAllSubmittedUsers,
     required TResult orElse(),
@@ -387,7 +388,7 @@ class _$_UpdateUserOnlineStatus implements _UpdateUserOnlineStatus {
     required TResult Function() started,
     required TResult Function() updateUserTime,
     required TResult Function(bool isOnline) updateUserOnlineStatus,
-    required TResult Function(int id) getUserById,
+    required TResult Function(int id, String password) getUserById,
     required TResult Function() getAllUsers,
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
@@ -400,7 +401,7 @@ class _$_UpdateUserOnlineStatus implements _UpdateUserOnlineStatus {
     TResult Function()? started,
     TResult Function()? updateUserTime,
     TResult Function(bool isOnline)? updateUserOnlineStatus,
-    TResult Function(int id)? getUserById,
+    TResult Function(int id, String password)? getUserById,
     TResult Function()? getAllUsers,
     TResult Function(String id)? getAllSubmittedUsers,
     required TResult orElse(),
@@ -458,7 +459,7 @@ abstract class _$GetUserByIdCopyWith<$Res> {
   factory _$GetUserByIdCopyWith(
           _GetUserById value, $Res Function(_GetUserById) then) =
       __$GetUserByIdCopyWithImpl<$Res>;
-  $Res call({int id});
+  $Res call({int id, String password});
 }
 
 /// @nodoc
@@ -474,12 +475,17 @@ class __$GetUserByIdCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? password = freezed,
   }) {
     return _then(_GetUserById(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -487,14 +493,16 @@ class __$GetUserByIdCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_GetUserById implements _GetUserById {
-  const _$_GetUserById({required this.id});
+  const _$_GetUserById({required this.id, required this.password});
 
   @override
   final int id;
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'UserAuthEvent.getUserById(id: $id)';
+    return 'UserAuthEvent.getUserById(id: $id, password: $password)';
   }
 
   @override
@@ -502,12 +510,17 @@ class _$_GetUserById implements _GetUserById {
     return identical(this, other) ||
         (other is _GetUserById &&
             (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.password, password) ||
+                const DeepCollectionEquality()
+                    .equals(other.password, password)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(password);
 
   @JsonKey(ignore: true)
   @override
@@ -520,11 +533,11 @@ class _$_GetUserById implements _GetUserById {
     required TResult Function() started,
     required TResult Function() updateUserTime,
     required TResult Function(bool isOnline) updateUserOnlineStatus,
-    required TResult Function(int id) getUserById,
+    required TResult Function(int id, String password) getUserById,
     required TResult Function() getAllUsers,
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
-    return getUserById(id);
+    return getUserById(id, password);
   }
 
   @override
@@ -533,13 +546,13 @@ class _$_GetUserById implements _GetUserById {
     TResult Function()? started,
     TResult Function()? updateUserTime,
     TResult Function(bool isOnline)? updateUserOnlineStatus,
-    TResult Function(int id)? getUserById,
+    TResult Function(int id, String password)? getUserById,
     TResult Function()? getAllUsers,
     TResult Function(String id)? getAllSubmittedUsers,
     required TResult orElse(),
   }) {
     if (getUserById != null) {
-      return getUserById(id);
+      return getUserById(id, password);
     }
     return orElse();
   }
@@ -577,9 +590,11 @@ class _$_GetUserById implements _GetUserById {
 }
 
 abstract class _GetUserById implements UserAuthEvent {
-  const factory _GetUserById({required int id}) = _$_GetUserById;
+  const factory _GetUserById({required int id, required String password}) =
+      _$_GetUserById;
 
   int get id => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$GetUserByIdCopyWith<_GetUserById> get copyWith =>
       throw _privateConstructorUsedError;
@@ -627,7 +642,7 @@ class _$_GetAllUsers implements _GetAllUsers {
     required TResult Function() started,
     required TResult Function() updateUserTime,
     required TResult Function(bool isOnline) updateUserOnlineStatus,
-    required TResult Function(int id) getUserById,
+    required TResult Function(int id, String password) getUserById,
     required TResult Function() getAllUsers,
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
@@ -640,7 +655,7 @@ class _$_GetAllUsers implements _GetAllUsers {
     TResult Function()? started,
     TResult Function()? updateUserTime,
     TResult Function(bool isOnline)? updateUserOnlineStatus,
-    TResult Function(int id)? getUserById,
+    TResult Function(int id, String password)? getUserById,
     TResult Function()? getAllUsers,
     TResult Function(String id)? getAllSubmittedUsers,
     required TResult orElse(),
@@ -756,7 +771,7 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
     required TResult Function() started,
     required TResult Function() updateUserTime,
     required TResult Function(bool isOnline) updateUserOnlineStatus,
-    required TResult Function(int id) getUserById,
+    required TResult Function(int id, String password) getUserById,
     required TResult Function() getAllUsers,
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
@@ -769,7 +784,7 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
     TResult Function()? started,
     TResult Function()? updateUserTime,
     TResult Function(bool isOnline)? updateUserOnlineStatus,
-    TResult Function(int id)? getUserById,
+    TResult Function(int id, String password)? getUserById,
     TResult Function()? getAllUsers,
     TResult Function(String id)? getAllSubmittedUsers,
     required TResult orElse(),

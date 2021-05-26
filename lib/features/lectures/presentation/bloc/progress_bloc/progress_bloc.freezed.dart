@@ -620,10 +620,6 @@ class _$ProgressStateTearOff {
     );
   }
 
-  _Paused paused() {
-    return const _Paused();
-  }
-
   _Resumed resumed() {
     return const _Resumed();
   }
@@ -642,7 +638,6 @@ mixin _$ProgressState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(double percentage) loading,
-    required TResult Function() paused,
     required TResult Function() resumed,
     required TResult Function() loaded,
   }) =>
@@ -651,7 +646,6 @@ mixin _$ProgressState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(double percentage)? loading,
-    TResult Function()? paused,
     TResult Function()? resumed,
     TResult Function()? loaded,
     required TResult orElse(),
@@ -661,7 +655,6 @@ mixin _$ProgressState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Paused value) paused,
     required TResult Function(_Resumed value) resumed,
     required TResult Function(_Loaded value) loaded,
   }) =>
@@ -670,7 +663,6 @@ mixin _$ProgressState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Paused value)? paused,
     TResult Function(_Resumed value)? resumed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -734,7 +726,6 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(double percentage) loading,
-    required TResult Function() paused,
     required TResult Function() resumed,
     required TResult Function() loaded,
   }) {
@@ -746,7 +737,6 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(double percentage)? loading,
-    TResult Function()? paused,
     TResult Function()? resumed,
     TResult Function()? loaded,
     required TResult orElse(),
@@ -762,7 +752,6 @@ class _$_Initial implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Paused value) paused,
     required TResult Function(_Resumed value) resumed,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -774,7 +763,6 @@ class _$_Initial implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Paused value)? paused,
     TResult Function(_Resumed value)? resumed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -855,7 +843,6 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(double percentage) loading,
-    required TResult Function() paused,
     required TResult Function() resumed,
     required TResult Function() loaded,
   }) {
@@ -867,7 +854,6 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(double percentage)? loading,
-    TResult Function()? paused,
     TResult Function()? resumed,
     TResult Function()? loaded,
     required TResult orElse(),
@@ -883,7 +869,6 @@ class _$_Loading implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Paused value) paused,
     required TResult Function(_Resumed value) resumed,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -895,7 +880,6 @@ class _$_Loading implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Paused value)? paused,
     TResult Function(_Resumed value)? resumed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -914,101 +898,6 @@ abstract class _Loading implements ProgressState {
   @JsonKey(ignore: true)
   _$LoadingCopyWith<_Loading> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$PausedCopyWith<$Res> {
-  factory _$PausedCopyWith(_Paused value, $Res Function(_Paused) then) =
-      __$PausedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$PausedCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
-    implements _$PausedCopyWith<$Res> {
-  __$PausedCopyWithImpl(_Paused _value, $Res Function(_Paused) _then)
-      : super(_value, (v) => _then(v as _Paused));
-
-  @override
-  _Paused get _value => super._value as _Paused;
-}
-
-/// @nodoc
-
-class _$_Paused implements _Paused {
-  const _$_Paused();
-
-  @override
-  String toString() {
-    return 'ProgressState.paused()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Paused);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(double percentage) loading,
-    required TResult Function() paused,
-    required TResult Function() resumed,
-    required TResult Function() loaded,
-  }) {
-    return paused();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(double percentage)? loading,
-    TResult Function()? paused,
-    TResult Function()? resumed,
-    TResult Function()? loaded,
-    required TResult orElse(),
-  }) {
-    if (paused != null) {
-      return paused();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Paused value) paused,
-    required TResult Function(_Resumed value) resumed,
-    required TResult Function(_Loaded value) loaded,
-  }) {
-    return paused(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Paused value)? paused,
-    TResult Function(_Resumed value)? resumed,
-    TResult Function(_Loaded value)? loaded,
-    required TResult orElse(),
-  }) {
-    if (paused != null) {
-      return paused(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Paused implements ProgressState {
-  const factory _Paused() = _$_Paused;
 }
 
 /// @nodoc
@@ -1050,7 +939,6 @@ class _$_Resumed implements _Resumed {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(double percentage) loading,
-    required TResult Function() paused,
     required TResult Function() resumed,
     required TResult Function() loaded,
   }) {
@@ -1062,7 +950,6 @@ class _$_Resumed implements _Resumed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(double percentage)? loading,
-    TResult Function()? paused,
     TResult Function()? resumed,
     TResult Function()? loaded,
     required TResult orElse(),
@@ -1078,7 +965,6 @@ class _$_Resumed implements _Resumed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Paused value) paused,
     required TResult Function(_Resumed value) resumed,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -1090,7 +976,6 @@ class _$_Resumed implements _Resumed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Paused value)? paused,
     TResult Function(_Resumed value)? resumed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),
@@ -1145,7 +1030,6 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(double percentage) loading,
-    required TResult Function() paused,
     required TResult Function() resumed,
     required TResult Function() loaded,
   }) {
@@ -1157,7 +1041,6 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(double percentage)? loading,
-    TResult Function()? paused,
     TResult Function()? resumed,
     TResult Function()? loaded,
     required TResult orElse(),
@@ -1173,7 +1056,6 @@ class _$_Loaded implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Paused value) paused,
     required TResult Function(_Resumed value) resumed,
     required TResult Function(_Loaded value) loaded,
   }) {
@@ -1185,7 +1067,6 @@ class _$_Loaded implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Paused value)? paused,
     TResult Function(_Resumed value)? resumed,
     TResult Function(_Loaded value)? loaded,
     required TResult orElse(),

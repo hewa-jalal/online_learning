@@ -7,7 +7,10 @@ abstract class UserAuthEvent with _$UserAuthEvent {
   const factory UserAuthEvent.updateUserOnlineStatus({
     required bool isOnline,
   }) = _UpdateUserOnlineStatus;
-  const factory UserAuthEvent.getUserById({required int id}) = _GetUserById;
+  const factory UserAuthEvent.getUserById({
+    required int id,
+    required String password,
+  }) = _GetUserById;
   const factory UserAuthEvent.getAllUsers() = _GetAllUsers;
   const factory UserAuthEvent.getAllSubmittedUsers({required String id}) =
       _GetAllSubmittedUsers;

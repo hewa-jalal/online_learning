@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../entities/homework_entity.dart';
-import '../entities/homework_submit_entity.dart';
 
 import '../../../user/core/errors/failures.dart';
 import '../../../user/data/models/user_model.dart';
+import '../entities/homework_entity.dart';
+import '../entities/homework_submit_entity.dart';
 
 abstract class HomeworkRepository {
   Future<Either<Failure, Unit>> uploadHomework({

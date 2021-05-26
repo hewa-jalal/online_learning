@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../lectures/presentation/UI/pages/submit_homework_page.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({
@@ -13,40 +14,23 @@ class CourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Card(
-        margin: EdgeInsets.symmetric(horizontal: 6.0),
-        color: Color(0xffA5A6AA),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+      color: APP_PURPlE,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          height: 85.h,
+          child: Center(
+            child: Text(
               courseTitle,
-              // textAlign: TextAlign.center,
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 22.sp),
             ),
-            SizedBox(height: 0.12.sh),
-            // LayoutBuilder(
-            //   builder: (context, constraints) {
-            //     return Padding(
-            //       padding: const EdgeInsets.only(top: 8.0),
-            //       child: SleekCircularSlider(
-            //         appearance: CircularSliderAppearance(
-            //           size: 80.h,
-            //           customColors: CustomSliderColors(
-            //             progressBarColor: Color(0xff5F36DA),
-            //             dotColor: Colors.transparent,
-            //           ),
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ),
-          ],
+          ),
         ),
       ),
     );

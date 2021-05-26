@@ -2,14 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 import 'package:jitsi_meet/room_name_constraint.dart';
 import 'package:jitsi_meet/room_name_constraint_type.dart';
-import 'cubit/video_cubit.dart';
 
 import '../../user/presentation/bloc/user_auth_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/video_cubit.dart';
 
 class VideoChatPage extends StatefulWidget {
   final String courseTitle;
@@ -174,12 +174,10 @@ class _VideoChatPageState extends State<VideoChatPage> {
   }
 
   _joinMeeting([String videoUrl = '']) async {
-    final UserAuthState _userAuthState = context.read<UserAuthBloc>().state;
+    final _userAuthState = context.read<UserAuthBloc>().state;
     final _videoCubit = context.read<VideoCubit>();
 
-    // String? serverUrl =
-    //     serverText.text?.trim()?.isEmpty ?? "" ? null : serverText.text;
-    String? serverUrl;
+    String? serverUrl = serverText.text.trim().isEmpty ? null : serverText.text;
     if (videoUrl.isNotEmpty) {
       serverUrl = videoUrl;
     }

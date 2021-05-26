@@ -1,16 +1,16 @@
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:online_learning/features/lectures/presentation/UI/pages/attendance_page.dart';
-import '../pages/submit_homework_page.dart';
-import '../pages/video_player_page.dart';
-import '../../../../user/presentation/bloc/user_auth_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import '../../../../user/presentation/bloc/user_auth_bloc.dart';
 import '../../../domain/entities/lecture_entity.dart';
 import '../../bloc/lecture_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_launcher/url_launcher.dart' as url_launcher;
-import 'package:get/get.dart';
+import '../pages/attendance_page.dart';
+import '../pages/submit_homework_page.dart';
+import '../pages/video_player_page.dart';
 
 class LectureCard extends StatelessWidget {
   final LectureEntity lecture;
@@ -42,19 +42,19 @@ class LectureCard extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 8.0, right: 8.0),
           child: SelectableText(
-            'dolor sit amet, consectetur adipiscing elit. Quisque quis congue metus, ac tempus eros. Nunc tincidunt eros arcu, ac dictum nulla convallis sed. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus commodo pretium leo, ac dictum lacus pellentesque quis. Fusce suscipit, orci eget venenatis dignissim, purus turpis imperdiet velit, vitae ullamcorper lectus libero eget eros.',
+            lecture.description!,
           ),
         ),
         ListTile(
           hoverColor: Colors.red,
           leading: Icon(
-            MdiIcons.fileVideoOutline,
+            MdiIcons.file,
             color: Color(0xff5F36DA),
             size: 34,
           ),
           title: Row(
             children: [
-              Text('file'),
+              Text('lecture2'),
               Spacer(),
               InkWell(
                 onTap: () => Get.to(

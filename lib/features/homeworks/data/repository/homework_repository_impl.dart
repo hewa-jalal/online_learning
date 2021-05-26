@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import '../datasources/homework_remote_data_source.dart';
+
+import '../../../user/core/errors/failures.dart';
+import '../../../user/data/models/user_model.dart';
 import '../../domain/entities/homework_entity.dart';
 import '../../domain/entities/homework_submit_entity.dart';
 import '../../domain/repository/homework_repository.dart';
-import '../../../user/data/models/user_model.dart';
-import '../../../user/core/errors/failures.dart';
+import '../datasources/homework_remote_data_source.dart';
 
 @LazySingleton(as: HomeworkRepository)
 class HomeworkRepositoryImpl extends HomeworkRepository {

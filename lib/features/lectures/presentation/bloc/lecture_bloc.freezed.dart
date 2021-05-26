@@ -1588,7 +1588,7 @@ class _$LectureStateTearOff {
       {required LectureEntity lecture,
       required String userId,
       required String filePath,
-      required bool isSubmitting,
+      required bool? isSubmitting,
       required List<LectureEntity> lectures,
       required List<String> courseIds,
       required Option<Either<LectureFailure, Unit>>
@@ -1613,7 +1613,7 @@ mixin _$LectureState {
   LectureEntity get lecture => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get filePath => throw _privateConstructorUsedError;
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool? get isSubmitting => throw _privateConstructorUsedError;
   List<LectureEntity> get lectures => throw _privateConstructorUsedError;
   List<String> get courseIds => throw _privateConstructorUsedError;
   Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption =>
@@ -1633,7 +1633,7 @@ abstract class $LectureStateCopyWith<$Res> {
       {LectureEntity lecture,
       String userId,
       String filePath,
-      bool isSubmitting,
+      bool? isSubmitting,
       List<LectureEntity> lectures,
       List<String> courseIds,
       Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption});
@@ -1673,7 +1673,7 @@ class _$LectureStateCopyWithImpl<$Res> implements $LectureStateCopyWith<$Res> {
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       lectures: lectures == freezed
           ? _value.lectures
           : lectures // ignore: cast_nullable_to_non_nullable
@@ -1701,7 +1701,7 @@ abstract class _$LectureStateCopyWith<$Res>
       {LectureEntity lecture,
       String userId,
       String filePath,
-      bool isSubmitting,
+      bool? isSubmitting,
       List<LectureEntity> lectures,
       List<String> courseIds,
       Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption});
@@ -1743,7 +1743,7 @@ class __$LectureStateCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
       isSubmitting: isSubmitting == freezed
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       lectures: lectures == freezed
           ? _value.lectures
           : lectures // ignore: cast_nullable_to_non_nullable
@@ -1779,7 +1779,7 @@ class _$_LectureState implements _LectureState {
   @override
   final String filePath;
   @override
-  final bool isSubmitting;
+  final bool? isSubmitting;
   @override
   final List<LectureEntity> lectures;
   @override
@@ -1842,7 +1842,7 @@ abstract class _LectureState implements LectureState {
       {required LectureEntity lecture,
       required String userId,
       required String filePath,
-      required bool isSubmitting,
+      required bool? isSubmitting,
       required List<LectureEntity> lectures,
       required List<String> courseIds,
       required Option<Either<LectureFailure, Unit>>
@@ -1855,7 +1855,7 @@ abstract class _LectureState implements LectureState {
   @override
   String get filePath => throw _privateConstructorUsedError;
   @override
-  bool get isSubmitting => throw _privateConstructorUsedError;
+  bool? get isSubmitting => throw _privateConstructorUsedError;
   @override
   List<LectureEntity> get lectures => throw _privateConstructorUsedError;
   @override

@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import '../../data/models/message_model.dart';
-import '../repositories/chat_repository.dart';
+
 import '../../../user/core/errors/failures.dart';
 import '../../../user/core/usecase/use_case.dart';
+import '../../data/models/message_model.dart';
+import '../repositories/chat_repository.dart';
 
 @lazySingleton
 class GetAllMessages extends UseCase<List<Message>, NoParams> {

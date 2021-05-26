@@ -3,12 +3,13 @@ import 'package:date_picker_timeline/extra/dimen.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:mime/mime.dart';
-import 'package:online_learning/features/user/data/models/user_model.dart';
+import '../../../../user/data/models/user_model.dart';
 import '../../../../homeworks/presentation/bloc/homework_bloc.dart';
 import '../../bloc/lecture_bloc.dart';
 import '../../bloc/progress_bloc/progress_bloc.dart';
@@ -38,7 +39,7 @@ class _UploadPageState extends State<UploadPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<LectureBloc, LectureState>(
       listener: (context, state) {
-        if (state.isSubmitting) {
+        if (state.isSubmitting!) {
           context.read<ProgressBloc>().add(ProgressEvent.started());
           Get.dialog(ProgressDialog());
         }
@@ -72,10 +73,14 @@ class ProgressDialog extends StatelessWidget {
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.done),
-                      ElevatedButton(
-                        onPressed: () => Get.back(),
-                        child: Text('Done'),
+                      Lottie.asset('assets/lottie/download_finished.json'),
+                      SizedBox(height: 10.h),
+                      SizedBox(
+                        width: 94.w,
+                        child: ElevatedButton(
+                          onPressed: () => Get.back(),
+                          child: Text('Done'),
+                        ),
                       )
                     ],
                   )
@@ -400,6 +405,7 @@ class _LecutreBottomSelection extends StatelessWidget {
                   icon: Icon(MdiIcons.closeBox),
                 ),
               ),
+              SizedBox(height: 24.h),
               ElevatedButton(
                 onPressed: () => lectureBloc.add(
                   LectureEvent.uploadLecture(

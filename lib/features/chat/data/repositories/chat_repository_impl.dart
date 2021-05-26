@@ -19,9 +19,10 @@ class ChatRepositoryImpl extends ChatRepository {
   Future<Either<Failure, Unit>> sendMessage({
     required String message,
     required String fromUserId,
+    required String courseTitle,
   }) async {
     try {
-      remoteDataSource!.sendMessage(message, fromUserId);
+      remoteDataSource!.sendMessage(message, fromUserId, courseTitle);
       return right(unit);
     } on MessageException {
       return left(MessageFailure());
@@ -39,10 +40,23 @@ class ChatRepositoryImpl extends ChatRepository {
   }
 
   @override
+  Future<Either<Failure, List<Message>>> getAllMessagesByCourse(
+      String courseTitle) async {
+    try {
+      final messageList =
+          await remoteDataSource!.getAllMessagesByCourse(courseTitle);
+      return right(messageList);
+    } on MessageException {
+      return left(MessageFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, Unit>> sendImageMessage({
     String? message,
     String? fromUserId,
     String? imageUrl,
+    required String? courseTitle,
     required ImageUploaderCubit imageUploaderCubit,
   }) async {
     try {
@@ -50,6 +64,7 @@ class ChatRepositoryImpl extends ChatRepository {
         imageUrl: imageUrl,
         fromUserId: fromUserId,
         imageUploaderCubit: imageUploaderCubit,
+        courseTitle: courseTitle,
       );
       return right(unit);
     } on MessageException {
@@ -62,6 +77,7 @@ class ChatRepositoryImpl extends ChatRepository {
     required String message,
     required String fromUserId,
     required String? fileUrl,
+    required String? courseTitle,
     required String fileName,
     required int fileSize,
     required ImageUploaderCubit imageUploaderCubit,
@@ -73,6 +89,7 @@ class ChatRepositoryImpl extends ChatRepository {
         imageUploaderCubit: imageUploaderCubit,
         fileSize: fileSize,
         fileName: fileName,
+        courseTitle: courseTitle,
       );
       return right(unit);
     } on MessageException {

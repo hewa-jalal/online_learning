@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import '../entities/lecture_entity.dart';
+
 import '../../../user/core/errors/failures.dart';
 import '../../../user/data/models/user_model.dart';
+import '../entities/lecture_entity.dart';
 
 abstract class LecturesRepository {
   Future<Either<Failure, Unit>> downloadLecture({

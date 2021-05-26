@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/entites/user.dart';
 
 enum UserRole {
@@ -8,6 +9,7 @@ enum UserRole {
 
 class UserModel extends UserEntity {
   final String? fullName;
+  final String? password;
   final String? id;
   final String? role;
   final String? dept;
@@ -17,6 +19,7 @@ class UserModel extends UserEntity {
 
   const UserModel({
     required this.id,
+    required this.password,
     required this.role,
     required this.stage,
     required this.dept,
@@ -25,6 +28,7 @@ class UserModel extends UserEntity {
     required this.isOnline,
   }) : super(
           fullName: fullName,
+          password: password,
           id: id,
           role: role,
           dept: dept,
@@ -41,20 +45,22 @@ class UserModel extends UserEntity {
       'fullName': fullName,
       'lastSeenInEpoch': lastSeenInEpoch,
       'isOnline': isOnline,
+      'password': password,
     };
   }
 
   factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snap) {
-    final snapData = snap.data()!;
+    final data = snap.data()!;
 
     return UserModel(
       id: snap.id,
-      fullName: snapData['fullName'],
-      role: snapData['role'],
-      dept: snapData['dept'],
-      stage: snapData['stage'],
-      lastSeenInEpoch: snapData['lastSeenInEpoch'],
-      isOnline: snapData['isOnline'],
+      fullName: data['fullName'],
+      role: data['role'],
+      dept: data['dept'],
+      stage: data['stage'],
+      lastSeenInEpoch: data['lastSeenInEpoch'],
+      isOnline: data['isOnline'],
+      password: data['password'],
     );
   }
 
@@ -67,6 +73,7 @@ class UserModel extends UserEntity {
       stage: json['stage'],
       lastSeenInEpoch: json['lastSeenInEpoch'],
       isOnline: json['isOnline'],
+      password: json['password'],
     );
   }
 
@@ -79,6 +86,7 @@ class UserModel extends UserEntity {
       stage: 0,
       lastSeenInEpoch: 0,
       isOnline: false,
+      password: '',
     );
   }
 }

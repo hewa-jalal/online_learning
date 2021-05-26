@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/entities/message_entity.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
 class MessageModel extends MessageEntity {
   final String? message;

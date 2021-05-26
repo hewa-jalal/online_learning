@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class UserEntity extends Equatable {
   final String? fullName;
+  final String? password;
   final String? id;
   final String? role;
   final String? dept;
@@ -11,6 +12,7 @@ class UserEntity extends Equatable {
 
   const UserEntity({
     required this.id,
+    required this.password,
     required this.role,
     required this.stage,
     required this.dept,
@@ -20,7 +22,7 @@ class UserEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props => [id, role, stage, dept, fullName];
+  List<Object?> get props => [id, role, stage, dept, fullName, password];
 
   @override
   bool get stringify => true;
@@ -42,6 +44,7 @@ class UserEntity extends Equatable {
       stage: stage ?? this.stage,
       lastSeenInEpoch: lastSeenInEpoch ?? this.lastSeenInEpoch,
       isOnline: isOnline ?? this.isOnline,
+      password: password ?? this.password,
     );
   }
 }

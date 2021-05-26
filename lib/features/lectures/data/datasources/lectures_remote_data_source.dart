@@ -4,15 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../core/lecture_task.dart';
-import '../models/lecture_model.dart';
-
-import '../../../user/data/models/user_model.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:mime/mime.dart' as mime;
+
+import '../../../../core/lecture_task.dart';
+import '../../../user/data/models/user_model.dart';
+import '../models/lecture_model.dart';
 
 abstract class LecturesRemoteDataSource {
   Future<Unit> downloadLecture({

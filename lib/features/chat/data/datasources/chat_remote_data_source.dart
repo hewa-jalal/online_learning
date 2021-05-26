@@ -4,30 +4,36 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../core/lecture_task.dart';
-import '../models/message_model.dart';
 import '../../presentation/bloc/cubit/cubit/imageuploader_cubit.dart';
+import '../models/message_model.dart';
 
 abstract class ChatRemoteDataSource {
   Future<Unit> sendMessage(
     String message,
     String fromUserId,
+    String courseTitle,
   );
 
   Future<Unit> sendImageMessage({
     required String? imageUrl,
     required String? fromUserId,
+    required String? courseTitle,
     required ImageUploaderCubit imageUploaderCubit,
   });
 
   Future<List<Message>> getAllMessages();
   sendFileMessage({
     required String? fileUrl,
+    required String? courseTitle,
     required String fileName,
     required String? fromUserId,
     required int fileSize,
     required ImageUploaderCubit imageUploaderCubit,
   });
+
+  Future<List<Message>> getAllMessagesByCourse(String courseTitle);
 }
 
 @LazySingleton(as: ChatRemoteDataSource)
@@ -43,13 +49,17 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
   Future<Unit> sendMessage(
     String message,
     String fromUserId,
+    String courseTitle,
   ) async {
     final messageModel = TextMessage(
       message,
       DateTime.now().millisecondsSinceEpoch,
       fromUserId,
     );
-    messagesCollection.add(messageModel.toMap());
+    messagesCollection
+        .doc(courseTitle)
+        .collection('messages')
+        .add(messageModel.toMap());
     return unit;
   }
 
@@ -61,9 +71,21 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
   }
 
   @override
+  Future<List<Message>> getAllMessagesByCourse(String courseTitle) async {
+    final querySnapshot = await messagesCollection
+        .doc(courseTitle)
+        .collection('messages')
+        .orderBy('timeStamp', descending: true)
+        .get();
+
+    return querySnapshot.docs.map((doc) => Message.fromFirestore(doc)).toList();
+  }
+
+  @override
   Future<Unit> sendImageMessage({
     required String? imageUrl,
     required String? fromUserId,
+    required String? courseTitle,
     required ImageUploaderCubit imageUploaderCubit,
   }) async {
     imageUploaderCubit.setToLoading();
@@ -80,7 +102,10 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
       timeStamp: DateTime.now().millisecondsSinceEpoch,
     );
 
-    final docRef = await messagesCollection.add(tempModel.toMap());
+    final docRef = await messagesCollection
+        .doc(courseTitle)
+        .collection('messages')
+        .add(tempModel.toMap());
 
     // getting the downloadUrl
     lectureTask!.task.then((taskSnap) async {
@@ -92,7 +117,11 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
         timeStamp: DateTime.now().millisecondsSinceEpoch,
       );
 
-      messagesCollection.doc(docRef.id).set(messageModel.toMap());
+      messagesCollection
+          .doc(courseTitle)
+          .collection('messages')
+          .doc(docRef.id)
+          .set(messageModel.toMap());
 
       imageUploaderCubit.setToIdle();
     });
@@ -104,6 +133,7 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
   Future<Unit> sendFileMessage({
     required String? fileUrl,
     required String fileName,
+    required String? courseTitle,
     required String? fromUserId,
     required int? fileSize,
     required ImageUploaderCubit imageUploaderCubit,
@@ -125,7 +155,10 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
       fileSize: fileSize,
     );
 
-    final docRef = await messagesCollection.add(tempModel.toMap());
+    final docRef = await messagesCollection
+        .doc(courseTitle)
+        .collection('messages')
+        .add(tempModel.toMap());
 
     // getting the downloadUrl
     lectureTask!.task.then((taskSnap) async {
@@ -139,7 +172,11 @@ class FireStoreChatRemoteDataSource extends ChatRemoteDataSource {
         timeStamp: DateTime.now().millisecondsSinceEpoch,
       );
 
-      messagesCollection.doc(docRef.id).set(fileModel.toMap());
+      messagesCollection
+          .doc(courseTitle)
+          .collection('messages')
+          .doc(docRef.id)
+          .set(fileModel.toMap());
 
       imageUploaderCubit.setToIdle();
     });

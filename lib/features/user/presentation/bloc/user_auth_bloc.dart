@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:dartz/dartz_unsafe.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:online_learning/features/user/core/errors/failures.dart';
-import 'package:online_learning/features/user/data/models/user_model.dart';
-import 'package:online_learning/features/user/domain/repositories/user_repository.dart';
+import '../../core/errors/failures.dart';
+import '../../data/models/user_model.dart';
+import '../../domain/repositories/user_repository.dart';
 import '../../core/params/user_params.dart';
 import '../../core/usecase/use_case.dart';
 import '../../domain/entites/user.dart';
@@ -77,15 +76,15 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
         yield state.copyWith();
       },
       getUserById: (e) async* {
-        // TODO: uncomment this for snackbar
-        // yield state.copyWith(
-        //   userStatus: UserStatus.waiting,
-        //   // to display the id in snackbar
-        //   user: state.user.copyWith(id: e.id.toString()),
-        //   authFailureOrSuccessOption: none(),
-        // );
+        yield state.copyWith(
+          userStatus: UserStatus.waiting,
+          // to display the id in snackbar
+          user: state.user.copyWith(id: e.id.toString()),
+          authFailureOrSuccessOption: none(),
+        );
 
-        final either = await getUser!(UserParam(id: e.id));
+        final either =
+            await getUser!(UserParam(id: e.id, password: e.password));
         yield either.fold(
           (failure) => state.copyWith(
             authFailureOrSuccessOption: some(either),
@@ -110,7 +109,8 @@ class UserAuthBloc extends Bloc<UserAuthEvent, UserAuthState> {
         );
       },
       updateUserTime: (e) async* {
-        updateUserTime!(UserParam(id: int.parse(state.user.id!)));
+        updateUserTime!(UserParam(
+            id: int.parse(state.user.id!), password: 'not needed password'));
       },
       updateUserOnlineStatus: (e) async* {
         userOnlineStatus!(

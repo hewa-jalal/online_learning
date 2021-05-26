@@ -39,10 +39,9 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
         yield HomeworkState.initial();
       },
       selectFile: (e) async* {
-        final result = await (FilePicker.platform.pickFiles()
-            as FutureOr<FilePickerResult>);
+        final result = await (FilePicker.platform.pickFiles());
         yield state.copyWith(
-          filePath: result.files.single.path,
+          filePath: result!.files.single.path,
         );
       },
       uploadHomework: (e) async* {
@@ -58,8 +57,10 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
           ),
         );
         yield either.fold(
-          ((failure) => state.copyWith(homeworkFailureOrSuccessOption: none())),
-          ((unit) => state.copyWith(isSubmitting: false)),
+          (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
+          (unit) => state.copyWith(
+            isSubmitting: false,
+          ),
         );
       },
       getHomework: (e) async* {
@@ -72,11 +73,13 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
           userId: state.userId,
         ));
         yield either.fold(
-          ((failure) => state.copyWith(homeworkFailureOrSuccessOption: none())),
-          ((homeworkSubmit) => state.copyWith(
-                filePath: homeworkSubmit.fileUrl,
-                note: homeworkSubmit.note,
-              )),
+          (failure) => state.copyWith(
+            homeworkFailureOrSuccessOption: none(),
+          ),
+          (homeworkSubmit) => state.copyWith(
+            filePath: homeworkSubmit.fileUrl,
+            note: homeworkSubmit.note,
+          ),
         );
       },
       getAllHomeworksByCourse: (e) async* {
@@ -90,12 +93,12 @@ class HomeworkBloc extends Bloc<HomeworkEvent, HomeworkState> {
         );
 
         yield either.fold(
-          ((failure) => state.copyWith(homeworkFailureOrSuccessOption: none())),
-          ((homeworks) => state.copyWith(
-                homeworks: homeworks,
-                courseTitle: e.courseTitle,
-                isSubmitting: false,
-              )),
+          (failure) => state.copyWith(homeworkFailureOrSuccessOption: none()),
+          (homeworks) => state.copyWith(
+            homeworks: homeworks,
+            courseTitle: e.courseTitle,
+            isSubmitting: false,
+          ),
         );
       },
       submitHomework: (e) async* {

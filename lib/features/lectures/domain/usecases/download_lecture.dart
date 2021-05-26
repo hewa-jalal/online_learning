@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
-import '../repository/lectures_repository.dart';
+
 import '../../../user/core/errors/failures.dart';
 import '../../../user/core/usecase/use_case.dart';
 import '../../../user/data/models/user_model.dart';
+import '../repository/lectures_repository.dart';
 
 @lazySingleton
 class DownloadLecture extends UseCase<Unit, LectureParams> {

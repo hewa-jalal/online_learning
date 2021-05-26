@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../core/errors/exceptions.dart';
-import '../models/user_model.dart';
 import '../../domain/entites/user.dart';
+import '../models/user_model.dart';
 
 abstract class UserRemoteDataSource {
-  Future<UserModel> getUser(int id);
+  Future<UserModel> getUser(int id, String password);
   Future<void> updateUserTime(int id);
   Future<void> userOnlineStatus(int id, bool isOnline);
   Future<List<UserEntity>> getAllUsers();
@@ -16,9 +17,9 @@ class FirebaseUserRemoteDataSource extends UserRemoteDataSource {
   final usersCollection = FirebaseFirestore.instance.collection('users');
 
   @override
-  Future<UserModel> getUser(int id) async {
+  Future<UserModel> getUser(int id, String password) async {
     final userDoc = await usersCollection.doc(id.toString()).get();
-    if (userDoc.exists) {
+    if (userDoc.exists && userDoc.data()!['password'] == password) {
       return UserModel.fromSnapshot(userDoc);
     } else {
       throw UserNotFoundException();

@@ -1,12 +1,15 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../user/core/errors/failures.dart';
+import '../../../user/core/usecase/use_case.dart';
+import '../../../user/data/models/user_model.dart';
+import '../../data/models/lecture_model.dart';
 import '../../domain/entities/lecture_entity.dart';
 import '../../domain/usecases/create_course.dart';
 import '../../domain/usecases/download_lecture.dart';
@@ -15,15 +18,10 @@ import '../../domain/usecases/get_all_lectures.dart';
 import '../../domain/usecases/get_all_lectures_by_user_id.dart';
 import '../../domain/usecases/submit_user.dart';
 import '../../domain/usecases/upload_lecture.dart';
-import '../../../user/core/usecase/use_case.dart';
-import '../../../user/data/models/user_model.dart';
 
-import '../../../user/core/errors/failures.dart';
-import '../../data/models/lecture_model.dart';
-
+part 'lecture_bloc.freezed.dart';
 part 'lecture_event.dart';
 part 'lecture_state.dart';
-part 'lecture_bloc.freezed.dart';
 
 // @injectable
 // class LectureBloc extends Bloc<LectureEvent, LectureState> {
@@ -155,12 +153,12 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         );
 
         yield either.fold(
-          ((failure) => state.copyWith(
-                lectureFailureOrSuccessOption: none(),
-              )),
-          ((lectureEntity) => state.copyWith(
-                isSubmitting: false,
-              )),
+          (failure) => state.copyWith(
+            lectureFailureOrSuccessOption: none(),
+          ),
+          (lectureEntity) => state.copyWith(
+            isSubmitting: false,
+          ),
         );
       },
       downloadLecture: (e) async* {
@@ -173,9 +171,9 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
           ),
         );
         yield either.fold(
-          ((failure) => state.copyWith(
-                lectureFailureOrSuccessOption: none(),
-              )),
+          (failure) => state.copyWith(
+            lectureFailureOrSuccessOption: none(),
+          ),
           // we don't want anything to happen when a file is downloading
           (lecture) => state,
         );
@@ -183,56 +181,60 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
       getAllLectures: (e) async* {
         final either = await getAllLectures!(NoParams());
         yield either.fold(
-          ((failure) => state.copyWith(
-                lectureFailureOrSuccessOption: none(),
-              )),
-          ((lectures) => state.copyWith(
-                lectures: lectures,
-                isSubmitting: false,
-              )) as LectureState Function(List<LectureEntity>),
+          (failure) => state.copyWith(
+            lectureFailureOrSuccessOption: none(),
+          ),
+          (lectures) => state.copyWith(
+            lectures: lectures,
+            isSubmitting: false,
+          ),
         );
       },
       getAllLecturesByCourse: (e) async* {
-        // yield state.copyWith(
-        //   isSubmitting: true,
-        // );
+        // only show loading for the first time
+        if (state.lectures.isEmpty) {
+          yield state.copyWith(isSubmitting: true);
+        }
+
         final either = await getAllLecturesByCourse!(e.courseTitle);
         yield either.fold(
-          ((failure) => state.copyWith(
-                lectureFailureOrSuccessOption: none(),
-                isSubmitting: false,
-              )),
-          ((lectures) => state.copyWith(
-                lectures: lectures,
-                isSubmitting: false,
-              )),
+          (failure) => state.copyWith(
+            lectureFailureOrSuccessOption: none(),
+            isSubmitting: false,
+          ),
+          (lectures) => state.copyWith(
+            lectures: lectures,
+            isSubmitting: false,
+          ),
         );
       },
       createCourse: (e) async* {
         await createCourse!(e.courseTitle);
       },
       getAllCoursesByUserId: (e) async* {
-        yield state.copyWith(
-          isSubmitting: true,
-        );
+        if (state.courseIds.isEmpty) {
+          yield state.copyWith(
+            isSubmitting: true,
+          );
+        }
+
         final either = await getAllCoursesByUserId!(state.userId);
         yield either.fold(
-          ((failure) => state.copyWith(
-                lectureFailureOrSuccessOption: none(),
-              )),
-          ((courseIds) => state.copyWith(
-                courseIds: courseIds,
-                isSubmitting: false,
-              )),
+          (failure) => state.copyWith(
+            lectureFailureOrSuccessOption: none(),
+            isSubmitting: false,
+          ),
+          (courseIds) => state.copyWith(
+            courseIds: courseIds,
+            isSubmitting: false,
+          ),
         );
       },
       selectFile: (e) async* {
         final result = await (FilePicker.platform.pickFiles());
-        final hash = result!.files.single.bytes;
-        print('hash $hash');
-        // yield state.copyWith(
-        //   filePath: result.files.single.path,
-        // );
+        yield state.copyWith(
+          filePath: result!.files.single.path!,
+        );
       },
       submitUser: (e) async* {
         submitUser!(

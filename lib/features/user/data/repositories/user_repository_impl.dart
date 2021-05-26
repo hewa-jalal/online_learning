@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../core/errors/exceptions.dart';
 import '../../core/errors/failures.dart';
-import '../datasources/user_remote_data_source.dart';
 import '../../domain/entites/user.dart';
 import '../../domain/repositories/user_repository.dart';
+import '../datasources/user_remote_data_source.dart';
 
 @LazySingleton(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
@@ -12,9 +13,9 @@ class UserRepositoryImpl implements UserRepository {
 
   UserRepositoryImpl(this.userRemoteDataSource);
   @override
-  Future<Either<Failure, UserEntity>> getUser(int id) async {
+  Future<Either<Failure, UserEntity>> getUser(int id, String password) async {
     try {
-      final user = await userRemoteDataSource!.getUser(id);
+      final user = await userRemoteDataSource!.getUser(id, password);
       return right(user);
     } on UserNotFoundException {
       return left(UserNotFoundFailure());

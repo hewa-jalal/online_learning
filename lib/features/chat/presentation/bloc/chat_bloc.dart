@@ -4,14 +4,14 @@ import 'package:bloc/bloc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import '../../data/models/message_model.dart';
 
+import '../../data/models/message_model.dart';
 import '../../domain/repositories/chat_repository.dart';
 import 'cubit/cubit/imageuploader_cubit.dart';
 
+part 'chat_bloc.freezed.dart';
 part 'chat_event.dart';
 part 'chat_state.dart';
-part 'chat_bloc.freezed.dart';
 
 @injectable
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
@@ -34,6 +34,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         chatRepository!.sendMessage(
           message: e.message,
           fromUserId: e.fromUserId,
+          courseTitle: e.courseTitle,
         );
         // sendMessage(
         //   MessageParams(
@@ -41,7 +42,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         //     fromUserId: e.fromUserId,
         //   ),
         // );
-        add(ChatEvent.getAllMessages());
+        add(ChatEvent.getAllMessagesByCourse(e.courseTitle));
       },
       getAllMessages: (e) async* {
         final messages = await chatRepository!.getAllMessages();
@@ -61,11 +62,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           fromUserId: e.fromUserId,
           imageUrl: result!.files.single.path,
           imageUploaderCubit: e.imageUploaderCubit,
+          courseTitle: e.courseTitle,
         );
 
         // e.imageUploaderCubit.setToIdle();
 
-        add(ChatEvent.getAllMessages());
+        add(ChatEvent.getAllMessagesByCourse(e.courseTitle));
       },
       sendFileMessage: (e) async* {
         final result = await (FilePicker.platform.pickFiles());
@@ -77,6 +79,17 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           fileSize: result.files.single.size!,
           fileName: result.files.single.name!,
           imageUploaderCubit: e.imageUploaderCubit,
+          courseTitle: e.courseTitle,
+        );
+
+        add(ChatEvent.getAllMessagesByCourse(e.courseTitle));
+      },
+      getAllMessagesByCourse: (e) async* {
+        final messages =
+            await chatRepository!.getAllMessagesByCourse(e.courseTitle);
+        yield messages.fold(
+          (failure) => ChatState.messageFailure(),
+          (messages) => ChatState.allMessagesLoaded(allMessages: messages),
         );
       },
     );

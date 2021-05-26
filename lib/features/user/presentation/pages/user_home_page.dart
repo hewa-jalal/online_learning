@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:online_learning/features/lectures/presentation/UI/pages/submit_homework_page.dart';
 import '../../../chat/presentation/ui/pages/chat_page.dart';
 import '../../../lectures/presentation/UI/pages/course_page.dart';
 import '../../../lectures/presentation/bloc/lecture_bloc.dart';
@@ -34,16 +35,17 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: IconButton(
-                icon: Icon(Icons.chat),
-                onPressed: () => Get.to(
-                  () => ChatPage(userEntity: widget.user),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            //   child: IconButton(
+            //     icon: Icon(Icons.chat),
+            //     onPressed: () => Get.to(
+            //       () => ChatPage(userEntity: widget.user, cou),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         body: Column(
@@ -61,23 +63,29 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                         children: [
                           Text(
                             'Hello,',
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 18.sp,
+                            ),
                           ),
                           Text(
-                            'fullName',
+                            user.fullName!,
+                            style: TextStyle(
+                              fontSize: 20.sp,
+                            ),
                           ),
                         ],
                       );
                     },
                   ),
-                  CircleAvatar(child: Icon(Icons.person)),
+                  // CircleAvatar(child: Icon(Icons.person)),
                 ],
               ),
             ),
             SizedBox(height: 0.02.sh),
             BlocBuilder<LectureBloc, LectureState>(
               builder: (context, state) {
-                if (state.isSubmitting) {
+                if (state.isSubmitting!) {
                   return Center(child: CircularProgressIndicator());
                 } else {
                   final courseIds = state.courseIds;
@@ -86,8 +94,8 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
                           child: ListView.builder(
                             itemCount: courseIds.length,
                             itemBuilder: (context, index) => CourseCard(
-                              onTap: () => Get.to(() =>
-                                      CoursePage(courseTitle: courseIds[index]))!
+                              onTap: () => Get.to(() => CoursePage(
+                                      courseTitle: courseIds[index]))!
                                   .then((value) => setState(() {})),
                               courseTitle: courseIds[index],
                             ),
@@ -119,7 +127,8 @@ class __CreateCourseFabState extends State<_CreateCourseFab> {
     final lectureBloc = context.read<LectureBloc>();
 
     return FloatingActionButton(
-      child: Icon(Icons.drive_folder_upload),
+      backgroundColor: Colors.white,
+      child: Icon(Icons.drive_folder_upload, color: APP_PURPlE),
       onPressed: () => Get.dialog(
         Dialog(
           backgroundColor: Color(0xffA5A6AA),
@@ -133,6 +142,7 @@ class __CreateCourseFabState extends State<_CreateCourseFab> {
                     flex: 2,
                     child: Center(
                       child: TextField(
+                        autofocus: true,
                         onChanged: (val) => courseTitle = val,
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(

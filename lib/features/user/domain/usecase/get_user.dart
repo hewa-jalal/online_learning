@@ -15,6 +15,6 @@ class GetUser extends UseCase<UserEntity, UserParam> {
 
   @override
   Future<Either<Failure, UserEntity>> call(UserParam params) {
-    return userRepository!.getUser(params.id);
+    return userRepository!.getUser(params.id, params.password);
   }
 }

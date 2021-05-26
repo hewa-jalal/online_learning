@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import '../datasources/lectures_remote_data_source.dart';
 import '../../domain/entities/lecture_entity.dart';
@@ -70,8 +69,8 @@ class LecturesRepositoryImpl extends LecturesRepository {
     required String courseTitle,
   }) async {
     try {
-      final lectures = await remoteDataSource!.getAllLecturesByCourse(
-          courseTitle: courseTitle);
+      final lectures = await remoteDataSource!
+          .getAllLecturesByCourse(courseTitle: courseTitle);
       return right(lectures);
     } catch (e) {
       print(e.toString());

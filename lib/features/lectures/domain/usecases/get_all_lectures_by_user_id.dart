@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import '../entities/lecture_entity.dart';
-import '../repository/lectures_repository.dart';
+
 import '../../../user/core/errors/failures.dart';
 import '../../../user/core/usecase/use_case.dart';
+import '../entities/lecture_entity.dart';
+import '../repository/lectures_repository.dart';
 
 @lazySingleton
 class GetAllLecturesByCourse extends UseCase<List<LectureEntity>, String> {

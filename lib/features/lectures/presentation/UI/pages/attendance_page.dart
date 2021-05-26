@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_learning/features/user/domain/entites/user.dart';
-import 'package:online_learning/features/user/presentation/bloc/user_auth_bloc.dart';
+import '../../../../user/domain/entites/user.dart';
+import '../../../../user/presentation/bloc/user_auth_bloc.dart';
 
 class AttendancePage extends StatefulWidget {
   final List<String> submittedUsers;

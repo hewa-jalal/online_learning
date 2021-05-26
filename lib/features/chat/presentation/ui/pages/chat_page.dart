@@ -59,19 +59,16 @@ class _ChatPageState extends State<ChatPage> {
     // });
   }
 
-  void _handleSendPressed(types.PartialText message, ChatBloc chatBloc) {
-    // final textMessage = types.TextMessage(
-    //   authorId: '12',
-    //   id: randomString(),
-    //   text: message.text,
-    //   timestamp: (DateTime.now().millisecondsSinceEpoch / 1000).floor(),
-    // );
-
-    // TODO: get correct fromUserId
+  void _handleSendPressed(
+    types.PartialText message,
+    ChatBloc chatBloc,
+    BuildContext context,
+  ) {
+    final userState = context.read<UserAuthBloc>().state;
     chatBloc.add(
       ChatEvent.sendMessage(
         message: message.text,
-        fromUserId: '200',
+        fromUserId: userState.user.id!,
         courseTitle: courseTitle,
       ),
     );
@@ -127,7 +124,10 @@ class _ChatPageState extends State<ChatPage> {
                         size: 200,
                         imageName: 'imageName',
                         uri: msg.imageUrl,
-                        authorId: user.id!,
+                        author: types.User(
+                          id: msg.senderId,
+                          // firstName: 'H',
+                        ),
                         id: user.id!,
                         timestamp: (msg.timeStamp / 1000).round(),
                         status: types.Status.read,
@@ -135,8 +135,11 @@ class _ChatPageState extends State<ChatPage> {
                     } else if (msg is TextMessage) {
                       return types.TextMessage(
                         text: msg.text,
-                        id: '29',
-                        authorId: user.id!,
+                        id: user.id!,
+                        author: types.User(
+                          id: msg.senderId,
+                          firstName: 'Hewa Jalal',
+                        ),
                         timestamp: (msg.timeStamp / 1000).round(),
                         status: types.Status.read,
                       );
@@ -144,7 +147,10 @@ class _ChatPageState extends State<ChatPage> {
                       return types.FileMessage(
                         id: msg.senderId,
                         fileName: msg.fileName!,
-                        authorId: user.id!,
+                        author: types.User(
+                          id: msg.senderId,
+                          firstName: 'H',
+                        ),
                         uri: msg.fileUrl!,
                         size: msg.fileSize ?? 10000,
                         timestamp: (msg.timeStamp / 1000).round(),
@@ -154,23 +160,35 @@ class _ChatPageState extends State<ChatPage> {
                       return types.TextMessage(
                         text: 'msg.text else',
                         id: user.id!,
-                        authorId: '44',
+                        author: types.User(
+                          id: msg.senderId,
+                          firstName: 'H',
+                        ),
                       );
                     }
                   }).toList();
 
-                  return chatUi.Chat(
-                    messages: messages,
-                    onSendPressed: (msg) => _handleSendPressed(msg, chatBloc),
-                    user: types.User(id: user.id!),
-                    onAttachmentPressed: () => addMediaModal(
-                      context,
-                      chatBloc: chatBloc,
-                      imageUploaderCubit: imageUploaderCubit,
-                      courseTitle: courseTitle,
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      inputDecorationTheme: InputDecorationTheme(),
                     ),
-                    theme: chatUi.DarkChatTheme(),
-                    onMessageTap: _handleMessageTap,
+                    child: chatUi.Chat(
+                      messages: messages,
+                      onSendPressed: (msg) => _handleSendPressed(
+                        msg,
+                        chatBloc,
+                        context,
+                      ),
+                      user: types.User(id: user.id!),
+                      onAttachmentPressed: () => addMediaModal(
+                        context,
+                        chatBloc: chatBloc,
+                        imageUploaderCubit: imageUploaderCubit,
+                        courseTitle: courseTitle,
+                      ),
+                      theme: chatUi.DarkChatTheme(),
+                      onMessageTap: _handleMessageTap,
+                    ),
                   );
                   return Column(
                     children: [
@@ -243,9 +261,10 @@ class _MessagesListWidget extends StatelessWidget {
               //   imageUrl: msg.imageUrl,
               // ),
               child: OctoImage(
-                  image: CachedNetworkImageProvider(msg.imageUrl),
-                  progressIndicatorBuilder:
-                      OctoProgressIndicator.circularProgressIndicator()),
+                image: CachedNetworkImageProvider(msg.imageUrl),
+                progressIndicatorBuilder:
+                    OctoProgressIndicator.circularProgressIndicator(),
+              ),
             ),
             style: BubbleStyle(
               nip: BubbleNip.rightCenter,
@@ -482,7 +501,7 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
                 // widget.chatBloc.add(
                 //   ChatEvent.sendMessage(
                 //     message: msg,
-                //     fromUserId: '21',
+                //     fromUserId: userState.id,
                 //     courseTitle: courseTitle,
                 //     // imageUrl: 'someUrl',
                 //     // imageUploaderCubit: imageUploaderCubit,
@@ -507,11 +526,12 @@ class __SendMessageTextFieldState extends State<_SendMessageTextField> {
 }
 
 void addMediaModal(
-  context, {
+  BuildContext context, {
   required ChatBloc chatBloc,
   required ImageUploaderCubit imageUploaderCubit,
   required String courseTitle,
 }) {
+  final userState = context.read<UserAuthBloc>().state;
   showModalBottomSheet(
       context: context,
       elevation: 0,
@@ -556,7 +576,7 @@ void addMediaModal(
                       chatBloc.add(
                         ChatEvent.sendImageMessage(
                           message: 'msgImage',
-                          fromUserId: '21',
+                          fromUserId: userState.user.id!,
                           imageUrl: 'someUrl',
                           imageUploaderCubit: imageUploaderCubit,
                           courseTitle: courseTitle,
@@ -570,7 +590,7 @@ void addMediaModal(
                       chatBloc.add(
                         ChatEvent.sendFileMessage(
                           message: 'msgFile',
-                          fromUserId: '21',
+                          fromUserId: userState.user.id!,
                           imageUploaderCubit: imageUploaderCubit,
                           courseTitle: courseTitle,
                         ),
@@ -765,7 +785,22 @@ class _UsersList extends StatelessWidget {
               final ago = timeago.format(date);
               final isOnline = user.isOnline!;
               return ListTile(
-                leading: CircleAvatar(child: Text(user.fullName![0])),
+                leading: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    CircleAvatar(child: Text(user.fullName![0])),
+                    if (user.role == 'teacher') ...[
+                      Positioned(
+                        top: -8,
+                        left: -6,
+                        child: Icon(
+                          MdiIcons.star,
+                          color: Colors.yellow,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
                 title: Text(user.fullName!),
                 subtitle: isOnline
                     ? Row(

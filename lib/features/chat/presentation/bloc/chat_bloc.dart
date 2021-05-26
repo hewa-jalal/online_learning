@@ -53,8 +53,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       },
       sendImageMessage: (e) async* {
         final result = await (FilePicker.platform.pickFiles(
-          type: FileType.image,
-        ));
+            // type: FileType.image,
+            ));
         // e.imageUploaderCubit.setToLoading();
 
         await chatRepository!.sendImageMessage(

@@ -35,74 +35,77 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
     final _homeworkBloc = context.watch<HomeworkBloc>();
 
     return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 0.02.sw),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 0.02.sh),
-                SizedBox(
-                  height: 0.35.sh,
-                  width: 1.sw,
-                  child: Card(
-                    color: APP_PURPlE,
-                    // margin: EdgeInsets.symmetric(horizontal: 0.02.sw),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 8.0,
-                            top: 4.0,
-                            right: 8.0,
-                          ),
-                          child: Text(
-                            homework.title!,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 18.sp,
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: Scaffold(
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0.02.sw),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: 0.02.sh),
+                  SizedBox(
+                    height: 0.35.sh,
+                    width: 1.sw,
+                    child: Card(
+                      color: APP_PURPlE,
+                      // margin: EdgeInsets.symmetric(horizontal: 0.02.sw),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 8.0,
+                              top: 4.0,
+                              right: 8.0,
+                            ),
+                            child: Text(
+                              homework.title!,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 18.sp,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 0.01.sh),
-                        Expanded(
-                          child: RawScrollbar(
-                            isAlwaysShown: true,
-                            thumbColor: Colors.white,
-                            thickness: 2.5,
-                            child: SingleChildScrollView(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 10),
-                                child: Text(
-                                  homework.description!,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16.sp,
+                          SizedBox(height: 0.01.sh),
+                          Expanded(
+                            child: RawScrollbar(
+                              isAlwaysShown: true,
+                              thumbColor: Colors.white,
+                              thickness: 2.5,
+                              child: SingleChildScrollView(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0, vertical: 10),
+                                  child: Text(
+                                    homework.description!,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16.sp,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        // for scrollable text to not be at the end of card
-                        SizedBox(height: 0.015.sh)
-                      ],
+                          // for scrollable text to not be at the end of card
+                          SizedBox(height: 0.015.sh)
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                isSubmitted
-                    ? SubmittedHomework(
-                        homeworkTitle: homework.title,
-                        courseTitle: widget.courseTitle,
-                      )
-                    : NotSubmittedHomework(
-                        homeworkTitle: homework.title,
-                        courseTitle: widget.courseTitle,
-                      ),
-              ],
+                  isSubmitted
+                      ? SubmittedHomework(
+                          homeworkTitle: homework.title,
+                          courseTitle: widget.courseTitle,
+                        )
+                      : NotSubmittedHomework(
+                          homeworkTitle: homework.title,
+                          courseTitle: widget.courseTitle,
+                        ),
+                ],
+              ),
             ),
           ),
         ),

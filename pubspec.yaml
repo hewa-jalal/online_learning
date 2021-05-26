@@ -23,6 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_chat_ui:
+    git:
+      url: https://github.com/flyerhq/flutter_chat_ui
+      ref: feature/add-names-and-avatars
   agora_rtc_engine: ^4.0.0-rc.3
   animated_text_kit: ^4.2.1
   another_flushbar: ^1.10.22
@@ -46,9 +50,9 @@ dependencies:
   flick_video_player: ^0.3.1
   flutter_advanced_segment: ^2.0.1+1
   flutter_bloc: ^7.0.0
-  flutter_chat_ui: ^1.0.3
+  # flutter_chat_ui: ^1.0.3
   flutter_downloader: ^1.6.0
-  flutter_firebase_chat_core: ^1.0.3
+  # flutter_firebase_chat_core: ^1.0.3
   flutter_inner_drawer: ^1.0.0+1
   flutter_screenutil: ^5.0.0+2
   flutter_speed_dial: ^3.0.5

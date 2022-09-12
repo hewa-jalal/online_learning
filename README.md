@@ -1,6 +1,6 @@
 an all-in-one online learning app to make it easier and more efficent for student and teachers to communicate remotly.
 
-Here are some screenshots and a wa/lk-through of our app to guide you how does it work and how to use it:
+Here are some screenshots and a walk-through of our app to guide you how does it work and how to use it:
 
 
 ## Login Page

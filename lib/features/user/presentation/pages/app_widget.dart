@@ -157,7 +157,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         )
       ],
       child: ScreenUtilInit(
-        builder: () => GetMaterialApp(
+        builder: (context, widget) => GetMaterialApp(
           theme: ThemeData.light().copyWith(
             primaryColor: Color(0xff101422),
             scaffoldBackgroundColor: Colors.blueGrey[900],

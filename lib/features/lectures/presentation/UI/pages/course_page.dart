@@ -163,12 +163,14 @@ class _GlowVideoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AvatarGlow(
-      endRadius: 20,
+      glowRadiusFactor: 20,
+      // endRadius: 20,
       child: IconButton(
         icon: Icon(Icons.videocam),
-        onPressed: () => Get.to(
-          () => VideoChatPage(courseTitle: courseTitle),
-        ),
+        onPressed: () {},
+        // onPressed: () => Get.to(
+        //   () => VideoChatPage(courseTitle: courseTitle),
+        // ),
       ),
     );
   }
@@ -215,9 +217,10 @@ class _TeacherVideoButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.videocam),
-      onPressed: () => Get.to(
-        () => VideoChatPage(courseTitle: courseTitle),
-      ),
+      onPressed: () {},
+      // onPressed: () => Get.to(
+      //   () => VideoChatPage(courseTitle: courseTitle),
+      // ),
     );
   }
 }

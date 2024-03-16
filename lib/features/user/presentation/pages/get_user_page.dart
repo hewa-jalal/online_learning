@@ -113,8 +113,8 @@ class _UserFormState extends State<UserForm> {
                             onFieldSubmitted: (val) =>
                                 _formKey.currentState!.validate(),
                             validator: (val) {
-                              print('validator => ${name.valid}');
-                              return name.valid ? 'ok' : 'please enter an id';
+                              print('validator => ${name.isValid}');
+                              return name.isValid ? 'ok' : 'please enter an id';
                             },
                           ),
                         ),
@@ -148,8 +148,8 @@ class _UserFormState extends State<UserForm> {
                             onFieldSubmitted: (val) =>
                                 _formKey.currentState!.validate(),
                             validator: (val) {
-                              print('validator => ${name.valid}');
-                              return name.valid ? 'ok' : 'please enter an id';
+                              print('validator => ${name.isValid}');
+                              return name.isValid ? 'ok' : 'please enter an id';
                             },
                           ),
                         ),

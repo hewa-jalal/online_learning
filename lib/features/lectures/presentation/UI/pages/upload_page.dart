@@ -202,11 +202,12 @@ class _HomeworkBottomSelection extends StatefulWidget {
 class __HomeworkBottomSelectionState extends State<_HomeworkBottomSelection> {
   DateTime? _dueDate;
   late String _formattedString;
-  TimeOfDay _time = TimeOfDay.now().replacing(minute: 30);
+  // TimeOfDay _time = TimeOfDay.now().replacing(minute: 30);
+  var _time = Time(hour: 1, minute: 0);
 
   String get title => widget.title;
 
-  void onTimeChanged(TimeOfDay newTime) {
+  void onTimeChanged(Time newTime) {
     setState(() {});
     _time = newTime;
     _formattedString = _formattedString +
@@ -441,7 +442,7 @@ class _LecutreBottomSelection extends StatelessWidget {
             children: [
               ListTile(
                 enabled: true,
-                leading: Icon(MdiIcons.filePdf),
+                leading: Icon(MdiIcons.filePdfBox),
                 title: Text(fileName),
                 trailing: IconButton(
                   onPressed: () =>

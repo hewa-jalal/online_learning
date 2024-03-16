@@ -54,7 +54,6 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   flutter_speed_dial: ^7.0.0
   flutter_svg: ^2.0.10+1
-  flutter_uploader: ^3.0.0-beta.1
   fluttertoast: ^8.0.6
   font_awesome_flutter: ^10.7.0
   formz: ^0.7.0

@@ -46,7 +46,7 @@ dependencies:
   firebase_storage: ^11.6.10
   flick_video_player: ^0.7.0
   flutter_advanced_segment: ^3.0.2
-  flutter_bloc: ^8.1.4
+  flutter_bloc: ^7.2.0
   # flutter_chat_ui: ^1.0.3
   flutter_downloader: ^1.6.0
   # flutter_firebase_chat_core: ^1.0.3

@@ -22,11 +22,11 @@ class _UserFormState extends State<UserForm> {
   String userId = '';
   String password = '';
   late NameInput name;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final _userAuthBloc = context.read<UserAuthBloc>();
-    final _formKey = GlobalKey<FormState>();
     return BlocConsumer<UserAuthBloc, UserAuthState>(
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
@@ -75,10 +75,6 @@ class _UserFormState extends State<UserForm> {
                     children: [
                       SizedBox(
                         width: 250.0,
-                        // child: Text(
-                        //   'Learn anywhere',
-                        //   style: TextStyle(fontSize: 30.0),
-                        // )
                         child: TyperAnimatedTextKit(
                           text: ['Learn anywhere'],
                           textStyle: TextStyle(
@@ -90,7 +86,7 @@ class _UserFormState extends State<UserForm> {
                           speed: Duration(milliseconds: 40),
                         ),
                       ),
-                      // Lottie.asset('assets/lottie/intro.json'),
+                      Lottie.asset('assets/lottie/intro.json'),
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -120,12 +116,6 @@ class _UserFormState extends State<UserForm> {
                         ),
                       ),
                       SizedBox(height: 0.03.sh),
-                      // ElevatedButton(
-                      //   onPressed: () => Get.dialog(
-                      //     Lottie.asset('assets/lottie/loading_animation.json'),
-                      //   ),
-                      //   child: Text('dialog animation test'),
-                      // ),
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'homework_bloc.dart';
 
@@ -10,73 +12,7 @@ part of 'homework_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$HomeworkEventTearOff {
-  const _$HomeworkEventTearOff();
-
-  _Started started() {
-    return const _Started();
-  }
-
-  _UploadHomework uploadHomework(
-      {required UserModel user,
-      required String title,
-      required String courseTitle,
-      required String filePath,
-      required int dueDate,
-      String? description}) {
-    return _UploadHomework(
-      user: user,
-      title: title,
-      courseTitle: courseTitle,
-      filePath: filePath,
-      dueDate: dueDate,
-      description: description,
-    );
-  }
-
-  _SelectFile selectFile() {
-    return const _SelectFile();
-  }
-
-  _GetAllHomeworksByCourse getAllHomeworksByCourse(
-      {required String courseTitle}) {
-    return _GetAllHomeworksByCourse(
-      courseTitle: courseTitle,
-    );
-  }
-
-  _GetSubmittedHomework getSubmittedHomework(
-      {required String courseTitle,
-      required String homeworkTitle,
-      required String userId}) {
-    return _GetSubmittedHomework(
-      courseTitle: courseTitle,
-      homeworkTitle: homeworkTitle,
-      userId: userId,
-    );
-  }
-
-  _SubmitHomework submitHomework(
-      {required String userId,
-      required String courseTitle,
-      required String homeworkTitle,
-      String? note,
-      int? submitDate}) {
-    return _SubmitHomework(
-      userId: userId,
-      courseTitle: courseTitle,
-      homeworkTitle: homeworkTitle,
-      note: note,
-      submitDate: submitDate,
-    );
-  }
-}
-
-/// @nodoc
-const $HomeworkEvent = _$HomeworkEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$HomeworkEvent {
@@ -93,6 +29,21 @@ mixin _$HomeworkEvent {
         getSubmittedHomework,
     required TResult Function(String userId, String courseTitle,
             String homeworkTitle, String? note, int? submitDate)
+        submitHomework,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult? Function()? selectFile,
+    TResult? Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult? Function(String courseTitle, String homeworkTitle, String userId)?
+        getSubmittedHomework,
+    TResult? Function(String userId, String courseTitle, String homeworkTitle,
+            String? note, int? submitDate)?
         submitHomework,
   }) =>
       throw _privateConstructorUsedError;
@@ -124,6 +75,16 @@ mixin _$HomeworkEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UploadHomework value)? uploadHomework,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult? Function(_GetSubmittedHomework value)? getSubmittedHomework,
+    TResult? Function(_SubmitHomework value)? submitHomework,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UploadHomework value)? uploadHomework,
@@ -140,39 +101,40 @@ mixin _$HomeworkEvent {
 abstract class $HomeworkEventCopyWith<$Res> {
   factory $HomeworkEventCopyWith(
           HomeworkEvent value, $Res Function(HomeworkEvent) then) =
-      _$HomeworkEventCopyWithImpl<$Res>;
+      _$HomeworkEventCopyWithImpl<$Res, HomeworkEvent>;
 }
 
 /// @nodoc
-class _$HomeworkEventCopyWithImpl<$Res>
+class _$HomeworkEventCopyWithImpl<$Res, $Val extends HomeworkEvent>
     implements $HomeworkEventCopyWith<$Res> {
   _$HomeworkEventCopyWithImpl(this._value, this._then);
 
-  final HomeworkEvent _value;
   // ignore: unused_field
-  final $Res Function(HomeworkEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$HomeworkEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
-
-  @override
-  _Started get _value => super._value as _Started;
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$HomeworkEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
 
   @override
   String toString() {
@@ -180,8 +142,9 @@ class _$_Started implements _Started {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
   }
 
   @override
@@ -204,6 +167,24 @@ class _$_Started implements _Started {
         submitHomework,
   }) {
     return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult? Function()? selectFile,
+    TResult? Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult? Function(String courseTitle, String homeworkTitle, String userId)?
+        getSubmittedHomework,
+    TResult? Function(String userId, String courseTitle, String homeworkTitle,
+            String? note, int? submitDate)?
+        submitHomework,
+  }) {
+    return started?.call();
   }
 
   @override
@@ -244,6 +225,19 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UploadHomework value)? uploadHomework,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult? Function(_GetSubmittedHomework value)? getSubmittedHomework,
+    TResult? Function(_SubmitHomework value)? submitHomework,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UploadHomework value)? uploadHomework,
@@ -261,14 +255,15 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements HomeworkEvent {
-  const factory _Started() = _$_Started;
+  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$UploadHomeworkCopyWith<$Res> {
-  factory _$UploadHomeworkCopyWith(
-          _UploadHomework value, $Res Function(_UploadHomework) then) =
-      __$UploadHomeworkCopyWithImpl<$Res>;
+abstract class _$$UploadHomeworkImplCopyWith<$Res> {
+  factory _$$UploadHomeworkImplCopyWith(_$UploadHomeworkImpl value,
+          $Res Function(_$UploadHomeworkImpl) then) =
+      __$$UploadHomeworkImplCopyWithImpl<$Res>;
+  @useResult
   $Res call(
       {UserModel user,
       String title,
@@ -279,47 +274,45 @@ abstract class _$UploadHomeworkCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UploadHomeworkCopyWithImpl<$Res>
-    extends _$HomeworkEventCopyWithImpl<$Res>
-    implements _$UploadHomeworkCopyWith<$Res> {
-  __$UploadHomeworkCopyWithImpl(
-      _UploadHomework _value, $Res Function(_UploadHomework) _then)
-      : super(_value, (v) => _then(v as _UploadHomework));
+class __$$UploadHomeworkImplCopyWithImpl<$Res>
+    extends _$HomeworkEventCopyWithImpl<$Res, _$UploadHomeworkImpl>
+    implements _$$UploadHomeworkImplCopyWith<$Res> {
+  __$$UploadHomeworkImplCopyWithImpl(
+      _$UploadHomeworkImpl _value, $Res Function(_$UploadHomeworkImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _UploadHomework get _value => super._value as _UploadHomework;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
-    Object? title = freezed,
-    Object? courseTitle = freezed,
-    Object? filePath = freezed,
-    Object? dueDate = freezed,
+    Object? user = null,
+    Object? title = null,
+    Object? courseTitle = null,
+    Object? filePath = null,
+    Object? dueDate = null,
     Object? description = freezed,
   }) {
-    return _then(_UploadHomework(
-      user: user == freezed
+    return _then(_$UploadHomeworkImpl(
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      filePath: filePath == freezed
+      filePath: null == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      dueDate: dueDate == freezed
+      dueDate: null == dueDate
           ? _value.dueDate
           : dueDate // ignore: cast_nullable_to_non_nullable
               as int,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -329,8 +322,8 @@ class __$UploadHomeworkCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UploadHomework implements _UploadHomework {
-  const _$_UploadHomework(
+class _$UploadHomeworkImpl implements _UploadHomework {
+  const _$UploadHomeworkImpl(
       {required this.user,
       required this.title,
       required this.courseTitle,
@@ -357,41 +350,31 @@ class _$_UploadHomework implements _UploadHomework {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _UploadHomework &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$UploadHomeworkImpl &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
+                other.courseTitle == courseTitle) &&
             (identical(other.filePath, filePath) ||
-                const DeepCollectionEquality()
-                    .equals(other.filePath, filePath)) &&
-            (identical(other.dueDate, dueDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.dueDate, dueDate)) &&
+                other.filePath == filePath) &&
+            (identical(other.dueDate, dueDate) || other.dueDate == dueDate) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)));
+                other.description == description));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(filePath) ^
-      const DeepCollectionEquality().hash(dueDate) ^
-      const DeepCollectionEquality().hash(description);
+  int get hashCode => Object.hash(
+      runtimeType, user, title, courseTitle, filePath, dueDate, description);
 
   @JsonKey(ignore: true)
   @override
-  _$UploadHomeworkCopyWith<_UploadHomework> get copyWith =>
-      __$UploadHomeworkCopyWithImpl<_UploadHomework>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UploadHomeworkImplCopyWith<_$UploadHomeworkImpl> get copyWith =>
+      __$$UploadHomeworkImplCopyWithImpl<_$UploadHomeworkImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -410,6 +393,25 @@ class _$_UploadHomework implements _UploadHomework {
         submitHomework,
   }) {
     return uploadHomework(
+        user, title, courseTitle, filePath, dueDate, description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult? Function()? selectFile,
+    TResult? Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult? Function(String courseTitle, String homeworkTitle, String userId)?
+        getSubmittedHomework,
+    TResult? Function(String userId, String courseTitle, String homeworkTitle,
+            String? note, int? submitDate)?
+        submitHomework,
+  }) {
+    return uploadHomework?.call(
         user, title, courseTitle, filePath, dueDate, description);
   }
 
@@ -452,6 +454,19 @@ class _$_UploadHomework implements _UploadHomework {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UploadHomework value)? uploadHomework,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult? Function(_GetSubmittedHomework value)? getSubmittedHomework,
+    TResult? Function(_SubmitHomework value)? submitHomework,
+  }) {
+    return uploadHomework?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UploadHomework value)? uploadHomework,
@@ -470,46 +485,44 @@ class _$_UploadHomework implements _UploadHomework {
 
 abstract class _UploadHomework implements HomeworkEvent {
   const factory _UploadHomework(
-      {required UserModel user,
-      required String title,
-      required String courseTitle,
-      required String filePath,
-      required int dueDate,
-      String? description}) = _$_UploadHomework;
+      {required final UserModel user,
+      required final String title,
+      required final String courseTitle,
+      required final String filePath,
+      required final int dueDate,
+      final String? description}) = _$UploadHomeworkImpl;
 
-  UserModel get user => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get courseTitle => throw _privateConstructorUsedError;
-  String get filePath => throw _privateConstructorUsedError;
-  int get dueDate => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  UserModel get user;
+  String get title;
+  String get courseTitle;
+  String get filePath;
+  int get dueDate;
+  String? get description;
   @JsonKey(ignore: true)
-  _$UploadHomeworkCopyWith<_UploadHomework> get copyWith =>
+  _$$UploadHomeworkImplCopyWith<_$UploadHomeworkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SelectFileCopyWith<$Res> {
-  factory _$SelectFileCopyWith(
-          _SelectFile value, $Res Function(_SelectFile) then) =
-      __$SelectFileCopyWithImpl<$Res>;
+abstract class _$$SelectFileImplCopyWith<$Res> {
+  factory _$$SelectFileImplCopyWith(
+          _$SelectFileImpl value, $Res Function(_$SelectFileImpl) then) =
+      __$$SelectFileImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SelectFileCopyWithImpl<$Res> extends _$HomeworkEventCopyWithImpl<$Res>
-    implements _$SelectFileCopyWith<$Res> {
-  __$SelectFileCopyWithImpl(
-      _SelectFile _value, $Res Function(_SelectFile) _then)
-      : super(_value, (v) => _then(v as _SelectFile));
-
-  @override
-  _SelectFile get _value => super._value as _SelectFile;
+class __$$SelectFileImplCopyWithImpl<$Res>
+    extends _$HomeworkEventCopyWithImpl<$Res, _$SelectFileImpl>
+    implements _$$SelectFileImplCopyWith<$Res> {
+  __$$SelectFileImplCopyWithImpl(
+      _$SelectFileImpl _value, $Res Function(_$SelectFileImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SelectFile implements _SelectFile {
-  const _$_SelectFile();
+class _$SelectFileImpl implements _SelectFile {
+  const _$SelectFileImpl();
 
   @override
   String toString() {
@@ -517,8 +530,9 @@ class _$_SelectFile implements _SelectFile {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SelectFile);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SelectFileImpl);
   }
 
   @override
@@ -541,6 +555,24 @@ class _$_SelectFile implements _SelectFile {
         submitHomework,
   }) {
     return selectFile();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult? Function()? selectFile,
+    TResult? Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult? Function(String courseTitle, String homeworkTitle, String userId)?
+        getSubmittedHomework,
+    TResult? Function(String userId, String courseTitle, String homeworkTitle,
+            String? note, int? submitDate)?
+        submitHomework,
+  }) {
+    return selectFile?.call();
   }
 
   @override
@@ -581,6 +613,19 @@ class _$_SelectFile implements _SelectFile {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UploadHomework value)? uploadHomework,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult? Function(_GetSubmittedHomework value)? getSubmittedHomework,
+    TResult? Function(_SubmitHomework value)? submitHomework,
+  }) {
+    return selectFile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UploadHomework value)? uploadHomework,
@@ -598,35 +643,35 @@ class _$_SelectFile implements _SelectFile {
 }
 
 abstract class _SelectFile implements HomeworkEvent {
-  const factory _SelectFile() = _$_SelectFile;
+  const factory _SelectFile() = _$SelectFileImpl;
 }
 
 /// @nodoc
-abstract class _$GetAllHomeworksByCourseCopyWith<$Res> {
-  factory _$GetAllHomeworksByCourseCopyWith(_GetAllHomeworksByCourse value,
-          $Res Function(_GetAllHomeworksByCourse) then) =
-      __$GetAllHomeworksByCourseCopyWithImpl<$Res>;
+abstract class _$$GetAllHomeworksByCourseImplCopyWith<$Res> {
+  factory _$$GetAllHomeworksByCourseImplCopyWith(
+          _$GetAllHomeworksByCourseImpl value,
+          $Res Function(_$GetAllHomeworksByCourseImpl) then) =
+      __$$GetAllHomeworksByCourseImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({String courseTitle});
 }
 
 /// @nodoc
-class __$GetAllHomeworksByCourseCopyWithImpl<$Res>
-    extends _$HomeworkEventCopyWithImpl<$Res>
-    implements _$GetAllHomeworksByCourseCopyWith<$Res> {
-  __$GetAllHomeworksByCourseCopyWithImpl(_GetAllHomeworksByCourse _value,
-      $Res Function(_GetAllHomeworksByCourse) _then)
-      : super(_value, (v) => _then(v as _GetAllHomeworksByCourse));
+class __$$GetAllHomeworksByCourseImplCopyWithImpl<$Res>
+    extends _$HomeworkEventCopyWithImpl<$Res, _$GetAllHomeworksByCourseImpl>
+    implements _$$GetAllHomeworksByCourseImplCopyWith<$Res> {
+  __$$GetAllHomeworksByCourseImplCopyWithImpl(
+      _$GetAllHomeworksByCourseImpl _value,
+      $Res Function(_$GetAllHomeworksByCourseImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _GetAllHomeworksByCourse get _value =>
-      super._value as _GetAllHomeworksByCourse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courseTitle = freezed,
+    Object? courseTitle = null,
   }) {
-    return _then(_GetAllHomeworksByCourse(
-      courseTitle: courseTitle == freezed
+    return _then(_$GetAllHomeworksByCourseImpl(
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
@@ -636,8 +681,8 @@ class __$GetAllHomeworksByCourseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
-  const _$_GetAllHomeworksByCourse({required this.courseTitle});
+class _$GetAllHomeworksByCourseImpl implements _GetAllHomeworksByCourse {
+  const _$GetAllHomeworksByCourseImpl({required this.courseTitle});
 
   @override
   final String courseTitle;
@@ -648,23 +693,23 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _GetAllHomeworksByCourse &&
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllHomeworksByCourseImpl &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)));
+                other.courseTitle == courseTitle));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+  int get hashCode => Object.hash(runtimeType, courseTitle);
 
   @JsonKey(ignore: true)
   @override
-  _$GetAllHomeworksByCourseCopyWith<_GetAllHomeworksByCourse> get copyWith =>
-      __$GetAllHomeworksByCourseCopyWithImpl<_GetAllHomeworksByCourse>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GetAllHomeworksByCourseImplCopyWith<_$GetAllHomeworksByCourseImpl>
+      get copyWith => __$$GetAllHomeworksByCourseImplCopyWithImpl<
+          _$GetAllHomeworksByCourseImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -683,6 +728,24 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
         submitHomework,
   }) {
     return getAllHomeworksByCourse(courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult? Function()? selectFile,
+    TResult? Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult? Function(String courseTitle, String homeworkTitle, String userId)?
+        getSubmittedHomework,
+    TResult? Function(String userId, String courseTitle, String homeworkTitle,
+            String? note, int? submitDate)?
+        submitHomework,
+  }) {
+    return getAllHomeworksByCourse?.call(courseTitle);
   }
 
   @override
@@ -723,6 +786,19 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UploadHomework value)? uploadHomework,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult? Function(_GetSubmittedHomework value)? getSubmittedHomework,
+    TResult? Function(_SubmitHomework value)? submitHomework,
+  }) {
+    return getAllHomeworksByCourse?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UploadHomework value)? uploadHomework,
@@ -740,50 +816,49 @@ class _$_GetAllHomeworksByCourse implements _GetAllHomeworksByCourse {
 }
 
 abstract class _GetAllHomeworksByCourse implements HomeworkEvent {
-  const factory _GetAllHomeworksByCourse({required String courseTitle}) =
-      _$_GetAllHomeworksByCourse;
+  const factory _GetAllHomeworksByCourse({required final String courseTitle}) =
+      _$GetAllHomeworksByCourseImpl;
 
-  String get courseTitle => throw _privateConstructorUsedError;
+  String get courseTitle;
   @JsonKey(ignore: true)
-  _$GetAllHomeworksByCourseCopyWith<_GetAllHomeworksByCourse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GetAllHomeworksByCourseImplCopyWith<_$GetAllHomeworksByCourseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GetSubmittedHomeworkCopyWith<$Res> {
-  factory _$GetSubmittedHomeworkCopyWith(_GetSubmittedHomework value,
-          $Res Function(_GetSubmittedHomework) then) =
-      __$GetSubmittedHomeworkCopyWithImpl<$Res>;
+abstract class _$$GetSubmittedHomeworkImplCopyWith<$Res> {
+  factory _$$GetSubmittedHomeworkImplCopyWith(_$GetSubmittedHomeworkImpl value,
+          $Res Function(_$GetSubmittedHomeworkImpl) then) =
+      __$$GetSubmittedHomeworkImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({String courseTitle, String homeworkTitle, String userId});
 }
 
 /// @nodoc
-class __$GetSubmittedHomeworkCopyWithImpl<$Res>
-    extends _$HomeworkEventCopyWithImpl<$Res>
-    implements _$GetSubmittedHomeworkCopyWith<$Res> {
-  __$GetSubmittedHomeworkCopyWithImpl(
-      _GetSubmittedHomework _value, $Res Function(_GetSubmittedHomework) _then)
-      : super(_value, (v) => _then(v as _GetSubmittedHomework));
+class __$$GetSubmittedHomeworkImplCopyWithImpl<$Res>
+    extends _$HomeworkEventCopyWithImpl<$Res, _$GetSubmittedHomeworkImpl>
+    implements _$$GetSubmittedHomeworkImplCopyWith<$Res> {
+  __$$GetSubmittedHomeworkImplCopyWithImpl(_$GetSubmittedHomeworkImpl _value,
+      $Res Function(_$GetSubmittedHomeworkImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _GetSubmittedHomework get _value => super._value as _GetSubmittedHomework;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courseTitle = freezed,
-    Object? homeworkTitle = freezed,
-    Object? userId = freezed,
+    Object? courseTitle = null,
+    Object? homeworkTitle = null,
+    Object? userId = null,
   }) {
-    return _then(_GetSubmittedHomework(
-      courseTitle: courseTitle == freezed
+    return _then(_$GetSubmittedHomeworkImpl(
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      homeworkTitle: homeworkTitle == freezed
+      homeworkTitle: null == homeworkTitle
           ? _value.homeworkTitle
           : homeworkTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -793,8 +868,8 @@ class __$GetSubmittedHomeworkCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetSubmittedHomework implements _GetSubmittedHomework {
-  const _$_GetSubmittedHomework(
+class _$GetSubmittedHomeworkImpl implements _GetSubmittedHomework {
+  const _$GetSubmittedHomeworkImpl(
       {required this.courseTitle,
       required this.homeworkTitle,
       required this.userId});
@@ -812,31 +887,28 @@ class _$_GetSubmittedHomework implements _GetSubmittedHomework {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _GetSubmittedHomework &&
+        (other.runtimeType == runtimeType &&
+            other is _$GetSubmittedHomeworkImpl &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
+                other.courseTitle == courseTitle) &&
             (identical(other.homeworkTitle, homeworkTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.homeworkTitle, homeworkTitle)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
+                other.homeworkTitle == homeworkTitle) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(homeworkTitle) ^
-      const DeepCollectionEquality().hash(userId);
+      Object.hash(runtimeType, courseTitle, homeworkTitle, userId);
 
   @JsonKey(ignore: true)
   @override
-  _$GetSubmittedHomeworkCopyWith<_GetSubmittedHomework> get copyWith =>
-      __$GetSubmittedHomeworkCopyWithImpl<_GetSubmittedHomework>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GetSubmittedHomeworkImplCopyWith<_$GetSubmittedHomeworkImpl>
+      get copyWith =>
+          __$$GetSubmittedHomeworkImplCopyWithImpl<_$GetSubmittedHomeworkImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -855,6 +927,24 @@ class _$_GetSubmittedHomework implements _GetSubmittedHomework {
         submitHomework,
   }) {
     return getSubmittedHomework(courseTitle, homeworkTitle, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult? Function()? selectFile,
+    TResult? Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult? Function(String courseTitle, String homeworkTitle, String userId)?
+        getSubmittedHomework,
+    TResult? Function(String userId, String courseTitle, String homeworkTitle,
+            String? note, int? submitDate)?
+        submitHomework,
+  }) {
+    return getSubmittedHomework?.call(courseTitle, homeworkTitle, userId);
   }
 
   @override
@@ -895,6 +985,19 @@ class _$_GetSubmittedHomework implements _GetSubmittedHomework {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UploadHomework value)? uploadHomework,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult? Function(_GetSubmittedHomework value)? getSubmittedHomework,
+    TResult? Function(_SubmitHomework value)? submitHomework,
+  }) {
+    return getSubmittedHomework?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UploadHomework value)? uploadHomework,
@@ -913,23 +1016,24 @@ class _$_GetSubmittedHomework implements _GetSubmittedHomework {
 
 abstract class _GetSubmittedHomework implements HomeworkEvent {
   const factory _GetSubmittedHomework(
-      {required String courseTitle,
-      required String homeworkTitle,
-      required String userId}) = _$_GetSubmittedHomework;
+      {required final String courseTitle,
+      required final String homeworkTitle,
+      required final String userId}) = _$GetSubmittedHomeworkImpl;
 
-  String get courseTitle => throw _privateConstructorUsedError;
-  String get homeworkTitle => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
+  String get courseTitle;
+  String get homeworkTitle;
+  String get userId;
   @JsonKey(ignore: true)
-  _$GetSubmittedHomeworkCopyWith<_GetSubmittedHomework> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GetSubmittedHomeworkImplCopyWith<_$GetSubmittedHomeworkImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SubmitHomeworkCopyWith<$Res> {
-  factory _$SubmitHomeworkCopyWith(
-          _SubmitHomework value, $Res Function(_SubmitHomework) then) =
-      __$SubmitHomeworkCopyWithImpl<$Res>;
+abstract class _$$SubmitHomeworkImplCopyWith<$Res> {
+  factory _$$SubmitHomeworkImplCopyWith(_$SubmitHomeworkImpl value,
+          $Res Function(_$SubmitHomeworkImpl) then) =
+      __$$SubmitHomeworkImplCopyWithImpl<$Res>;
+  @useResult
   $Res call(
       {String userId,
       String courseTitle,
@@ -939,42 +1043,40 @@ abstract class _$SubmitHomeworkCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SubmitHomeworkCopyWithImpl<$Res>
-    extends _$HomeworkEventCopyWithImpl<$Res>
-    implements _$SubmitHomeworkCopyWith<$Res> {
-  __$SubmitHomeworkCopyWithImpl(
-      _SubmitHomework _value, $Res Function(_SubmitHomework) _then)
-      : super(_value, (v) => _then(v as _SubmitHomework));
+class __$$SubmitHomeworkImplCopyWithImpl<$Res>
+    extends _$HomeworkEventCopyWithImpl<$Res, _$SubmitHomeworkImpl>
+    implements _$$SubmitHomeworkImplCopyWith<$Res> {
+  __$$SubmitHomeworkImplCopyWithImpl(
+      _$SubmitHomeworkImpl _value, $Res Function(_$SubmitHomeworkImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _SubmitHomework get _value => super._value as _SubmitHomework;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? courseTitle = freezed,
-    Object? homeworkTitle = freezed,
+    Object? userId = null,
+    Object? courseTitle = null,
+    Object? homeworkTitle = null,
     Object? note = freezed,
     Object? submitDate = freezed,
   }) {
-    return _then(_SubmitHomework(
-      userId: userId == freezed
+    return _then(_$SubmitHomeworkImpl(
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      homeworkTitle: homeworkTitle == freezed
+      homeworkTitle: null == homeworkTitle
           ? _value.homeworkTitle
           : homeworkTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      note: note == freezed
+      note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
-      submitDate: submitDate == freezed
+      submitDate: freezed == submitDate
           ? _value.submitDate
           : submitDate // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -984,8 +1086,8 @@ class __$SubmitHomeworkCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SubmitHomework implements _SubmitHomework {
-  const _$_SubmitHomework(
+class _$SubmitHomeworkImpl implements _SubmitHomework {
+  const _$SubmitHomeworkImpl(
       {required this.userId,
       required this.courseTitle,
       required this.homeworkTitle,
@@ -1009,37 +1111,30 @@ class _$_SubmitHomework implements _SubmitHomework {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _SubmitHomework &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitHomeworkImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
+                other.courseTitle == courseTitle) &&
             (identical(other.homeworkTitle, homeworkTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.homeworkTitle, homeworkTitle)) &&
-            (identical(other.note, note) ||
-                const DeepCollectionEquality().equals(other.note, note)) &&
+                other.homeworkTitle == homeworkTitle) &&
+            (identical(other.note, note) || other.note == note) &&
             (identical(other.submitDate, submitDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.submitDate, submitDate)));
+                other.submitDate == submitDate));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(homeworkTitle) ^
-      const DeepCollectionEquality().hash(note) ^
-      const DeepCollectionEquality().hash(submitDate);
+  int get hashCode => Object.hash(
+      runtimeType, userId, courseTitle, homeworkTitle, note, submitDate);
 
   @JsonKey(ignore: true)
   @override
-  _$SubmitHomeworkCopyWith<_SubmitHomework> get copyWith =>
-      __$SubmitHomeworkCopyWithImpl<_SubmitHomework>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$SubmitHomeworkImplCopyWith<_$SubmitHomeworkImpl> get copyWith =>
+      __$$SubmitHomeworkImplCopyWithImpl<_$SubmitHomeworkImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1058,6 +1153,25 @@ class _$_SubmitHomework implements _SubmitHomework {
         submitHomework,
   }) {
     return submitHomework(userId, courseTitle, homeworkTitle, note, submitDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String filePath, int dueDate, String? description)?
+        uploadHomework,
+    TResult? Function()? selectFile,
+    TResult? Function(String courseTitle)? getAllHomeworksByCourse,
+    TResult? Function(String courseTitle, String homeworkTitle, String userId)?
+        getSubmittedHomework,
+    TResult? Function(String userId, String courseTitle, String homeworkTitle,
+            String? note, int? submitDate)?
+        submitHomework,
+  }) {
+    return submitHomework?.call(
+        userId, courseTitle, homeworkTitle, note, submitDate);
   }
 
   @override
@@ -1099,6 +1213,19 @@ class _$_SubmitHomework implements _SubmitHomework {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UploadHomework value)? uploadHomework,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_GetAllHomeworksByCourse value)? getAllHomeworksByCourse,
+    TResult? Function(_GetSubmittedHomework value)? getSubmittedHomework,
+    TResult? Function(_SubmitHomework value)? submitHomework,
+  }) {
+    return submitHomework?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UploadHomework value)? uploadHomework,
@@ -1117,54 +1244,21 @@ class _$_SubmitHomework implements _SubmitHomework {
 
 abstract class _SubmitHomework implements HomeworkEvent {
   const factory _SubmitHomework(
-      {required String userId,
-      required String courseTitle,
-      required String homeworkTitle,
-      String? note,
-      int? submitDate}) = _$_SubmitHomework;
+      {required final String userId,
+      required final String courseTitle,
+      required final String homeworkTitle,
+      final String? note,
+      final int? submitDate}) = _$SubmitHomeworkImpl;
 
-  String get userId => throw _privateConstructorUsedError;
-  String get courseTitle => throw _privateConstructorUsedError;
-  String get homeworkTitle => throw _privateConstructorUsedError;
-  String? get note => throw _privateConstructorUsedError;
-  int? get submitDate => throw _privateConstructorUsedError;
+  String get userId;
+  String get courseTitle;
+  String get homeworkTitle;
+  String? get note;
+  int? get submitDate;
   @JsonKey(ignore: true)
-  _$SubmitHomeworkCopyWith<_SubmitHomework> get copyWith =>
+  _$$SubmitHomeworkImplCopyWith<_$SubmitHomeworkImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$HomeworkStateTearOff {
-  const _$HomeworkStateTearOff();
-
-  _HomeworkState call(
-      {required String title,
-      required String courseTitle,
-      required String userId,
-      required List<HomeworkEntity> homeworks,
-      required HomeworkSubmitEntity homeworkSubmitEntity,
-      String? note,
-      String? description,
-      String? filePath,
-      bool? isSubmitting,
-      Option<Either<HomeworkFailure, Unit>>? homeworkFailureOrSuccessOption}) {
-    return _HomeworkState(
-      title: title,
-      courseTitle: courseTitle,
-      userId: userId,
-      homeworks: homeworks,
-      homeworkSubmitEntity: homeworkSubmitEntity,
-      note: note,
-      description: description,
-      filePath: filePath,
-      isSubmitting: isSubmitting,
-      homeworkFailureOrSuccessOption: homeworkFailureOrSuccessOption,
-    );
-  }
-}
-
-/// @nodoc
-const $HomeworkState = _$HomeworkStateTearOff();
 
 /// @nodoc
 mixin _$HomeworkState {
@@ -1190,7 +1284,8 @@ mixin _$HomeworkState {
 abstract class $HomeworkStateCopyWith<$Res> {
   factory $HomeworkStateCopyWith(
           HomeworkState value, $Res Function(HomeworkState) then) =
-      _$HomeworkStateCopyWithImpl<$Res>;
+      _$HomeworkStateCopyWithImpl<$Res, HomeworkState>;
+  @useResult
   $Res call(
       {String title,
       String courseTitle,
@@ -1205,21 +1300,23 @@ abstract class $HomeworkStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeworkStateCopyWithImpl<$Res>
+class _$HomeworkStateCopyWithImpl<$Res, $Val extends HomeworkState>
     implements $HomeworkStateCopyWith<$Res> {
   _$HomeworkStateCopyWithImpl(this._value, this._then);
 
-  final HomeworkState _value;
   // ignore: unused_field
-  final $Res Function(HomeworkState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
-    Object? courseTitle = freezed,
-    Object? userId = freezed,
-    Object? homeworks = freezed,
-    Object? homeworkSubmitEntity = freezed,
+    Object? title = null,
+    Object? courseTitle = null,
+    Object? userId = null,
+    Object? homeworks = null,
+    Object? homeworkSubmitEntity = null,
     Object? note = freezed,
     Object? description = freezed,
     Object? filePath = freezed,
@@ -1227,57 +1324,58 @@ class _$HomeworkStateCopyWithImpl<$Res>
     Object? homeworkFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      homeworks: homeworks == freezed
+      homeworks: null == homeworks
           ? _value.homeworks
           : homeworks // ignore: cast_nullable_to_non_nullable
               as List<HomeworkEntity>,
-      homeworkSubmitEntity: homeworkSubmitEntity == freezed
+      homeworkSubmitEntity: null == homeworkSubmitEntity
           ? _value.homeworkSubmitEntity
           : homeworkSubmitEntity // ignore: cast_nullable_to_non_nullable
               as HomeworkSubmitEntity,
-      note: note == freezed
+      note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      filePath: filePath == freezed
+      filePath: freezed == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: freezed == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool?,
-      homeworkFailureOrSuccessOption: homeworkFailureOrSuccessOption == freezed
+      homeworkFailureOrSuccessOption: freezed == homeworkFailureOrSuccessOption
           ? _value.homeworkFailureOrSuccessOption
           : homeworkFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<HomeworkFailure, Unit>>?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$HomeworkStateCopyWith<$Res>
+abstract class _$$HomeworkStateImplCopyWith<$Res>
     implements $HomeworkStateCopyWith<$Res> {
-  factory _$HomeworkStateCopyWith(
-          _HomeworkState value, $Res Function(_HomeworkState) then) =
-      __$HomeworkStateCopyWithImpl<$Res>;
+  factory _$$HomeworkStateImplCopyWith(
+          _$HomeworkStateImpl value, $Res Function(_$HomeworkStateImpl) then) =
+      __$$HomeworkStateImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String title,
       String courseTitle,
@@ -1292,67 +1390,65 @@ abstract class _$HomeworkStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$HomeworkStateCopyWithImpl<$Res>
-    extends _$HomeworkStateCopyWithImpl<$Res>
-    implements _$HomeworkStateCopyWith<$Res> {
-  __$HomeworkStateCopyWithImpl(
-      _HomeworkState _value, $Res Function(_HomeworkState) _then)
-      : super(_value, (v) => _then(v as _HomeworkState));
+class __$$HomeworkStateImplCopyWithImpl<$Res>
+    extends _$HomeworkStateCopyWithImpl<$Res, _$HomeworkStateImpl>
+    implements _$$HomeworkStateImplCopyWith<$Res> {
+  __$$HomeworkStateImplCopyWithImpl(
+      _$HomeworkStateImpl _value, $Res Function(_$HomeworkStateImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _HomeworkState get _value => super._value as _HomeworkState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = freezed,
-    Object? courseTitle = freezed,
-    Object? userId = freezed,
-    Object? homeworks = freezed,
-    Object? homeworkSubmitEntity = freezed,
+    Object? title = null,
+    Object? courseTitle = null,
+    Object? userId = null,
+    Object? homeworks = null,
+    Object? homeworkSubmitEntity = null,
     Object? note = freezed,
     Object? description = freezed,
     Object? filePath = freezed,
     Object? isSubmitting = freezed,
     Object? homeworkFailureOrSuccessOption = freezed,
   }) {
-    return _then(_HomeworkState(
-      title: title == freezed
+    return _then(_$HomeworkStateImpl(
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      homeworks: homeworks == freezed
-          ? _value.homeworks
+      homeworks: null == homeworks
+          ? _value._homeworks
           : homeworks // ignore: cast_nullable_to_non_nullable
               as List<HomeworkEntity>,
-      homeworkSubmitEntity: homeworkSubmitEntity == freezed
+      homeworkSubmitEntity: null == homeworkSubmitEntity
           ? _value.homeworkSubmitEntity
           : homeworkSubmitEntity // ignore: cast_nullable_to_non_nullable
               as HomeworkSubmitEntity,
-      note: note == freezed
+      note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      filePath: filePath == freezed
+      filePath: freezed == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String?,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: freezed == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool?,
-      homeworkFailureOrSuccessOption: homeworkFailureOrSuccessOption == freezed
+      homeworkFailureOrSuccessOption: freezed == homeworkFailureOrSuccessOption
           ? _value.homeworkFailureOrSuccessOption
           : homeworkFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<HomeworkFailure, Unit>>?,
@@ -1362,18 +1458,19 @@ class __$HomeworkStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeworkState implements _HomeworkState {
-  const _$_HomeworkState(
+class _$HomeworkStateImpl implements _HomeworkState {
+  const _$HomeworkStateImpl(
       {required this.title,
       required this.courseTitle,
       required this.userId,
-      required this.homeworks,
+      required final List<HomeworkEntity> homeworks,
       required this.homeworkSubmitEntity,
       this.note,
       this.description,
       this.filePath,
       this.isSubmitting,
-      this.homeworkFailureOrSuccessOption});
+      this.homeworkFailureOrSuccessOption})
+      : _homeworks = homeworks;
 
   @override
   final String title;
@@ -1381,8 +1478,14 @@ class _$_HomeworkState implements _HomeworkState {
   final String courseTitle;
   @override
   final String userId;
+  final List<HomeworkEntity> _homeworks;
   @override
-  final List<HomeworkEntity> homeworks;
+  List<HomeworkEntity> get homeworks {
+    if (_homeworks is EqualUnmodifiableListView) return _homeworks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_homeworks);
+  }
+
   @override
   final HomeworkSubmitEntity homeworkSubmitEntity;
   @override
@@ -1402,98 +1505,88 @@ class _$_HomeworkState implements _HomeworkState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _HomeworkState &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$HomeworkStateImpl &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
-            (identical(other.homeworks, homeworks) ||
-                const DeepCollectionEquality()
-                    .equals(other.homeworks, homeworks)) &&
+                other.courseTitle == courseTitle) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            const DeepCollectionEquality()
+                .equals(other._homeworks, _homeworks) &&
             (identical(other.homeworkSubmitEntity, homeworkSubmitEntity) ||
-                const DeepCollectionEquality().equals(
-                    other.homeworkSubmitEntity, homeworkSubmitEntity)) &&
-            (identical(other.note, note) ||
-                const DeepCollectionEquality().equals(other.note, note)) &&
+                other.homeworkSubmitEntity == homeworkSubmitEntity) &&
+            (identical(other.note, note) || other.note == note) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
+                other.description == description) &&
             (identical(other.filePath, filePath) ||
-                const DeepCollectionEquality()
-                    .equals(other.filePath, filePath)) &&
+                other.filePath == filePath) &&
             (identical(other.isSubmitting, isSubmitting) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSubmitting, isSubmitting)) &&
+                other.isSubmitting == isSubmitting) &&
             (identical(other.homeworkFailureOrSuccessOption,
                     homeworkFailureOrSuccessOption) ||
-                const DeepCollectionEquality().equals(
-                    other.homeworkFailureOrSuccessOption,
-                    homeworkFailureOrSuccessOption)));
+                other.homeworkFailureOrSuccessOption ==
+                    homeworkFailureOrSuccessOption));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(homeworks) ^
-      const DeepCollectionEquality().hash(homeworkSubmitEntity) ^
-      const DeepCollectionEquality().hash(note) ^
-      const DeepCollectionEquality().hash(description) ^
-      const DeepCollectionEquality().hash(filePath) ^
-      const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(homeworkFailureOrSuccessOption);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      courseTitle,
+      userId,
+      const DeepCollectionEquality().hash(_homeworks),
+      homeworkSubmitEntity,
+      note,
+      description,
+      filePath,
+      isSubmitting,
+      homeworkFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
-  _$HomeworkStateCopyWith<_HomeworkState> get copyWith =>
-      __$HomeworkStateCopyWithImpl<_HomeworkState>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$HomeworkStateImplCopyWith<_$HomeworkStateImpl> get copyWith =>
+      __$$HomeworkStateImplCopyWithImpl<_$HomeworkStateImpl>(this, _$identity);
 }
 
 abstract class _HomeworkState implements HomeworkState {
   const factory _HomeworkState(
-      {required String title,
-      required String courseTitle,
-      required String userId,
-      required List<HomeworkEntity> homeworks,
-      required HomeworkSubmitEntity homeworkSubmitEntity,
-      String? note,
-      String? description,
-      String? filePath,
-      bool? isSubmitting,
-      Option<Either<HomeworkFailure, Unit>>?
-          homeworkFailureOrSuccessOption}) = _$_HomeworkState;
+      {required final String title,
+      required final String courseTitle,
+      required final String userId,
+      required final List<HomeworkEntity> homeworks,
+      required final HomeworkSubmitEntity homeworkSubmitEntity,
+      final String? note,
+      final String? description,
+      final String? filePath,
+      final bool? isSubmitting,
+      final Option<Either<HomeworkFailure, Unit>>?
+          homeworkFailureOrSuccessOption}) = _$HomeworkStateImpl;
 
   @override
-  String get title => throw _privateConstructorUsedError;
+  String get title;
   @override
-  String get courseTitle => throw _privateConstructorUsedError;
+  String get courseTitle;
   @override
-  String get userId => throw _privateConstructorUsedError;
+  String get userId;
   @override
-  List<HomeworkEntity> get homeworks => throw _privateConstructorUsedError;
+  List<HomeworkEntity> get homeworks;
   @override
-  HomeworkSubmitEntity get homeworkSubmitEntity =>
-      throw _privateConstructorUsedError;
+  HomeworkSubmitEntity get homeworkSubmitEntity;
   @override
-  String? get note => throw _privateConstructorUsedError;
+  String? get note;
   @override
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
   @override
-  String? get filePath => throw _privateConstructorUsedError;
+  String? get filePath;
   @override
-  bool? get isSubmitting => throw _privateConstructorUsedError;
+  bool? get isSubmitting;
   @override
-  Option<Either<HomeworkFailure, Unit>>? get homeworkFailureOrSuccessOption =>
-      throw _privateConstructorUsedError;
+  Option<Either<HomeworkFailure, Unit>>? get homeworkFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
-  _$HomeworkStateCopyWith<_HomeworkState> get copyWith =>
+  _$$HomeworkStateImplCopyWith<_$HomeworkStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

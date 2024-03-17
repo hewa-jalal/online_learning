@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'progress_bloc.dart';
 
@@ -10,37 +12,7 @@ part of 'progress_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ProgressEventTearOff {
-  const _$ProgressEventTearOff();
-
-  _Started started() {
-    return const _Started();
-  }
-
-  _Resume resume() {
-    return const _Resume();
-  }
-
-  _Pause pause() {
-    return const _Pause();
-  }
-
-  _Cancel cancel() {
-    return const _Cancel();
-  }
-
-  _Updated updated(TaskSnapshot task) {
-    return _Updated(
-      task,
-    );
-  }
-}
-
-/// @nodoc
-const $ProgressEvent = _$ProgressEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProgressEvent {
@@ -51,6 +23,15 @@ mixin _$ProgressEvent {
     required TResult Function() pause,
     required TResult Function() cancel,
     required TResult Function(TaskSnapshot task) updated,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resume,
+    TResult? Function()? pause,
+    TResult? Function()? cancel,
+    TResult? Function(TaskSnapshot task)? updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,6 +54,15 @@ mixin _$ProgressEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Resume value)? resume,
+    TResult? Function(_Pause value)? pause,
+    TResult? Function(_Cancel value)? cancel,
+    TResult? Function(_Updated value)? updated,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Resume value)? resume,
@@ -88,39 +78,40 @@ mixin _$ProgressEvent {
 abstract class $ProgressEventCopyWith<$Res> {
   factory $ProgressEventCopyWith(
           ProgressEvent value, $Res Function(ProgressEvent) then) =
-      _$ProgressEventCopyWithImpl<$Res>;
+      _$ProgressEventCopyWithImpl<$Res, ProgressEvent>;
 }
 
 /// @nodoc
-class _$ProgressEventCopyWithImpl<$Res>
+class _$ProgressEventCopyWithImpl<$Res, $Val extends ProgressEvent>
     implements $ProgressEventCopyWith<$Res> {
   _$ProgressEventCopyWithImpl(this._value, this._then);
 
-  final ProgressEvent _value;
   // ignore: unused_field
-  final $Res Function(ProgressEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
-
-  @override
-  _Started get _value => super._value as _Started;
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$ProgressEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
 
   @override
   String toString() {
@@ -128,8 +119,9 @@ class _$_Started implements _Started {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
   }
 
   @override
@@ -145,6 +137,18 @@ class _$_Started implements _Started {
     required TResult Function(TaskSnapshot task) updated,
   }) {
     return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resume,
+    TResult? Function()? pause,
+    TResult? Function()? cancel,
+    TResult? Function(TaskSnapshot task)? updated,
+  }) {
+    return started?.call();
   }
 
   @override
@@ -177,6 +181,18 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Resume value)? resume,
+    TResult? Function(_Pause value)? pause,
+    TResult? Function(_Cancel value)? cancel,
+    TResult? Function(_Updated value)? updated,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Resume value)? resume,
@@ -193,29 +209,29 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements ProgressEvent {
-  const factory _Started() = _$_Started;
+  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$ResumeCopyWith<$Res> {
-  factory _$ResumeCopyWith(_Resume value, $Res Function(_Resume) then) =
-      __$ResumeCopyWithImpl<$Res>;
+abstract class _$$ResumeImplCopyWith<$Res> {
+  factory _$$ResumeImplCopyWith(
+          _$ResumeImpl value, $Res Function(_$ResumeImpl) then) =
+      __$$ResumeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ResumeCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
-    implements _$ResumeCopyWith<$Res> {
-  __$ResumeCopyWithImpl(_Resume _value, $Res Function(_Resume) _then)
-      : super(_value, (v) => _then(v as _Resume));
-
-  @override
-  _Resume get _value => super._value as _Resume;
+class __$$ResumeImplCopyWithImpl<$Res>
+    extends _$ProgressEventCopyWithImpl<$Res, _$ResumeImpl>
+    implements _$$ResumeImplCopyWith<$Res> {
+  __$$ResumeImplCopyWithImpl(
+      _$ResumeImpl _value, $Res Function(_$ResumeImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Resume implements _Resume {
-  const _$_Resume();
+class _$ResumeImpl implements _Resume {
+  const _$ResumeImpl();
 
   @override
   String toString() {
@@ -223,8 +239,9 @@ class _$_Resume implements _Resume {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Resume);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResumeImpl);
   }
 
   @override
@@ -240,6 +257,18 @@ class _$_Resume implements _Resume {
     required TResult Function(TaskSnapshot task) updated,
   }) {
     return resume();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resume,
+    TResult? Function()? pause,
+    TResult? Function()? cancel,
+    TResult? Function(TaskSnapshot task)? updated,
+  }) {
+    return resume?.call();
   }
 
   @override
@@ -272,6 +301,18 @@ class _$_Resume implements _Resume {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Resume value)? resume,
+    TResult? Function(_Pause value)? pause,
+    TResult? Function(_Cancel value)? cancel,
+    TResult? Function(_Updated value)? updated,
+  }) {
+    return resume?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Resume value)? resume,
@@ -288,29 +329,29 @@ class _$_Resume implements _Resume {
 }
 
 abstract class _Resume implements ProgressEvent {
-  const factory _Resume() = _$_Resume;
+  const factory _Resume() = _$ResumeImpl;
 }
 
 /// @nodoc
-abstract class _$PauseCopyWith<$Res> {
-  factory _$PauseCopyWith(_Pause value, $Res Function(_Pause) then) =
-      __$PauseCopyWithImpl<$Res>;
+abstract class _$$PauseImplCopyWith<$Res> {
+  factory _$$PauseImplCopyWith(
+          _$PauseImpl value, $Res Function(_$PauseImpl) then) =
+      __$$PauseImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$PauseCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
-    implements _$PauseCopyWith<$Res> {
-  __$PauseCopyWithImpl(_Pause _value, $Res Function(_Pause) _then)
-      : super(_value, (v) => _then(v as _Pause));
-
-  @override
-  _Pause get _value => super._value as _Pause;
+class __$$PauseImplCopyWithImpl<$Res>
+    extends _$ProgressEventCopyWithImpl<$Res, _$PauseImpl>
+    implements _$$PauseImplCopyWith<$Res> {
+  __$$PauseImplCopyWithImpl(
+      _$PauseImpl _value, $Res Function(_$PauseImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Pause implements _Pause {
-  const _$_Pause();
+class _$PauseImpl implements _Pause {
+  const _$PauseImpl();
 
   @override
   String toString() {
@@ -318,8 +359,9 @@ class _$_Pause implements _Pause {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Pause);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PauseImpl);
   }
 
   @override
@@ -335,6 +377,18 @@ class _$_Pause implements _Pause {
     required TResult Function(TaskSnapshot task) updated,
   }) {
     return pause();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resume,
+    TResult? Function()? pause,
+    TResult? Function()? cancel,
+    TResult? Function(TaskSnapshot task)? updated,
+  }) {
+    return pause?.call();
   }
 
   @override
@@ -367,6 +421,18 @@ class _$_Pause implements _Pause {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Resume value)? resume,
+    TResult? Function(_Pause value)? pause,
+    TResult? Function(_Cancel value)? cancel,
+    TResult? Function(_Updated value)? updated,
+  }) {
+    return pause?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Resume value)? resume,
@@ -383,29 +449,29 @@ class _$_Pause implements _Pause {
 }
 
 abstract class _Pause implements ProgressEvent {
-  const factory _Pause() = _$_Pause;
+  const factory _Pause() = _$PauseImpl;
 }
 
 /// @nodoc
-abstract class _$CancelCopyWith<$Res> {
-  factory _$CancelCopyWith(_Cancel value, $Res Function(_Cancel) then) =
-      __$CancelCopyWithImpl<$Res>;
+abstract class _$$CancelImplCopyWith<$Res> {
+  factory _$$CancelImplCopyWith(
+          _$CancelImpl value, $Res Function(_$CancelImpl) then) =
+      __$$CancelImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CancelCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
-    implements _$CancelCopyWith<$Res> {
-  __$CancelCopyWithImpl(_Cancel _value, $Res Function(_Cancel) _then)
-      : super(_value, (v) => _then(v as _Cancel));
-
-  @override
-  _Cancel get _value => super._value as _Cancel;
+class __$$CancelImplCopyWithImpl<$Res>
+    extends _$ProgressEventCopyWithImpl<$Res, _$CancelImpl>
+    implements _$$CancelImplCopyWith<$Res> {
+  __$$CancelImplCopyWithImpl(
+      _$CancelImpl _value, $Res Function(_$CancelImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Cancel implements _Cancel {
-  const _$_Cancel();
+class _$CancelImpl implements _Cancel {
+  const _$CancelImpl();
 
   @override
   String toString() {
@@ -413,8 +479,9 @@ class _$_Cancel implements _Cancel {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Cancel);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CancelImpl);
   }
 
   @override
@@ -430,6 +497,18 @@ class _$_Cancel implements _Cancel {
     required TResult Function(TaskSnapshot task) updated,
   }) {
     return cancel();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resume,
+    TResult? Function()? pause,
+    TResult? Function()? cancel,
+    TResult? Function(TaskSnapshot task)? updated,
+  }) {
+    return cancel?.call();
   }
 
   @override
@@ -462,6 +541,18 @@ class _$_Cancel implements _Cancel {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Resume value)? resume,
+    TResult? Function(_Pause value)? pause,
+    TResult? Function(_Cancel value)? cancel,
+    TResult? Function(_Updated value)? updated,
+  }) {
+    return cancel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Resume value)? resume,
@@ -478,31 +569,33 @@ class _$_Cancel implements _Cancel {
 }
 
 abstract class _Cancel implements ProgressEvent {
-  const factory _Cancel() = _$_Cancel;
+  const factory _Cancel() = _$CancelImpl;
 }
 
 /// @nodoc
-abstract class _$UpdatedCopyWith<$Res> {
-  factory _$UpdatedCopyWith(_Updated value, $Res Function(_Updated) then) =
-      __$UpdatedCopyWithImpl<$Res>;
+abstract class _$$UpdatedImplCopyWith<$Res> {
+  factory _$$UpdatedImplCopyWith(
+          _$UpdatedImpl value, $Res Function(_$UpdatedImpl) then) =
+      __$$UpdatedImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({TaskSnapshot task});
 }
 
 /// @nodoc
-class __$UpdatedCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
-    implements _$UpdatedCopyWith<$Res> {
-  __$UpdatedCopyWithImpl(_Updated _value, $Res Function(_Updated) _then)
-      : super(_value, (v) => _then(v as _Updated));
+class __$$UpdatedImplCopyWithImpl<$Res>
+    extends _$ProgressEventCopyWithImpl<$Res, _$UpdatedImpl>
+    implements _$$UpdatedImplCopyWith<$Res> {
+  __$$UpdatedImplCopyWithImpl(
+      _$UpdatedImpl _value, $Res Function(_$UpdatedImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _Updated get _value => super._value as _Updated;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? task = freezed,
+    Object? task = null,
   }) {
-    return _then(_Updated(
-      task == freezed
+    return _then(_$UpdatedImpl(
+      null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
               as TaskSnapshot,
@@ -512,8 +605,8 @@ class __$UpdatedCopyWithImpl<$Res> extends _$ProgressEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Updated implements _Updated {
-  const _$_Updated(this.task);
+class _$UpdatedImpl implements _Updated {
+  const _$UpdatedImpl(this.task);
 
   @override
   final TaskSnapshot task;
@@ -524,21 +617,21 @@ class _$_Updated implements _Updated {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _Updated &&
-            (identical(other.task, task) ||
-                const DeepCollectionEquality().equals(other.task, task)));
+        (other.runtimeType == runtimeType &&
+            other is _$UpdatedImpl &&
+            (identical(other.task, task) || other.task == task));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(task);
+  int get hashCode => Object.hash(runtimeType, task);
 
   @JsonKey(ignore: true)
   @override
-  _$UpdatedCopyWith<_Updated> get copyWith =>
-      __$UpdatedCopyWithImpl<_Updated>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UpdatedImplCopyWith<_$UpdatedImpl> get copyWith =>
+      __$$UpdatedImplCopyWithImpl<_$UpdatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -550,6 +643,18 @@ class _$_Updated implements _Updated {
     required TResult Function(TaskSnapshot task) updated,
   }) {
     return updated(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? resume,
+    TResult? Function()? pause,
+    TResult? Function()? cancel,
+    TResult? Function(TaskSnapshot task)? updated,
+  }) {
+    return updated?.call(task);
   }
 
   @override
@@ -582,6 +687,18 @@ class _$_Updated implements _Updated {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Resume value)? resume,
+    TResult? Function(_Pause value)? pause,
+    TResult? Function(_Cancel value)? cancel,
+    TResult? Function(_Updated value)? updated,
+  }) {
+    return updated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Resume value)? resume,
@@ -598,39 +715,13 @@ class _$_Updated implements _Updated {
 }
 
 abstract class _Updated implements ProgressEvent {
-  const factory _Updated(TaskSnapshot task) = _$_Updated;
+  const factory _Updated(final TaskSnapshot task) = _$UpdatedImpl;
 
-  TaskSnapshot get task => throw _privateConstructorUsedError;
+  TaskSnapshot get task;
   @JsonKey(ignore: true)
-  _$UpdatedCopyWith<_Updated> get copyWith =>
+  _$$UpdatedImplCopyWith<_$UpdatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$ProgressStateTearOff {
-  const _$ProgressStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _Loading loading({required double percentage}) {
-    return _Loading(
-      percentage: percentage,
-    );
-  }
-
-  _Resumed resumed() {
-    return const _Resumed();
-  }
-
-  _Loaded loaded() {
-    return const _Loaded();
-  }
-}
-
-/// @nodoc
-const $ProgressState = _$ProgressStateTearOff();
 
 /// @nodoc
 mixin _$ProgressState {
@@ -640,6 +731,14 @@ mixin _$ProgressState {
     required TResult Function(double percentage) loading,
     required TResult Function() resumed,
     required TResult Function() loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(double percentage)? loading,
+    TResult? Function()? resumed,
+    TResult? Function()? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -660,6 +759,14 @@ mixin _$ProgressState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_Loaded value)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
@@ -674,39 +781,40 @@ mixin _$ProgressState {
 abstract class $ProgressStateCopyWith<$Res> {
   factory $ProgressStateCopyWith(
           ProgressState value, $Res Function(ProgressState) then) =
-      _$ProgressStateCopyWithImpl<$Res>;
+      _$ProgressStateCopyWithImpl<$Res, ProgressState>;
 }
 
 /// @nodoc
-class _$ProgressStateCopyWithImpl<$Res>
+class _$ProgressStateCopyWithImpl<$Res, $Val extends ProgressState>
     implements $ProgressStateCopyWith<$Res> {
   _$ProgressStateCopyWithImpl(this._value, this._then);
 
-  final ProgressState _value;
   // ignore: unused_field
-  final $Res Function(ProgressState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$ProgressStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -714,8 +822,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -730,6 +839,17 @@ class _$_Initial implements _Initial {
     required TResult Function() loaded,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(double percentage)? loading,
+    TResult? Function()? resumed,
+    TResult? Function()? loaded,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -760,6 +880,17 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
@@ -775,31 +906,33 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements ProgressState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$LoadingImplCopyWith<$Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
+      __$$LoadingImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({double percentage});
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
+class __$$LoadingImplCopyWithImpl<$Res>
+    extends _$ProgressStateCopyWithImpl<$Res, _$LoadingImpl>
+    implements _$$LoadingImplCopyWith<$Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _Loading get _value => super._value as _Loading;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? percentage = freezed,
+    Object? percentage = null,
   }) {
-    return _then(_Loading(
-      percentage: percentage == freezed
+    return _then(_$LoadingImpl(
+      percentage: null == percentage
           ? _value.percentage
           : percentage // ignore: cast_nullable_to_non_nullable
               as double,
@@ -809,8 +942,8 @@ class __$LoadingCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
-  const _$_Loading({required this.percentage});
+class _$LoadingImpl implements _Loading {
+  const _$LoadingImpl({required this.percentage});
 
   @override
   final double percentage;
@@ -821,22 +954,22 @@ class _$_Loading implements _Loading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _Loading &&
+        (other.runtimeType == runtimeType &&
+            other is _$LoadingImpl &&
             (identical(other.percentage, percentage) ||
-                const DeepCollectionEquality()
-                    .equals(other.percentage, percentage)));
+                other.percentage == percentage));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(percentage);
+  int get hashCode => Object.hash(runtimeType, percentage);
 
   @JsonKey(ignore: true)
   @override
-  _$LoadingCopyWith<_Loading> get copyWith =>
-      __$LoadingCopyWithImpl<_Loading>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
+      __$$LoadingImplCopyWithImpl<_$LoadingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -847,6 +980,17 @@ class _$_Loading implements _Loading {
     required TResult Function() loaded,
   }) {
     return loading(percentage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(double percentage)? loading,
+    TResult? Function()? resumed,
+    TResult? Function()? loaded,
+  }) {
+    return loading?.call(percentage);
   }
 
   @override
@@ -877,6 +1021,17 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
@@ -892,34 +1047,34 @@ class _$_Loading implements _Loading {
 }
 
 abstract class _Loading implements ProgressState {
-  const factory _Loading({required double percentage}) = _$_Loading;
+  const factory _Loading({required final double percentage}) = _$LoadingImpl;
 
-  double get percentage => throw _privateConstructorUsedError;
+  double get percentage;
   @JsonKey(ignore: true)
-  _$LoadingCopyWith<_Loading> get copyWith =>
+  _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$ResumedCopyWith<$Res> {
-  factory _$ResumedCopyWith(_Resumed value, $Res Function(_Resumed) then) =
-      __$ResumedCopyWithImpl<$Res>;
+abstract class _$$ResumedImplCopyWith<$Res> {
+  factory _$$ResumedImplCopyWith(
+          _$ResumedImpl value, $Res Function(_$ResumedImpl) then) =
+      __$$ResumedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$ResumedCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
-    implements _$ResumedCopyWith<$Res> {
-  __$ResumedCopyWithImpl(_Resumed _value, $Res Function(_Resumed) _then)
-      : super(_value, (v) => _then(v as _Resumed));
-
-  @override
-  _Resumed get _value => super._value as _Resumed;
+class __$$ResumedImplCopyWithImpl<$Res>
+    extends _$ProgressStateCopyWithImpl<$Res, _$ResumedImpl>
+    implements _$$ResumedImplCopyWith<$Res> {
+  __$$ResumedImplCopyWithImpl(
+      _$ResumedImpl _value, $Res Function(_$ResumedImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Resumed implements _Resumed {
-  const _$_Resumed();
+class _$ResumedImpl implements _Resumed {
+  const _$ResumedImpl();
 
   @override
   String toString() {
@@ -927,8 +1082,9 @@ class _$_Resumed implements _Resumed {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Resumed);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResumedImpl);
   }
 
   @override
@@ -943,6 +1099,17 @@ class _$_Resumed implements _Resumed {
     required TResult Function() loaded,
   }) {
     return resumed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(double percentage)? loading,
+    TResult? Function()? resumed,
+    TResult? Function()? loaded,
+  }) {
+    return resumed?.call();
   }
 
   @override
@@ -973,6 +1140,17 @@ class _$_Resumed implements _Resumed {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return resumed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
@@ -988,29 +1166,29 @@ class _$_Resumed implements _Resumed {
 }
 
 abstract class _Resumed implements ProgressState {
-  const factory _Resumed() = _$_Resumed;
+  const factory _Resumed() = _$ResumedImpl;
 }
 
 /// @nodoc
-abstract class _$LoadedCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
-      __$LoadedCopyWithImpl<$Res>;
+abstract class _$$LoadedImplCopyWith<$Res> {
+  factory _$$LoadedImplCopyWith(
+          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
+      __$$LoadedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadedCopyWithImpl<$Res> extends _$ProgressStateCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
-      : super(_value, (v) => _then(v as _Loaded));
-
-  @override
-  _Loaded get _value => super._value as _Loaded;
+class __$$LoadedImplCopyWithImpl<$Res>
+    extends _$ProgressStateCopyWithImpl<$Res, _$LoadedImpl>
+    implements _$$LoadedImplCopyWith<$Res> {
+  __$$LoadedImplCopyWithImpl(
+      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Loaded implements _Loaded {
-  const _$_Loaded();
+class _$LoadedImpl implements _Loaded {
+  const _$LoadedImpl();
 
   @override
   String toString() {
@@ -1018,8 +1196,9 @@ class _$_Loaded implements _Loaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loaded);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadedImpl);
   }
 
   @override
@@ -1034,6 +1213,17 @@ class _$_Loaded implements _Loaded {
     required TResult Function() loaded,
   }) {
     return loaded();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(double percentage)? loading,
+    TResult? Function()? resumed,
+    TResult? Function()? loaded,
+  }) {
+    return loaded?.call();
   }
 
   @override
@@ -1064,6 +1254,17 @@ class _$_Loaded implements _Loaded {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Resumed value)? resumed,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
@@ -1079,5 +1280,5 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements ProgressState {
-  const factory _Loaded() = _$_Loaded;
+  const factory _Loaded() = _$LoadedImpl;
 }

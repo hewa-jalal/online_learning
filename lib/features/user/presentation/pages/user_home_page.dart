@@ -21,20 +21,26 @@ class UserHomePage extends StatefulWidget {
   _UserLoadedWidgetState createState() => _UserLoadedWidgetState();
 }
 
-class _UserLoadedWidgetState extends State<UserHomePage> {
+class _UserLoadedWidgetState extends State<UserHomePage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   UserEntity get user => widget.user;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final lectureBloc = context.read<LectureBloc>();
     if (ModalRoute.of(context)!.isCurrent) {
-      lectureBloc.add(LectureEvent.getAllCoursesByUserId());
+      lectureBloc.add(LectureEvent.getAllCoursesByDept(courseDept: user.dept!));
     }
 
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
           automaticallyImplyLeading: false,
           actions: [
             // Padding(
@@ -85,36 +91,44 @@ class _UserLoadedWidgetState extends State<UserHomePage> {
             SizedBox(height: 0.02.sh),
             BlocBuilder<LectureBloc, LectureState>(
               builder: (context, state) {
-                if (state.isSubmitting!) {
-                  return Center(child: CircularProgressIndicator());
-                } else {
+                if (state.courseIds.length > 0) {
                   final courseIds = state.courseIds;
-                  return courseIds.length > 0
-                      ? Expanded(
-                          child: ListView.builder(
-                            itemCount: courseIds.length,
-                            itemBuilder: (context, index) => CourseCard(
-                              onTap: () => Get.to(() => CoursePage(
-                                      courseTitle: courseIds[index]))!
-                                  .then((value) => setState(() {})),
-                              courseTitle: courseIds[index],
-                            ),
-                          ),
-                        )
-                      : _EmptyCourseWidget();
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: courseIds.length,
+                      itemBuilder: (context, index) => CourseCard(
+                        onTap: () => Get.to(() =>
+                                CoursePage(courseTitle: courseIds[index]))!
+                            .then((value) => setState(() {})),
+                        courseTitle: courseIds[index],
+                      ),
+                    ),
+                  );
+                } else if (state.courseIds.length == 0) {
+                  return _EmptyCourseWidget();
                 }
+                return Center(child: CircularProgressIndicator());
               },
             ),
           ],
         ),
-        floatingActionButton:
-            user.role == 'teacher' ? _CreateCourseFab() : null,
+        floatingActionButton: user.role == 'teacher'
+            ? _CreateCourseFab(
+                user: user,
+              )
+            : null,
       ),
     );
   }
 }
 
 class _CreateCourseFab extends StatefulWidget {
+  final UserEntity user;
+
+  const _CreateCourseFab({
+    super.key,
+    required this.user,
+  });
   @override
   __CreateCourseFabState createState() => __CreateCourseFabState();
 }
@@ -124,7 +138,8 @@ class __CreateCourseFabState extends State<_CreateCourseFab> {
 
   @override
   Widget build(BuildContext context) {
-    final lectureBloc = context.read<LectureBloc>();
+    // to watch course changes
+    final lectureBloc = context.watch<LectureBloc>();
 
     return FloatingActionButton(
       backgroundColor: Colors.white,
@@ -163,12 +178,16 @@ class __CreateCourseFabState extends State<_CreateCourseFab> {
                     child: ElevatedButton(
                       onPressed: () {
                         Get.back();
-                        context.read<LectureBloc>().add(
-                              LectureEvent.createCourse(
-                                courseTitle: courseTitle,
-                              ),
-                            );
-                        lectureBloc.add(LectureEvent.getAllCoursesByUserId());
+                        lectureBloc.add(
+                          LectureEvent.createCourse(
+                            courseTitle: courseTitle,
+                            userDept: widget.user.dept!,
+                          ),
+                        );
+                        // lectureBloc.add(
+                        //   LectureEvent.getAllCoursesByDept(
+                        //       courseDept: widget.user.dept!),
+                        // );
                       },
                       child: Text('Done'),
                     ),

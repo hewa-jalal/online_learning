@@ -136,7 +136,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             createCourse: CreateCourse(LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
                     dio: Dio(), lectureTask: sl<CustomUploadTask>()))),
-            getAllCoursesByUserId: GetAllCoursesByUserId(
+            getAllCoursesByUserDept: GetAllCoursesByUserDept(
               lecturesRepository: LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
                     lectureTask: sl<CustomUploadTask>(), dio: Dio()),

@@ -18,7 +18,7 @@ import 'package:injectable/injectable.dart';
 
 import 'injection.config.dart';
 
-final sl = GetIt.I;
+final sl = GetIt.instance;
 
 //   // USECASES
 //   sl.registerLazySingleton(() => GetUser(sl()));
@@ -44,5 +44,5 @@ final sl = GetIt.I;
 
 // final getIt = GetIt.instance;
 
-@injectableInit
-void configureInjection() => $initGetIt(sl);
+@InjectableInit(preferRelativeImports: false)
+void configureInjection() => sl.init();

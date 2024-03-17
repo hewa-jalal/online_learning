@@ -116,7 +116,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
   final UploadLecture? uploadLecture;
   final GetAllLectures? getAllLectures;
   final GetAllLecturesByCourse? getAllLecturesByCourse;
-  final GetAllCoursesByUserId? getAllCoursesByUserId;
+  final GetAllCoursesByUserDept? getAllCoursesByUserDept;
   final CreateCourse? createCourse;
   final SubmitUser? submitUser;
   LectureBloc({
@@ -124,7 +124,7 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
     required this.uploadLecture,
     required this.getAllLectures,
     required this.getAllLecturesByCourse,
-    required this.getAllCoursesByUserId,
+    required this.getAllCoursesByUserDept,
     required this.createCourse,
     required this.submitUser,
   }) : super(LectureState.initial());
@@ -211,16 +211,21 @@ class LectureBloc extends Bloc<LectureEvent, LectureState> {
         );
       },
       createCourse: (e) async* {
-        await createCourse!(e.courseTitle);
+        await createCourse!(
+          CourseParams(
+            courseTitle: e.courseTitle,
+            userDept: e.userDept,
+          ),
+        );
       },
-      getAllCoursesByUserId: (e) async* {
+      getAllCoursesByDept: (e) async* {
         if (state.courseIds.isEmpty) {
           yield state.copyWith(
             isSubmitting: true,
           );
         }
 
-        final either = await getAllCoursesByUserId!(state.userId);
+        final either = await getAllCoursesByUserDept!(e.courseDept);
         yield either.fold(
           (failure) => state.copyWith(
             lectureFailureOrSuccessOption: none(),

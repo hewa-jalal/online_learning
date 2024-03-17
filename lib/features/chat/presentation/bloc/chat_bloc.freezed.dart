@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'chat_bloc.dart';
 
@@ -10,68 +12,7 @@ part of 'chat_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ChatEventTearOff {
-  const _$ChatEventTearOff();
-
-  _Started started() {
-    return const _Started();
-  }
-
-  _SendMessage sendMessage(
-      {required String message,
-      required String fromUserId,
-      required String courseTitle}) {
-    return _SendMessage(
-      message: message,
-      fromUserId: fromUserId,
-      courseTitle: courseTitle,
-    );
-  }
-
-  _SendImageMessage sendImageMessage(
-      {required String message,
-      required String courseTitle,
-      required String fromUserId,
-      required String imageUrl,
-      required ImageUploaderCubit imageUploaderCubit}) {
-    return _SendImageMessage(
-      message: message,
-      courseTitle: courseTitle,
-      fromUserId: fromUserId,
-      imageUrl: imageUrl,
-      imageUploaderCubit: imageUploaderCubit,
-    );
-  }
-
-  _SendFileMessage sendFileMessage(
-      {required String message,
-      required String fromUserId,
-      required String courseTitle,
-      required ImageUploaderCubit imageUploaderCubit}) {
-    return _SendFileMessage(
-      message: message,
-      fromUserId: fromUserId,
-      courseTitle: courseTitle,
-      imageUploaderCubit: imageUploaderCubit,
-    );
-  }
-
-  _GetAllMessages getAllMessages() {
-    return const _GetAllMessages();
-  }
-
-  _GetAllMessagesByCourse getAllMessagesByCourse(String courseTitle) {
-    return _GetAllMessagesByCourse(
-      courseTitle,
-    );
-  }
-}
-
-/// @nodoc
-const $ChatEvent = _$ChatEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ChatEvent {
@@ -93,6 +34,21 @@ mixin _$ChatEvent {
         sendFileMessage,
     required TResult Function() getAllMessages,
     required TResult Function(String courseTitle) getAllMessagesByCourse,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult? Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult? Function(String message, String fromUserId, String courseTitle,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendFileMessage,
+    TResult? Function()? getAllMessages,
+    TResult? Function(String courseTitle)? getAllMessagesByCourse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -123,6 +79,16 @@ mixin _$ChatEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_SendImageMessage value)? sendImageMessage,
+    TResult? Function(_SendFileMessage value)? sendFileMessage,
+    TResult? Function(_GetAllMessages value)? getAllMessages,
+    TResult? Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SendMessage value)? sendMessage,
@@ -138,38 +104,40 @@ mixin _$ChatEvent {
 /// @nodoc
 abstract class $ChatEventCopyWith<$Res> {
   factory $ChatEventCopyWith(ChatEvent value, $Res Function(ChatEvent) then) =
-      _$ChatEventCopyWithImpl<$Res>;
+      _$ChatEventCopyWithImpl<$Res, ChatEvent>;
 }
 
 /// @nodoc
-class _$ChatEventCopyWithImpl<$Res> implements $ChatEventCopyWith<$Res> {
+class _$ChatEventCopyWithImpl<$Res, $Val extends ChatEvent>
+    implements $ChatEventCopyWith<$Res> {
   _$ChatEventCopyWithImpl(this._value, this._then);
 
-  final ChatEvent _value;
   // ignore: unused_field
-  final $Res Function(ChatEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
-
-  @override
-  _Started get _value => super._value as _Started;
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
 
   @override
   String toString() {
@@ -177,8 +145,9 @@ class _$_Started implements _Started {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
   }
 
   @override
@@ -205,6 +174,24 @@ class _$_Started implements _Started {
     required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
     return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult? Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult? Function(String message, String fromUserId, String courseTitle,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendFileMessage,
+    TResult? Function()? getAllMessages,
+    TResult? Function(String courseTitle)? getAllMessagesByCourse,
+  }) {
+    return started?.call();
   }
 
   @override
@@ -245,6 +232,19 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_SendImageMessage value)? sendImageMessage,
+    TResult? Function(_SendFileMessage value)? sendFileMessage,
+    TResult? Function(_GetAllMessages value)? getAllMessages,
+    TResult? Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SendMessage value)? sendMessage,
@@ -262,43 +262,43 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements ChatEvent {
-  const factory _Started() = _$_Started;
+  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$SendMessageCopyWith<$Res> {
-  factory _$SendMessageCopyWith(
-          _SendMessage value, $Res Function(_SendMessage) then) =
-      __$SendMessageCopyWithImpl<$Res>;
+abstract class _$$SendMessageImplCopyWith<$Res> {
+  factory _$$SendMessageImplCopyWith(
+          _$SendMessageImpl value, $Res Function(_$SendMessageImpl) then) =
+      __$$SendMessageImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({String message, String fromUserId, String courseTitle});
 }
 
 /// @nodoc
-class __$SendMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
-    implements _$SendMessageCopyWith<$Res> {
-  __$SendMessageCopyWithImpl(
-      _SendMessage _value, $Res Function(_SendMessage) _then)
-      : super(_value, (v) => _then(v as _SendMessage));
+class __$$SendMessageImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$SendMessageImpl>
+    implements _$$SendMessageImplCopyWith<$Res> {
+  __$$SendMessageImplCopyWithImpl(
+      _$SendMessageImpl _value, $Res Function(_$SendMessageImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _SendMessage get _value => super._value as _SendMessage;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
-    Object? fromUserId = freezed,
-    Object? courseTitle = freezed,
+    Object? message = null,
+    Object? fromUserId = null,
+    Object? courseTitle = null,
   }) {
-    return _then(_SendMessage(
-      message: message == freezed
+    return _then(_$SendMessageImpl(
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      fromUserId: fromUserId == freezed
+      fromUserId: null == fromUserId
           ? _value.fromUserId
           : fromUserId // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
@@ -308,8 +308,8 @@ class __$SendMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SendMessage implements _SendMessage {
-  const _$_SendMessage(
+class _$SendMessageImpl implements _SendMessage {
+  const _$SendMessageImpl(
       {required this.message,
       required this.fromUserId,
       required this.courseTitle});
@@ -327,31 +327,26 @@ class _$_SendMessage implements _SendMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _SendMessage &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality()
-                    .equals(other.message, message)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$SendMessageImpl &&
+            (identical(other.message, message) || other.message == message) &&
             (identical(other.fromUserId, fromUserId) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromUserId, fromUserId)) &&
+                other.fromUserId == fromUserId) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)));
+                other.courseTitle == courseTitle));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(fromUserId) ^
-      const DeepCollectionEquality().hash(courseTitle);
+      Object.hash(runtimeType, message, fromUserId, courseTitle);
 
   @JsonKey(ignore: true)
   @override
-  _$SendMessageCopyWith<_SendMessage> get copyWith =>
-      __$SendMessageCopyWithImpl<_SendMessage>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$SendMessageImplCopyWith<_$SendMessageImpl> get copyWith =>
+      __$$SendMessageImplCopyWithImpl<_$SendMessageImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -374,6 +369,24 @@ class _$_SendMessage implements _SendMessage {
     required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
     return sendMessage(message, fromUserId, courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult? Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult? Function(String message, String fromUserId, String courseTitle,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendFileMessage,
+    TResult? Function()? getAllMessages,
+    TResult? Function(String courseTitle)? getAllMessagesByCourse,
+  }) {
+    return sendMessage?.call(message, fromUserId, courseTitle);
   }
 
   @override
@@ -414,6 +427,19 @@ class _$_SendMessage implements _SendMessage {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_SendImageMessage value)? sendImageMessage,
+    TResult? Function(_SendFileMessage value)? sendFileMessage,
+    TResult? Function(_GetAllMessages value)? getAllMessages,
+    TResult? Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
+  }) {
+    return sendMessage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SendMessage value)? sendMessage,
@@ -432,23 +458,24 @@ class _$_SendMessage implements _SendMessage {
 
 abstract class _SendMessage implements ChatEvent {
   const factory _SendMessage(
-      {required String message,
-      required String fromUserId,
-      required String courseTitle}) = _$_SendMessage;
+      {required final String message,
+      required final String fromUserId,
+      required final String courseTitle}) = _$SendMessageImpl;
 
-  String get message => throw _privateConstructorUsedError;
-  String get fromUserId => throw _privateConstructorUsedError;
-  String get courseTitle => throw _privateConstructorUsedError;
+  String get message;
+  String get fromUserId;
+  String get courseTitle;
   @JsonKey(ignore: true)
-  _$SendMessageCopyWith<_SendMessage> get copyWith =>
+  _$$SendMessageImplCopyWith<_$SendMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SendImageMessageCopyWith<$Res> {
-  factory _$SendImageMessageCopyWith(
-          _SendImageMessage value, $Res Function(_SendImageMessage) then) =
-      __$SendImageMessageCopyWithImpl<$Res>;
+abstract class _$$SendImageMessageImplCopyWith<$Res> {
+  factory _$$SendImageMessageImplCopyWith(_$SendImageMessageImpl value,
+          $Res Function(_$SendImageMessageImpl) then) =
+      __$$SendImageMessageImplCopyWithImpl<$Res>;
+  @useResult
   $Res call(
       {String message,
       String courseTitle,
@@ -458,42 +485,40 @@ abstract class _$SendImageMessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SendImageMessageCopyWithImpl<$Res>
-    extends _$ChatEventCopyWithImpl<$Res>
-    implements _$SendImageMessageCopyWith<$Res> {
-  __$SendImageMessageCopyWithImpl(
-      _SendImageMessage _value, $Res Function(_SendImageMessage) _then)
-      : super(_value, (v) => _then(v as _SendImageMessage));
+class __$$SendImageMessageImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$SendImageMessageImpl>
+    implements _$$SendImageMessageImplCopyWith<$Res> {
+  __$$SendImageMessageImplCopyWithImpl(_$SendImageMessageImpl _value,
+      $Res Function(_$SendImageMessageImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _SendImageMessage get _value => super._value as _SendImageMessage;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
-    Object? courseTitle = freezed,
-    Object? fromUserId = freezed,
-    Object? imageUrl = freezed,
-    Object? imageUploaderCubit = freezed,
+    Object? message = null,
+    Object? courseTitle = null,
+    Object? fromUserId = null,
+    Object? imageUrl = null,
+    Object? imageUploaderCubit = null,
   }) {
-    return _then(_SendImageMessage(
-      message: message == freezed
+    return _then(_$SendImageMessageImpl(
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      fromUserId: fromUserId == freezed
+      fromUserId: null == fromUserId
           ? _value.fromUserId
           : fromUserId // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: imageUrl == freezed
+      imageUrl: null == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUploaderCubit: imageUploaderCubit == freezed
+      imageUploaderCubit: null == imageUploaderCubit
           ? _value.imageUploaderCubit
           : imageUploaderCubit // ignore: cast_nullable_to_non_nullable
               as ImageUploaderCubit,
@@ -503,8 +528,8 @@ class __$SendImageMessageCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SendImageMessage implements _SendImageMessage {
-  const _$_SendImageMessage(
+class _$SendImageMessageImpl implements _SendImageMessage {
+  const _$SendImageMessageImpl(
       {required this.message,
       required this.courseTitle,
       required this.fromUserId,
@@ -528,39 +553,31 @@ class _$_SendImageMessage implements _SendImageMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _SendImageMessage &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality()
-                    .equals(other.message, message)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$SendImageMessageImpl &&
+            (identical(other.message, message) || other.message == message) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
+                other.courseTitle == courseTitle) &&
             (identical(other.fromUserId, fromUserId) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromUserId, fromUserId)) &&
+                other.fromUserId == fromUserId) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                other.imageUrl == imageUrl) &&
             (identical(other.imageUploaderCubit, imageUploaderCubit) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUploaderCubit, imageUploaderCubit)));
+                other.imageUploaderCubit == imageUploaderCubit));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(fromUserId) ^
-      const DeepCollectionEquality().hash(imageUrl) ^
-      const DeepCollectionEquality().hash(imageUploaderCubit);
+  int get hashCode => Object.hash(runtimeType, message, courseTitle, fromUserId,
+      imageUrl, imageUploaderCubit);
 
   @JsonKey(ignore: true)
   @override
-  _$SendImageMessageCopyWith<_SendImageMessage> get copyWith =>
-      __$SendImageMessageCopyWithImpl<_SendImageMessage>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$SendImageMessageImplCopyWith<_$SendImageMessageImpl> get copyWith =>
+      __$$SendImageMessageImplCopyWithImpl<_$SendImageMessageImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -583,6 +600,25 @@ class _$_SendImageMessage implements _SendImageMessage {
     required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
     return sendImageMessage(
+        message, courseTitle, fromUserId, imageUrl, imageUploaderCubit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult? Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult? Function(String message, String fromUserId, String courseTitle,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendFileMessage,
+    TResult? Function()? getAllMessages,
+    TResult? Function(String courseTitle)? getAllMessagesByCourse,
+  }) {
+    return sendImageMessage?.call(
         message, courseTitle, fromUserId, imageUrl, imageUploaderCubit);
   }
 
@@ -625,6 +661,19 @@ class _$_SendImageMessage implements _SendImageMessage {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_SendImageMessage value)? sendImageMessage,
+    TResult? Function(_SendFileMessage value)? sendFileMessage,
+    TResult? Function(_GetAllMessages value)? getAllMessages,
+    TResult? Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
+  }) {
+    return sendImageMessage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SendMessage value)? sendMessage,
@@ -643,28 +692,29 @@ class _$_SendImageMessage implements _SendImageMessage {
 
 abstract class _SendImageMessage implements ChatEvent {
   const factory _SendImageMessage(
-      {required String message,
-      required String courseTitle,
-      required String fromUserId,
-      required String imageUrl,
-      required ImageUploaderCubit imageUploaderCubit}) = _$_SendImageMessage;
+          {required final String message,
+          required final String courseTitle,
+          required final String fromUserId,
+          required final String imageUrl,
+          required final ImageUploaderCubit imageUploaderCubit}) =
+      _$SendImageMessageImpl;
 
-  String get message => throw _privateConstructorUsedError;
-  String get courseTitle => throw _privateConstructorUsedError;
-  String get fromUserId => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
-  ImageUploaderCubit get imageUploaderCubit =>
-      throw _privateConstructorUsedError;
+  String get message;
+  String get courseTitle;
+  String get fromUserId;
+  String get imageUrl;
+  ImageUploaderCubit get imageUploaderCubit;
   @JsonKey(ignore: true)
-  _$SendImageMessageCopyWith<_SendImageMessage> get copyWith =>
+  _$$SendImageMessageImplCopyWith<_$SendImageMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SendFileMessageCopyWith<$Res> {
-  factory _$SendFileMessageCopyWith(
-          _SendFileMessage value, $Res Function(_SendFileMessage) then) =
-      __$SendFileMessageCopyWithImpl<$Res>;
+abstract class _$$SendFileMessageImplCopyWith<$Res> {
+  factory _$$SendFileMessageImplCopyWith(_$SendFileMessageImpl value,
+          $Res Function(_$SendFileMessageImpl) then) =
+      __$$SendFileMessageImplCopyWithImpl<$Res>;
+  @useResult
   $Res call(
       {String message,
       String fromUserId,
@@ -673,36 +723,35 @@ abstract class _$SendFileMessageCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SendFileMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
-    implements _$SendFileMessageCopyWith<$Res> {
-  __$SendFileMessageCopyWithImpl(
-      _SendFileMessage _value, $Res Function(_SendFileMessage) _then)
-      : super(_value, (v) => _then(v as _SendFileMessage));
+class __$$SendFileMessageImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$SendFileMessageImpl>
+    implements _$$SendFileMessageImplCopyWith<$Res> {
+  __$$SendFileMessageImplCopyWithImpl(
+      _$SendFileMessageImpl _value, $Res Function(_$SendFileMessageImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _SendFileMessage get _value => super._value as _SendFileMessage;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
-    Object? fromUserId = freezed,
-    Object? courseTitle = freezed,
-    Object? imageUploaderCubit = freezed,
+    Object? message = null,
+    Object? fromUserId = null,
+    Object? courseTitle = null,
+    Object? imageUploaderCubit = null,
   }) {
-    return _then(_SendFileMessage(
-      message: message == freezed
+    return _then(_$SendFileMessageImpl(
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      fromUserId: fromUserId == freezed
+      fromUserId: null == fromUserId
           ? _value.fromUserId
           : fromUserId // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUploaderCubit: imageUploaderCubit == freezed
+      imageUploaderCubit: null == imageUploaderCubit
           ? _value.imageUploaderCubit
           : imageUploaderCubit // ignore: cast_nullable_to_non_nullable
               as ImageUploaderCubit,
@@ -712,8 +761,8 @@ class __$SendFileMessageCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SendFileMessage implements _SendFileMessage {
-  const _$_SendFileMessage(
+class _$SendFileMessageImpl implements _SendFileMessage {
+  const _$SendFileMessageImpl(
       {required this.message,
       required this.fromUserId,
       required this.courseTitle,
@@ -734,35 +783,29 @@ class _$_SendFileMessage implements _SendFileMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _SendFileMessage &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality()
-                    .equals(other.message, message)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$SendFileMessageImpl &&
+            (identical(other.message, message) || other.message == message) &&
             (identical(other.fromUserId, fromUserId) ||
-                const DeepCollectionEquality()
-                    .equals(other.fromUserId, fromUserId)) &&
+                other.fromUserId == fromUserId) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
+                other.courseTitle == courseTitle) &&
             (identical(other.imageUploaderCubit, imageUploaderCubit) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUploaderCubit, imageUploaderCubit)));
+                other.imageUploaderCubit == imageUploaderCubit));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(message) ^
-      const DeepCollectionEquality().hash(fromUserId) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(imageUploaderCubit);
+  int get hashCode => Object.hash(
+      runtimeType, message, fromUserId, courseTitle, imageUploaderCubit);
 
   @JsonKey(ignore: true)
   @override
-  _$SendFileMessageCopyWith<_SendFileMessage> get copyWith =>
-      __$SendFileMessageCopyWithImpl<_SendFileMessage>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$SendFileMessageImplCopyWith<_$SendFileMessageImpl> get copyWith =>
+      __$$SendFileMessageImplCopyWithImpl<_$SendFileMessageImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -785,6 +828,25 @@ class _$_SendFileMessage implements _SendFileMessage {
     required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
     return sendFileMessage(
+        message, fromUserId, courseTitle, imageUploaderCubit);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult? Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult? Function(String message, String fromUserId, String courseTitle,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendFileMessage,
+    TResult? Function()? getAllMessages,
+    TResult? Function(String courseTitle)? getAllMessagesByCourse,
+  }) {
+    return sendFileMessage?.call(
         message, fromUserId, courseTitle, imageUploaderCubit);
   }
 
@@ -827,6 +889,19 @@ class _$_SendFileMessage implements _SendFileMessage {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_SendImageMessage value)? sendImageMessage,
+    TResult? Function(_SendFileMessage value)? sendFileMessage,
+    TResult? Function(_GetAllMessages value)? getAllMessages,
+    TResult? Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
+  }) {
+    return sendFileMessage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SendMessage value)? sendMessage,
@@ -845,43 +920,41 @@ class _$_SendFileMessage implements _SendFileMessage {
 
 abstract class _SendFileMessage implements ChatEvent {
   const factory _SendFileMessage(
-      {required String message,
-      required String fromUserId,
-      required String courseTitle,
-      required ImageUploaderCubit imageUploaderCubit}) = _$_SendFileMessage;
+          {required final String message,
+          required final String fromUserId,
+          required final String courseTitle,
+          required final ImageUploaderCubit imageUploaderCubit}) =
+      _$SendFileMessageImpl;
 
-  String get message => throw _privateConstructorUsedError;
-  String get fromUserId => throw _privateConstructorUsedError;
-  String get courseTitle => throw _privateConstructorUsedError;
-  ImageUploaderCubit get imageUploaderCubit =>
-      throw _privateConstructorUsedError;
+  String get message;
+  String get fromUserId;
+  String get courseTitle;
+  ImageUploaderCubit get imageUploaderCubit;
   @JsonKey(ignore: true)
-  _$SendFileMessageCopyWith<_SendFileMessage> get copyWith =>
+  _$$SendFileMessageImplCopyWith<_$SendFileMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GetAllMessagesCopyWith<$Res> {
-  factory _$GetAllMessagesCopyWith(
-          _GetAllMessages value, $Res Function(_GetAllMessages) then) =
-      __$GetAllMessagesCopyWithImpl<$Res>;
+abstract class _$$GetAllMessagesImplCopyWith<$Res> {
+  factory _$$GetAllMessagesImplCopyWith(_$GetAllMessagesImpl value,
+          $Res Function(_$GetAllMessagesImpl) then) =
+      __$$GetAllMessagesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$GetAllMessagesCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
-    implements _$GetAllMessagesCopyWith<$Res> {
-  __$GetAllMessagesCopyWithImpl(
-      _GetAllMessages _value, $Res Function(_GetAllMessages) _then)
-      : super(_value, (v) => _then(v as _GetAllMessages));
-
-  @override
-  _GetAllMessages get _value => super._value as _GetAllMessages;
+class __$$GetAllMessagesImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$GetAllMessagesImpl>
+    implements _$$GetAllMessagesImplCopyWith<$Res> {
+  __$$GetAllMessagesImplCopyWithImpl(
+      _$GetAllMessagesImpl _value, $Res Function(_$GetAllMessagesImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetAllMessages implements _GetAllMessages {
-  const _$_GetAllMessages();
+class _$GetAllMessagesImpl implements _GetAllMessages {
+  const _$GetAllMessagesImpl();
 
   @override
   String toString() {
@@ -889,8 +962,9 @@ class _$_GetAllMessages implements _GetAllMessages {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _GetAllMessages);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAllMessagesImpl);
   }
 
   @override
@@ -917,6 +991,24 @@ class _$_GetAllMessages implements _GetAllMessages {
     required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
     return getAllMessages();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult? Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult? Function(String message, String fromUserId, String courseTitle,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendFileMessage,
+    TResult? Function()? getAllMessages,
+    TResult? Function(String courseTitle)? getAllMessagesByCourse,
+  }) {
+    return getAllMessages?.call();
   }
 
   @override
@@ -957,6 +1049,19 @@ class _$_GetAllMessages implements _GetAllMessages {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_SendImageMessage value)? sendImageMessage,
+    TResult? Function(_SendFileMessage value)? sendFileMessage,
+    TResult? Function(_GetAllMessages value)? getAllMessages,
+    TResult? Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
+  }) {
+    return getAllMessages?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SendMessage value)? sendMessage,
@@ -974,34 +1079,35 @@ class _$_GetAllMessages implements _GetAllMessages {
 }
 
 abstract class _GetAllMessages implements ChatEvent {
-  const factory _GetAllMessages() = _$_GetAllMessages;
+  const factory _GetAllMessages() = _$GetAllMessagesImpl;
 }
 
 /// @nodoc
-abstract class _$GetAllMessagesByCourseCopyWith<$Res> {
-  factory _$GetAllMessagesByCourseCopyWith(_GetAllMessagesByCourse value,
-          $Res Function(_GetAllMessagesByCourse) then) =
-      __$GetAllMessagesByCourseCopyWithImpl<$Res>;
+abstract class _$$GetAllMessagesByCourseImplCopyWith<$Res> {
+  factory _$$GetAllMessagesByCourseImplCopyWith(
+          _$GetAllMessagesByCourseImpl value,
+          $Res Function(_$GetAllMessagesByCourseImpl) then) =
+      __$$GetAllMessagesByCourseImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({String courseTitle});
 }
 
 /// @nodoc
-class __$GetAllMessagesByCourseCopyWithImpl<$Res>
-    extends _$ChatEventCopyWithImpl<$Res>
-    implements _$GetAllMessagesByCourseCopyWith<$Res> {
-  __$GetAllMessagesByCourseCopyWithImpl(_GetAllMessagesByCourse _value,
-      $Res Function(_GetAllMessagesByCourse) _then)
-      : super(_value, (v) => _then(v as _GetAllMessagesByCourse));
+class __$$GetAllMessagesByCourseImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$GetAllMessagesByCourseImpl>
+    implements _$$GetAllMessagesByCourseImplCopyWith<$Res> {
+  __$$GetAllMessagesByCourseImplCopyWithImpl(
+      _$GetAllMessagesByCourseImpl _value,
+      $Res Function(_$GetAllMessagesByCourseImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _GetAllMessagesByCourse get _value => super._value as _GetAllMessagesByCourse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courseTitle = freezed,
+    Object? courseTitle = null,
   }) {
-    return _then(_GetAllMessagesByCourse(
-      courseTitle == freezed
+    return _then(_$GetAllMessagesByCourseImpl(
+      null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
@@ -1011,8 +1117,8 @@ class __$GetAllMessagesByCourseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetAllMessagesByCourse implements _GetAllMessagesByCourse {
-  const _$_GetAllMessagesByCourse(this.courseTitle);
+class _$GetAllMessagesByCourseImpl implements _GetAllMessagesByCourse {
+  const _$GetAllMessagesByCourseImpl(this.courseTitle);
 
   @override
   final String courseTitle;
@@ -1023,23 +1129,23 @@ class _$_GetAllMessagesByCourse implements _GetAllMessagesByCourse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _GetAllMessagesByCourse &&
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllMessagesByCourseImpl &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)));
+                other.courseTitle == courseTitle));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+  int get hashCode => Object.hash(runtimeType, courseTitle);
 
   @JsonKey(ignore: true)
   @override
-  _$GetAllMessagesByCourseCopyWith<_GetAllMessagesByCourse> get copyWith =>
-      __$GetAllMessagesByCourseCopyWithImpl<_GetAllMessagesByCourse>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GetAllMessagesByCourseImplCopyWith<_$GetAllMessagesByCourseImpl>
+      get copyWith => __$$GetAllMessagesByCourseImplCopyWithImpl<
+          _$GetAllMessagesByCourseImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1062,6 +1168,24 @@ class _$_GetAllMessagesByCourse implements _GetAllMessagesByCourse {
     required TResult Function(String courseTitle) getAllMessagesByCourse,
   }) {
     return getAllMessagesByCourse(courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(String message, String fromUserId, String courseTitle)?
+        sendMessage,
+    TResult? Function(String message, String courseTitle, String fromUserId,
+            String imageUrl, ImageUploaderCubit imageUploaderCubit)?
+        sendImageMessage,
+    TResult? Function(String message, String fromUserId, String courseTitle,
+            ImageUploaderCubit imageUploaderCubit)?
+        sendFileMessage,
+    TResult? Function()? getAllMessages,
+    TResult? Function(String courseTitle)? getAllMessagesByCourse,
+  }) {
+    return getAllMessagesByCourse?.call(courseTitle);
   }
 
   @override
@@ -1102,6 +1226,19 @@ class _$_GetAllMessagesByCourse implements _GetAllMessagesByCourse {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SendMessage value)? sendMessage,
+    TResult? Function(_SendImageMessage value)? sendImageMessage,
+    TResult? Function(_SendFileMessage value)? sendFileMessage,
+    TResult? Function(_GetAllMessages value)? getAllMessages,
+    TResult? Function(_GetAllMessagesByCourse value)? getAllMessagesByCourse,
+  }) {
+    return getAllMessagesByCourse?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SendMessage value)? sendMessage,
@@ -1119,36 +1256,14 @@ class _$_GetAllMessagesByCourse implements _GetAllMessagesByCourse {
 }
 
 abstract class _GetAllMessagesByCourse implements ChatEvent {
-  const factory _GetAllMessagesByCourse(String courseTitle) =
-      _$_GetAllMessagesByCourse;
+  const factory _GetAllMessagesByCourse(final String courseTitle) =
+      _$GetAllMessagesByCourseImpl;
 
-  String get courseTitle => throw _privateConstructorUsedError;
+  String get courseTitle;
   @JsonKey(ignore: true)
-  _$GetAllMessagesByCourseCopyWith<_GetAllMessagesByCourse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GetAllMessagesByCourseImplCopyWith<_$GetAllMessagesByCourseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$ChatStateTearOff {
-  const _$ChatStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _AllMessagesLoaded allMessagesLoaded({required List<Message> allMessages}) {
-    return _AllMessagesLoaded(
-      allMessages: allMessages,
-    );
-  }
-
-  _MessageFailure messageFailure() {
-    return const _MessageFailure();
-  }
-}
-
-/// @nodoc
-const $ChatState = _$ChatStateTearOff();
 
 /// @nodoc
 mixin _$ChatState {
@@ -1157,6 +1272,13 @@ mixin _$ChatState {
     required TResult Function() initial,
     required TResult Function(List<Message> allMessages) allMessagesLoaded,
     required TResult Function() messageFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(List<Message> allMessages)? allMessagesLoaded,
+    TResult? Function()? messageFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1175,6 +1297,13 @@ mixin _$ChatState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_AllMessagesLoaded value)? allMessagesLoaded,
+    TResult? Function(_MessageFailure value)? messageFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_AllMessagesLoaded value)? allMessagesLoaded,
@@ -1187,38 +1316,40 @@ mixin _$ChatState {
 /// @nodoc
 abstract class $ChatStateCopyWith<$Res> {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
-      _$ChatStateCopyWithImpl<$Res>;
+      _$ChatStateCopyWithImpl<$Res, ChatState>;
 }
 
 /// @nodoc
-class _$ChatStateCopyWithImpl<$Res> implements $ChatStateCopyWith<$Res> {
+class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
+    implements $ChatStateCopyWith<$Res> {
   _$ChatStateCopyWithImpl(this._value, this._then);
 
-  final ChatState _value;
   // ignore: unused_field
-  final $Res Function(ChatState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -1226,8 +1357,9 @@ class _$_Initial implements _Initial {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -1241,6 +1373,16 @@ class _$_Initial implements _Initial {
     required TResult Function() messageFailure,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(List<Message> allMessages)? allMessagesLoaded,
+    TResult? Function()? messageFailure,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -1269,6 +1411,16 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_AllMessagesLoaded value)? allMessagesLoaded,
+    TResult? Function(_MessageFailure value)? messageFailure,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_AllMessagesLoaded value)? allMessagesLoaded,
@@ -1283,35 +1435,34 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements ChatState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$AllMessagesLoadedCopyWith<$Res> {
-  factory _$AllMessagesLoadedCopyWith(
-          _AllMessagesLoaded value, $Res Function(_AllMessagesLoaded) then) =
-      __$AllMessagesLoadedCopyWithImpl<$Res>;
+abstract class _$$AllMessagesLoadedImplCopyWith<$Res> {
+  factory _$$AllMessagesLoadedImplCopyWith(_$AllMessagesLoadedImpl value,
+          $Res Function(_$AllMessagesLoadedImpl) then) =
+      __$$AllMessagesLoadedImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<Message> allMessages});
 }
 
 /// @nodoc
-class __$AllMessagesLoadedCopyWithImpl<$Res>
-    extends _$ChatStateCopyWithImpl<$Res>
-    implements _$AllMessagesLoadedCopyWith<$Res> {
-  __$AllMessagesLoadedCopyWithImpl(
-      _AllMessagesLoaded _value, $Res Function(_AllMessagesLoaded) _then)
-      : super(_value, (v) => _then(v as _AllMessagesLoaded));
+class __$$AllMessagesLoadedImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$AllMessagesLoadedImpl>
+    implements _$$AllMessagesLoadedImplCopyWith<$Res> {
+  __$$AllMessagesLoadedImplCopyWithImpl(_$AllMessagesLoadedImpl _value,
+      $Res Function(_$AllMessagesLoadedImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _AllMessagesLoaded get _value => super._value as _AllMessagesLoaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? allMessages = freezed,
+    Object? allMessages = null,
   }) {
-    return _then(_AllMessagesLoaded(
-      allMessages: allMessages == freezed
-          ? _value.allMessages
+    return _then(_$AllMessagesLoadedImpl(
+      allMessages: null == allMessages
+          ? _value._allMessages
           : allMessages // ignore: cast_nullable_to_non_nullable
               as List<Message>,
     ));
@@ -1320,11 +1471,17 @@ class __$AllMessagesLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AllMessagesLoaded implements _AllMessagesLoaded {
-  const _$_AllMessagesLoaded({required this.allMessages});
+class _$AllMessagesLoadedImpl implements _AllMessagesLoaded {
+  const _$AllMessagesLoadedImpl({required final List<Message> allMessages})
+      : _allMessages = allMessages;
 
+  final List<Message> _allMessages;
   @override
-  final List<Message> allMessages;
+  List<Message> get allMessages {
+    if (_allMessages is EqualUnmodifiableListView) return _allMessages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_allMessages);
+  }
 
   @override
   String toString() {
@@ -1332,22 +1489,24 @@ class _$_AllMessagesLoaded implements _AllMessagesLoaded {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _AllMessagesLoaded &&
-            (identical(other.allMessages, allMessages) ||
-                const DeepCollectionEquality()
-                    .equals(other.allMessages, allMessages)));
+        (other.runtimeType == runtimeType &&
+            other is _$AllMessagesLoadedImpl &&
+            const DeepCollectionEquality()
+                .equals(other._allMessages, _allMessages));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(allMessages);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_allMessages));
 
   @JsonKey(ignore: true)
   @override
-  _$AllMessagesLoadedCopyWith<_AllMessagesLoaded> get copyWith =>
-      __$AllMessagesLoadedCopyWithImpl<_AllMessagesLoaded>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$AllMessagesLoadedImplCopyWith<_$AllMessagesLoadedImpl> get copyWith =>
+      __$$AllMessagesLoadedImplCopyWithImpl<_$AllMessagesLoadedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1357,6 +1516,16 @@ class _$_AllMessagesLoaded implements _AllMessagesLoaded {
     required TResult Function() messageFailure,
   }) {
     return allMessagesLoaded(allMessages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(List<Message> allMessages)? allMessagesLoaded,
+    TResult? Function()? messageFailure,
+  }) {
+    return allMessagesLoaded?.call(allMessages);
   }
 
   @override
@@ -1385,6 +1554,16 @@ class _$_AllMessagesLoaded implements _AllMessagesLoaded {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_AllMessagesLoaded value)? allMessagesLoaded,
+    TResult? Function(_MessageFailure value)? messageFailure,
+  }) {
+    return allMessagesLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_AllMessagesLoaded value)? allMessagesLoaded,
@@ -1399,37 +1578,35 @@ class _$_AllMessagesLoaded implements _AllMessagesLoaded {
 }
 
 abstract class _AllMessagesLoaded implements ChatState {
-  const factory _AllMessagesLoaded({required List<Message> allMessages}) =
-      _$_AllMessagesLoaded;
+  const factory _AllMessagesLoaded({required final List<Message> allMessages}) =
+      _$AllMessagesLoadedImpl;
 
-  List<Message> get allMessages => throw _privateConstructorUsedError;
+  List<Message> get allMessages;
   @JsonKey(ignore: true)
-  _$AllMessagesLoadedCopyWith<_AllMessagesLoaded> get copyWith =>
+  _$$AllMessagesLoadedImplCopyWith<_$AllMessagesLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$MessageFailureCopyWith<$Res> {
-  factory _$MessageFailureCopyWith(
-          _MessageFailure value, $Res Function(_MessageFailure) then) =
-      __$MessageFailureCopyWithImpl<$Res>;
+abstract class _$$MessageFailureImplCopyWith<$Res> {
+  factory _$$MessageFailureImplCopyWith(_$MessageFailureImpl value,
+          $Res Function(_$MessageFailureImpl) then) =
+      __$$MessageFailureImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$MessageFailureCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
-    implements _$MessageFailureCopyWith<$Res> {
-  __$MessageFailureCopyWithImpl(
-      _MessageFailure _value, $Res Function(_MessageFailure) _then)
-      : super(_value, (v) => _then(v as _MessageFailure));
-
-  @override
-  _MessageFailure get _value => super._value as _MessageFailure;
+class __$$MessageFailureImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$MessageFailureImpl>
+    implements _$$MessageFailureImplCopyWith<$Res> {
+  __$$MessageFailureImplCopyWithImpl(
+      _$MessageFailureImpl _value, $Res Function(_$MessageFailureImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_MessageFailure implements _MessageFailure {
-  const _$_MessageFailure();
+class _$MessageFailureImpl implements _MessageFailure {
+  const _$MessageFailureImpl();
 
   @override
   String toString() {
@@ -1437,8 +1614,9 @@ class _$_MessageFailure implements _MessageFailure {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _MessageFailure);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$MessageFailureImpl);
   }
 
   @override
@@ -1452,6 +1630,16 @@ class _$_MessageFailure implements _MessageFailure {
     required TResult Function() messageFailure,
   }) {
     return messageFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(List<Message> allMessages)? allMessagesLoaded,
+    TResult? Function()? messageFailure,
+  }) {
+    return messageFailure?.call();
   }
 
   @override
@@ -1480,6 +1668,16 @@ class _$_MessageFailure implements _MessageFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_AllMessagesLoaded value)? allMessagesLoaded,
+    TResult? Function(_MessageFailure value)? messageFailure,
+  }) {
+    return messageFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_AllMessagesLoaded value)? allMessagesLoaded,
@@ -1494,5 +1692,5 @@ class _$_MessageFailure implements _MessageFailure {
 }
 
 abstract class _MessageFailure implements ChatState {
-  const factory _MessageFailure() = _$_MessageFailure;
+  const factory _MessageFailure() = _$MessageFailureImpl;
 }

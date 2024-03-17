@@ -31,8 +31,11 @@ abstract class LecturesRemoteDataSource {
   Future<List<LectureModel>> getAllLecturesByCourse({
     required String courseTitle,
   });
-  Future<List<String>> getAllCoursesByUserId({required String userId});
-  Future<Unit> createCourse({required String courseTitle});
+  Future<List<String>> getAllCoursesByUserDept({required String userDept});
+  Future<Unit> createCourse({
+    required String courseTitle,
+    required String userDept,
+  });
   Future<Unit> submitUser({
     required String userId,
     required String courseTitle,
@@ -163,17 +166,23 @@ class FirebaseLecturesRemoteDataSource extends LecturesRemoteDataSource {
   }
 
   @override
-  Future<Unit> createCourse({required String? courseTitle}) async {
-    userCoursesCollection.doc(courseTitle).set({});
+  Future<Unit> createCourse({
+    required String? courseTitle,
+    // get the dept of teacher to create a new course
+    required String userDept,
+  }) async {
+    userCoursesCollection.doc(courseTitle).set({
+      'dept': userDept,
+    });
     return unit;
   }
 
   @override
-  Future<List<String>> getAllCoursesByUserId({
-    required String userId,
+  Future<List<String>> getAllCoursesByUserDept({
+    required String userDept,
   }) async {
-    // final getQuery = await userCoursesCollection.where('user_id', isEqualTo: userId).get();
-    final getQuery = await userCoursesCollection.get();
+    final getQuery =
+        await userCoursesCollection.where('dept', isEqualTo: userDept).get();
     return getQuery.docs.map((doc) => doc.id).toList();
   }
 

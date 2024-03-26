@@ -26,7 +26,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
       return right(lecture);
     } on Exception catch (e) {
       print('exceptions ${e.toString()}');
-      return left(UserNotFoundFailure());
+      return left(LectureDownloadFailure());
     }
   }
 
@@ -51,7 +51,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
       return right(lecture);
     } on Exception catch (e) {
       print('exceptions ${e.toString()}');
-      return left(UserNotFoundFailure());
+      return left(LectureUploadFailure());
     }
   }
 

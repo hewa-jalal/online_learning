@@ -980,8 +980,8 @@ mixin _$UserAuthState {
   List<UserEntity> get users => throw _privateConstructorUsedError;
   List<UserEntity> get submittedUsers => throw _privateConstructorUsedError;
   UserStatus get userStatus => throw _privateConstructorUsedError;
-  Option<Either<Failure, UserEntity>> get authFailureOrSuccessOption =>
-      throw _privateConstructorUsedError;
+  Option<Either<UserNotFoundFailure, UserEntity>>
+      get authFailureOrSuccessOption => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserAuthStateCopyWith<UserAuthState> get copyWith =>
@@ -999,7 +999,8 @@ abstract class $UserAuthStateCopyWith<$Res> {
       List<UserEntity> users,
       List<UserEntity> submittedUsers,
       UserStatus userStatus,
-      Option<Either<Failure, UserEntity>> authFailureOrSuccessOption});
+      Option<Either<UserNotFoundFailure, UserEntity>>
+          authFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -1041,7 +1042,7 @@ class _$UserAuthStateCopyWithImpl<$Res, $Val extends UserAuthState>
       authFailureOrSuccessOption: null == authFailureOrSuccessOption
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, UserEntity>>,
+              as Option<Either<UserNotFoundFailure, UserEntity>>,
     ) as $Val);
   }
 }
@@ -1059,7 +1060,8 @@ abstract class _$$UserAuthStateImplCopyWith<$Res>
       List<UserEntity> users,
       List<UserEntity> submittedUsers,
       UserStatus userStatus,
-      Option<Either<Failure, UserEntity>> authFailureOrSuccessOption});
+      Option<Either<UserNotFoundFailure, UserEntity>>
+          authFailureOrSuccessOption});
 }
 
 /// @nodoc
@@ -1099,7 +1101,7 @@ class __$$UserAuthStateImplCopyWithImpl<$Res>
       authFailureOrSuccessOption: null == authFailureOrSuccessOption
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, UserEntity>>,
+              as Option<Either<UserNotFoundFailure, UserEntity>>,
     ));
   }
 }
@@ -1137,7 +1139,8 @@ class _$UserAuthStateImpl implements _UserAuthState {
   @override
   final UserStatus userStatus;
   @override
-  final Option<Either<Failure, UserEntity>> authFailureOrSuccessOption;
+  final Option<Either<UserNotFoundFailure, UserEntity>>
+      authFailureOrSuccessOption;
 
   @override
   String toString() {
@@ -1183,7 +1186,7 @@ abstract class _UserAuthState implements UserAuthState {
       required final List<UserEntity> users,
       required final List<UserEntity> submittedUsers,
       required final UserStatus userStatus,
-      required final Option<Either<Failure, UserEntity>>
+      required final Option<Either<UserNotFoundFailure, UserEntity>>
           authFailureOrSuccessOption}) = _$UserAuthStateImpl;
 
   @override
@@ -1195,7 +1198,8 @@ abstract class _UserAuthState implements UserAuthState {
   @override
   UserStatus get userStatus;
   @override
-  Option<Either<Failure, UserEntity>> get authFailureOrSuccessOption;
+  Option<Either<UserNotFoundFailure, UserEntity>>
+      get authFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
   _$$UserAuthStateImplCopyWith<_$UserAuthStateImpl> get copyWith =>

@@ -18,11 +18,22 @@ class FirebaseUserRemoteDataSource extends UserRemoteDataSource {
 
   @override
   Future<UserModel> getUser(int id, String password) async {
+    // Retrieve the user document from the 'usersCollection' based on the provided ID.
     final userDoc = await usersCollection.doc(id.toString()).get();
-    if (userDoc.exists && userDoc.data()!['password'] == password) {
-      return UserModel.fromSnapshot(userDoc);
+
+    // Check if the user document exists in the database.
+    if (userDoc.exists) {
+      // Check if the supplied password matches the 'password' field in the user document.
+      if (userDoc.data()!['password'] == password) {
+        // Password is correct; create a UserModel instance from the document data and return it.
+        return UserModel.fromSnapshot(userDoc);
+      } else {
+        // Incorrect password; throw an exception indicating the issue.
+        throw UserNotFoundException(message: 'Password Incorrect');
+      }
     } else {
-      throw UserNotFoundException();
+      // User document not found; throw an exception with an appropriate message.
+      throw UserNotFoundException(message: 'User with id $id not found');
     }
   }
 

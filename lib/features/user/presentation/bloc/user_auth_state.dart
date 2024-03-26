@@ -13,7 +13,7 @@ abstract class UserAuthState with _$UserAuthState {
     required List<UserEntity> users,
     required List<UserEntity> submittedUsers,
     required UserStatus userStatus,
-    required Option<Either<Failure, UserEntity>> authFailureOrSuccessOption,
+    required Option<Either<UserNotFoundFailure, UserEntity>> authFailureOrSuccessOption,
   }) = _UserAuthState;
 
   factory UserAuthState.initial() => UserAuthState(

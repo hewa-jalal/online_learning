@@ -35,7 +35,7 @@ class _UserFormState extends State<UserForm> {
           (either) {
             either.fold(
               (left) => FlushbarHelper.createError(
-                  message: 'No user was found with the id of ${state.user.id}')
+                  message: left.message)
                 ..show(context),
               (user) => Get.to(
                 () => UserHomePage(

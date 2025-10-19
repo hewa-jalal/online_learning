@@ -26,7 +26,7 @@ class HomeworkCard extends StatelessWidget {
     final _isSubmitted = homework.submittedHomeworks!
         .contains(_userAuthState.user.id.toString());
     final _dueDate = DateTime.fromMillisecondsSinceEpoch(homework.dueDate!);
-    final _jifDate = Jiffy(_dueDate);
+    final _jifDate = Jiffy.parseFromDateTime(_dueDate);
     return ExpansionTileCard(
       contentPadding: EdgeInsets.only(left: 8.0, right: 8.0),
       // margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),

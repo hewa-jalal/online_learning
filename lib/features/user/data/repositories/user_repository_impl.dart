@@ -13,12 +13,12 @@ class UserRepositoryImpl implements UserRepository {
 
   UserRepositoryImpl(this.userRemoteDataSource);
   @override
-  Future<Either<Failure, UserEntity>> getUser(int id, String password) async {
+  Future<Either<UserNotFoundFailure, UserEntity>> getUser(int id, String password) async {
     try {
       final user = await userRemoteDataSource!.getUser(id, password);
       return right(user);
-    } on UserNotFoundException {
-      return left(UserNotFoundFailure());
+    } on UserNotFoundException catch (e){
+      return left(UserNotFoundFailure(message: e.message));
     }
   }
 
@@ -28,7 +28,7 @@ class UserRepositoryImpl implements UserRepository {
       final userList = await userRemoteDataSource!.getAllUsers();
       return right(userList);
     } on UserNotFoundException {
-      return left(UserNotFoundFailure());
+      return left(AllUserFailure());
     }
   }
 
@@ -38,7 +38,7 @@ class UserRepositoryImpl implements UserRepository {
       await userRemoteDataSource!.updateUserTime(id);
       return right(unit);
     } on UserNotFoundException {
-      return left(UserNotFoundFailure());
+      return left(UpdateUserTimeFailure());
     }
   }
 
@@ -48,7 +48,7 @@ class UserRepositoryImpl implements UserRepository {
       await userRemoteDataSource!.userOnlineStatus(id, isOnline);
       return right(unit);
     } on UserNotFoundException {
-      return left(UserNotFoundFailure());
+      return left(UserOnlineStatusFailure());
     }
   }
 }

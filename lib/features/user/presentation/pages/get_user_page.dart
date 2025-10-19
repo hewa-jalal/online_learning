@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import '../../domain/entites/user.dart';
 import '../bloc/user_auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../forms/user_id_form.dart';
@@ -22,11 +23,11 @@ class _UserFormState extends State<UserForm> {
   String userId = '';
   String password = '';
   late NameInput name;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final _userAuthBloc = context.read<UserAuthBloc>();
-    final _formKey = GlobalKey<FormState>();
     return BlocConsumer<UserAuthBloc, UserAuthState>(
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
@@ -34,7 +35,7 @@ class _UserFormState extends State<UserForm> {
           (either) {
             either.fold(
               (left) => FlushbarHelper.createError(
-                  message: 'No user was found with the id of ${state.user.id}')
+                  message: left.message)
                 ..show(context),
               (user) => Get.to(
                 () => UserHomePage(
@@ -44,25 +45,6 @@ class _UserFormState extends State<UserForm> {
             );
           },
         );
-        // if (state.userStatus == UserStatus.done) {
-        //   Get.to(
-        //     () => UserHomePage(
-        //       user: UserEntity(
-        //         id: state.id.toString(),
-        //         fullName: state.fullName,
-        //         dept: state.dept,
-        //         role: state.role,
-        //         stage: state.stage,
-        //         lastSeenInEpoch: state.lastSeenInEpoch,
-        //         isOnline: state.isOnline,
-        //       ),
-        //     ),
-        //   );
-        // } else if (state.userStatus == UserStatus.waiting) {
-        //   Get.dialog(
-        //     Lottie.asset('assets/lottie/loading_animation.json'),
-        //   );
-        // }
       },
       builder: (context, state) {
         return Form(
@@ -75,10 +57,6 @@ class _UserFormState extends State<UserForm> {
                     children: [
                       SizedBox(
                         width: 250.0,
-                        // child: Text(
-                        //   'Learn anywhere',
-                        //   style: TextStyle(fontSize: 30.0),
-                        // )
                         child: TyperAnimatedTextKit(
                           text: ['Learn anywhere'],
                           textStyle: TextStyle(
@@ -90,7 +68,7 @@ class _UserFormState extends State<UserForm> {
                           speed: Duration(milliseconds: 40),
                         ),
                       ),
-                      // Lottie.asset('assets/lottie/intro.json'),
+                      Lottie.asset('assets/lottie/intro.json'),
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -113,19 +91,13 @@ class _UserFormState extends State<UserForm> {
                             onFieldSubmitted: (val) =>
                                 _formKey.currentState!.validate(),
                             validator: (val) {
-                              print('validator => ${name.valid}');
-                              return name.valid ? 'ok' : 'please enter an id';
+                              print('validator => ${name.isValid}');
+                              return name.isValid ? 'ok' : 'please enter an id';
                             },
                           ),
                         ),
                       ),
                       SizedBox(height: 0.03.sh),
-                      // ElevatedButton(
-                      //   onPressed: () => Get.dialog(
-                      //     Lottie.asset('assets/lottie/loading_animation.json'),
-                      //   ),
-                      //   child: Text('dialog animation test'),
-                      // ),
                       Center(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -148,8 +120,8 @@ class _UserFormState extends State<UserForm> {
                             onFieldSubmitted: (val) =>
                                 _formKey.currentState!.validate(),
                             validator: (val) {
-                              print('validator => ${name.valid}');
-                              return name.valid ? 'ok' : 'please enter an id';
+                              print('validator => ${name.isValid}');
+                              return name.isValid ? 'ok' : 'please enter an id';
                             },
                           ),
                         ),

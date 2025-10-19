@@ -82,7 +82,7 @@ class _ChatPageState extends State<ChatPage> {
     final imageUploaderCubit = context.read<ImageUploaderCubit>();
     print('imageUploaderCubit.state' + imageUploaderCubit.state.toString());
 
-    void _handleMessageTap(types.Message message) async {
+    void _handleMessageTap(context, types.Message message ) async {
       if (message is types.FileMessage) {
         url_launcher.launch(message.uri);
       }
@@ -122,15 +122,16 @@ class _ChatPageState extends State<ChatPage> {
                     if (msg is ImageMessage) {
                       return types.ImageMessage(
                         size: 200,
-                        imageName: 'imageName',
+                        name: 'imageName',
                         uri: msg.imageUrl,
                         author: types.User(
                           id: msg.senderId,
                           // firstName: 'H',
                         ),
                         id: user.id!,
-                        timestamp: (msg.timeStamp / 1000).round(),
-                        status: types.Status.read,
+                        createdAt: (msg.timeStamp / 1000).round(),
+                        // timestamp: (msg.timeStamp / 1000).round(),
+                        status: types.Status.sent,
                       );
                     } else if (msg is TextMessage) {
                       return types.TextMessage(
@@ -140,21 +141,21 @@ class _ChatPageState extends State<ChatPage> {
                           id: msg.senderId,
                           firstName: 'Hewa Jalal',
                         ),
-                        timestamp: (msg.timeStamp / 1000).round(),
-                        status: types.Status.read,
+                        createdAt: (msg.timeStamp / 1000).round(),
+                        status: types.Status.sent,
                       );
                     } else if (msg is FileMessage) {
                       return types.FileMessage(
                         id: msg.senderId,
-                        fileName: msg.fileName!,
+                        name: msg.fileName!,
                         author: types.User(
                           id: msg.senderId,
                           firstName: 'H',
                         ),
                         uri: msg.fileUrl!,
                         size: msg.fileSize ?? 10000,
-                        timestamp: (msg.timeStamp / 1000).round(),
-                        status: types.Status.read,
+                        createdAt: (msg.timeStamp / 1000).round(),
+                        status: types.Status.sent,
                       );
                     } else {
                       return types.TextMessage(

@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'lecture_bloc.dart';
 
@@ -10,79 +12,7 @@ part of 'lecture_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LectureEventTearOff {
-  const _$LectureEventTearOff();
-
-  _Started started() {
-    return const _Started();
-  }
-
-  _SelectFile selectFile() {
-    return const _SelectFile();
-  }
-
-  _DownloadLecture downloadLecture(
-      {required String fileUrl,
-      required String courseTitle,
-      required String lectureTitle}) {
-    return _DownloadLecture(
-      fileUrl: fileUrl,
-      courseTitle: courseTitle,
-      lectureTitle: lectureTitle,
-    );
-  }
-
-  _UploadLecture uploadLecture(
-      {required UserModel user,
-      required String title,
-      required String courseTitle,
-      String? description}) {
-    return _UploadLecture(
-      user: user,
-      title: title,
-      courseTitle: courseTitle,
-      description: description,
-    );
-  }
-
-  _GetAllLectures getAllLectures() {
-    return const _GetAllLectures();
-  }
-
-  _GetAllLecturesByCourse getAllLecturesByCourse(
-      {required String courseTitle}) {
-    return _GetAllLecturesByCourse(
-      courseTitle: courseTitle,
-    );
-  }
-
-  _GetAllCoursesByUserId getAllCoursesByUserId() {
-    return const _GetAllCoursesByUserId();
-  }
-
-  _CreateCourse createCourse({required String courseTitle}) {
-    return _CreateCourse(
-      courseTitle: courseTitle,
-    );
-  }
-
-  _SubmitUser submitUser(
-      {required String userId,
-      required String courseTitle,
-      required String lectureTitle}) {
-    return _SubmitUser(
-      userId: userId,
-      courseTitle: courseTitle,
-      lectureTitle: lectureTitle,
-    );
-  }
-}
-
-/// @nodoc
-const $LectureEvent = _$LectureEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LectureEvent {
@@ -98,10 +28,27 @@ mixin _$LectureEvent {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
+        submitUser,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
   }) =>
       throw _privateConstructorUsedError;
@@ -116,8 +63,8 @@ mixin _$LectureEvent {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
@@ -132,10 +79,22 @@ mixin _$LectureEvent {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -146,7 +105,7 @@ mixin _$LectureEvent {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -158,38 +117,40 @@ mixin _$LectureEvent {
 abstract class $LectureEventCopyWith<$Res> {
   factory $LectureEventCopyWith(
           LectureEvent value, $Res Function(LectureEvent) then) =
-      _$LectureEventCopyWithImpl<$Res>;
+      _$LectureEventCopyWithImpl<$Res, LectureEvent>;
 }
 
 /// @nodoc
-class _$LectureEventCopyWithImpl<$Res> implements $LectureEventCopyWith<$Res> {
+class _$LectureEventCopyWithImpl<$Res, $Val extends LectureEvent>
+    implements $LectureEventCopyWith<$Res> {
   _$LectureEventCopyWithImpl(this._value, this._then);
 
-  final LectureEvent _value;
   // ignore: unused_field
-  final $Res Function(LectureEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
-
-  @override
-  _Started get _value => super._value as _Started;
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
 
   @override
   String toString() {
@@ -197,8 +158,9 @@ class _$_Started implements _Started {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
   }
 
   @override
@@ -217,13 +179,33 @@ class _$_Started implements _Started {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
     return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return started?.call();
   }
 
   @override
@@ -238,8 +220,8 @@ class _$_Started implements _Started {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
@@ -260,12 +242,27 @@ class _$_Started implements _Started {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
     return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return started?.call(this);
   }
 
   @override
@@ -277,7 +274,7 @@ class _$_Started implements _Started {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -290,31 +287,29 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements LectureEvent {
-  const factory _Started() = _$_Started;
+  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$SelectFileCopyWith<$Res> {
-  factory _$SelectFileCopyWith(
-          _SelectFile value, $Res Function(_SelectFile) then) =
-      __$SelectFileCopyWithImpl<$Res>;
+abstract class _$$SelectFileImplCopyWith<$Res> {
+  factory _$$SelectFileImplCopyWith(
+          _$SelectFileImpl value, $Res Function(_$SelectFileImpl) then) =
+      __$$SelectFileImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SelectFileCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
-    implements _$SelectFileCopyWith<$Res> {
-  __$SelectFileCopyWithImpl(
-      _SelectFile _value, $Res Function(_SelectFile) _then)
-      : super(_value, (v) => _then(v as _SelectFile));
-
-  @override
-  _SelectFile get _value => super._value as _SelectFile;
+class __$$SelectFileImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$SelectFileImpl>
+    implements _$$SelectFileImplCopyWith<$Res> {
+  __$$SelectFileImplCopyWithImpl(
+      _$SelectFileImpl _value, $Res Function(_$SelectFileImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SelectFile implements _SelectFile {
-  const _$_SelectFile();
+class _$SelectFileImpl implements _SelectFile {
+  const _$SelectFileImpl();
 
   @override
   String toString() {
@@ -322,8 +317,9 @@ class _$_SelectFile implements _SelectFile {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _SelectFile);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SelectFileImpl);
   }
 
   @override
@@ -342,13 +338,33 @@ class _$_SelectFile implements _SelectFile {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
     return selectFile();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return selectFile?.call();
   }
 
   @override
@@ -363,8 +379,8 @@ class _$_SelectFile implements _SelectFile {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
@@ -385,12 +401,27 @@ class _$_SelectFile implements _SelectFile {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
     return selectFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return selectFile?.call(this);
   }
 
   @override
@@ -402,7 +433,7 @@ class _$_SelectFile implements _SelectFile {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -415,44 +446,43 @@ class _$_SelectFile implements _SelectFile {
 }
 
 abstract class _SelectFile implements LectureEvent {
-  const factory _SelectFile() = _$_SelectFile;
+  const factory _SelectFile() = _$SelectFileImpl;
 }
 
 /// @nodoc
-abstract class _$DownloadLectureCopyWith<$Res> {
-  factory _$DownloadLectureCopyWith(
-          _DownloadLecture value, $Res Function(_DownloadLecture) then) =
-      __$DownloadLectureCopyWithImpl<$Res>;
+abstract class _$$DownloadLectureImplCopyWith<$Res> {
+  factory _$$DownloadLectureImplCopyWith(_$DownloadLectureImpl value,
+          $Res Function(_$DownloadLectureImpl) then) =
+      __$$DownloadLectureImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({String fileUrl, String courseTitle, String lectureTitle});
 }
 
 /// @nodoc
-class __$DownloadLectureCopyWithImpl<$Res>
-    extends _$LectureEventCopyWithImpl<$Res>
-    implements _$DownloadLectureCopyWith<$Res> {
-  __$DownloadLectureCopyWithImpl(
-      _DownloadLecture _value, $Res Function(_DownloadLecture) _then)
-      : super(_value, (v) => _then(v as _DownloadLecture));
+class __$$DownloadLectureImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$DownloadLectureImpl>
+    implements _$$DownloadLectureImplCopyWith<$Res> {
+  __$$DownloadLectureImplCopyWithImpl(
+      _$DownloadLectureImpl _value, $Res Function(_$DownloadLectureImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _DownloadLecture get _value => super._value as _DownloadLecture;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fileUrl = freezed,
-    Object? courseTitle = freezed,
-    Object? lectureTitle = freezed,
+    Object? fileUrl = null,
+    Object? courseTitle = null,
+    Object? lectureTitle = null,
   }) {
-    return _then(_DownloadLecture(
-      fileUrl: fileUrl == freezed
+    return _then(_$DownloadLectureImpl(
+      fileUrl: null == fileUrl
           ? _value.fileUrl
           : fileUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      lectureTitle: lectureTitle == freezed
+      lectureTitle: null == lectureTitle
           ? _value.lectureTitle
           : lectureTitle // ignore: cast_nullable_to_non_nullable
               as String,
@@ -462,8 +492,8 @@ class __$DownloadLectureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DownloadLecture implements _DownloadLecture {
-  const _$_DownloadLecture(
+class _$DownloadLectureImpl implements _DownloadLecture {
+  const _$DownloadLectureImpl(
       {required this.fileUrl,
       required this.courseTitle,
       required this.lectureTitle});
@@ -481,31 +511,27 @@ class _$_DownloadLecture implements _DownloadLecture {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _DownloadLecture &&
-            (identical(other.fileUrl, fileUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.fileUrl, fileUrl)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$DownloadLectureImpl &&
+            (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
+                other.courseTitle == courseTitle) &&
             (identical(other.lectureTitle, lectureTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.lectureTitle, lectureTitle)));
+                other.lectureTitle == lectureTitle));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(fileUrl) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(lectureTitle);
+      Object.hash(runtimeType, fileUrl, courseTitle, lectureTitle);
 
   @JsonKey(ignore: true)
   @override
-  _$DownloadLectureCopyWith<_DownloadLecture> get copyWith =>
-      __$DownloadLectureCopyWithImpl<_DownloadLecture>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$DownloadLectureImplCopyWith<_$DownloadLectureImpl> get copyWith =>
+      __$$DownloadLectureImplCopyWithImpl<_$DownloadLectureImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -520,13 +546,33 @@ class _$_DownloadLecture implements _DownloadLecture {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
     return downloadLecture(fileUrl, courseTitle, lectureTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return downloadLecture?.call(fileUrl, courseTitle, lectureTitle);
   }
 
   @override
@@ -541,8 +587,8 @@ class _$_DownloadLecture implements _DownloadLecture {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
@@ -563,12 +609,27 @@ class _$_DownloadLecture implements _DownloadLecture {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
     return downloadLecture(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return downloadLecture?.call(this);
   }
 
   @override
@@ -580,7 +641,7 @@ class _$_DownloadLecture implements _DownloadLecture {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -594,59 +655,58 @@ class _$_DownloadLecture implements _DownloadLecture {
 
 abstract class _DownloadLecture implements LectureEvent {
   const factory _DownloadLecture(
-      {required String fileUrl,
-      required String courseTitle,
-      required String lectureTitle}) = _$_DownloadLecture;
+      {required final String fileUrl,
+      required final String courseTitle,
+      required final String lectureTitle}) = _$DownloadLectureImpl;
 
-  String get fileUrl => throw _privateConstructorUsedError;
-  String get courseTitle => throw _privateConstructorUsedError;
-  String get lectureTitle => throw _privateConstructorUsedError;
+  String get fileUrl;
+  String get courseTitle;
+  String get lectureTitle;
   @JsonKey(ignore: true)
-  _$DownloadLectureCopyWith<_DownloadLecture> get copyWith =>
+  _$$DownloadLectureImplCopyWith<_$DownloadLectureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$UploadLectureCopyWith<$Res> {
-  factory _$UploadLectureCopyWith(
-          _UploadLecture value, $Res Function(_UploadLecture) then) =
-      __$UploadLectureCopyWithImpl<$Res>;
+abstract class _$$UploadLectureImplCopyWith<$Res> {
+  factory _$$UploadLectureImplCopyWith(
+          _$UploadLectureImpl value, $Res Function(_$UploadLectureImpl) then) =
+      __$$UploadLectureImplCopyWithImpl<$Res>;
+  @useResult
   $Res call(
       {UserModel user, String title, String courseTitle, String? description});
 }
 
 /// @nodoc
-class __$UploadLectureCopyWithImpl<$Res>
-    extends _$LectureEventCopyWithImpl<$Res>
-    implements _$UploadLectureCopyWith<$Res> {
-  __$UploadLectureCopyWithImpl(
-      _UploadLecture _value, $Res Function(_UploadLecture) _then)
-      : super(_value, (v) => _then(v as _UploadLecture));
+class __$$UploadLectureImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$UploadLectureImpl>
+    implements _$$UploadLectureImplCopyWith<$Res> {
+  __$$UploadLectureImplCopyWithImpl(
+      _$UploadLectureImpl _value, $Res Function(_$UploadLectureImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _UploadLecture get _value => super._value as _UploadLecture;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
-    Object? title = freezed,
-    Object? courseTitle = freezed,
+    Object? user = null,
+    Object? title = null,
+    Object? courseTitle = null,
     Object? description = freezed,
   }) {
-    return _then(_UploadLecture(
-      user: user == freezed
+    return _then(_$UploadLectureImpl(
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserModel,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -656,8 +716,8 @@ class __$UploadLectureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UploadLecture implements _UploadLecture {
-  const _$_UploadLecture(
+class _$UploadLectureImpl implements _UploadLecture {
+  const _$UploadLectureImpl(
       {required this.user,
       required this.title,
       required this.courseTitle,
@@ -678,33 +738,27 @@ class _$_UploadLecture implements _UploadLecture {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _UploadLecture &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$UploadLectureImpl &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
+                other.courseTitle == courseTitle) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)));
+                other.description == description));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(description);
+      Object.hash(runtimeType, user, title, courseTitle, description);
 
   @JsonKey(ignore: true)
   @override
-  _$UploadLectureCopyWith<_UploadLecture> get copyWith =>
-      __$UploadLectureCopyWithImpl<_UploadLecture>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UploadLectureImplCopyWith<_$UploadLectureImpl> get copyWith =>
+      __$$UploadLectureImplCopyWithImpl<_$UploadLectureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -719,13 +773,33 @@ class _$_UploadLecture implements _UploadLecture {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
     return uploadLecture(user, title, courseTitle, description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return uploadLecture?.call(user, title, courseTitle, description);
   }
 
   @override
@@ -740,8 +814,8 @@ class _$_UploadLecture implements _UploadLecture {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
@@ -762,12 +836,27 @@ class _$_UploadLecture implements _UploadLecture {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
     return uploadLecture(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return uploadLecture?.call(this);
   }
 
   @override
@@ -779,7 +868,7 @@ class _$_UploadLecture implements _UploadLecture {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -793,43 +882,40 @@ class _$_UploadLecture implements _UploadLecture {
 
 abstract class _UploadLecture implements LectureEvent {
   const factory _UploadLecture(
-      {required UserModel user,
-      required String title,
-      required String courseTitle,
-      String? description}) = _$_UploadLecture;
+      {required final UserModel user,
+      required final String title,
+      required final String courseTitle,
+      final String? description}) = _$UploadLectureImpl;
 
-  UserModel get user => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get courseTitle => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  UserModel get user;
+  String get title;
+  String get courseTitle;
+  String? get description;
   @JsonKey(ignore: true)
-  _$UploadLectureCopyWith<_UploadLecture> get copyWith =>
+  _$$UploadLectureImplCopyWith<_$UploadLectureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GetAllLecturesCopyWith<$Res> {
-  factory _$GetAllLecturesCopyWith(
-          _GetAllLectures value, $Res Function(_GetAllLectures) then) =
-      __$GetAllLecturesCopyWithImpl<$Res>;
+abstract class _$$GetAllLecturesImplCopyWith<$Res> {
+  factory _$$GetAllLecturesImplCopyWith(_$GetAllLecturesImpl value,
+          $Res Function(_$GetAllLecturesImpl) then) =
+      __$$GetAllLecturesImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$GetAllLecturesCopyWithImpl<$Res>
-    extends _$LectureEventCopyWithImpl<$Res>
-    implements _$GetAllLecturesCopyWith<$Res> {
-  __$GetAllLecturesCopyWithImpl(
-      _GetAllLectures _value, $Res Function(_GetAllLectures) _then)
-      : super(_value, (v) => _then(v as _GetAllLectures));
-
-  @override
-  _GetAllLectures get _value => super._value as _GetAllLectures;
+class __$$GetAllLecturesImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$GetAllLecturesImpl>
+    implements _$$GetAllLecturesImplCopyWith<$Res> {
+  __$$GetAllLecturesImplCopyWithImpl(
+      _$GetAllLecturesImpl _value, $Res Function(_$GetAllLecturesImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetAllLectures implements _GetAllLectures {
-  const _$_GetAllLectures();
+class _$GetAllLecturesImpl implements _GetAllLectures {
+  const _$GetAllLecturesImpl();
 
   @override
   String toString() {
@@ -837,8 +923,9 @@ class _$_GetAllLectures implements _GetAllLectures {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _GetAllLectures);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAllLecturesImpl);
   }
 
   @override
@@ -857,13 +944,33 @@ class _$_GetAllLectures implements _GetAllLectures {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
     return getAllLectures();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return getAllLectures?.call();
   }
 
   @override
@@ -878,8 +985,8 @@ class _$_GetAllLectures implements _GetAllLectures {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
@@ -900,12 +1007,27 @@ class _$_GetAllLectures implements _GetAllLectures {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
     return getAllLectures(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return getAllLectures?.call(this);
   }
 
   @override
@@ -917,7 +1039,7 @@ class _$_GetAllLectures implements _GetAllLectures {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -930,34 +1052,35 @@ class _$_GetAllLectures implements _GetAllLectures {
 }
 
 abstract class _GetAllLectures implements LectureEvent {
-  const factory _GetAllLectures() = _$_GetAllLectures;
+  const factory _GetAllLectures() = _$GetAllLecturesImpl;
 }
 
 /// @nodoc
-abstract class _$GetAllLecturesByCourseCopyWith<$Res> {
-  factory _$GetAllLecturesByCourseCopyWith(_GetAllLecturesByCourse value,
-          $Res Function(_GetAllLecturesByCourse) then) =
-      __$GetAllLecturesByCourseCopyWithImpl<$Res>;
+abstract class _$$GetAllLecturesByCourseImplCopyWith<$Res> {
+  factory _$$GetAllLecturesByCourseImplCopyWith(
+          _$GetAllLecturesByCourseImpl value,
+          $Res Function(_$GetAllLecturesByCourseImpl) then) =
+      __$$GetAllLecturesByCourseImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({String courseTitle});
 }
 
 /// @nodoc
-class __$GetAllLecturesByCourseCopyWithImpl<$Res>
-    extends _$LectureEventCopyWithImpl<$Res>
-    implements _$GetAllLecturesByCourseCopyWith<$Res> {
-  __$GetAllLecturesByCourseCopyWithImpl(_GetAllLecturesByCourse _value,
-      $Res Function(_GetAllLecturesByCourse) _then)
-      : super(_value, (v) => _then(v as _GetAllLecturesByCourse));
+class __$$GetAllLecturesByCourseImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$GetAllLecturesByCourseImpl>
+    implements _$$GetAllLecturesByCourseImplCopyWith<$Res> {
+  __$$GetAllLecturesByCourseImplCopyWithImpl(
+      _$GetAllLecturesByCourseImpl _value,
+      $Res Function(_$GetAllLecturesByCourseImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _GetAllLecturesByCourse get _value => super._value as _GetAllLecturesByCourse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courseTitle = freezed,
+    Object? courseTitle = null,
   }) {
-    return _then(_GetAllLecturesByCourse(
-      courseTitle: courseTitle == freezed
+    return _then(_$GetAllLecturesByCourseImpl(
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
@@ -967,8 +1090,8 @@ class __$GetAllLecturesByCourseCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
-  const _$_GetAllLecturesByCourse({required this.courseTitle});
+class _$GetAllLecturesByCourseImpl implements _GetAllLecturesByCourse {
+  const _$GetAllLecturesByCourseImpl({required this.courseTitle});
 
   @override
   final String courseTitle;
@@ -979,23 +1102,23 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _GetAllLecturesByCourse &&
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllLecturesByCourseImpl &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)));
+                other.courseTitle == courseTitle));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+  int get hashCode => Object.hash(runtimeType, courseTitle);
 
   @JsonKey(ignore: true)
   @override
-  _$GetAllLecturesByCourseCopyWith<_GetAllLecturesByCourse> get copyWith =>
-      __$GetAllLecturesByCourseCopyWithImpl<_GetAllLecturesByCourse>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GetAllLecturesByCourseImplCopyWith<_$GetAllLecturesByCourseImpl>
+      get copyWith => __$$GetAllLecturesByCourseImplCopyWithImpl<
+          _$GetAllLecturesByCourseImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1010,13 +1133,33 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
     return getAllLecturesByCourse(courseTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return getAllLecturesByCourse?.call(courseTitle);
   }
 
   @override
@@ -1031,8 +1174,8 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
@@ -1053,12 +1196,27 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
     return getAllLecturesByCourse(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return getAllLecturesByCourse?.call(this);
   }
 
   @override
@@ -1070,7 +1228,7 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -1083,51 +1241,77 @@ class _$_GetAllLecturesByCourse implements _GetAllLecturesByCourse {
 }
 
 abstract class _GetAllLecturesByCourse implements LectureEvent {
-  const factory _GetAllLecturesByCourse({required String courseTitle}) =
-      _$_GetAllLecturesByCourse;
+  const factory _GetAllLecturesByCourse({required final String courseTitle}) =
+      _$GetAllLecturesByCourseImpl;
 
-  String get courseTitle => throw _privateConstructorUsedError;
+  String get courseTitle;
   @JsonKey(ignore: true)
-  _$GetAllLecturesByCourseCopyWith<_GetAllLecturesByCourse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GetAllLecturesByCourseImplCopyWith<_$GetAllLecturesByCourseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GetAllCoursesByUserIdCopyWith<$Res> {
-  factory _$GetAllCoursesByUserIdCopyWith(_GetAllCoursesByUserId value,
-          $Res Function(_GetAllCoursesByUserId) then) =
-      __$GetAllCoursesByUserIdCopyWithImpl<$Res>;
+abstract class _$$GetAllCoursesByDeptImplCopyWith<$Res> {
+  factory _$$GetAllCoursesByDeptImplCopyWith(_$GetAllCoursesByDeptImpl value,
+          $Res Function(_$GetAllCoursesByDeptImpl) then) =
+      __$$GetAllCoursesByDeptImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String courseDept});
 }
 
 /// @nodoc
-class __$GetAllCoursesByUserIdCopyWithImpl<$Res>
-    extends _$LectureEventCopyWithImpl<$Res>
-    implements _$GetAllCoursesByUserIdCopyWith<$Res> {
-  __$GetAllCoursesByUserIdCopyWithImpl(_GetAllCoursesByUserId _value,
-      $Res Function(_GetAllCoursesByUserId) _then)
-      : super(_value, (v) => _then(v as _GetAllCoursesByUserId));
+class __$$GetAllCoursesByDeptImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$GetAllCoursesByDeptImpl>
+    implements _$$GetAllCoursesByDeptImplCopyWith<$Res> {
+  __$$GetAllCoursesByDeptImplCopyWithImpl(_$GetAllCoursesByDeptImpl _value,
+      $Res Function(_$GetAllCoursesByDeptImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? courseDept = null,
+  }) {
+    return _then(_$GetAllCoursesByDeptImpl(
+      courseDept: null == courseDept
+          ? _value.courseDept
+          : courseDept // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetAllCoursesByDeptImpl implements _GetAllCoursesByDept {
+  const _$GetAllCoursesByDeptImpl({required this.courseDept});
 
   @override
-  _GetAllCoursesByUserId get _value => super._value as _GetAllCoursesByUserId;
-}
-
-/// @nodoc
-
-class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
-  const _$_GetAllCoursesByUserId();
+  final String courseDept;
 
   @override
   String toString() {
-    return 'LectureEvent.getAllCoursesByUserId()';
+    return 'LectureEvent.getAllCoursesByDept(courseDept: $courseDept)';
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _GetAllCoursesByUserId);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllCoursesByDeptImpl &&
+            (identical(other.courseDept, courseDept) ||
+                other.courseDept == courseDept));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, courseDept);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetAllCoursesByDeptImplCopyWith<_$GetAllCoursesByDeptImpl> get copyWith =>
+      __$$GetAllCoursesByDeptImplCopyWithImpl<_$GetAllCoursesByDeptImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1142,13 +1326,33 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
-    return getAllCoursesByUserId();
+    return getAllCoursesByDept(courseDept);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return getAllCoursesByDept?.call(courseDept);
   }
 
   @override
@@ -1163,14 +1367,14 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
   }) {
-    if (getAllCoursesByUserId != null) {
-      return getAllCoursesByUserId();
+    if (getAllCoursesByDept != null) {
+      return getAllCoursesByDept(courseDept);
     }
     return orElse();
   }
@@ -1185,12 +1389,27 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
-    return getAllCoursesByUserId(this);
+    return getAllCoursesByDept(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return getAllCoursesByDept?.call(this);
   }
 
   @override
@@ -1202,48 +1421,59 @@ class _$_GetAllCoursesByUserId implements _GetAllCoursesByUserId {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
   }) {
-    if (getAllCoursesByUserId != null) {
-      return getAllCoursesByUserId(this);
+    if (getAllCoursesByDept != null) {
+      return getAllCoursesByDept(this);
     }
     return orElse();
   }
 }
 
-abstract class _GetAllCoursesByUserId implements LectureEvent {
-  const factory _GetAllCoursesByUserId() = _$_GetAllCoursesByUserId;
+abstract class _GetAllCoursesByDept implements LectureEvent {
+  const factory _GetAllCoursesByDept({required final String courseDept}) =
+      _$GetAllCoursesByDeptImpl;
+
+  String get courseDept;
+  @JsonKey(ignore: true)
+  _$$GetAllCoursesByDeptImplCopyWith<_$GetAllCoursesByDeptImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$CreateCourseCopyWith<$Res> {
-  factory _$CreateCourseCopyWith(
-          _CreateCourse value, $Res Function(_CreateCourse) then) =
-      __$CreateCourseCopyWithImpl<$Res>;
-  $Res call({String courseTitle});
+abstract class _$$CreateCourseImplCopyWith<$Res> {
+  factory _$$CreateCourseImplCopyWith(
+          _$CreateCourseImpl value, $Res Function(_$CreateCourseImpl) then) =
+      __$$CreateCourseImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String courseTitle, String userDept});
 }
 
 /// @nodoc
-class __$CreateCourseCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
-    implements _$CreateCourseCopyWith<$Res> {
-  __$CreateCourseCopyWithImpl(
-      _CreateCourse _value, $Res Function(_CreateCourse) _then)
-      : super(_value, (v) => _then(v as _CreateCourse));
+class __$$CreateCourseImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$CreateCourseImpl>
+    implements _$$CreateCourseImplCopyWith<$Res> {
+  __$$CreateCourseImplCopyWithImpl(
+      _$CreateCourseImpl _value, $Res Function(_$CreateCourseImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _CreateCourse get _value => super._value as _CreateCourse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? courseTitle = freezed,
+    Object? courseTitle = null,
+    Object? userDept = null,
   }) {
-    return _then(_CreateCourse(
-      courseTitle: courseTitle == freezed
+    return _then(_$CreateCourseImpl(
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      userDept: null == userDept
+          ? _value.userDept
+          : userDept // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1251,34 +1481,38 @@ class __$CreateCourseCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CreateCourse implements _CreateCourse {
-  const _$_CreateCourse({required this.courseTitle});
+class _$CreateCourseImpl implements _CreateCourse {
+  const _$CreateCourseImpl({required this.courseTitle, required this.userDept});
 
   @override
   final String courseTitle;
+  @override
+  final String userDept;
 
   @override
   String toString() {
-    return 'LectureEvent.createCourse(courseTitle: $courseTitle)';
+    return 'LectureEvent.createCourse(courseTitle: $courseTitle, userDept: $userDept)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _CreateCourse &&
+        (other.runtimeType == runtimeType &&
+            other is _$CreateCourseImpl &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)));
+                other.courseTitle == courseTitle) &&
+            (identical(other.userDept, userDept) ||
+                other.userDept == userDept));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courseTitle);
+  int get hashCode => Object.hash(runtimeType, courseTitle, userDept);
 
   @JsonKey(ignore: true)
   @override
-  _$CreateCourseCopyWith<_CreateCourse> get copyWith =>
-      __$CreateCourseCopyWithImpl<_CreateCourse>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$CreateCourseImplCopyWith<_$CreateCourseImpl> get copyWith =>
+      __$$CreateCourseImplCopyWithImpl<_$CreateCourseImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1293,13 +1527,33 @@ class _$_CreateCourse implements _CreateCourse {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
-    return createCourse(courseTitle);
+    return createCourse(courseTitle, userDept);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return createCourse?.call(courseTitle, userDept);
   }
 
   @override
@@ -1314,14 +1568,14 @@ class _$_CreateCourse implements _CreateCourse {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
   }) {
     if (createCourse != null) {
-      return createCourse(courseTitle);
+      return createCourse(courseTitle, userDept);
     }
     return orElse();
   }
@@ -1336,8 +1590,7 @@ class _$_CreateCourse implements _CreateCourse {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
@@ -1346,6 +1599,22 @@ class _$_CreateCourse implements _CreateCourse {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return createCourse?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SelectFile value)? selectFile,
@@ -1353,7 +1622,7 @@ class _$_CreateCourse implements _CreateCourse {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -1366,48 +1635,51 @@ class _$_CreateCourse implements _CreateCourse {
 }
 
 abstract class _CreateCourse implements LectureEvent {
-  const factory _CreateCourse({required String courseTitle}) = _$_CreateCourse;
+  const factory _CreateCourse(
+      {required final String courseTitle,
+      required final String userDept}) = _$CreateCourseImpl;
 
-  String get courseTitle => throw _privateConstructorUsedError;
+  String get courseTitle;
+  String get userDept;
   @JsonKey(ignore: true)
-  _$CreateCourseCopyWith<_CreateCourse> get copyWith =>
+  _$$CreateCourseImplCopyWith<_$CreateCourseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SubmitUserCopyWith<$Res> {
-  factory _$SubmitUserCopyWith(
-          _SubmitUser value, $Res Function(_SubmitUser) then) =
-      __$SubmitUserCopyWithImpl<$Res>;
+abstract class _$$SubmitUserImplCopyWith<$Res> {
+  factory _$$SubmitUserImplCopyWith(
+          _$SubmitUserImpl value, $Res Function(_$SubmitUserImpl) then) =
+      __$$SubmitUserImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({String userId, String courseTitle, String lectureTitle});
 }
 
 /// @nodoc
-class __$SubmitUserCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
-    implements _$SubmitUserCopyWith<$Res> {
-  __$SubmitUserCopyWithImpl(
-      _SubmitUser _value, $Res Function(_SubmitUser) _then)
-      : super(_value, (v) => _then(v as _SubmitUser));
+class __$$SubmitUserImplCopyWithImpl<$Res>
+    extends _$LectureEventCopyWithImpl<$Res, _$SubmitUserImpl>
+    implements _$$SubmitUserImplCopyWith<$Res> {
+  __$$SubmitUserImplCopyWithImpl(
+      _$SubmitUserImpl _value, $Res Function(_$SubmitUserImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _SubmitUser get _value => super._value as _SubmitUser;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? courseTitle = freezed,
-    Object? lectureTitle = freezed,
+    Object? userId = null,
+    Object? courseTitle = null,
+    Object? lectureTitle = null,
   }) {
-    return _then(_SubmitUser(
-      userId: userId == freezed
+    return _then(_$SubmitUserImpl(
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      courseTitle: courseTitle == freezed
+      courseTitle: null == courseTitle
           ? _value.courseTitle
           : courseTitle // ignore: cast_nullable_to_non_nullable
               as String,
-      lectureTitle: lectureTitle == freezed
+      lectureTitle: null == lectureTitle
           ? _value.lectureTitle
           : lectureTitle // ignore: cast_nullable_to_non_nullable
               as String,
@@ -1417,8 +1689,8 @@ class __$SubmitUserCopyWithImpl<$Res> extends _$LectureEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SubmitUser implements _SubmitUser {
-  const _$_SubmitUser(
+class _$SubmitUserImpl implements _SubmitUser {
+  const _$SubmitUserImpl(
       {required this.userId,
       required this.courseTitle,
       required this.lectureTitle});
@@ -1436,30 +1708,26 @@ class _$_SubmitUser implements _SubmitUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _SubmitUser &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$SubmitUserImpl &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.courseTitle, courseTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseTitle, courseTitle)) &&
+                other.courseTitle == courseTitle) &&
             (identical(other.lectureTitle, lectureTitle) ||
-                const DeepCollectionEquality()
-                    .equals(other.lectureTitle, lectureTitle)));
+                other.lectureTitle == lectureTitle));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(courseTitle) ^
-      const DeepCollectionEquality().hash(lectureTitle);
+      Object.hash(runtimeType, userId, courseTitle, lectureTitle);
 
   @JsonKey(ignore: true)
   @override
-  _$SubmitUserCopyWith<_SubmitUser> get copyWith =>
-      __$SubmitUserCopyWithImpl<_SubmitUser>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$SubmitUserImplCopyWith<_$SubmitUserImpl> get copyWith =>
+      __$$SubmitUserImplCopyWithImpl<_$SubmitUserImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1474,13 +1742,33 @@ class _$_SubmitUser implements _SubmitUser {
         uploadLecture,
     required TResult Function() getAllLectures,
     required TResult Function(String courseTitle) getAllLecturesByCourse,
-    required TResult Function() getAllCoursesByUserId,
-    required TResult Function(String courseTitle) createCourse,
+    required TResult Function(String courseDept) getAllCoursesByDept,
+    required TResult Function(String courseTitle, String userDept) createCourse,
     required TResult Function(
             String userId, String courseTitle, String lectureTitle)
         submitUser,
   }) {
     return submitUser(userId, courseTitle, lectureTitle);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? selectFile,
+    TResult? Function(String fileUrl, String courseTitle, String lectureTitle)?
+        downloadLecture,
+    TResult? Function(UserModel user, String title, String courseTitle,
+            String? description)?
+        uploadLecture,
+    TResult? Function()? getAllLectures,
+    TResult? Function(String courseTitle)? getAllLecturesByCourse,
+    TResult? Function(String courseDept)? getAllCoursesByDept,
+    TResult? Function(String courseTitle, String userDept)? createCourse,
+    TResult? Function(String userId, String courseTitle, String lectureTitle)?
+        submitUser,
+  }) {
+    return submitUser?.call(userId, courseTitle, lectureTitle);
   }
 
   @override
@@ -1495,8 +1783,8 @@ class _$_SubmitUser implements _SubmitUser {
         uploadLecture,
     TResult Function()? getAllLectures,
     TResult Function(String courseTitle)? getAllLecturesByCourse,
-    TResult Function()? getAllCoursesByUserId,
-    TResult Function(String courseTitle)? createCourse,
+    TResult Function(String courseDept)? getAllCoursesByDept,
+    TResult Function(String courseTitle, String userDept)? createCourse,
     TResult Function(String userId, String courseTitle, String lectureTitle)?
         submitUser,
     required TResult orElse(),
@@ -1517,12 +1805,27 @@ class _$_SubmitUser implements _SubmitUser {
     required TResult Function(_GetAllLectures value) getAllLectures,
     required TResult Function(_GetAllLecturesByCourse value)
         getAllLecturesByCourse,
-    required TResult Function(_GetAllCoursesByUserId value)
-        getAllCoursesByUserId,
+    required TResult Function(_GetAllCoursesByDept value) getAllCoursesByDept,
     required TResult Function(_CreateCourse value) createCourse,
     required TResult Function(_SubmitUser value) submitUser,
   }) {
     return submitUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SelectFile value)? selectFile,
+    TResult? Function(_DownloadLecture value)? downloadLecture,
+    TResult? Function(_UploadLecture value)? uploadLecture,
+    TResult? Function(_GetAllLectures value)? getAllLectures,
+    TResult? Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
+    TResult? Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
+    TResult? Function(_CreateCourse value)? createCourse,
+    TResult? Function(_SubmitUser value)? submitUser,
+  }) {
+    return submitUser?.call(this);
   }
 
   @override
@@ -1534,7 +1837,7 @@ class _$_SubmitUser implements _SubmitUser {
     TResult Function(_UploadLecture value)? uploadLecture,
     TResult Function(_GetAllLectures value)? getAllLectures,
     TResult Function(_GetAllLecturesByCourse value)? getAllLecturesByCourse,
-    TResult Function(_GetAllCoursesByUserId value)? getAllCoursesByUserId,
+    TResult Function(_GetAllCoursesByDept value)? getAllCoursesByDept,
     TResult Function(_CreateCourse value)? createCourse,
     TResult Function(_SubmitUser value)? submitUser,
     required TResult orElse(),
@@ -1548,47 +1851,17 @@ class _$_SubmitUser implements _SubmitUser {
 
 abstract class _SubmitUser implements LectureEvent {
   const factory _SubmitUser(
-      {required String userId,
-      required String courseTitle,
-      required String lectureTitle}) = _$_SubmitUser;
+      {required final String userId,
+      required final String courseTitle,
+      required final String lectureTitle}) = _$SubmitUserImpl;
 
-  String get userId => throw _privateConstructorUsedError;
-  String get courseTitle => throw _privateConstructorUsedError;
-  String get lectureTitle => throw _privateConstructorUsedError;
+  String get userId;
+  String get courseTitle;
+  String get lectureTitle;
   @JsonKey(ignore: true)
-  _$SubmitUserCopyWith<_SubmitUser> get copyWith =>
+  _$$SubmitUserImplCopyWith<_$SubmitUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$LectureStateTearOff {
-  const _$LectureStateTearOff();
-
-  _LectureState call(
-      {required LectureEntity lecture,
-      required String userId,
-      required String filePath,
-      required String fileName,
-      required bool? isSubmitting,
-      required List<LectureEntity> lectures,
-      required List<String> courseIds,
-      required Option<Either<LectureFailure, Unit>>
-          lectureFailureOrSuccessOption}) {
-    return _LectureState(
-      lecture: lecture,
-      userId: userId,
-      filePath: filePath,
-      fileName: fileName,
-      isSubmitting: isSubmitting,
-      lectures: lectures,
-      courseIds: courseIds,
-      lectureFailureOrSuccessOption: lectureFailureOrSuccessOption,
-    );
-  }
-}
-
-/// @nodoc
-const $LectureState = _$LectureStateTearOff();
 
 /// @nodoc
 mixin _$LectureState {
@@ -1611,7 +1884,8 @@ mixin _$LectureState {
 abstract class $LectureStateCopyWith<$Res> {
   factory $LectureStateCopyWith(
           LectureState value, $Res Function(LectureState) then) =
-      _$LectureStateCopyWithImpl<$Res>;
+      _$LectureStateCopyWithImpl<$Res, LectureState>;
+  @useResult
   $Res call(
       {LectureEntity lecture,
       String userId,
@@ -1624,68 +1898,72 @@ abstract class $LectureStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LectureStateCopyWithImpl<$Res> implements $LectureStateCopyWith<$Res> {
+class _$LectureStateCopyWithImpl<$Res, $Val extends LectureState>
+    implements $LectureStateCopyWith<$Res> {
   _$LectureStateCopyWithImpl(this._value, this._then);
 
-  final LectureState _value;
   // ignore: unused_field
-  final $Res Function(LectureState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lecture = freezed,
-    Object? userId = freezed,
-    Object? filePath = freezed,
-    Object? fileName = freezed,
+    Object? lecture = null,
+    Object? userId = null,
+    Object? filePath = null,
+    Object? fileName = null,
     Object? isSubmitting = freezed,
-    Object? lectures = freezed,
-    Object? courseIds = freezed,
-    Object? lectureFailureOrSuccessOption = freezed,
+    Object? lectures = null,
+    Object? courseIds = null,
+    Object? lectureFailureOrSuccessOption = null,
   }) {
     return _then(_value.copyWith(
-      lecture: lecture == freezed
+      lecture: null == lecture
           ? _value.lecture
           : lecture // ignore: cast_nullable_to_non_nullable
               as LectureEntity,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      filePath: filePath == freezed
+      filePath: null == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      fileName: fileName == freezed
+      fileName: null == fileName
           ? _value.fileName
           : fileName // ignore: cast_nullable_to_non_nullable
               as String,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: freezed == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool?,
-      lectures: lectures == freezed
+      lectures: null == lectures
           ? _value.lectures
           : lectures // ignore: cast_nullable_to_non_nullable
               as List<LectureEntity>,
-      courseIds: courseIds == freezed
+      courseIds: null == courseIds
           ? _value.courseIds
           : courseIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      lectureFailureOrSuccessOption: lectureFailureOrSuccessOption == freezed
+      lectureFailureOrSuccessOption: null == lectureFailureOrSuccessOption
           ? _value.lectureFailureOrSuccessOption
           : lectureFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<LectureFailure, Unit>>,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$LectureStateCopyWith<$Res>
+abstract class _$$LectureStateImplCopyWith<$Res>
     implements $LectureStateCopyWith<$Res> {
-  factory _$LectureStateCopyWith(
-          _LectureState value, $Res Function(_LectureState) then) =
-      __$LectureStateCopyWithImpl<$Res>;
+  factory _$$LectureStateImplCopyWith(
+          _$LectureStateImpl value, $Res Function(_$LectureStateImpl) then) =
+      __$$LectureStateImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {LectureEntity lecture,
       String userId,
@@ -1698,56 +1976,55 @@ abstract class _$LectureStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LectureStateCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
-    implements _$LectureStateCopyWith<$Res> {
-  __$LectureStateCopyWithImpl(
-      _LectureState _value, $Res Function(_LectureState) _then)
-      : super(_value, (v) => _then(v as _LectureState));
+class __$$LectureStateImplCopyWithImpl<$Res>
+    extends _$LectureStateCopyWithImpl<$Res, _$LectureStateImpl>
+    implements _$$LectureStateImplCopyWith<$Res> {
+  __$$LectureStateImplCopyWithImpl(
+      _$LectureStateImpl _value, $Res Function(_$LectureStateImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _LectureState get _value => super._value as _LectureState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lecture = freezed,
-    Object? userId = freezed,
-    Object? filePath = freezed,
-    Object? fileName = freezed,
+    Object? lecture = null,
+    Object? userId = null,
+    Object? filePath = null,
+    Object? fileName = null,
     Object? isSubmitting = freezed,
-    Object? lectures = freezed,
-    Object? courseIds = freezed,
-    Object? lectureFailureOrSuccessOption = freezed,
+    Object? lectures = null,
+    Object? courseIds = null,
+    Object? lectureFailureOrSuccessOption = null,
   }) {
-    return _then(_LectureState(
-      lecture: lecture == freezed
+    return _then(_$LectureStateImpl(
+      lecture: null == lecture
           ? _value.lecture
           : lecture // ignore: cast_nullable_to_non_nullable
               as LectureEntity,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      filePath: filePath == freezed
+      filePath: null == filePath
           ? _value.filePath
           : filePath // ignore: cast_nullable_to_non_nullable
               as String,
-      fileName: fileName == freezed
+      fileName: null == fileName
           ? _value.fileName
           : fileName // ignore: cast_nullable_to_non_nullable
               as String,
-      isSubmitting: isSubmitting == freezed
+      isSubmitting: freezed == isSubmitting
           ? _value.isSubmitting
           : isSubmitting // ignore: cast_nullable_to_non_nullable
               as bool?,
-      lectures: lectures == freezed
-          ? _value.lectures
+      lectures: null == lectures
+          ? _value._lectures
           : lectures // ignore: cast_nullable_to_non_nullable
               as List<LectureEntity>,
-      courseIds: courseIds == freezed
-          ? _value.courseIds
+      courseIds: null == courseIds
+          ? _value._courseIds
           : courseIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      lectureFailureOrSuccessOption: lectureFailureOrSuccessOption == freezed
+      lectureFailureOrSuccessOption: null == lectureFailureOrSuccessOption
           ? _value.lectureFailureOrSuccessOption
           : lectureFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
               as Option<Either<LectureFailure, Unit>>,
@@ -1757,16 +2034,18 @@ class __$LectureStateCopyWithImpl<$Res> extends _$LectureStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LectureState implements _LectureState {
-  const _$_LectureState(
+class _$LectureStateImpl implements _LectureState {
+  const _$LectureStateImpl(
       {required this.lecture,
       required this.userId,
       required this.filePath,
       required this.fileName,
       required this.isSubmitting,
-      required this.lectures,
-      required this.courseIds,
-      required this.lectureFailureOrSuccessOption});
+      required final List<LectureEntity> lectures,
+      required final List<String> courseIds,
+      required this.lectureFailureOrSuccessOption})
+      : _lectures = lectures,
+        _courseIds = courseIds;
 
   @override
   final LectureEntity lecture;
@@ -1778,10 +2057,22 @@ class _$_LectureState implements _LectureState {
   final String fileName;
   @override
   final bool? isSubmitting;
+  final List<LectureEntity> _lectures;
   @override
-  final List<LectureEntity> lectures;
+  List<LectureEntity> get lectures {
+    if (_lectures is EqualUnmodifiableListView) return _lectures;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_lectures);
+  }
+
+  final List<String> _courseIds;
   @override
-  final List<String> courseIds;
+  List<String> get courseIds {
+    if (_courseIds is EqualUnmodifiableListView) return _courseIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_courseIds);
+  }
+
   @override
   final Option<Either<LectureFailure, Unit>> lectureFailureOrSuccessOption;
 
@@ -1791,85 +2082,76 @@ class _$_LectureState implements _LectureState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _LectureState &&
-            (identical(other.lecture, lecture) ||
-                const DeepCollectionEquality()
-                    .equals(other.lecture, lecture)) &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$LectureStateImpl &&
+            (identical(other.lecture, lecture) || other.lecture == lecture) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.filePath, filePath) ||
-                const DeepCollectionEquality()
-                    .equals(other.filePath, filePath)) &&
+                other.filePath == filePath) &&
             (identical(other.fileName, fileName) ||
-                const DeepCollectionEquality()
-                    .equals(other.fileName, fileName)) &&
+                other.fileName == fileName) &&
             (identical(other.isSubmitting, isSubmitting) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSubmitting, isSubmitting)) &&
-            (identical(other.lectures, lectures) ||
-                const DeepCollectionEquality()
-                    .equals(other.lectures, lectures)) &&
-            (identical(other.courseIds, courseIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.courseIds, courseIds)) &&
+                other.isSubmitting == isSubmitting) &&
+            const DeepCollectionEquality().equals(other._lectures, _lectures) &&
+            const DeepCollectionEquality()
+                .equals(other._courseIds, _courseIds) &&
             (identical(other.lectureFailureOrSuccessOption,
                     lectureFailureOrSuccessOption) ||
-                const DeepCollectionEquality().equals(
-                    other.lectureFailureOrSuccessOption,
-                    lectureFailureOrSuccessOption)));
+                other.lectureFailureOrSuccessOption ==
+                    lectureFailureOrSuccessOption));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(lecture) ^
-      const DeepCollectionEquality().hash(userId) ^
-      const DeepCollectionEquality().hash(filePath) ^
-      const DeepCollectionEquality().hash(fileName) ^
-      const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(lectures) ^
-      const DeepCollectionEquality().hash(courseIds) ^
-      const DeepCollectionEquality().hash(lectureFailureOrSuccessOption);
+  int get hashCode => Object.hash(
+      runtimeType,
+      lecture,
+      userId,
+      filePath,
+      fileName,
+      isSubmitting,
+      const DeepCollectionEquality().hash(_lectures),
+      const DeepCollectionEquality().hash(_courseIds),
+      lectureFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
-  _$LectureStateCopyWith<_LectureState> get copyWith =>
-      __$LectureStateCopyWithImpl<_LectureState>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$LectureStateImplCopyWith<_$LectureStateImpl> get copyWith =>
+      __$$LectureStateImplCopyWithImpl<_$LectureStateImpl>(this, _$identity);
 }
 
 abstract class _LectureState implements LectureState {
   const factory _LectureState(
-      {required LectureEntity lecture,
-      required String userId,
-      required String filePath,
-      required String fileName,
-      required bool? isSubmitting,
-      required List<LectureEntity> lectures,
-      required List<String> courseIds,
-      required Option<Either<LectureFailure, Unit>>
-          lectureFailureOrSuccessOption}) = _$_LectureState;
+      {required final LectureEntity lecture,
+      required final String userId,
+      required final String filePath,
+      required final String fileName,
+      required final bool? isSubmitting,
+      required final List<LectureEntity> lectures,
+      required final List<String> courseIds,
+      required final Option<Either<LectureFailure, Unit>>
+          lectureFailureOrSuccessOption}) = _$LectureStateImpl;
 
   @override
-  LectureEntity get lecture => throw _privateConstructorUsedError;
+  LectureEntity get lecture;
   @override
-  String get userId => throw _privateConstructorUsedError;
+  String get userId;
   @override
-  String get filePath => throw _privateConstructorUsedError;
+  String get filePath;
   @override
-  String get fileName => throw _privateConstructorUsedError;
+  String get fileName;
   @override
-  bool? get isSubmitting => throw _privateConstructorUsedError;
+  bool? get isSubmitting;
   @override
-  List<LectureEntity> get lectures => throw _privateConstructorUsedError;
+  List<LectureEntity> get lectures;
   @override
-  List<String> get courseIds => throw _privateConstructorUsedError;
+  List<String> get courseIds;
   @override
-  Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption =>
-      throw _privateConstructorUsedError;
+  Option<Either<LectureFailure, Unit>> get lectureFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
-  _$LectureStateCopyWith<_LectureState> get copyWith =>
+  _$$LectureStateImplCopyWith<_$LectureStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

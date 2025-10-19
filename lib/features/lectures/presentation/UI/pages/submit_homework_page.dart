@@ -71,7 +71,7 @@ class _SubmitHomeworkPageState extends State<SubmitHomeworkPage> {
                           SizedBox(height: 0.01.sh),
                           Expanded(
                             child: RawScrollbar(
-                              isAlwaysShown: true,
+                              // isAlwaysShown: true,
                               thumbColor: Colors.white,
                               thickness: 2.5,
                               child: SingleChildScrollView(
@@ -150,7 +150,7 @@ class _NotSubmittedHomeworkState extends State<NotSubmittedHomework> {
         if (_isFileSelected) ...[
           ListTile(
             enabled: true,
-            leading: Icon(MdiIcons.filePdf),
+            leading: Icon(MdiIcons.filePdfBox),
             title: Text(_homeworkBloc.state.filePath!.name!),
             trailing: IconButton(
               onPressed: () => _homeworkBloc.add(HomeworkEvent.started()),
@@ -233,7 +233,7 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
             }
             return ListTile(
               enabled: true,
-              leading: Icon(MdiIcons.filePdf),
+              leading: Icon(MdiIcons.filePdfBox),
               title: Text(_homeworkBloc.state.homeworkSubmitEntity.fileName!),
               // title: Text(faker.person.name()),
               trailing: IconButton(
@@ -284,7 +284,7 @@ class _SubmittedHomeworkState extends State<SubmittedHomework> {
                 SizedBox(height: 0.01.sh),
                 Expanded(
                   child: RawScrollbar(
-                    isAlwaysShown: true,
+                    // isAlwaysShown: true,
                     thumbColor: Colors.white,
                     thickness: 2.5,
                     child: SingleChildScrollView(

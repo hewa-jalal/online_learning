@@ -26,7 +26,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
       return right(lecture);
     } on Exception catch (e) {
       print('exceptions ${e.toString()}');
-      return left(UserNotFoundFailure());
+      return left(LectureDownloadFailure());
     }
   }
 
@@ -51,7 +51,7 @@ class LecturesRepositoryImpl extends LecturesRepository {
       return right(lecture);
     } on Exception catch (e) {
       print('exceptions ${e.toString()}');
-      return left(UserNotFoundFailure());
+      return left(LectureUploadFailure());
     }
   }
 
@@ -81,9 +81,15 @@ class LecturesRepositoryImpl extends LecturesRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> createCourse({String? courseTitle}) async {
+  Future<Either<Failure, Unit>> createCourse({
+    String? courseTitle,
+    String? userDept,
+  }) async {
     try {
-      remoteDataSource!.createCourse(courseTitle: courseTitle);
+      remoteDataSource!.createCourse(
+        courseTitle: courseTitle,
+        userDept: userDept!,
+      );
       return right(unit);
     } catch (e) {
       print(e.toString());
@@ -92,12 +98,12 @@ class LecturesRepositoryImpl extends LecturesRepository {
   }
 
   @override
-  Future<Either<Failure, List<String>>> getAllCoursesByUserId({
-    required String userId,
+  Future<Either<Failure, List<String>>> getAllCoursesByUserDept({
+    required String userDept,
   }) async {
     try {
       final courseIds =
-          await remoteDataSource!.getAllCoursesByUserId(userId: userId);
+          await remoteDataSource!.getAllCoursesByUserDept(userDept: userDept);
       return right(courseIds);
     } catch (e) {
       print(e.toString());

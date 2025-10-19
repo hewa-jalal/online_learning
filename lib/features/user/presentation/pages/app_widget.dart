@@ -136,7 +136,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             createCourse: CreateCourse(LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
                     dio: Dio(), lectureTask: sl<CustomUploadTask>()))),
-            getAllCoursesByUserId: GetAllCoursesByUserId(
+            getAllCoursesByUserDept: GetAllCoursesByUserDept(
               lecturesRepository: LecturesRepositoryImpl(
                 FirebaseLecturesRemoteDataSource(
                     lectureTask: sl<CustomUploadTask>(), dio: Dio()),
@@ -157,7 +157,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         )
       ],
       child: ScreenUtilInit(
-        builder: () => GetMaterialApp(
+        builder: (context, widget) => GetMaterialApp(
           theme: ThemeData.light().copyWith(
             primaryColor: Color(0xff101422),
             scaffoldBackgroundColor: Colors.blueGrey[900],

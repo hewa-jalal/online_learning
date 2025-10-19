@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_auth_bloc.dart';
 
@@ -10,46 +12,7 @@ part of 'user_auth_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$UserAuthEventTearOff {
-  const _$UserAuthEventTearOff();
-
-  _Started started() {
-    return const _Started();
-  }
-
-  _UpdateUserTime updateUserTime() {
-    return const _UpdateUserTime();
-  }
-
-  _UpdateUserOnlineStatus updateUserOnlineStatus({required bool isOnline}) {
-    return _UpdateUserOnlineStatus(
-      isOnline: isOnline,
-    );
-  }
-
-  _GetUserById getUserById({required int id, required String password}) {
-    return _GetUserById(
-      id: id,
-      password: password,
-    );
-  }
-
-  _GetAllUsers getAllUsers() {
-    return const _GetAllUsers();
-  }
-
-  _GetAllSubmittedUsers getAllSubmittedUsers({required String id}) {
-    return _GetAllSubmittedUsers(
-      id: id,
-    );
-  }
-}
-
-/// @nodoc
-const $UserAuthEvent = _$UserAuthEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UserAuthEvent {
@@ -61,6 +24,16 @@ mixin _$UserAuthEvent {
     required TResult Function(int id, String password) getUserById,
     required TResult Function() getAllUsers,
     required TResult Function(String id) getAllSubmittedUsers,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? updateUserTime,
+    TResult? Function(bool isOnline)? updateUserOnlineStatus,
+    TResult? Function(int id, String password)? getUserById,
+    TResult? Function()? getAllUsers,
+    TResult? Function(String id)? getAllSubmittedUsers,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,6 +59,16 @@ mixin _$UserAuthEvent {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserTime value)? updateUserTime,
+    TResult? Function(_UpdateUserOnlineStatus value)? updateUserOnlineStatus,
+    TResult? Function(_GetUserById value)? getUserById,
+    TResult? Function(_GetAllUsers value)? getAllUsers,
+    TResult? Function(_GetAllSubmittedUsers value)? getAllSubmittedUsers,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserTime value)? updateUserTime,
@@ -102,39 +85,40 @@ mixin _$UserAuthEvent {
 abstract class $UserAuthEventCopyWith<$Res> {
   factory $UserAuthEventCopyWith(
           UserAuthEvent value, $Res Function(UserAuthEvent) then) =
-      _$UserAuthEventCopyWithImpl<$Res>;
+      _$UserAuthEventCopyWithImpl<$Res, UserAuthEvent>;
 }
 
 /// @nodoc
-class _$UserAuthEventCopyWithImpl<$Res>
+class _$UserAuthEventCopyWithImpl<$Res, $Val extends UserAuthEvent>
     implements $UserAuthEventCopyWith<$Res> {
   _$UserAuthEventCopyWithImpl(this._value, this._then);
 
-  final UserAuthEvent _value;
   // ignore: unused_field
-  final $Res Function(UserAuthEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$StartedCopyWith<$Res> {
-  factory _$StartedCopyWith(_Started value, $Res Function(_Started) then) =
-      __$StartedCopyWithImpl<$Res>;
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartedCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
-    implements _$StartedCopyWith<$Res> {
-  __$StartedCopyWithImpl(_Started _value, $Res Function(_Started) _then)
-      : super(_value, (v) => _then(v as _Started));
-
-  @override
-  _Started get _value => super._value as _Started;
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$UserAuthEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
 
   @override
   String toString() {
@@ -142,8 +126,9 @@ class _$_Started implements _Started {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Started);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
   }
 
   @override
@@ -160,6 +145,19 @@ class _$_Started implements _Started {
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
     return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? updateUserTime,
+    TResult? Function(bool isOnline)? updateUserOnlineStatus,
+    TResult? Function(int id, String password)? getUserById,
+    TResult? Function()? getAllUsers,
+    TResult? Function(String id)? getAllSubmittedUsers,
+  }) {
+    return started?.call();
   }
 
   @override
@@ -195,6 +193,19 @@ class _$_Started implements _Started {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserTime value)? updateUserTime,
+    TResult? Function(_UpdateUserOnlineStatus value)? updateUserOnlineStatus,
+    TResult? Function(_GetUserById value)? getUserById,
+    TResult? Function(_GetAllUsers value)? getAllUsers,
+    TResult? Function(_GetAllSubmittedUsers value)? getAllSubmittedUsers,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserTime value)? updateUserTime,
@@ -212,32 +223,29 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements UserAuthEvent {
-  const factory _Started() = _$_Started;
+  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$UpdateUserTimeCopyWith<$Res> {
-  factory _$UpdateUserTimeCopyWith(
-          _UpdateUserTime value, $Res Function(_UpdateUserTime) then) =
-      __$UpdateUserTimeCopyWithImpl<$Res>;
+abstract class _$$UpdateUserTimeImplCopyWith<$Res> {
+  factory _$$UpdateUserTimeImplCopyWith(_$UpdateUserTimeImpl value,
+          $Res Function(_$UpdateUserTimeImpl) then) =
+      __$$UpdateUserTimeImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$UpdateUserTimeCopyWithImpl<$Res>
-    extends _$UserAuthEventCopyWithImpl<$Res>
-    implements _$UpdateUserTimeCopyWith<$Res> {
-  __$UpdateUserTimeCopyWithImpl(
-      _UpdateUserTime _value, $Res Function(_UpdateUserTime) _then)
-      : super(_value, (v) => _then(v as _UpdateUserTime));
-
-  @override
-  _UpdateUserTime get _value => super._value as _UpdateUserTime;
+class __$$UpdateUserTimeImplCopyWithImpl<$Res>
+    extends _$UserAuthEventCopyWithImpl<$Res, _$UpdateUserTimeImpl>
+    implements _$$UpdateUserTimeImplCopyWith<$Res> {
+  __$$UpdateUserTimeImplCopyWithImpl(
+      _$UpdateUserTimeImpl _value, $Res Function(_$UpdateUserTimeImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_UpdateUserTime implements _UpdateUserTime {
-  const _$_UpdateUserTime();
+class _$UpdateUserTimeImpl implements _UpdateUserTime {
+  const _$UpdateUserTimeImpl();
 
   @override
   String toString() {
@@ -245,8 +253,9 @@ class _$_UpdateUserTime implements _UpdateUserTime {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _UpdateUserTime);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UpdateUserTimeImpl);
   }
 
   @override
@@ -263,6 +272,19 @@ class _$_UpdateUserTime implements _UpdateUserTime {
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
     return updateUserTime();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? updateUserTime,
+    TResult? Function(bool isOnline)? updateUserOnlineStatus,
+    TResult? Function(int id, String password)? getUserById,
+    TResult? Function()? getAllUsers,
+    TResult? Function(String id)? getAllSubmittedUsers,
+  }) {
+    return updateUserTime?.call();
   }
 
   @override
@@ -298,6 +320,19 @@ class _$_UpdateUserTime implements _UpdateUserTime {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserTime value)? updateUserTime,
+    TResult? Function(_UpdateUserOnlineStatus value)? updateUserOnlineStatus,
+    TResult? Function(_GetUserById value)? getUserById,
+    TResult? Function(_GetAllUsers value)? getAllUsers,
+    TResult? Function(_GetAllSubmittedUsers value)? getAllSubmittedUsers,
+  }) {
+    return updateUserTime?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserTime value)? updateUserTime,
@@ -315,34 +350,35 @@ class _$_UpdateUserTime implements _UpdateUserTime {
 }
 
 abstract class _UpdateUserTime implements UserAuthEvent {
-  const factory _UpdateUserTime() = _$_UpdateUserTime;
+  const factory _UpdateUserTime() = _$UpdateUserTimeImpl;
 }
 
 /// @nodoc
-abstract class _$UpdateUserOnlineStatusCopyWith<$Res> {
-  factory _$UpdateUserOnlineStatusCopyWith(_UpdateUserOnlineStatus value,
-          $Res Function(_UpdateUserOnlineStatus) then) =
-      __$UpdateUserOnlineStatusCopyWithImpl<$Res>;
+abstract class _$$UpdateUserOnlineStatusImplCopyWith<$Res> {
+  factory _$$UpdateUserOnlineStatusImplCopyWith(
+          _$UpdateUserOnlineStatusImpl value,
+          $Res Function(_$UpdateUserOnlineStatusImpl) then) =
+      __$$UpdateUserOnlineStatusImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({bool isOnline});
 }
 
 /// @nodoc
-class __$UpdateUserOnlineStatusCopyWithImpl<$Res>
-    extends _$UserAuthEventCopyWithImpl<$Res>
-    implements _$UpdateUserOnlineStatusCopyWith<$Res> {
-  __$UpdateUserOnlineStatusCopyWithImpl(_UpdateUserOnlineStatus _value,
-      $Res Function(_UpdateUserOnlineStatus) _then)
-      : super(_value, (v) => _then(v as _UpdateUserOnlineStatus));
+class __$$UpdateUserOnlineStatusImplCopyWithImpl<$Res>
+    extends _$UserAuthEventCopyWithImpl<$Res, _$UpdateUserOnlineStatusImpl>
+    implements _$$UpdateUserOnlineStatusImplCopyWith<$Res> {
+  __$$UpdateUserOnlineStatusImplCopyWithImpl(
+      _$UpdateUserOnlineStatusImpl _value,
+      $Res Function(_$UpdateUserOnlineStatusImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _UpdateUserOnlineStatus get _value => super._value as _UpdateUserOnlineStatus;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isOnline = freezed,
+    Object? isOnline = null,
   }) {
-    return _then(_UpdateUserOnlineStatus(
-      isOnline: isOnline == freezed
+    return _then(_$UpdateUserOnlineStatusImpl(
+      isOnline: null == isOnline
           ? _value.isOnline
           : isOnline // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -352,8 +388,8 @@ class __$UpdateUserOnlineStatusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UpdateUserOnlineStatus implements _UpdateUserOnlineStatus {
-  const _$_UpdateUserOnlineStatus({required this.isOnline});
+class _$UpdateUserOnlineStatusImpl implements _UpdateUserOnlineStatus {
+  const _$UpdateUserOnlineStatusImpl({required this.isOnline});
 
   @override
   final bool isOnline;
@@ -364,23 +400,23 @@ class _$_UpdateUserOnlineStatus implements _UpdateUserOnlineStatus {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _UpdateUserOnlineStatus &&
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserOnlineStatusImpl &&
             (identical(other.isOnline, isOnline) ||
-                const DeepCollectionEquality()
-                    .equals(other.isOnline, isOnline)));
+                other.isOnline == isOnline));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isOnline);
+  int get hashCode => Object.hash(runtimeType, isOnline);
 
   @JsonKey(ignore: true)
   @override
-  _$UpdateUserOnlineStatusCopyWith<_UpdateUserOnlineStatus> get copyWith =>
-      __$UpdateUserOnlineStatusCopyWithImpl<_UpdateUserOnlineStatus>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UpdateUserOnlineStatusImplCopyWith<_$UpdateUserOnlineStatusImpl>
+      get copyWith => __$$UpdateUserOnlineStatusImplCopyWithImpl<
+          _$UpdateUserOnlineStatusImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -393,6 +429,19 @@ class _$_UpdateUserOnlineStatus implements _UpdateUserOnlineStatus {
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
     return updateUserOnlineStatus(isOnline);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? updateUserTime,
+    TResult? Function(bool isOnline)? updateUserOnlineStatus,
+    TResult? Function(int id, String password)? getUserById,
+    TResult? Function()? getAllUsers,
+    TResult? Function(String id)? getAllSubmittedUsers,
+  }) {
+    return updateUserOnlineStatus?.call(isOnline);
   }
 
   @override
@@ -428,6 +477,19 @@ class _$_UpdateUserOnlineStatus implements _UpdateUserOnlineStatus {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserTime value)? updateUserTime,
+    TResult? Function(_UpdateUserOnlineStatus value)? updateUserOnlineStatus,
+    TResult? Function(_GetUserById value)? getUserById,
+    TResult? Function(_GetAllUsers value)? getAllUsers,
+    TResult? Function(_GetAllSubmittedUsers value)? getAllSubmittedUsers,
+  }) {
+    return updateUserOnlineStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserTime value)? updateUserTime,
@@ -445,44 +507,44 @@ class _$_UpdateUserOnlineStatus implements _UpdateUserOnlineStatus {
 }
 
 abstract class _UpdateUserOnlineStatus implements UserAuthEvent {
-  const factory _UpdateUserOnlineStatus({required bool isOnline}) =
-      _$_UpdateUserOnlineStatus;
+  const factory _UpdateUserOnlineStatus({required final bool isOnline}) =
+      _$UpdateUserOnlineStatusImpl;
 
-  bool get isOnline => throw _privateConstructorUsedError;
+  bool get isOnline;
   @JsonKey(ignore: true)
-  _$UpdateUserOnlineStatusCopyWith<_UpdateUserOnlineStatus> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$UpdateUserOnlineStatusImplCopyWith<_$UpdateUserOnlineStatusImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GetUserByIdCopyWith<$Res> {
-  factory _$GetUserByIdCopyWith(
-          _GetUserById value, $Res Function(_GetUserById) then) =
-      __$GetUserByIdCopyWithImpl<$Res>;
+abstract class _$$GetUserByIdImplCopyWith<$Res> {
+  factory _$$GetUserByIdImplCopyWith(
+          _$GetUserByIdImpl value, $Res Function(_$GetUserByIdImpl) then) =
+      __$$GetUserByIdImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({int id, String password});
 }
 
 /// @nodoc
-class __$GetUserByIdCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
-    implements _$GetUserByIdCopyWith<$Res> {
-  __$GetUserByIdCopyWithImpl(
-      _GetUserById _value, $Res Function(_GetUserById) _then)
-      : super(_value, (v) => _then(v as _GetUserById));
+class __$$GetUserByIdImplCopyWithImpl<$Res>
+    extends _$UserAuthEventCopyWithImpl<$Res, _$GetUserByIdImpl>
+    implements _$$GetUserByIdImplCopyWith<$Res> {
+  __$$GetUserByIdImplCopyWithImpl(
+      _$GetUserByIdImpl _value, $Res Function(_$GetUserByIdImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _GetUserById get _value => super._value as _GetUserById;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? password = freezed,
+    Object? id = null,
+    Object? password = null,
   }) {
-    return _then(_GetUserById(
-      id: id == freezed
+    return _then(_$GetUserByIdImpl(
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
@@ -492,8 +554,8 @@ class __$GetUserByIdCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetUserById implements _GetUserById {
-  const _$_GetUserById({required this.id, required this.password});
+class _$GetUserByIdImpl implements _GetUserById {
+  const _$GetUserByIdImpl({required this.id, required this.password});
 
   @override
   final int id;
@@ -506,26 +568,23 @@ class _$_GetUserById implements _GetUserById {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _GetUserById &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$GetUserByIdImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)));
+                other.password == password));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(password);
+  int get hashCode => Object.hash(runtimeType, id, password);
 
   @JsonKey(ignore: true)
   @override
-  _$GetUserByIdCopyWith<_GetUserById> get copyWith =>
-      __$GetUserByIdCopyWithImpl<_GetUserById>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GetUserByIdImplCopyWith<_$GetUserByIdImpl> get copyWith =>
+      __$$GetUserByIdImplCopyWithImpl<_$GetUserByIdImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -538,6 +597,19 @@ class _$_GetUserById implements _GetUserById {
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
     return getUserById(id, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? updateUserTime,
+    TResult? Function(bool isOnline)? updateUserOnlineStatus,
+    TResult? Function(int id, String password)? getUserById,
+    TResult? Function()? getAllUsers,
+    TResult? Function(String id)? getAllSubmittedUsers,
+  }) {
+    return getUserById?.call(id, password);
   }
 
   @override
@@ -573,6 +645,19 @@ class _$_GetUserById implements _GetUserById {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserTime value)? updateUserTime,
+    TResult? Function(_UpdateUserOnlineStatus value)? updateUserOnlineStatus,
+    TResult? Function(_GetUserById value)? getUserById,
+    TResult? Function(_GetAllUsers value)? getAllUsers,
+    TResult? Function(_GetAllSubmittedUsers value)? getAllSubmittedUsers,
+  }) {
+    return getUserById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserTime value)? updateUserTime,
@@ -590,38 +675,37 @@ class _$_GetUserById implements _GetUserById {
 }
 
 abstract class _GetUserById implements UserAuthEvent {
-  const factory _GetUserById({required int id, required String password}) =
-      _$_GetUserById;
+  const factory _GetUserById(
+      {required final int id,
+      required final String password}) = _$GetUserByIdImpl;
 
-  int get id => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  int get id;
+  String get password;
   @JsonKey(ignore: true)
-  _$GetUserByIdCopyWith<_GetUserById> get copyWith =>
+  _$$GetUserByIdImplCopyWith<_$GetUserByIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GetAllUsersCopyWith<$Res> {
-  factory _$GetAllUsersCopyWith(
-          _GetAllUsers value, $Res Function(_GetAllUsers) then) =
-      __$GetAllUsersCopyWithImpl<$Res>;
+abstract class _$$GetAllUsersImplCopyWith<$Res> {
+  factory _$$GetAllUsersImplCopyWith(
+          _$GetAllUsersImpl value, $Res Function(_$GetAllUsersImpl) then) =
+      __$$GetAllUsersImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$GetAllUsersCopyWithImpl<$Res> extends _$UserAuthEventCopyWithImpl<$Res>
-    implements _$GetAllUsersCopyWith<$Res> {
-  __$GetAllUsersCopyWithImpl(
-      _GetAllUsers _value, $Res Function(_GetAllUsers) _then)
-      : super(_value, (v) => _then(v as _GetAllUsers));
-
-  @override
-  _GetAllUsers get _value => super._value as _GetAllUsers;
+class __$$GetAllUsersImplCopyWithImpl<$Res>
+    extends _$UserAuthEventCopyWithImpl<$Res, _$GetAllUsersImpl>
+    implements _$$GetAllUsersImplCopyWith<$Res> {
+  __$$GetAllUsersImplCopyWithImpl(
+      _$GetAllUsersImpl _value, $Res Function(_$GetAllUsersImpl) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_GetAllUsers implements _GetAllUsers {
-  const _$_GetAllUsers();
+class _$GetAllUsersImpl implements _GetAllUsers {
+  const _$GetAllUsersImpl();
 
   @override
   String toString() {
@@ -629,8 +713,9 @@ class _$_GetAllUsers implements _GetAllUsers {
   }
 
   @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _GetAllUsers);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetAllUsersImpl);
   }
 
   @override
@@ -647,6 +732,19 @@ class _$_GetAllUsers implements _GetAllUsers {
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
     return getAllUsers();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? updateUserTime,
+    TResult? Function(bool isOnline)? updateUserOnlineStatus,
+    TResult? Function(int id, String password)? getUserById,
+    TResult? Function()? getAllUsers,
+    TResult? Function(String id)? getAllSubmittedUsers,
+  }) {
+    return getAllUsers?.call();
   }
 
   @override
@@ -682,6 +780,19 @@ class _$_GetAllUsers implements _GetAllUsers {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserTime value)? updateUserTime,
+    TResult? Function(_UpdateUserOnlineStatus value)? updateUserOnlineStatus,
+    TResult? Function(_GetUserById value)? getUserById,
+    TResult? Function(_GetAllUsers value)? getAllUsers,
+    TResult? Function(_GetAllSubmittedUsers value)? getAllSubmittedUsers,
+  }) {
+    return getAllUsers?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserTime value)? updateUserTime,
@@ -699,34 +810,33 @@ class _$_GetAllUsers implements _GetAllUsers {
 }
 
 abstract class _GetAllUsers implements UserAuthEvent {
-  const factory _GetAllUsers() = _$_GetAllUsers;
+  const factory _GetAllUsers() = _$GetAllUsersImpl;
 }
 
 /// @nodoc
-abstract class _$GetAllSubmittedUsersCopyWith<$Res> {
-  factory _$GetAllSubmittedUsersCopyWith(_GetAllSubmittedUsers value,
-          $Res Function(_GetAllSubmittedUsers) then) =
-      __$GetAllSubmittedUsersCopyWithImpl<$Res>;
+abstract class _$$GetAllSubmittedUsersImplCopyWith<$Res> {
+  factory _$$GetAllSubmittedUsersImplCopyWith(_$GetAllSubmittedUsersImpl value,
+          $Res Function(_$GetAllSubmittedUsersImpl) then) =
+      __$$GetAllSubmittedUsersImplCopyWithImpl<$Res>;
+  @useResult
   $Res call({String id});
 }
 
 /// @nodoc
-class __$GetAllSubmittedUsersCopyWithImpl<$Res>
-    extends _$UserAuthEventCopyWithImpl<$Res>
-    implements _$GetAllSubmittedUsersCopyWith<$Res> {
-  __$GetAllSubmittedUsersCopyWithImpl(
-      _GetAllSubmittedUsers _value, $Res Function(_GetAllSubmittedUsers) _then)
-      : super(_value, (v) => _then(v as _GetAllSubmittedUsers));
+class __$$GetAllSubmittedUsersImplCopyWithImpl<$Res>
+    extends _$UserAuthEventCopyWithImpl<$Res, _$GetAllSubmittedUsersImpl>
+    implements _$$GetAllSubmittedUsersImplCopyWith<$Res> {
+  __$$GetAllSubmittedUsersImplCopyWithImpl(_$GetAllSubmittedUsersImpl _value,
+      $Res Function(_$GetAllSubmittedUsersImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _GetAllSubmittedUsers get _value => super._value as _GetAllSubmittedUsers;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
   }) {
-    return _then(_GetAllSubmittedUsers(
-      id: id == freezed
+    return _then(_$GetAllSubmittedUsersImpl(
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
@@ -736,8 +846,8 @@ class __$GetAllSubmittedUsersCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
-  const _$_GetAllSubmittedUsers({required this.id});
+class _$GetAllSubmittedUsersImpl implements _GetAllSubmittedUsers {
+  const _$GetAllSubmittedUsersImpl({required this.id});
 
   @override
   final String id;
@@ -748,22 +858,23 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _GetAllSubmittedUsers &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+        (other.runtimeType == runtimeType &&
+            other is _$GetAllSubmittedUsersImpl &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+  int get hashCode => Object.hash(runtimeType, id);
 
   @JsonKey(ignore: true)
   @override
-  _$GetAllSubmittedUsersCopyWith<_GetAllSubmittedUsers> get copyWith =>
-      __$GetAllSubmittedUsersCopyWithImpl<_GetAllSubmittedUsers>(
-          this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$GetAllSubmittedUsersImplCopyWith<_$GetAllSubmittedUsersImpl>
+      get copyWith =>
+          __$$GetAllSubmittedUsersImplCopyWithImpl<_$GetAllSubmittedUsersImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -776,6 +887,19 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
     required TResult Function(String id) getAllSubmittedUsers,
   }) {
     return getAllSubmittedUsers(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? updateUserTime,
+    TResult? Function(bool isOnline)? updateUserOnlineStatus,
+    TResult? Function(int id, String password)? getUserById,
+    TResult? Function()? getAllUsers,
+    TResult? Function(String id)? getAllSubmittedUsers,
+  }) {
+    return getAllSubmittedUsers?.call(id);
   }
 
   @override
@@ -811,6 +935,19 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_UpdateUserTime value)? updateUserTime,
+    TResult? Function(_UpdateUserOnlineStatus value)? updateUserOnlineStatus,
+    TResult? Function(_GetUserById value)? getUserById,
+    TResult? Function(_GetAllUsers value)? getAllUsers,
+    TResult? Function(_GetAllSubmittedUsers value)? getAllSubmittedUsers,
+  }) {
+    return getAllSubmittedUsers?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_UpdateUserTime value)? updateUserTime,
@@ -828,38 +965,14 @@ class _$_GetAllSubmittedUsers implements _GetAllSubmittedUsers {
 }
 
 abstract class _GetAllSubmittedUsers implements UserAuthEvent {
-  const factory _GetAllSubmittedUsers({required String id}) =
-      _$_GetAllSubmittedUsers;
+  const factory _GetAllSubmittedUsers({required final String id}) =
+      _$GetAllSubmittedUsersImpl;
 
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @JsonKey(ignore: true)
-  _$GetAllSubmittedUsersCopyWith<_GetAllSubmittedUsers> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GetAllSubmittedUsersImplCopyWith<_$GetAllSubmittedUsersImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$UserAuthStateTearOff {
-  const _$UserAuthStateTearOff();
-
-  _UserAuthState call(
-      {required UserEntity user,
-      required List<UserEntity> users,
-      required List<UserEntity> submittedUsers,
-      required UserStatus userStatus,
-      required Option<Either<Failure, UserEntity>>
-          authFailureOrSuccessOption}) {
-    return _UserAuthState(
-      user: user,
-      users: users,
-      submittedUsers: submittedUsers,
-      userStatus: userStatus,
-      authFailureOrSuccessOption: authFailureOrSuccessOption,
-    );
-  }
-}
-
-/// @nodoc
-const $UserAuthState = _$UserAuthStateTearOff();
 
 /// @nodoc
 mixin _$UserAuthState {
@@ -867,8 +980,8 @@ mixin _$UserAuthState {
   List<UserEntity> get users => throw _privateConstructorUsedError;
   List<UserEntity> get submittedUsers => throw _privateConstructorUsedError;
   UserStatus get userStatus => throw _privateConstructorUsedError;
-  Option<Either<Failure, UserEntity>> get authFailureOrSuccessOption =>
-      throw _privateConstructorUsedError;
+  Option<Either<UserNotFoundFailure, UserEntity>>
+      get authFailureOrSuccessOption => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserAuthStateCopyWith<UserAuthState> get copyWith =>
@@ -879,136 +992,155 @@ mixin _$UserAuthState {
 abstract class $UserAuthStateCopyWith<$Res> {
   factory $UserAuthStateCopyWith(
           UserAuthState value, $Res Function(UserAuthState) then) =
-      _$UserAuthStateCopyWithImpl<$Res>;
+      _$UserAuthStateCopyWithImpl<$Res, UserAuthState>;
+  @useResult
   $Res call(
       {UserEntity user,
       List<UserEntity> users,
       List<UserEntity> submittedUsers,
       UserStatus userStatus,
-      Option<Either<Failure, UserEntity>> authFailureOrSuccessOption});
+      Option<Either<UserNotFoundFailure, UserEntity>>
+          authFailureOrSuccessOption});
 }
 
 /// @nodoc
-class _$UserAuthStateCopyWithImpl<$Res>
+class _$UserAuthStateCopyWithImpl<$Res, $Val extends UserAuthState>
     implements $UserAuthStateCopyWith<$Res> {
   _$UserAuthStateCopyWithImpl(this._value, this._then);
 
-  final UserAuthState _value;
   // ignore: unused_field
-  final $Res Function(UserAuthState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
-    Object? users = freezed,
-    Object? submittedUsers = freezed,
-    Object? userStatus = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? user = null,
+    Object? users = null,
+    Object? submittedUsers = null,
+    Object? userStatus = null,
+    Object? authFailureOrSuccessOption = null,
   }) {
     return _then(_value.copyWith(
-      user: user == freezed
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserEntity,
-      users: users == freezed
+      users: null == users
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as List<UserEntity>,
-      submittedUsers: submittedUsers == freezed
+      submittedUsers: null == submittedUsers
           ? _value.submittedUsers
           : submittedUsers // ignore: cast_nullable_to_non_nullable
               as List<UserEntity>,
-      userStatus: userStatus == freezed
+      userStatus: null == userStatus
           ? _value.userStatus
           : userStatus // ignore: cast_nullable_to_non_nullable
               as UserStatus,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
+      authFailureOrSuccessOption: null == authFailureOrSuccessOption
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, UserEntity>>,
-    ));
+              as Option<Either<UserNotFoundFailure, UserEntity>>,
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$UserAuthStateCopyWith<$Res>
+abstract class _$$UserAuthStateImplCopyWith<$Res>
     implements $UserAuthStateCopyWith<$Res> {
-  factory _$UserAuthStateCopyWith(
-          _UserAuthState value, $Res Function(_UserAuthState) then) =
-      __$UserAuthStateCopyWithImpl<$Res>;
+  factory _$$UserAuthStateImplCopyWith(
+          _$UserAuthStateImpl value, $Res Function(_$UserAuthStateImpl) then) =
+      __$$UserAuthStateImplCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {UserEntity user,
       List<UserEntity> users,
       List<UserEntity> submittedUsers,
       UserStatus userStatus,
-      Option<Either<Failure, UserEntity>> authFailureOrSuccessOption});
+      Option<Either<UserNotFoundFailure, UserEntity>>
+          authFailureOrSuccessOption});
 }
 
 /// @nodoc
-class __$UserAuthStateCopyWithImpl<$Res>
-    extends _$UserAuthStateCopyWithImpl<$Res>
-    implements _$UserAuthStateCopyWith<$Res> {
-  __$UserAuthStateCopyWithImpl(
-      _UserAuthState _value, $Res Function(_UserAuthState) _then)
-      : super(_value, (v) => _then(v as _UserAuthState));
+class __$$UserAuthStateImplCopyWithImpl<$Res>
+    extends _$UserAuthStateCopyWithImpl<$Res, _$UserAuthStateImpl>
+    implements _$$UserAuthStateImplCopyWith<$Res> {
+  __$$UserAuthStateImplCopyWithImpl(
+      _$UserAuthStateImpl _value, $Res Function(_$UserAuthStateImpl) _then)
+      : super(_value, _then);
 
-  @override
-  _UserAuthState get _value => super._value as _UserAuthState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = freezed,
-    Object? users = freezed,
-    Object? submittedUsers = freezed,
-    Object? userStatus = freezed,
-    Object? authFailureOrSuccessOption = freezed,
+    Object? user = null,
+    Object? users = null,
+    Object? submittedUsers = null,
+    Object? userStatus = null,
+    Object? authFailureOrSuccessOption = null,
   }) {
-    return _then(_UserAuthState(
-      user: user == freezed
+    return _then(_$UserAuthStateImpl(
+      user: null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as UserEntity,
-      users: users == freezed
-          ? _value.users
+      users: null == users
+          ? _value._users
           : users // ignore: cast_nullable_to_non_nullable
               as List<UserEntity>,
-      submittedUsers: submittedUsers == freezed
-          ? _value.submittedUsers
+      submittedUsers: null == submittedUsers
+          ? _value._submittedUsers
           : submittedUsers // ignore: cast_nullable_to_non_nullable
               as List<UserEntity>,
-      userStatus: userStatus == freezed
+      userStatus: null == userStatus
           ? _value.userStatus
           : userStatus // ignore: cast_nullable_to_non_nullable
               as UserStatus,
-      authFailureOrSuccessOption: authFailureOrSuccessOption == freezed
+      authFailureOrSuccessOption: null == authFailureOrSuccessOption
           ? _value.authFailureOrSuccessOption
           : authFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
-              as Option<Either<Failure, UserEntity>>,
+              as Option<Either<UserNotFoundFailure, UserEntity>>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_UserAuthState implements _UserAuthState {
-  const _$_UserAuthState(
+class _$UserAuthStateImpl implements _UserAuthState {
+  const _$UserAuthStateImpl(
       {required this.user,
-      required this.users,
-      required this.submittedUsers,
+      required final List<UserEntity> users,
+      required final List<UserEntity> submittedUsers,
       required this.userStatus,
-      required this.authFailureOrSuccessOption});
+      required this.authFailureOrSuccessOption})
+      : _users = users,
+        _submittedUsers = submittedUsers;
 
   @override
   final UserEntity user;
+  final List<UserEntity> _users;
   @override
-  final List<UserEntity> users;
+  List<UserEntity> get users {
+    if (_users is EqualUnmodifiableListView) return _users;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_users);
+  }
+
+  final List<UserEntity> _submittedUsers;
   @override
-  final List<UserEntity> submittedUsers;
+  List<UserEntity> get submittedUsers {
+    if (_submittedUsers is EqualUnmodifiableListView) return _submittedUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_submittedUsers);
+  }
+
   @override
   final UserStatus userStatus;
   @override
-  final Option<Either<Failure, UserEntity>> authFailureOrSuccessOption;
+  final Option<Either<UserNotFoundFailure, UserEntity>>
+      authFailureOrSuccessOption;
 
   @override
   String toString() {
@@ -1016,63 +1148,60 @@ class _$_UserAuthState implements _UserAuthState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other is _UserAuthState &&
-            (identical(other.user, user) ||
-                const DeepCollectionEquality().equals(other.user, user)) &&
-            (identical(other.users, users) ||
-                const DeepCollectionEquality().equals(other.users, users)) &&
-            (identical(other.submittedUsers, submittedUsers) ||
-                const DeepCollectionEquality()
-                    .equals(other.submittedUsers, submittedUsers)) &&
+        (other.runtimeType == runtimeType &&
+            other is _$UserAuthStateImpl &&
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other._users, _users) &&
+            const DeepCollectionEquality()
+                .equals(other._submittedUsers, _submittedUsers) &&
             (identical(other.userStatus, userStatus) ||
-                const DeepCollectionEquality()
-                    .equals(other.userStatus, userStatus)) &&
+                other.userStatus == userStatus) &&
             (identical(other.authFailureOrSuccessOption,
                     authFailureOrSuccessOption) ||
-                const DeepCollectionEquality().equals(
-                    other.authFailureOrSuccessOption,
-                    authFailureOrSuccessOption)));
+                other.authFailureOrSuccessOption ==
+                    authFailureOrSuccessOption));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(user) ^
-      const DeepCollectionEquality().hash(users) ^
-      const DeepCollectionEquality().hash(submittedUsers) ^
-      const DeepCollectionEquality().hash(userStatus) ^
-      const DeepCollectionEquality().hash(authFailureOrSuccessOption);
+  int get hashCode => Object.hash(
+      runtimeType,
+      user,
+      const DeepCollectionEquality().hash(_users),
+      const DeepCollectionEquality().hash(_submittedUsers),
+      userStatus,
+      authFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
   @override
-  _$UserAuthStateCopyWith<_UserAuthState> get copyWith =>
-      __$UserAuthStateCopyWithImpl<_UserAuthState>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UserAuthStateImplCopyWith<_$UserAuthStateImpl> get copyWith =>
+      __$$UserAuthStateImplCopyWithImpl<_$UserAuthStateImpl>(this, _$identity);
 }
 
 abstract class _UserAuthState implements UserAuthState {
   const factory _UserAuthState(
-      {required UserEntity user,
-      required List<UserEntity> users,
-      required List<UserEntity> submittedUsers,
-      required UserStatus userStatus,
-      required Option<Either<Failure, UserEntity>>
-          authFailureOrSuccessOption}) = _$_UserAuthState;
+      {required final UserEntity user,
+      required final List<UserEntity> users,
+      required final List<UserEntity> submittedUsers,
+      required final UserStatus userStatus,
+      required final Option<Either<UserNotFoundFailure, UserEntity>>
+          authFailureOrSuccessOption}) = _$UserAuthStateImpl;
 
   @override
-  UserEntity get user => throw _privateConstructorUsedError;
+  UserEntity get user;
   @override
-  List<UserEntity> get users => throw _privateConstructorUsedError;
+  List<UserEntity> get users;
   @override
-  List<UserEntity> get submittedUsers => throw _privateConstructorUsedError;
+  List<UserEntity> get submittedUsers;
   @override
-  UserStatus get userStatus => throw _privateConstructorUsedError;
+  UserStatus get userStatus;
   @override
-  Option<Either<Failure, UserEntity>> get authFailureOrSuccessOption =>
-      throw _privateConstructorUsedError;
+  Option<Either<UserNotFoundFailure, UserEntity>>
+      get authFailureOrSuccessOption;
   @override
   @JsonKey(ignore: true)
-  _$UserAuthStateCopyWith<_UserAuthState> get copyWith =>
+  _$$UserAuthStateImplCopyWith<_$UserAuthStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

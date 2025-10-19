@@ -1,4 +1,8 @@
-class UserNotFoundException implements Exception {}
+class UserNotFoundException implements Exception {
+  final String message;
+
+  UserNotFoundException({required this.message});
+}
 
 class MessageException implements Exception {}
 

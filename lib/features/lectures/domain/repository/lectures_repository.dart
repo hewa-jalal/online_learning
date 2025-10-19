@@ -22,11 +22,12 @@ abstract class LecturesRepository {
   Future<Either<Failure, List<LectureEntity>>> getAllLecturesByCourse({
     required String courseTitle,
   });
-  Future<Either<Failure, List<String>>> getAllCoursesByUserId({
-    required String userId,
+  Future<Either<Failure, List<String>>> getAllCoursesByUserDept({
+    required String userDept,
   });
   Future<Either<Failure, Unit>> createCourse({
     required String courseTitle,
+    required String userDept,
   });
   Future<Either<Failure, Unit>> submitUser({
     required String userId,
